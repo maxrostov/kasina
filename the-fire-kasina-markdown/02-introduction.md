@@ -1,0 +1,83 @@
+# Introduction
+> # Введение
+
+After being inspired by the material shared on-line by Daniel M. Ingram, Duncan Barford and Florian Weps following their fire kasina retreat in February, 2015, I decided to try out this practice by embarking upon a solo fire kasina retreat in the fall of the same year.
+> Вдохновившись материалами, которыми Дэниел М. Ингрэм, Дункан Барфорд и Флориан Вепс поделились в интернете после своего ретрита по огненной касине в феврале 2015 года, я решила попробовать эту практику, отправившись осенью того же года в одиночный ретрит по огненной касине.
+
+Given the strange and sometimes challenging psychological territory one can encounter in the high concentration states that predictably comes with intense fire kasina practice, I reached out to Daniel to keep an eye on me and provide on-going guidance during the 25-day retreat.
+> Учитывая странные и порой сложные психологические области, с которыми можно столкнуться в состояниях высокой концентрации, предсказуемо возникающих при интенсивной практике огненной касины, я обратилась к Дэниелу, чтобы он присматривал за мной и давал постоянные наставления во время 25-дневного ретрита.
+
+Florian also provided regular email support throughout the retreat.
+> Флориан также регулярно поддерживал меня по электронной почте на протяжении всего ретрита.
+
+What follows are highlights from my daily conversations with Daniel that covered not only the fundamentals of candle flame meditation, but also a wide range of meditation and dharma topics.
+> Далее следуют основные моменты из моих ежедневных бесед с Дэниелом, которые охватывали не только основы медитации на пламени свечи, но и широкий круг тем, связанных с медитацией и дхармой.
+
+The dialogue � based primarily on my questions to Daniel � has been organised according to the most prevalent topics discussed each day.
+> Диалог, основанный главным образом на моих вопросах к Дэниелу, был организован в соответствии с наиболее часто обсуждавшимися темами каждого дня.
+
+The journey of awakening is a complex, organic process that can be as confusing as it is rewarding.
+> Путь пробуждения - это сложный, органичный процесс, который может быть столь же запутанным, сколь и плодотворным.
+
+At some point the seeker begins to realise there was never any-where to arrive at, because it is all right here in the full experience of this moment.
+> В какой-то момент ищущий начинает понимать, что никогда не было никакого места, куда нужно было бы прийти, потому что все уже здесь, в полноте переживания этого момента.
+
+Yet until this light starts to dawn, there can be much fumbling around in the dark.
+> Но пока этот свет не начнет пробиваться, можно долго ощупью блуждать в темноте.
+
+From the time of the Buddha there has been an unbroken chain of capable, compassionate beings who have kept alive brilliant methods which, when taken up in earnest, shed light and lend efficiency to what otherwise would be a near-impossible achievement of awakening out of the darkness of ignorance.
+> Со времен Будды существует непрерывная цепь способных и сострадательных существ, которые сохраняли живыми блестящие методы; если взяться за них всерьез, они проливают свет и придают действенность тому, что иначе было бы почти невозможным достижением пробуждения из тьмы неведения.
+
+This book is offered as one small link in that grand chain.
+> Эта книга предлагается как одно маленькое звено в этой великой цепи.
+
+The prologue includes an intimate look at how Daniel M. Ingram, a modern meditation teacher and author of Mastering the Core Teachings of the Buddha, shook the dust off an ancient practice known as the fire kasina and revived it in his own process of enlightenment.
+> Пролог дает близкий взгляд на то, как Дэниел М. Ингрэм, современный учитель медитации и автор книги Mastering the Core Teachings of the Buddha, стряхнул пыль с древней практики, известной как огненная касина, и возродил ее в собственном процессе просветления.
+
+The rest of the book presents lively conversations between myself and Daniel, in which he generously and joyfully shared his knowledge of the fire kasina and related dharma topics.
+> Остальная часть книги представляет живые беседы между мной и Дэниелом, в которых он щедро и радостно делился своими знаниями об огненной касине и связанных с ней темах дхармы.
+
+It was in October of 2015 when Daniel assisted me during this 25-day solo retreat where I gained some mastery of the concentration meditation known as fire kasina.
+> Это было в октябре 2015 года, когда Дэниел помогал мне во время этого 25-дневного одиночного ретрита, на котором я в некоторой степени овладела медитацией концентрации, известной как огненная касина.
+
+Early in the retreat he asked if I would make note if something was particularly helpful in the instructions he provided, because he had found wisdom was more easily extracted from him when someone asked questions, whereas sitting down to write was for him a slower, more arduous process.
+> В начале ретрита он попросил меня отмечать, если что-то в его инструкциях окажется особенно полезным, потому что он обнаружил, что мудрость легче извлекается из него, когда кто-то задает вопросы, тогда как сесть и писать было для него более медленным и трудным процессом.
+
+In 2013 he had helped me almost daily on a two-month solo vipassana retreat, at the end of which the only dana he would accept was my agreement to practise well and assist others with what I knew.
+> В 2013 году он почти ежедневно помогал мне во время двухмесячного одиночного ретрита випассаны, по окончании которого единственной даной, которую он согласился принять, было мое обещание хорошо практиковать и помогать другим тем, что я знала.
+
+On this, my next retreat, my gratitude was so heartfelt, I was keen to follow through with Daniel�s request for help.
+> На этом, моем следующем ретрите, моя благодарность была настолько искренней, что я очень хотела выполнить просьбу Дэниела о помощи.
+
+At the end of my kasina retreat I sent him a lengthy write-up of most of my questions and his informative answers, for him to sift through as a resource for any future writing he might embark upon.
+> В конце моего ретрита по касине я отправила ему объемную запись большинства моих вопросов и его содержательных ответов, чтобы он мог разобрать ее как материал для любых будущих текстов, за которые он, возможно, возьмется.
+
+He decided we should post it on his fire kasina website, firekasina_org*, having expanded his answers and inviting me to add personal commentary from my perspective as the retreatant.
+> Он решил, что нам следует опубликовать это на его сайте об огненной касине, firekasina_org*, расширив свои ответы и предложив мне добавить личные комментарии с моей точки зрения как участницы ретрита.
+
+Just before we posted it, a trusted dharma friend of ours, having read the notes, suggested the writing would be an informative and unique resource as a book.
+> Незадолго до публикации один наш надежный друг по дхарме, прочитав заметки, предположил, что в виде книги этот текст станет информативным и уникальным ресурсом.
+
+To provide the historical context of Daniel�s entry into fire kasina practice, Daniel and I decided to have another conversation, using the Q and A format that runs throughout this book.
+> Чтобы дать исторический контекст того, как Дэниел пришел к практике огненной касины, мы с Дэниелом решили провести еще одну беседу в формате вопросов и ответов, который проходит через всю эту книгу.
+
+This forms the prologue.
+> Это и составляет пролог.
+
+It offers invaluable information on how to establish oneself in any traditional meditation practice from the ground up, using the specifics of the fire kasina as an example.
+> Он предлагает бесценную информацию о том, как с нуля утвердиться в любой традиционной медитативной практике, используя особенности огненной касины в качестве примера.
+
+As in the rest of the dialogue that follows, the prologue captures some of the wholesome, unique energy that is exchanged between any two beings � in particular a teacher and a student � who are passionate about dharma development.
+> Как и в остальном последующем диалоге, пролог передает часть той благотворной, уникальной энергии, которой обмениваются любые два существа, особенно учитель и ученик, увлеченные развитием в дхарме.
+
+In this sense, these conversations embody the pragmatic elements attendant on keeping alive an ancient oral tradition stemming back thousands of years to the time of the Buddha.
+> В этом смысле эти беседы воплощают прагматические элементы, сопутствующие сохранению живой древней устной традиции, уходящей на тысячи лет назад, ко временам Будды.
+
+[Shannon Stein]
+
+[October 8th, 2016.]
+
+_____________________________________
+
+[* Also freely available on this website are in-depth audio diaries recorded by both Daniel and myself.]
+> [* Также на этом сайте в свободном доступе размещены подробные аудиодневники, записанные как Дэниелом, так и мной.]

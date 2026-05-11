@@ -195,10 +195,10 @@ main {
         pointer-events: auto;
     }
 
-    .shell {
-        flex-direction: column;
-        padding-top: 4.75rem;
-    }
+  .shell {
+    flex-direction: column;
+    padding: 4.75rem 0 0;
+  }
 
     .site-nav {
         position: fixed;

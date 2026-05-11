@@ -1,0 +1,13 @@
+<nav id="site-nav" class="site-nav" aria-label="Publication chapters" x-on:click="if ($event.target.closest('a')) menuOpen = false">
+  <button class="nav-close" type="button" aria-label="Close menu" x-on:click="menuOpen = false">
+    <span></span>
+    <span></span>
+  </button>
+  <div class="nav-scroll">
+    <a class="site-title" href="{{indexHref}}">The Fire Kasina</a>
+    <ul>
+{{items}}
+    </ul>
+  </div>
+  <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+</nav>

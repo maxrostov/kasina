@@ -18,6 +18,10 @@ const outputDir = path.resolve(
   cwd,
   outputArg || `${sourceArg.replace(/[\\/]$/, "")}-html`,
 );
+const templatePath = path.join(__dirname, "template.html");
+const navTemplatePath = path.join(__dirname, "nav.html");
+const stylesPath = path.join(__dirname, "styles.css");
+const stylesheetOutputPath = "publication.css";
 
 const toPosix = (value) => value.split(path.sep).join(path.posix.sep);
 
@@ -160,7 +164,7 @@ function createMarkdownRenderer() {
   return md;
 }
 
-function renderNav(pages, currentPage) {
+function renderNav({ template, pages, currentPage }) {
   const items = pages
     .map((page) => {
       const href = relativeHref(currentPage.htmlPath, page.htmlPath);
@@ -170,249 +174,20 @@ function renderNav(pages, currentPage) {
     })
     .join("\n");
 
-  return `<nav class="site-nav" aria-label="Publication chapters">
-  <a class="site-title" href="${escapeHtml(relativeHref(currentPage.htmlPath, "index.html"))}">The Fire Kasina</a>
-  <ol>
-${items}
-  </ol>
-</nav>`;
+  return template
+    .replaceAll(
+      "{{indexHref}}",
+      escapeHtml(relativeHref(currentPage.htmlPath, "index.html")),
+    )
+    .replaceAll("{{items}}", items);
 }
 
-function renderPage({ title, body, nav }) {
-  return `<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${escapeHtml(title)}</title>
-  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <style>
-    :root {
-      color-scheme: light;
-      --bg: #f7f4ee;
-      --panel: #fffdf8;
-      --text: #1f2523;
-      --muted: #66706b;
-      --border: #ded6ca;
-      --accent: #8f3f27;
-      --accent-contrast: #ffffff;
-      --quote-bg: #efe7da;
-      --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
-    }
-
-    [data-theme="dark"] {
-      color-scheme: dark;
-      --bg: #151817;
-      --panel: #1f2422;
-      --text: #ece7dd;
-      --muted: #b5ada0;
-      --border: #343c38;
-      --accent: #e39b6f;
-      --accent-contrast: #1d120d;
-      --quote-bg: #292f2c;
-      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.65;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration-thickness: 0.08em;
-      text-underline-offset: 0.16em;
-    }
-
-    .layout {
-      min-height: 100vh;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 2;
-      display: flex;
-      justify-content: flex-end;
-      padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
-      background: color-mix(in srgb, var(--bg) 88%, transparent);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-
-    .theme-toggle {
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 0.45rem 0.75rem;
-      background: var(--panel);
-      color: var(--text);
-      font: 600 0.9rem/1.2 system-ui, sans-serif;
-      cursor: pointer;
-    }
-
-    .theme-toggle:hover {
-      border-color: var(--accent);
-    }
-
-    .shell {
-      display: grid;
-      grid-template-columns: minmax(14rem, 18rem) minmax(0, 48rem);
-      gap: clamp(1.5rem, 5vw, 4rem);
-      align-items: start;
-      max-width: 75rem;
-      margin: 0 auto;
-      padding: clamp(1.25rem, 5vw, 4rem);
-    }
-
-    .site-nav {
-      position: sticky;
-      top: 4.25rem;
-      max-height: calc(100vh - 5.5rem);
-      overflow: auto;
-      padding: 1.25rem;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      font-family: system-ui, sans-serif;
-      line-height: 1.35;
-    }
-
-    .site-title {
-      display: inline-block;
-      margin-bottom: 1rem;
-      color: var(--text);
-      font-weight: 750;
-      text-decoration: none;
-    }
-
-    .site-nav ol {
-      display: grid;
-      gap: 0.45rem;
-      margin: 0;
-      padding-left: 1.25rem;
-      color: var(--muted);
-    }
-
-    .site-nav a {
-      color: var(--muted);
-      text-decoration: none;
-    }
-
-    .site-nav a:hover,
-    .site-nav a[aria-current="page"] {
-      color: var(--accent);
-    }
-
-    main {
-      min-width: 0;
-      padding: clamp(1.25rem, 4vw, 3rem);
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-    }
-
-    main > :first-child {
-      margin-top: 0;
-    }
-
-    main > :last-child {
-      margin-bottom: 0;
-    }
-
-    h1,
-    h2,
-    h3 {
-      line-height: 1.2;
-      letter-spacing: 0;
-    }
-
-    h1 {
-      font-size: clamp(2rem, 6vw, 3.2rem);
-      margin: 0 0 1.5rem;
-    }
-
-    h2 {
-      margin-top: 2.2rem;
-      font-size: 1.55rem;
-    }
-
-    h3 {
-      margin-top: 1.8rem;
-      font-size: 1.2rem;
-    }
-
-    p,
-    ul,
-    ol,
-    blockquote {
-      margin: 1rem 0;
-    }
-
-    blockquote {
-      margin-left: 0;
-      padding: 0.75rem 1rem;
-      background: var(--quote-bg);
-      border-left: 4px solid var(--accent);
-      color: var(--text);
-    }
-
-    code {
-      padding: 0.12rem 0.28rem;
-      border-radius: 4px;
-      background: var(--quote-bg);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 0.92em;
-    }
-
-    pre {
-      overflow: auto;
-      padding: 1rem;
-      border-radius: 8px;
-      background: var(--quote-bg);
-    }
-
-    pre code {
-      padding: 0;
-      background: transparent;
-    }
-
-    @media (max-width: 820px) {
-      .shell {
-        grid-template-columns: 1fr;
-      }
-
-      .site-nav {
-        position: static;
-        max-height: none;
-      }
-    }
-  </style>
-</head>
-<body x-data="{ theme: $persist('light').as('kasina-theme') }" x-bind:data-theme="theme">
-  <div class="layout">
-    <header class="topbar">
-      <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
-    </header>
-    <div class="shell">
-      ${nav}
-      <main>
-${body}
-      </main>
-    </div>
-  </div>
-</body>
-</html>
-`;
+function renderPage({ template, title, stylesheetHref, body, nav }) {
+  return template
+    .replaceAll("{{title}}", escapeHtml(title))
+    .replaceAll("{{stylesheetHref}}", escapeHtml(stylesheetHref))
+    .replaceAll("{{nav}}", nav)
+    .replaceAll("{{body}}", body);
 }
 
 async function emptyOutputDirectory(targetDir) {
@@ -472,6 +247,8 @@ async function main() {
   await emptyOutputDirectory(outputDir);
 
   const md = createMarkdownRenderer();
+  const template = await fs.readFile(templatePath, "utf8");
+  const navTemplate = await fs.readFile(navTemplatePath, "utf8");
 
   for (const file of files) {
     if (path.extname(file.relativePath).toLowerCase() === ".md") {
@@ -483,12 +260,16 @@ async function main() {
     await fs.copyFile(file.absolutePath, targetPath);
   }
 
+  await fs.copyFile(stylesPath, path.join(outputDir, stylesheetOutputPath));
+
   for (const page of pages) {
     const body = rewriteHtmlMarkdownUrls(md.render(page.markdown));
     const html = renderPage({
+      template,
       title: page.title,
+      stylesheetHref: relativeHref(page.htmlPath, stylesheetOutputPath),
       body,
-      nav: renderNav(pages, page),
+      nav: renderNav({ template: navTemplate, pages, currentPage: page }),
     });
     const targetPath = path.join(outputDir, page.htmlPath);
 

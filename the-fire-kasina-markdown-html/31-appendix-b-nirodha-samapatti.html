@@ -626,20 +626,7 @@ Oh, yes, that is my perspective on it these days.</p>
         <span></span>
         <span></span>
     </button>
-    <div class="nav-actions">
-        <button
-            class="theme-toggle"
-            type="button"
-            x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
-        ></button>
-        <button
-            class="mode-toggle"
-            type="button"
-            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
-            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
-        ></button>
-    </div>
+
     <div class="nav-scroll">
         <a class="site-title" href="index.html">The Fire Kasina</a>
         <ul>
@@ -677,6 +664,20 @@ Oh, yes, that is my perspective on it these days.</p>
 <li><a href="31-appendix-b-nirodha-samapatti.html" aria-current="page">Appendix B: Nirodha Samapatti</a></li>
 <li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
         </ul>
+    </div>
+    <div class="nav-actions">
+        <button
+            class="theme-toggle"
+            type="button"
+            x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
+            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+        ></button>
+        <button
+            class="mode-toggle"
+            type="button"
+            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
+            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
+        ></button>
     </div>
 </nav>
 

@@ -13,6 +13,13 @@
         <span></span>
         <span></span>
     </button>
+
+    <div class="nav-scroll">
+        <a class="site-title" href="{{indexHref}}">The Fire Kasina</a>
+        <ul>
+            {{items}}
+        </ul>
+    </div>
     <div class="nav-actions">
         <button
             class="theme-toggle"
@@ -26,11 +33,5 @@
             x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
             x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
         ></button>
-    </div>
-    <div class="nav-scroll">
-        <a class="site-title" href="{{indexHref}}">The Fire Kasina</a>
-        <ul>
-            {{items}}
-        </ul>
     </div>
 </nav>

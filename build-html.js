@@ -8,6 +8,7 @@ const cwd = process.cwd();
 const sourceArg = process.argv[2];
 const outputArg = process.argv[3];
 
+// CLI-контракт: папка источника обязательна, папка результата опциональна.
 if (!sourceArg) {
   console.error("Usage: node build-html.js <source-dir> [output-dir]");
   process.exit(1);
@@ -20,11 +21,20 @@ const outputDir = path.resolve(
 );
 const templatePath = path.join(__dirname, "template.html");
 const navTemplatePath = path.join(__dirname, "nav.html");
-const stylesPath = path.join(__dirname, "styles.css");
-const stylesheetOutputPath = "publication.css";
+const stylesheets = [
+  {
+    sourcePath: path.join(__dirname, "styles.css"),
+    outputPath: "publication.css",
+  },
+  {
+    sourcePath: path.join(__dirname, "article.css"),
+    outputPath: "article.css",
+  },
+];
 
 const toPosix = (value) => value.split(path.sep).join(path.posix.sep);
 
+// Значения для шаблонов и названия в навигации экранируются перед вставкой.
 const escapeHtml = (value) =>
   String(value)
     .replaceAll("&", "&amp;")
@@ -38,6 +48,7 @@ const isExternalOrSpecialUrl = (url) =>
   url.startsWith("//") ||
   /^[a-z][a-z0-9+.-]*:/i.test(url);
 
+// Разделяет относительные URL без URL(), потому что ссылки могут быть простыми путями.
 function splitUrlSuffix(url) {
   const hashIndex = url.indexOf("#");
   const beforeHash = hashIndex === -1 ? url : url.slice(0, hashIndex);
@@ -50,6 +61,7 @@ function splitUrlSuffix(url) {
   return { pathname, query, hash };
 }
 
+// Переписываются только локальные Markdown-документы; ассеты и внешние URL не трогаются.
 function rewriteMarkdownUrl(url) {
   if (isExternalOrSpecialUrl(url)) {
     return url;
@@ -64,6 +76,7 @@ function rewriteMarkdownUrl(url) {
   return `${pathname.slice(0, -3)}.html${query}${hash}`;
 }
 
+// Markdown-it обрабатывает Markdown-ссылки; здесь ловятся raw HTML href/src внутри Markdown.
 function rewriteHtmlMarkdownUrls(html) {
   return html.replace(
     /\b(href|src)(\s*=\s*)(["'])([^"']+)\3/gi,
@@ -81,6 +94,7 @@ async function pathExists(filePath) {
   }
 }
 
+// Рекурсивно собирает все файлы: Markdown рендерится, остальные файлы копируются.
 async function walkFiles(rootDir, currentDir = rootDir) {
   const entries = await fs.readdir(currentDir, { withFileTypes: true });
   const files = [];
@@ -107,6 +121,7 @@ function markdownPathToHtmlPath(markdownPath) {
   return markdownPath.replace(/\.md$/i, ".html");
 }
 
+// Первый H1 становится title страницы и подписью в навигации.
 function pageTitle(markdown, fallback) {
   const heading = markdown.match(/^#\s+(.+?)\s*$/m);
 
@@ -117,6 +132,7 @@ function pageTitle(markdown, fallback) {
   return path.basename(fallback, path.extname(fallback));
 }
 
+// Каждая страница строит ссылки на общие файлы и другие страницы от своей папки.
 function relativeHref(fromHtmlPath, toHtmlPath) {
   const fromDir = path.posix.dirname(fromHtmlPath);
   const href = path.posix.relative(fromDir, toHtmlPath);
@@ -137,6 +153,7 @@ function createMarkdownRenderer() {
     md.renderer.rules.image ||
     ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options));
 
+  // Переписывает [chapter](chapter.md) в ссылку на сгенерированный chapter.html.
   md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
     const hrefIndex = tokens[idx].attrIndex("href");
 
@@ -149,6 +166,7 @@ function createMarkdownRenderer() {
     return defaultLinkOpen(tokens, idx, options, env, self);
   };
 
+  // Применяет то же правило к src изображений, если там вдруг указан .md.
   md.renderer.rules.image = (tokens, idx, options, env, self) => {
     const srcIndex = tokens[idx].attrIndex("src");
 
@@ -164,6 +182,7 @@ function createMarkdownRenderer() {
   return md;
 }
 
+// Разметка навигации лежит в nav.html; здесь собирается только список ссылок.
 function renderNav({ template, pages, currentPage }) {
   const items = pages
     .map((page) => {
@@ -182,15 +201,17 @@ function renderNav({ template, pages, currentPage }) {
     .replaceAll("{{items}}", items);
 }
 
-function renderPage({ template, title, stylesheetHref, body, nav }) {
+// Оболочка страницы лежит в template.html; плейсхолдеры намеренно простые.
+function renderPage({ template, title, stylesheetLinks, body, nav }) {
   return template
     .replaceAll("{{title}}", escapeHtml(title))
-    .replaceAll("{{stylesheetHref}}", escapeHtml(stylesheetHref))
+    .replaceAll("{{stylesheets}}", stylesheetLinks)
     .replaceAll("{{nav}}", nav)
     .replaceAll("{{body}}", body);
 }
 
 async function emptyOutputDirectory(targetDir) {
+  // Папка результата удаляется при каждой сборке, поэтому опасные пути запрещены.
   if (targetDir === path.parse(targetDir).root) {
     throw new Error("Output directory cannot be the filesystem root.");
   }
@@ -247,9 +268,11 @@ async function main() {
   await emptyOutputDirectory(outputDir);
 
   const md = createMarkdownRenderer();
+  // HTML-шаблоны относятся к генератору, а не к содержимому публикации.
   const template = await fs.readFile(templatePath, "utf8");
   const navTemplate = await fs.readFile(navTemplatePath, "utf8");
 
+  // Копирует будущие картинки, шрифты, PDF и другие ассеты с сохранением структуры.
   for (const file of files) {
     if (path.extname(file.relativePath).toLowerCase() === ".md") {
       continue;
@@ -260,14 +283,26 @@ async function main() {
     await fs.copyFile(file.absolutePath, targetPath);
   }
 
-  await fs.copyFile(stylesPath, path.join(outputDir, stylesheetOutputPath));
+  for (const stylesheet of stylesheets) {
+    await fs.copyFile(
+      stylesheet.sourcePath,
+      path.join(outputDir, stylesheet.outputPath),
+    );
+  }
 
+  // Рендерит каждый Markdown-документ в самостоятельную HTML-страницу.
   for (const page of pages) {
     const body = rewriteHtmlMarkdownUrls(md.render(page.markdown));
+    const stylesheetLinks = stylesheets
+      .map((stylesheet) => {
+        const href = relativeHref(page.htmlPath, stylesheet.outputPath);
+        return `  <link rel="stylesheet" href="${escapeHtml(href)}">`;
+      })
+      .join("\n");
     const html = renderPage({
       template,
       title: page.title,
-      stylesheetHref: relativeHref(page.htmlPath, stylesheetOutputPath),
+      stylesheetLinks,
       body,
       nav: renderNav({ template: navTemplate, pages, currentPage: page }),
     });

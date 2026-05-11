@@ -212,15 +212,39 @@ There is a natural trajectory on retreats that heads towards a mastery phase, a 
 </blockquote>
 
       </main>
-      <nav id="site-nav" class="site-nav" aria-label="Publication chapters" x-on:click="if ($event.target.closest('a')) menuOpen = false">
-  <button class="nav-close" type="button" aria-label="Close menu" x-on:click="menuOpen = false">
-    <span></span>
-    <span></span>
-  </button>
-  <div class="nav-scroll">
-    <a class="site-title" href="index.html">The Fire Kasina</a>
-    <ul>
-<li><a href="index.html">The Fire Kasina</a></li>
+      <nav
+    id="site-nav"
+    class="site-nav"
+    aria-label="Publication chapters"
+    x-on:click="if ($event.target.closest('a')) menuOpen = false"
+>
+    <button
+        class="nav-close"
+        type="button"
+        aria-label="Close menu"
+        x-on:click="menuOpen = false"
+    >
+        <span></span>
+        <span></span>
+    </button>
+    <div class="nav-actions">
+        <button
+            class="theme-toggle"
+            type="button"
+            x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
+            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+        ></button>
+        <button
+            class="mode-toggle"
+            type="button"
+            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
+            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
+        ></button>
+    </div>
+    <div class="nav-scroll">
+        <a class="site-title" href="index.html">The Fire Kasina</a>
+        <ul>
+            <li><a href="index.html">The Fire Kasina</a></li>
 <li><a href="01-the-authors.html">The Authors</a></li>
 <li><a href="02-introduction.html">Introduction</a></li>
 <li><a href="03-prologue.html">Prologue</a></li>
@@ -253,12 +277,8 @@ There is a natural trajectory on retreats that heads towards a mastery phase, a 
 <li><a href="30-appendix-a-glossary-of-technical-terms.html">Appendix A: Glossary of Technical Terms</a></li>
 <li><a href="31-appendix-b-nirodha-samapatti.html">Appendix B: Nirodha Samapatti</a></li>
 <li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
-    </ul>
-  </div>
-  <div class="nav-actions">
-    <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
-    <button class="mode-toggle" type="button" x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'" x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"></button>
-  </div>
+        </ul>
+    </div>
 </nav>
 
     </div>

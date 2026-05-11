@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day Six</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f4ee;
+      --panel: #fffdf8;
+      --text: #1f2523;
+      --muted: #66706b;
+      --border: #ded6ca;
+      --accent: #8f3f27;
+      --accent-contrast: #ffffff;
+      --quote-bg: #efe7da;
+      --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #151817;
+      --panel: #1f2422;
+      --text: #ece7dd;
+      --muted: #b5ada0;
+      --border: #343c38;
+      --accent: #e39b6f;
+      --accent-contrast: #1d120d;
+      --quote-bg: #292f2c;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.16em;
+    }
+
+    .layout {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      background: var(--panel);
+      color: var(--text);
+      font: 600 0.9rem/1.2 system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(14rem, 18rem) minmax(0, 48rem);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: start;
+      max-width: 75rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 4rem);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 4.25rem;
+      max-height: calc(100vh - 5.5rem);
+      overflow: auto;
+      padding: 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-family: system-ui, sans-serif;
+      line-height: 1.35;
+    }
+
+    .site-title {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .site-nav ol {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    main {
+      min-width: 0;
+      padding: clamp(1.25rem, 4vw, 3rem);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    main > :first-child {
+      margin-top: 0;
+    }
+
+    main > :last-child {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0 0 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+      font-size: 1.55rem;
+    }
+
+    h3 {
+      margin-top: 1.8rem;
+      font-size: 1.2rem;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
+      margin: 1rem 0;
+    }
+
+    blockquote {
+      margin-left: 0;
+      padding: 0.75rem 1rem;
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--text);
+    }
+
+    code {
+      padding: 0.12rem 0.28rem;
+      border-radius: 4px;
+      background: var(--quote-bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      overflow: auto;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--quote-bg);
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+    }
+
+    @media (max-width: 820px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .site-nav {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body x-data="{ theme: $persist('light').as('kasina-theme') }" x-bind:data-theme="theme">
+  <div class="layout">
+    <header class="topbar">
+      <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+    </header>
+    <div class="shell">
+      <nav class="site-nav" aria-label="Publication chapters">
+  <a class="site-title" href="index.html">The Fire Kasina</a>
+  <ol>
+<li><a href="index.html">The Fire Kasina</a></li>
+<li><a href="01-the-authors.html">The Authors</a></li>
+<li><a href="02-introduction.html">Introduction</a></li>
+<li><a href="03-prologue.html">Prologue</a></li>
+<li><a href="04-day-one.html">Day One</a></li>
+<li><a href="05-day-two.html">Day Two</a></li>
+<li><a href="06-day-three.html">Day Three</a></li>
+<li><a href="07-day-four.html">Day Four</a></li>
+<li><a href="08-day-five.html">Day Five</a></li>
+<li><a href="09-day-six.html" aria-current="page">Day Six</a></li>
+<li><a href="10-day-seven.html">Day Seven</a></li>
+<li><a href="11-day-eight.html">Day Eight</a></li>
+<li><a href="12-day-nine.html">Day Nine</a></li>
+<li><a href="13-day-ten.html">Day Ten</a></li>
+<li><a href="14-day-eleven.html">Day Eleven</a></li>
+<li><a href="15-day-twelve.html">Day Twelve</a></li>
+<li><a href="16-day-thirteen.html">Day Thirteen</a></li>
+<li><a href="17-day-fourteen.html">Day Fourteen</a></li>
+<li><a href="18-day-fifteen.html">Day Fifteen</a></li>
+<li><a href="19-day-sixteen.html">Day Sixteen</a></li>
+<li><a href="20-day-seventeen.html">Day Seventeen</a></li>
+<li><a href="21-day-eighteen.html">Day Eighteen</a></li>
+<li><a href="22-day-twenty.html">Day Twenty</a></li>
+<li><a href="23-day-twenty-one.html">Day Twenty-One</a></li>
+<li><a href="24-day-twenty-two.html">Day Twenty-Two</a></li>
+<li><a href="25-day-twenty-three.html">Day Twenty-Three</a></li>
+<li><a href="26-day-twenty-four.html">Day Twenty-Four</a></li>
+<li><a href="27-day-twenty-five.html">Day Twenty-Five</a></li>
+<li><a href="28-two-weeks-after-the-retreat.html">Two Weeks After the Retreat</a></li>
+<li><a href="29-conclusion.html">Conclusion</a></li>
+<li><a href="30-appendix-a-glossary-of-technical-terms.html">Appendix A: Glossary of Technical Terms</a></li>
+<li><a href="31-appendix-b-nirodha-samapatti.html">Appendix B: Nirodha Samapatti</a></li>
+<li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
+  </ol>
+</nav>
+      <main>
+<h1>Day Six</h1>
+<blockquote>
+<p>День шестой</p>
+</blockquote>
+<p>[Murk ~ Colour Control ~ Mesmerisation ~ Intention-Setting for Deity]</p>
+<blockquote>
+<p>Муть ~ Управление цветом ~ Завороженность ~ Постановка намерения для божества</p>
+</blockquote>
+<p>[Murk]</p>
+<blockquote>
+<p>Муть</p>
+</blockquote>
+<p>[SHANNON]
+I spent a lot of time in the murk last night: I do not know why.</p>
+<blockquote>
+<p>Прошлой ночью я провела много времени в мути: я не знаю почему.</p>
+</blockquote>
+<p>[DANIEL]
+That is where progress comes.</p>
+<blockquote>
+<p>Именно там приходит прогресс.</p>
+</blockquote>
+<p>The red dot is relatively easy, even for people new to meditation, but the murk is a slipperier journey to the other side.</p>
+<blockquote>
+<p>Красная точка относительно проста, даже для людей, новых в медитации, но муть - это более скользкое путешествие на другую сторону.</p>
+</blockquote>
+<p>[SHANNON]
+When Daniel encouraged me throughout the retreat to let the mind sync with the visual field, such as in this murky phase of the meditation, I initially struggled to understand what he meant.</p>
+<blockquote>
+<p>Когда Дэниел на протяжении ретрита поощрял меня позволять уму синхронизироваться с визуальным полем, например в этой мутной фазе медитации, сначала мне было трудно понять, что он имеет в виду.</p>
+</blockquote>
+<p>Gradually meditation breakthroughs arose when the act of perceiving became an intimate connection with the details of the field, which involved “getting myself out of the way” and attending in a bare manner to the visuals.</p>
+<blockquote>
+<p>Постепенно медитативные прорывы возникали тогда, когда акт восприятия становился близкой связью с деталями поля, что включало «убрать себя с дороги» и голым образом внимать визуальным образам.</p>
+</blockquote>
+<p>A push for something else to happen dropped away at these times.</p>
+<blockquote>
+<p>В такие моменты исчезало стремление, чтобы произошло что-то еще.</p>
+</blockquote>
+<p>It was as if the field suddenly came closer, with the flickers and flecks of colour becoming fascinating.</p>
+<blockquote>
+<p>Было так, словно поле внезапно приближалось, а мерцания и пятнышки цвета становились завораживающими.</p>
+</blockquote>
+<p>By sweeping the field for one minuscule fleck of colour that held particular interest, an intense red for example, and gently inclining my mind toward that colour, suddenly the entire field would come alive with incredible colour.</p>
+<blockquote>
+<p>Прочесывая поле в поисках одного крошечного пятнышка цвета, вызывавшего особый интерес, например интенсивного красного, и мягко склоняя ум к этому цвету, я вдруг видела, как все поле оживает невероятным цветом.</p>
+</blockquote>
+<p>A mind-to-field synchronisation began unfolding.</p>
+<blockquote>
+<p>Начала разворачиваться синхронизация ума и поля.</p>
+</blockquote>
+<p>[Colour Control]</p>
+<blockquote>
+<p>Управление цветом</p>
+</blockquote>
+<p>[SHANNON]
+I am seeing a beautiful mauve shape of the candle, but only a brief red dot.</p>
+<blockquote>
+<p>Я вижу красивую лиловую форму свечи, но только краткую красную точку.</p>
+</blockquote>
+<p>Today I saw spectacular colours, many unnamable, across a delicate range.</p>
+<blockquote>
+<p>Сегодня я видела впечатляющие цвета, многие из которых невозможно назвать, в тонком диапазоне.</p>
+</blockquote>
+<p>[DANIEL]
+Try tuning the colour shades to suit your interior design tastes.</p>
+<blockquote>
+<p>Попробуйте настраивать оттенки цветов в соответствии со своими вкусами в дизайне интерьера.</p>
+</blockquote>
+<p>Be gentle.</p>
+<blockquote>
+<p>Будьте мягки.</p>
+</blockquote>
+<p>Appreciate it takes the brain time to process and manifest our intentions in this phase; immediate control will not work, as before, and will mess it up.</p>
+<blockquote>
+<p>Учитывайте, что в этой фазе мозгу нужно время, чтобы обработать и проявить наши намерения; немедленный контроль, как прежде, не сработает и все испортит.</p>
+</blockquote>
+<p>It is not like deciding to move your arm.</p>
+<blockquote>
+<p>Это не похоже на решение пошевелить рукой.</p>
+</blockquote>
+<p>[SHANNON]
+After my attempt to change purple into red resulted in a dreary brown, I was disappointed, until realising the red I intended for had mixed with the purple wash to create brown.</p>
+<blockquote>
+<p>После того как моя попытка изменить фиолетовый на красный привела к унылому коричневому, я была разочарована, пока не поняла, что красный, к которому я стремилась, смешался с фиолетовым потоком и создал коричневый.</p>
+</blockquote>
+<p>Eventually, over the course of the retreat, I was able to finesse the colours that showed up on the visual screen by using a feather-light mental inclination towards a particular shade and then “adding” other colours if whatever showed up did not meet my satisfaction.</p>
+<blockquote>
+<p>В конце концов, в ходе ретрита, я смогла тонко доводить цвета, появлявшиеся на визуальном экране, используя легчайший ментальный наклон к определенному оттенку, а затем «добавляя» другие цвета, если появившееся не удовлетворяло меня.</p>
+</blockquote>
+<p>To get the exquisite teal I was after, for instance, I would commence with a blue and gradually add increasing amounts of green and white.</p>
+<blockquote>
+<p>Например, чтобы получить изысканный бирюзово-синий, которого я добивалась, я начинала с синего и постепенно добавляла все больше зеленого и белого.</p>
+</blockquote>
+<p>[Mesmerisation]</p>
+<blockquote>
+<p>Завороженность</p>
+</blockquote>
+<p>[SHANNON]
+The colours become so mesmerising I lose the mantra altogether.</p>
+<blockquote>
+<p>Цвета становятся настолько завораживающими, что я полностью теряю мантру.</p>
+</blockquote>
+<p>[DANIEL]
+At this point, this is beneficial, as mesmerisation is important for deeper concentration: less striving for something, and just relaxing into the magnetism.</p>
+<blockquote>
+<p>На этом этапе это полезно, поскольку завороженность важна для более глубокой концентрации: меньше стремления к чему-то и больше расслабления в магнетизм.</p>
+</blockquote>
+<p>Setting up any intentions for what the colours will do is best done earlier, before you end up deep into things.</p>
+<blockquote>
+<p>Любые намерения относительно того, что будут делать цвета, лучше задавать раньше, до того как вы глубоко войдете в процесс.</p>
+</blockquote>
+<p>[Intention-Setting for Deity]</p>
+<blockquote>
+<p>Постановка намерения для божества</p>
+</blockquote>
+<p>[SHANNON]
+The colours are the big thing right now: glowing and subtly changing.</p>
+<blockquote>
+<p>Сейчас главное - цвета: светящиеся и тонко меняющиеся.</p>
+</blockquote>
+<p>The meditation is blissful, quiet, and calm.</p>
+<blockquote>
+<p>Медитация блаженная, тихая и спокойная.</p>
+</blockquote>
+<p>[DANIEL]
+Aim for control of colours and shapes: this requires a delicate teasing of them.</p>
+<blockquote>
+<p>Стремитесь к управлению цветами и формами: это требует деликатного подталкивания их.</p>
+</blockquote>
+<p>Also, before the sit you can try intending: “Should I find myself reaching for a bottle during a partial travel may I turn it into something spectacular, like a Medicine Buddha.”</p>
+<blockquote>
+<p>Также перед сидением можно попробовать намерение: «Если во время частичного путешествия я обнаружу, что тянусь к бутылке, пусть я превращу ее во что-то впечатляющее, например в Будду Медицины».</p>
+</blockquote>
+<p>[SHANNON]
+Is it good to be spending all this time with the colours?</p>
+<blockquote>
+<p>Хорошо ли проводить все это время с цветами?</p>
+</blockquote>
+<p>[DANIEL]
+That is the whole point!</p>
+<blockquote>
+<p>В этом весь смысл!</p>
+</blockquote>
+<p>What else is there?</p>
+<blockquote>
+<p>Что еще есть?</p>
+</blockquote>
+<p>(SHANNON - I remember we both had a good laugh at this.)</p>
+<blockquote>
+<p>(ШЭННОН - я помню, как мы оба хорошенько посмеялись над этим.)</p>
+</blockquote>
+<p>Going through the range of colours and starting to receive images wires something good into the brain.</p>
+<blockquote>
+<p>Прохождение через диапазон цветов и начало получения образов прокладывает в мозге что-то хорошее.</p>
+</blockquote>
+<p>You might practise dropping frustration when intentions are not fulfilled, and instead then just stay with the colours.</p>
+<blockquote>
+<p>Вы можете практиковаться отпускать разочарование, когда намерения не исполняются, и вместо этого просто оставаться с цветами.</p>
+</blockquote>
+<p>You could read Medicine Buddha texts for inspiration, as that sort of preprogramming can make desired images and entities manifest.</p>
+<blockquote>
+<p>Для вдохновения можно читать тексты Будды Медицины, поскольку такого рода предварительное программирование может способствовать проявлению желаемых образов и сущностей.</p>
+</blockquote>
+<p>[SHANNON]
+To enhance the chances of meeting with the Medicine Buddha, I incorporated the Medicine Buddha mantra into parts of the day and went through a simple puja (a Tibetan meditation ritual) each morning.</p>
+<blockquote>
+<p>Чтобы повысить шансы на встречу с Буддой Медицины, я включила мантру Будды Медицины в некоторые части дня и каждое утро проходила простую пуджу (тибетский медитативный ритуал).</p>
+</blockquote>
+<p>One evening, while out kayaking, the moon’s reflection on the choppy lake surface appeared like tiny sparkling jewels, which I offered up to the Medicine Buddha to entice him into providing me with teachings.</p>
+<blockquote>
+<p>Однажды вечером, когда я была на каяке, отражение луны на волнистой поверхности озера выглядело как крошечные сверкающие драгоценности, которые я поднесла Будде Медицины, чтобы побудить его дать мне учения.</p>
+</blockquote>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

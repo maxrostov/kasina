@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day Twenty</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f4ee;
+      --panel: #fffdf8;
+      --text: #1f2523;
+      --muted: #66706b;
+      --border: #ded6ca;
+      --accent: #8f3f27;
+      --accent-contrast: #ffffff;
+      --quote-bg: #efe7da;
+      --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #151817;
+      --panel: #1f2422;
+      --text: #ece7dd;
+      --muted: #b5ada0;
+      --border: #343c38;
+      --accent: #e39b6f;
+      --accent-contrast: #1d120d;
+      --quote-bg: #292f2c;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.16em;
+    }
+
+    .layout {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      background: var(--panel);
+      color: var(--text);
+      font: 600 0.9rem/1.2 system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(14rem, 18rem) minmax(0, 48rem);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: start;
+      max-width: 75rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 4rem);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 4.25rem;
+      max-height: calc(100vh - 5.5rem);
+      overflow: auto;
+      padding: 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-family: system-ui, sans-serif;
+      line-height: 1.35;
+    }
+
+    .site-title {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .site-nav ol {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    main {
+      min-width: 0;
+      padding: clamp(1.25rem, 4vw, 3rem);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    main > :first-child {
+      margin-top: 0;
+    }
+
+    main > :last-child {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0 0 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+      font-size: 1.55rem;
+    }
+
+    h3 {
+      margin-top: 1.8rem;
+      font-size: 1.2rem;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
+      margin: 1rem 0;
+    }
+
+    blockquote {
+      margin-left: 0;
+      padding: 0.75rem 1rem;
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--text);
+    }
+
+    code {
+      padding: 0.12rem 0.28rem;
+      border-radius: 4px;
+      background: var(--quote-bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      overflow: auto;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--quote-bg);
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+    }
+
+    @media (max-width: 820px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .site-nav {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body x-data="{ theme: $persist('light').as('kasina-theme') }" x-bind:data-theme="theme">
+  <div class="layout">
+    <header class="topbar">
+      <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+    </header>
+    <div class="shell">
+      <nav class="site-nav" aria-label="Publication chapters">
+  <a class="site-title" href="index.html">The Fire Kasina</a>
+  <ol>
+<li><a href="index.html">The Fire Kasina</a></li>
+<li><a href="01-the-authors.html">The Authors</a></li>
+<li><a href="02-introduction.html">Introduction</a></li>
+<li><a href="03-prologue.html">Prologue</a></li>
+<li><a href="04-day-one.html">Day One</a></li>
+<li><a href="05-day-two.html">Day Two</a></li>
+<li><a href="06-day-three.html">Day Three</a></li>
+<li><a href="07-day-four.html">Day Four</a></li>
+<li><a href="08-day-five.html">Day Five</a></li>
+<li><a href="09-day-six.html">Day Six</a></li>
+<li><a href="10-day-seven.html">Day Seven</a></li>
+<li><a href="11-day-eight.html">Day Eight</a></li>
+<li><a href="12-day-nine.html">Day Nine</a></li>
+<li><a href="13-day-ten.html">Day Ten</a></li>
+<li><a href="14-day-eleven.html">Day Eleven</a></li>
+<li><a href="15-day-twelve.html">Day Twelve</a></li>
+<li><a href="16-day-thirteen.html">Day Thirteen</a></li>
+<li><a href="17-day-fourteen.html">Day Fourteen</a></li>
+<li><a href="18-day-fifteen.html">Day Fifteen</a></li>
+<li><a href="19-day-sixteen.html">Day Sixteen</a></li>
+<li><a href="20-day-seventeen.html">Day Seventeen</a></li>
+<li><a href="21-day-eighteen.html">Day Eighteen</a></li>
+<li><a href="22-day-twenty.html" aria-current="page">Day Twenty</a></li>
+<li><a href="23-day-twenty-one.html">Day Twenty-One</a></li>
+<li><a href="24-day-twenty-two.html">Day Twenty-Two</a></li>
+<li><a href="25-day-twenty-three.html">Day Twenty-Three</a></li>
+<li><a href="26-day-twenty-four.html">Day Twenty-Four</a></li>
+<li><a href="27-day-twenty-five.html">Day Twenty-Five</a></li>
+<li><a href="28-two-weeks-after-the-retreat.html">Two Weeks After the Retreat</a></li>
+<li><a href="29-conclusion.html">Conclusion</a></li>
+<li><a href="30-appendix-a-glossary-of-technical-terms.html">Appendix A: Glossary of Technical Terms</a></li>
+<li><a href="31-appendix-b-nirodha-samapatti.html">Appendix B: Nirodha Samapatti</a></li>
+<li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
+  </ol>
+</nav>
+      <main>
+<h1>Day Twenty</h1>
+<blockquote>
+<p>День двадцатый</p>
+</blockquote>
+<p>[Mastery ~ Discouragement with Intention-Setting ~ Mantra with Anapanasati ~ Suffering Door]</p>
+<blockquote>
+<p>[Мастерство ~ Разочарование в задавании намерений ~ Мантра с анапанасати ~ Дверь страдания]</p>
+</blockquote>
+<p>[Mastery]</p>
+<blockquote>
+<p>[Мастерство]</p>
+</blockquote>
+<p>[SHANNON]
+For several hours, I have been finishing the sequence with a fruition about every ten to fifteen minutes.</p>
+<blockquote>
+<p>В течение нескольких часов я завершала последовательность плодоношением примерно каждые десять-пятнадцать минут.</p>
+</blockquote>
+<p>I can be just thinking the word �fruition�, and I will have one and then several more.</p>
+<blockquote>
+<p>Я могу просто думать слово «плодоношение», и у меня происходит одно, а затем еще несколько.</p>
+</blockquote>
+<p>There must be a mix of equanimity and concentration allowing things to flow.</p>
+<blockquote>
+<p>Должно быть, есть смесь равностности и концентрации, позволяющая всему течь.</p>
+</blockquote>
+<p>It is currently hard to believe that at the beginning of the retreat it was taking four or five days to get there.</p>
+<blockquote>
+<p>Сейчас трудно поверить, что в начале ретрита мне требовалось четыре или пять дней, чтобы туда добраться.</p>
+</blockquote>
+<p>When I stopped pushing was the point at which things became quiet and tranquil with easy cycling.</p>
+<blockquote>
+<p>Когда я перестала подталкивать, все стало тихим и спокойным, с легким циклированием.</p>
+</blockquote>
+<p>[DANIEL]
+Mastery!</p>
+<blockquote>
+<p>Мастерство!</p>
+</blockquote>
+<p>A subtle trap when assisting others is the assumption it will be this easy for everyone: particularly if one has something that comes naturally.</p>
+<blockquote>
+<p>Тонкая ловушка при помощи другим - предположение, что для всех это будет так же легко, особенно если у человека что-то получается естественно.</p>
+</blockquote>
+<p>At a primitive level we think it is the same for everyone.</p>
+<blockquote>
+<p>На примитивном уровне мы думаем, что у всех это одинаково.</p>
+</blockquote>
+<p>[SHANNON]
+Another sign a meditator is in a phase of mastery is that unlike the beginning of a retreat, where the morning sits can be slow-going due to the orientation back into the practice after a night of sleep, in mastery things often roll effortlessly at the outset of the day.</p>
+<blockquote>
+<p>Еще один признак того, что медитатор находится в фазе мастерства: в отличие от начала ретрита, когда утренние сидения могут идти медленно из-за возвращения ориентации в практику после ночного сна, в мастерстве все часто легко разворачивается с самого начала дня.</p>
+</blockquote>
+<p>Earlier in the retreat I would sometimes choose to briefly tune into the body bliss at the forehead and crown chakras, to help fire-up the practice at the sluggish start of a day�s sitting, whereas by the end of the retreat the first meditation of the day started immediately and naturally.</p>
+<blockquote>
+<p>Раньше на ретрите я иногда выбирала кратко настроиться на телесное блаженство в чакрах лба и макушки, чтобы помочь разжечь практику в вялом начале дневного сидения, тогда как к концу ретрита первая медитация дня начиналась сразу и естественно.</p>
+</blockquote>
+<p>[Discouragement with Intention-Setting]</p>
+<blockquote>
+<p>[Разочарование в задавании намерений]</p>
+</blockquote>
+<p>[SHANNON]
+My ever-shifting attitude toward intention-setting encompassed a striving, forceful stance (not fruitful), abject skepticism and forgetfulness (equally unproductive), as well as sincerely sending out an aspiration at just the right time while turning the mind back to absorption into the meditation object with the dropping of all agenda for a result (the most rewarding, angst-free path, yet comically elusive to this novice magician).</p>
+<blockquote>
+<p>Мое постоянно меняющееся отношение к задаванию намерений включало стремящуюся, силовую позицию (не плодотворную), полнейший скептицизм и забывчивость (столь же непродуктивные), а также искреннюю отправку устремления в точно подходящий момент при возвращении ума к поглощению в объект медитации с отпусканием всякой повестки на результат (самый вознаграждающий и свободный от тревоги путь, но комично ускользающий от этой начинающей волшебницы).</p>
+</blockquote>
+<p>I get discouraged when specific intentions do not happen.</p>
+<blockquote>
+<p>Я расстраиваюсь, когда конкретные намерения не осуществляются.</p>
+</blockquote>
+<p>Do I just keep trying wholeheartedly?</p>
+<blockquote>
+<p>Мне просто продолжать пытаться от всего сердца?</p>
+</blockquote>
+<p>[DANIEL]
+It is normal to get discouraged.</p>
+<blockquote>
+<p>Расстраиваться нормально.</p>
+</blockquote>
+<p>Eventually equanimity arises regarding intentions, which is a phase that comes after frustration.</p>
+<blockquote>
+<p>В конце концов по отношению к намерениям возникает равностность, и это фаза, которая приходит после фрустрации.</p>
+</blockquote>
+<p>When you stop caring, then, paradoxically, things are most likely to happen.</p>
+<blockquote>
+<p>Когда тебе перестает быть важно, тогда, как ни парадоксально, вещи с наибольшей вероятностью происходят.</p>
+</blockquote>
+<p>[SHANNON]
+We talked about the similarity regarding intending for fruitions: wanting one too hard screws it up.</p>
+<blockquote>
+<p>Мы говорили о сходстве с намерением получить плодоношения: слишком сильное желание все портит.</p>
+</blockquote>
+<p>[Mantra with Anapanasati]</p>
+<blockquote>
+<p>[Мантра с анапанасати]</p>
+</blockquote>
+<p>[SHANNON]
+When people on retreat are doing anapanasati meditation at the nose tip, would a mantra during the sits mess up the breath?</p>
+<blockquote>
+<p>Когда люди на ретрите выполняют медитацию анапанасати на кончике носа, не будет ли мантра во время сидений сбивать дыхание?</p>
+</blockquote>
+<p>[DANIEL]
+Mantras occupy the cognitive mind and they change something in the relationship with the inner voice; mantras make the inner voice more clear and wieldy, and so it behaves better.</p>
+<blockquote>
+<p>Мантры занимают когнитивный ум и что-то меняют в отношениях с внутренним голосом; мантры делают внутренний голос более ясным и управляемым, и поэтому он ведет себя лучше.</p>
+</blockquote>
+<p>They are taught traditionally � for example, the Tibetans use them.</p>
+<blockquote>
+<p>Им традиционно обучают - например, тибетцы их используют.</p>
+</blockquote>
+<p>But mantras are not good for people prone to psychosis; for people hearing voices it is not helpful to amplify the inner voice.</p>
+<blockquote>
+<p>Но мантры не подходят людям, склонным к психозу; людям, слышащим голоса, не полезно усиливать внутренний голос.</p>
+</blockquote>
+<p>Mantras do not mess up the breath because one can fuse the breath and mantra together.</p>
+<blockquote>
+<p>Мантры не сбивают дыхание, потому что дыхание и мантру можно слить воедино.</p>
+</blockquote>
+<p>Mantras have a location where they occur within the auditory field, and you can position it so that it seems to be coming from the nose or from wherever you are noticing the breath.</p>
+<blockquote>
+<p>У мантр есть место, где они возникают в слуховом поле, и ты можешь расположить ее так, чтобы казалось, будто она исходит из носа или из любого места, где ты замечаешь дыхание.</p>
+</blockquote>
+<p>When performing the fire kasina, you can position it centrally and then, as attention widens later, fan it out.</p>
+<blockquote>
+<p>При выполнении огненной касины ты можешь расположить ее в центре, а затем, когда внимание позже расширится, развернуть ее веером.</p>
+</blockquote>
+<p>The brain processes sound by positioning it.</p>
+<blockquote>
+<p>Мозг обрабатывает звук, располагая его.</p>
+</blockquote>
+<p>Meditators are often unaware of how and where they are placing the mantra, but with attention to this, can learn to recognise and control its position.</p>
+<blockquote>
+<p>Медитаторы часто не осознают, как и где они размещают мантру, но при внимании к этому могут научиться распознавать и контролировать ее положение.</p>
+</blockquote>
+<p>[Suffering Door]</p>
+<blockquote>
+<p>[Дверь страдания]</p>
+</blockquote>
+<p>[SHANNON]
+There was an upsetting aspect to the three shudders before a couple of the fruitions: which door would that be?</p>
+<blockquote>
+<p>В трех дрожаниях перед несколькими плодоношениями был тревожащий аспект: какая это была бы дверь?</p>
+</blockquote>
+<p>[DANIEL]
+When the impermanence door predominates with suffering as its secondary aspect, reality disconcertingly stutters.</p>
+<blockquote>
+<p>Когда дверь непостоянства преобладает со страданием как вторичным аспектом, реальность тревожно заикается.</p>
+</blockquote>
+<p>When the suffering door predominates, there is this disturbing twisting away movement, as if everything is being ripped away, revealing the fundamental suffering of duality.</p>
+<blockquote>
+<p>Когда преобладает дверь страдания, возникает это тревожащее скручивающееся движение прочь, как будто все отрывается, раскрывая фундаментальное страдание двойственности.</p>
+</blockquote>
+<p>The distance we insist on maintaining is torn away from us.</p>
+<blockquote>
+<p>Дистанция, на сохранении которой мы настаиваем, отрывается от нас.</p>
+</blockquote>
+<p>Experiencing the doors repeatedly provides important bridging for further insight, as the mind gets to see there is not a catastrophe on the other side.</p>
+<blockquote>
+<p>Повторное переживание дверей создает важный мост для дальнейшего прозрения, поскольку ум видит, что на другой стороне нет катастрофы.</p>
+</blockquote>
+<p>[SHANNON]
+Daniel added that his suffering door lost its suffering aspect in 2003.</p>
+<blockquote>
+<p>Дэниел добавил, что его дверь страдания потеряла аспект страдания в 2003 году.</p>
+</blockquote>
+<p>Experiencing that particular door differently was what he termed the �entryway� for him.</p>
+<blockquote>
+<p>Переживание этой конкретной двери иначе было тем, что он называл своим «входом».</p>
+</blockquote>
+<p>The sense of a centrepoint had finally vanished and therefore the suffering, violating aspect of the doors had vanished alongside.</p>
+<blockquote>
+<p>Ощущение центральной точки наконец исчезло, и поэтому страдательный, нарушающий аспект дверей исчез вместе с ним.</p>
+</blockquote>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

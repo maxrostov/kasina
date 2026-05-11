@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day Thirteen</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f4ee;
+      --panel: #fffdf8;
+      --text: #1f2523;
+      --muted: #66706b;
+      --border: #ded6ca;
+      --accent: #8f3f27;
+      --accent-contrast: #ffffff;
+      --quote-bg: #efe7da;
+      --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #151817;
+      --panel: #1f2422;
+      --text: #ece7dd;
+      --muted: #b5ada0;
+      --border: #343c38;
+      --accent: #e39b6f;
+      --accent-contrast: #1d120d;
+      --quote-bg: #292f2c;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.16em;
+    }
+
+    .layout {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      background: var(--panel);
+      color: var(--text);
+      font: 600 0.9rem/1.2 system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(14rem, 18rem) minmax(0, 48rem);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: start;
+      max-width: 75rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 4rem);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 4.25rem;
+      max-height: calc(100vh - 5.5rem);
+      overflow: auto;
+      padding: 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-family: system-ui, sans-serif;
+      line-height: 1.35;
+    }
+
+    .site-title {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .site-nav ol {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    main {
+      min-width: 0;
+      padding: clamp(1.25rem, 4vw, 3rem);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    main > :first-child {
+      margin-top: 0;
+    }
+
+    main > :last-child {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0 0 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+      font-size: 1.55rem;
+    }
+
+    h3 {
+      margin-top: 1.8rem;
+      font-size: 1.2rem;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
+      margin: 1rem 0;
+    }
+
+    blockquote {
+      margin-left: 0;
+      padding: 0.75rem 1rem;
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--text);
+    }
+
+    code {
+      padding: 0.12rem 0.28rem;
+      border-radius: 4px;
+      background: var(--quote-bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      overflow: auto;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--quote-bg);
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+    }
+
+    @media (max-width: 820px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .site-nav {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body x-data="{ theme: $persist('light').as('kasina-theme') }" x-bind:data-theme="theme">
+  <div class="layout">
+    <header class="topbar">
+      <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+    </header>
+    <div class="shell">
+      <nav class="site-nav" aria-label="Publication chapters">
+  <a class="site-title" href="index.html">The Fire Kasina</a>
+  <ol>
+<li><a href="index.html">The Fire Kasina</a></li>
+<li><a href="01-the-authors.html">The Authors</a></li>
+<li><a href="02-introduction.html">Introduction</a></li>
+<li><a href="03-prologue.html">Prologue</a></li>
+<li><a href="04-day-one.html">Day One</a></li>
+<li><a href="05-day-two.html">Day Two</a></li>
+<li><a href="06-day-three.html">Day Three</a></li>
+<li><a href="07-day-four.html">Day Four</a></li>
+<li><a href="08-day-five.html">Day Five</a></li>
+<li><a href="09-day-six.html">Day Six</a></li>
+<li><a href="10-day-seven.html">Day Seven</a></li>
+<li><a href="11-day-eight.html">Day Eight</a></li>
+<li><a href="12-day-nine.html">Day Nine</a></li>
+<li><a href="13-day-ten.html">Day Ten</a></li>
+<li><a href="14-day-eleven.html">Day Eleven</a></li>
+<li><a href="15-day-twelve.html">Day Twelve</a></li>
+<li><a href="16-day-thirteen.html" aria-current="page">Day Thirteen</a></li>
+<li><a href="17-day-fourteen.html">Day Fourteen</a></li>
+<li><a href="18-day-fifteen.html">Day Fifteen</a></li>
+<li><a href="19-day-sixteen.html">Day Sixteen</a></li>
+<li><a href="20-day-seventeen.html">Day Seventeen</a></li>
+<li><a href="21-day-eighteen.html">Day Eighteen</a></li>
+<li><a href="22-day-twenty.html">Day Twenty</a></li>
+<li><a href="23-day-twenty-one.html">Day Twenty-One</a></li>
+<li><a href="24-day-twenty-two.html">Day Twenty-Two</a></li>
+<li><a href="25-day-twenty-three.html">Day Twenty-Three</a></li>
+<li><a href="26-day-twenty-four.html">Day Twenty-Four</a></li>
+<li><a href="27-day-twenty-five.html">Day Twenty-Five</a></li>
+<li><a href="28-two-weeks-after-the-retreat.html">Two Weeks After the Retreat</a></li>
+<li><a href="29-conclusion.html">Conclusion</a></li>
+<li><a href="30-appendix-a-glossary-of-technical-terms.html">Appendix A: Glossary of Technical Terms</a></li>
+<li><a href="31-appendix-b-nirodha-samapatti.html">Appendix B: Nirodha Samapatti</a></li>
+<li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
+  </ol>
+</nav>
+      <main>
+<h1>Day Thirteen</h1>
+<blockquote>
+<p>День тринадцатый</p>
+</blockquote>
+<p>[Importance of third Jhana ~ Vertical versus Horizontal Work ~ Positive Qualities in Meditators]</p>
+<blockquote>
+<p>Важность третьей джханы ~ Вертикальная и горизонтальная работа ~ Положительные качества медитирующих</p>
+</blockquote>
+<p>[Importance of Third Jhana]</p>
+<blockquote>
+<p>Важность третьей джханы</p>
+</blockquote>
+<p>[SHANNON]
+I have continued exploring every minute aspect of third jhana (the murk, the billowing swaths of purple, the lustrous colours with explosive sparks, the slow moving airy 3D colours almost as silent as fourth).</p>
+<blockquote>
+<p>Я продолжала исследовать каждый мельчайший аспект третьей джханы (муть, клубящиеся полосы фиолетового, блестящие цвета со взрывными искрами, медленно движущиеся воздушные трехмерные цвета, почти такие же тихие, как четвертая).</p>
+</blockquote>
+<p>If I am intrigued, is this still a good use of my time?</p>
+<blockquote>
+<p>Если мне это интересно, все еще ли это хорошее использование моего времени?</p>
+</blockquote>
+<p>[DANIEL]
+It is putting together all those puzzle pieces which makes the fourth jhana work.</p>
+<blockquote>
+<p>Именно складывание всех этих частей головоломки и заставляет четвертую джхану работать.</p>
+</blockquote>
+<p>Third, when well-developed and mastered, has much (though not all) of what fourth has, with fourth being more spatial and natural-seeming in some way, more complete, more finished, more resolved.</p>
+<blockquote>
+<p>Третья, когда она хорошо развита и освоена, содержит многое (хотя и не все) из того, что есть в четвертой, при этом четвертая в некотором смысле более пространственная и естественно выглядящая, более полная, завершенная и разрешенная.</p>
+</blockquote>
+<p>Usually our attention is in a narrow first or second jhana mode: watching television, talking to someone, staring at a screen, even driving, activities in which peripheral vision is not normally required for us to stay safe, and therefore is not well-developed.</p>
+<blockquote>
+<p>Обычно наше внимание находится в узком режиме первой или второй джханы: просмотр телевизора, разговор с кем-то, смотрение на экран, даже вождение - занятия, в которых периферическое зрение обычно не требуется для нашей безопасности и поэтому недостаточно развито.</p>
+</blockquote>
+<p>However, it is important for the later two jhanas.</p>
+<blockquote>
+<p>Однако оно важно для двух последующих джхан.</p>
+</blockquote>
+<p>[Vertical versus Horizontal Work]</p>
+<blockquote>
+<p>Вертикальная и горизонтальная работа</p>
+</blockquote>
+<p>[SHANNON]
+Would it be good for me to know how dukkha-nanas (dark night stages) fit with phases of the third jhana?</p>
+<blockquote>
+<p>Было бы полезно мне знать, как дуккха-ньяны (стадии темной ночи) соотносятся с фазами третьей джханы?</p>
+</blockquote>
+<p>[DANIEL]
+Just learn the base for now: nailing the sequence is essential.</p>
+<blockquote>
+<p>Пока просто изучайте основу: точно освоить последовательность необходимо.</p>
+</blockquote>
+<p>See how fast you can cycle, and when you become restless walk (or kayak, or whatever), then back to the cushion.</p>
+<blockquote>
+<p>Посмотрите, как быстро вы можете проходить цикл, а когда становитесь беспокойной, ходите (или гребите на каяке, или что угодно), затем возвращайтесь на подушку.</p>
+</blockquote>
+<p>The big bell curve of a retreat happens over days not minutes.</p>
+<blockquote>
+<p>Большая колоколообразная кривая ретрита разворачивается за дни, а не за минуты.</p>
+</blockquote>
+<p>A few days ago you had massive rapture and an incredible mantra and now things are generally more spacious and dreamy with a third jhana vibe.</p>
+<blockquote>
+<p>Несколько дней назад у вас был мощный восторг и невероятная мантра, а теперь все в целом более просторное и сновидческое, с атмосферой третьей джханы.</p>
+</blockquote>
+<p>Keep going vertical until deep into fourth jhana.</p>
+<blockquote>
+<p>Продолжайте двигаться вертикально до глубокой четвертой джханы.</p>
+</blockquote>
+<p>Later, in the review phase, you will be more confident, and that is a safer, easier time for more horizontal, jhana-to-nana correlation exploration.</p>
+<blockquote>
+<p>Позже, в фазе обзора, вы будете увереннее, и это будет более безопасное и легкое время для более горизонтального исследования корреляций между джханами и ньянами.</p>
+</blockquote>
+<p>[Positive Qualities in Meditators]</p>
+<blockquote>
+<p>Положительные качества медитирующих</p>
+</blockquote>
+<p>[SHANNON]
+Given your time in the meditation world, what qualities do you most appreciate in meditators you have met?</p>
+<blockquote>
+<p>Учитывая ваше время в мире медитации, какие качества вы больше всего цените в медитирующих, которых встречали?</p>
+</blockquote>
+<p>[DANIEL]
+Strong morality!</p>
+<blockquote>
+<p>Сильную нравственность!</p>
+</blockquote>
+<p>Those who don’t project their stuff, are helpful, fun, and down-to-earth, regardless of level of mastery.</p>
+<blockquote>
+<p>Тех, кто не проецирует свои проблемы, кто полезен, весел и приземлен, независимо от уровня мастерства.</p>
+</blockquote>
+<p>Without strong morality there are likely to be problems, especially given the fascinating stickiness that can easily come with cool meditation experiences; this can show up as self-absorption or arrogance and be very annoying to others.</p>
+<blockquote>
+<p>Без сильной нравственности, скорее всего, будут проблемы, особенно учитывая увлекательную липкость, которая легко может сопровождать крутые медитативные переживания; это может проявляться как самопоглощенность или высокомерие и сильно раздражать других.</p>
+</blockquote>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day Twenty-One</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f4ee;
+      --panel: #fffdf8;
+      --text: #1f2523;
+      --muted: #66706b;
+      --border: #ded6ca;
+      --accent: #8f3f27;
+      --accent-contrast: #ffffff;
+      --quote-bg: #efe7da;
+      --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #151817;
+      --panel: #1f2422;
+      --text: #ece7dd;
+      --muted: #b5ada0;
+      --border: #343c38;
+      --accent: #e39b6f;
+      --accent-contrast: #1d120d;
+      --quote-bg: #292f2c;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.16em;
+    }
+
+    .layout {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      background: var(--panel);
+      color: var(--text);
+      font: 600 0.9rem/1.2 system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(14rem, 18rem) minmax(0, 48rem);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: start;
+      max-width: 75rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 4rem);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 4.25rem;
+      max-height: calc(100vh - 5.5rem);
+      overflow: auto;
+      padding: 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-family: system-ui, sans-serif;
+      line-height: 1.35;
+    }
+
+    .site-title {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .site-nav ol {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    main {
+      min-width: 0;
+      padding: clamp(1.25rem, 4vw, 3rem);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    main > :first-child {
+      margin-top: 0;
+    }
+
+    main > :last-child {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0 0 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+      font-size: 1.55rem;
+    }
+
+    h3 {
+      margin-top: 1.8rem;
+      font-size: 1.2rem;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
+      margin: 1rem 0;
+    }
+
+    blockquote {
+      margin-left: 0;
+      padding: 0.75rem 1rem;
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--text);
+    }
+
+    code {
+      padding: 0.12rem 0.28rem;
+      border-radius: 4px;
+      background: var(--quote-bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      overflow: auto;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--quote-bg);
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+    }
+
+    @media (max-width: 820px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .site-nav {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body x-data="{ theme: $persist('light').as('kasina-theme') }" x-bind:data-theme="theme">
+  <div class="layout">
+    <header class="topbar">
+      <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+    </header>
+    <div class="shell">
+      <nav class="site-nav" aria-label="Publication chapters">
+  <a class="site-title" href="index.html">The Fire Kasina</a>
+  <ol>
+<li><a href="index.html">The Fire Kasina</a></li>
+<li><a href="01-the-authors.html">The Authors</a></li>
+<li><a href="02-introduction.html">Introduction</a></li>
+<li><a href="03-prologue.html">Prologue</a></li>
+<li><a href="04-day-one.html">Day One</a></li>
+<li><a href="05-day-two.html">Day Two</a></li>
+<li><a href="06-day-three.html">Day Three</a></li>
+<li><a href="07-day-four.html">Day Four</a></li>
+<li><a href="08-day-five.html">Day Five</a></li>
+<li><a href="09-day-six.html">Day Six</a></li>
+<li><a href="10-day-seven.html">Day Seven</a></li>
+<li><a href="11-day-eight.html">Day Eight</a></li>
+<li><a href="12-day-nine.html">Day Nine</a></li>
+<li><a href="13-day-ten.html">Day Ten</a></li>
+<li><a href="14-day-eleven.html">Day Eleven</a></li>
+<li><a href="15-day-twelve.html">Day Twelve</a></li>
+<li><a href="16-day-thirteen.html">Day Thirteen</a></li>
+<li><a href="17-day-fourteen.html">Day Fourteen</a></li>
+<li><a href="18-day-fifteen.html">Day Fifteen</a></li>
+<li><a href="19-day-sixteen.html">Day Sixteen</a></li>
+<li><a href="20-day-seventeen.html">Day Seventeen</a></li>
+<li><a href="21-day-eighteen.html">Day Eighteen</a></li>
+<li><a href="22-day-twenty.html">Day Twenty</a></li>
+<li><a href="23-day-twenty-one.html" aria-current="page">Day Twenty-One</a></li>
+<li><a href="24-day-twenty-two.html">Day Twenty-Two</a></li>
+<li><a href="25-day-twenty-three.html">Day Twenty-Three</a></li>
+<li><a href="26-day-twenty-four.html">Day Twenty-Four</a></li>
+<li><a href="27-day-twenty-five.html">Day Twenty-Five</a></li>
+<li><a href="28-two-weeks-after-the-retreat.html">Two Weeks After the Retreat</a></li>
+<li><a href="29-conclusion.html">Conclusion</a></li>
+<li><a href="30-appendix-a-glossary-of-technical-terms.html">Appendix A: Glossary of Technical Terms</a></li>
+<li><a href="31-appendix-b-nirodha-samapatti.html">Appendix B: Nirodha Samapatti</a></li>
+<li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
+  </ol>
+</nav>
+      <main>
+<h1>Day Twenty-One</h1>
+<blockquote>
+<p>День двадцать первый</p>
+</blockquote>
+<p>[Travel and Deities ~ Mastery and Review ~ Rewiring with Control ~ Fear]</p>
+<blockquote>
+<p>[Путешествия и божества ~ Мастерство и обзор ~ Перенастройка с контролем ~ Страх]</p>
+</blockquote>
+<p>[Travel and Deities]</p>
+<blockquote>
+<p>[Путешествия и божества]</p>
+</blockquote>
+<p>[SHANNON]
+Do you think my best bet to see Medicine Buddha would be when travelling?</p>
+<blockquote>
+<p>Как ты думаешь, лучшим вариантом увидеть Будду Медицины было бы во время путешествия?</p>
+</blockquote>
+<p>[DANIEL]
+Likely, as that world is hyper-malleable: it has its own bizarre range of energy, yet is a territory where the options are essentially unlimited.</p>
+<blockquote>
+<p>Вероятно, поскольку тот мир чрезвычайно податлив: у него есть свой странный диапазон энергии, но это территория, где возможности по сути безграничны.</p>
+</blockquote>
+<p>[SHANNON]
+I have a better sense of the value of travelling.</p>
+<blockquote>
+<p>Теперь я лучше понимаю ценность путешествий.</p>
+</blockquote>
+<p>I can now stay in longer and observe the spacious aspect much more clearly.</p>
+<blockquote>
+<p>Теперь я могу оставаться там дольше и гораздо яснее наблюдать пространственный аспект.</p>
+</blockquote>
+<p>[DANIEL]
+Concentration enhances and stabilises.</p>
+<blockquote>
+<p>Концентрация усиливается и стабилизируется.</p>
+</blockquote>
+<p>Few people understand what happens when you get your concentration really strong.</p>
+<blockquote>
+<p>Немногие понимают, что происходит, когда концентрация становится действительно сильной.</p>
+</blockquote>
+<p>[Mastery and Review]</p>
+<blockquote>
+<p>[Мастерство и обзор]</p>
+</blockquote>
+<p>[SHANNON]
+I have a problem when watching the colours swirling and gaining 3D depth, because mesmerisation brings on fruitions.</p>
+<blockquote>
+<p>У меня возникает проблема, когда я наблюдаю, как цвета закручиваются и обретают трехмерную глубину, потому что завороженность вызывает плодоношения.</p>
+</blockquote>
+<p>How can I stay there longer?</p>
+<blockquote>
+<p>Как мне оставаться там дольше?</p>
+</blockquote>
+<p>[DANIEL]
+The point is not to stay there.</p>
+<blockquote>
+<p>Смысл не в том, чтобы оставаться там.</p>
+</blockquote>
+<p>Instead, sculpt it to be what you want it to be through intention and practice, then repeatedly go through the cycle.</p>
+<blockquote>
+<p>Вместо этого формируй это намерением и практикой так, чтобы оно стало тем, чем ты хочешь, а затем многократно проходи через цикл.</p>
+</blockquote>
+<p>Practise doing more of what you wish the mind to do.</p>
+<blockquote>
+<p>Практикуйся делать больше того, что ты хочешь, чтобы делал ум.</p>
+</blockquote>
+<p>High review phase is a great time to work on mastery: for example, it would be good to gain better image control and travel-content control.</p>
+<blockquote>
+<p>Фаза высокого обзора - отличное время для работы над мастерством: например, было бы полезно развить лучший контроль образов и контроль содержания путешествий.</p>
+</blockquote>
+<p>[SHANNON]
+I found it instructive and amusing to hear in detail how Daniel on his last retreat, while working with the mental visual field, repeatedly tweaked and refined the image of a dragon, by giving it longer fangs and better nostrils, before obtaining fruitions from it.</p>
+<blockquote>
+<p>Мне было поучительно и забавно подробно услышать, как Дэниел на своем последнем ретрите, работая с ментальным визуальным полем, снова и снова корректировал и уточнял образ дракона, делая ему более длинные клыки и лучшие ноздри, прежде чем получить от него плодоношения.</p>
+</blockquote>
+<p>[Rewiring with Control]</p>
+<blockquote>
+<p>[Перенастройка с контролем]</p>
+</blockquote>
+<p>[DANIEL]
+Repetition of successful intention, even fleetingly, wires the mind in good ways, particularly when compared to the average meditator, in whom a stream of random images and thoughts parade through that are 90 percent useless.</p>
+<blockquote>
+<p>Повторение успешного намерения, даже мимолетное, благотворно перепрошивает ум, особенно по сравнению со средним медитатором, через которого проходит поток случайных образов и мыслей, на 90 процентов бесполезных.</p>
+</blockquote>
+<p>Making the mantra amazing and the images what you want them to be, all you have to do next is fully combine that with getting the ultimate aspect (meaning going through the no-self door into a fruition), and you�ve got the whole thing.</p>
+<blockquote>
+<p>Сделав мантру великолепной, а образы такими, какими ты хочешь их видеть, все, что тебе затем нужно, - полностью соединить это с достижением предельного аспекта (то есть пройти через дверь не-я в плодоношение), и у тебя будет вся картина целиком.</p>
+</blockquote>
+<p>[Fear]</p>
+<blockquote>
+<p>[Страх]</p>
+</blockquote>
+<p>[SHANNON]
+Could you expand on your earlier comment that the meditation images cannot hurt me, but fear can hurt me?</p>
+<blockquote>
+<p>Можешь подробнее объяснить свой прежний комментарий о том, что медитативные образы не могут мне навредить, но страх может?</p>
+</blockquote>
+<p>And what about when psychological issues come up in the jhanas?</p>
+<blockquote>
+<p>А что насчет случаев, когда в джханах поднимаются психологические проблемы?</p>
+</blockquote>
+<p>[DANIEL]
+Fear is nothing more than textures and energetic frequencies in the field.</p>
+<blockquote>
+<p>Страх - это не более чем текстуры и энергетические частоты в поле.</p>
+</blockquote>
+<p>If taken as real, one can freak out and contract into weird behavior, with fear feeding on fear.</p>
+<blockquote>
+<p>Если принять его за реальность, можно запаниковать и сжаться в странное поведение, при этом страх будет питать страх.</p>
+</blockquote>
+<p>These unfortunate patterns, when occurring in a concentrated mind, are written on that mind more strongly.</p>
+<blockquote>
+<p>Эти неблагоприятные паттерны, когда они возникают в сосредоточенном уме, записываются в нем сильнее.</p>
+</blockquote>
+<p>Strong concentration can bring higher highs when well-directed and lower lows when allowed to run amok, as strong concentration is a double-edged sword.</p>
+<blockquote>
+<p>Сильная концентрация может приносить более высокие подъемы, когда она хорошо направлена, и более глубокие падения, когда ей позволяют выйти из-под контроля, поскольку сильная концентрация - палка о двух концах.</p>
+</blockquote>
+<p>Obviously, in the world of meditation, there is a great debate: to ignore psychological stuff and stick with concentration, or allow issues to surface to develop healthier relationships to challenging patterns and gain insight.</p>
+<blockquote>
+<p>Очевидно, в мире медитации идет большой спор: игнорировать психологический материал и держаться концентрации или позволять проблемам всплывать, чтобы развивать более здоровые отношения со сложными паттернами и обретать прозрение.</p>
+</blockquote>
+<p>There are positive points to both, but you definitely do not want to wallow in psychological issues.</p>
+<blockquote>
+<p>В обоих подходах есть положительные стороны, но тебе определенно не стоит погрязать в психологических проблемах.</p>
+</blockquote>
+<p>[SHANNON]
+In the Sathipatanna Sutta, the discourse on the four foundations of mindfulness, there is scholarly controversy concerning the correct translation of the fourth foundation, �mindfulness of the dharmas�.</p>
+<blockquote>
+<p>В Сатипаттхана-сутте, наставлении о четырех основаниях осознанности, среди ученых есть спор о правильном переводе четвертого основания - �осознанности дхарм�.</p>
+</blockquote>
+<p>Where the translators agree, though, is contemplation of the five hindrances and the seven factors of awakening are to be included as part of this foundation.</p>
+<blockquote>
+<p>Однако переводчики сходятся в том, что созерцание пяти помех и семи факторов пробуждения должно включаться как часть этого основания.</p>
+</blockquote>
+<p>Indeed it proved invaluable for me to be well-versed in working with the seven factors of awakening, in particular to be able to recognise when joy and tranquillity were low, which often coincided with a rise in my habitual hindrances of fear and doubt.</p>
+<blockquote>
+<p>И действительно, для меня оказалось бесценным хорошо разбираться в работе с семью факторами пробуждения, в особенности уметь распознавать, когда радость и спокойствие были низкими, что часто совпадало с усилением моих привычных помех - страха и сомнения.</p>
+</blockquote>
+<p>(The configuration of the specifics on this will be different for each meditator.)</p>
+<blockquote>
+<p>(Конкретная конфигурация этого будет различаться у каждого медитатора.)</p>
+</blockquote>
+<p>When I was at risk of wallowing in the unproductive, if all else failed, remembering to cultivate and tune into a soft physical and mental joy, and an inner tranquillity, worked well to allow for a deeper letting-go into whatever was happening.</p>
+<blockquote>
+<p>Когда я рисковала погрязнуть в непродуктивном, если все остальное не помогало, хорошо срабатывало воспоминание о необходимости взращивать мягкую физическую и умственную радость и настраиваться на нее, а также на внутреннее спокойствие, что позволяло глубже отпускать все происходящее.</p>
+</blockquote>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

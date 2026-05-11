@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conclusion</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f4ee;
+      --panel: #fffdf8;
+      --text: #1f2523;
+      --muted: #66706b;
+      --border: #ded6ca;
+      --accent: #8f3f27;
+      --accent-contrast: #ffffff;
+      --quote-bg: #efe7da;
+      --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #151817;
+      --panel: #1f2422;
+      --text: #ece7dd;
+      --muted: #b5ada0;
+      --border: #343c38;
+      --accent: #e39b6f;
+      --accent-contrast: #1d120d;
+      --quote-bg: #292f2c;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.16em;
+    }
+
+    .layout {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      background: var(--panel);
+      color: var(--text);
+      font: 600 0.9rem/1.2 system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(14rem, 18rem) minmax(0, 48rem);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: start;
+      max-width: 75rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 4rem);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 4.25rem;
+      max-height: calc(100vh - 5.5rem);
+      overflow: auto;
+      padding: 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-family: system-ui, sans-serif;
+      line-height: 1.35;
+    }
+
+    .site-title {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .site-nav ol {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    main {
+      min-width: 0;
+      padding: clamp(1.25rem, 4vw, 3rem);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    main > :first-child {
+      margin-top: 0;
+    }
+
+    main > :last-child {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0 0 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+      font-size: 1.55rem;
+    }
+
+    h3 {
+      margin-top: 1.8rem;
+      font-size: 1.2rem;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
+      margin: 1rem 0;
+    }
+
+    blockquote {
+      margin-left: 0;
+      padding: 0.75rem 1rem;
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--text);
+    }
+
+    code {
+      padding: 0.12rem 0.28rem;
+      border-radius: 4px;
+      background: var(--quote-bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      overflow: auto;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--quote-bg);
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+    }
+
+    @media (max-width: 820px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .site-nav {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body x-data="{ theme: $persist('light').as('kasina-theme') }" x-bind:data-theme="theme">
+  <div class="layout">
+    <header class="topbar">
+      <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+    </header>
+    <div class="shell">
+      <nav class="site-nav" aria-label="Publication chapters">
+  <a class="site-title" href="index.html">The Fire Kasina</a>
+  <ol>
+<li><a href="index.html">The Fire Kasina</a></li>
+<li><a href="01-the-authors.html">The Authors</a></li>
+<li><a href="02-introduction.html">Introduction</a></li>
+<li><a href="03-prologue.html">Prologue</a></li>
+<li><a href="04-day-one.html">Day One</a></li>
+<li><a href="05-day-two.html">Day Two</a></li>
+<li><a href="06-day-three.html">Day Three</a></li>
+<li><a href="07-day-four.html">Day Four</a></li>
+<li><a href="08-day-five.html">Day Five</a></li>
+<li><a href="09-day-six.html">Day Six</a></li>
+<li><a href="10-day-seven.html">Day Seven</a></li>
+<li><a href="11-day-eight.html">Day Eight</a></li>
+<li><a href="12-day-nine.html">Day Nine</a></li>
+<li><a href="13-day-ten.html">Day Ten</a></li>
+<li><a href="14-day-eleven.html">Day Eleven</a></li>
+<li><a href="15-day-twelve.html">Day Twelve</a></li>
+<li><a href="16-day-thirteen.html">Day Thirteen</a></li>
+<li><a href="17-day-fourteen.html">Day Fourteen</a></li>
+<li><a href="18-day-fifteen.html">Day Fifteen</a></li>
+<li><a href="19-day-sixteen.html">Day Sixteen</a></li>
+<li><a href="20-day-seventeen.html">Day Seventeen</a></li>
+<li><a href="21-day-eighteen.html">Day Eighteen</a></li>
+<li><a href="22-day-twenty.html">Day Twenty</a></li>
+<li><a href="23-day-twenty-one.html">Day Twenty-One</a></li>
+<li><a href="24-day-twenty-two.html">Day Twenty-Two</a></li>
+<li><a href="25-day-twenty-three.html">Day Twenty-Three</a></li>
+<li><a href="26-day-twenty-four.html">Day Twenty-Four</a></li>
+<li><a href="27-day-twenty-five.html">Day Twenty-Five</a></li>
+<li><a href="28-two-weeks-after-the-retreat.html">Two Weeks After the Retreat</a></li>
+<li><a href="29-conclusion.html" aria-current="page">Conclusion</a></li>
+<li><a href="30-appendix-a-glossary-of-technical-terms.html">Appendix A: Glossary of Technical Terms</a></li>
+<li><a href="31-appendix-b-nirodha-samapatti.html">Appendix B: Nirodha Samapatti</a></li>
+<li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
+  </ol>
+</nav>
+      <main>
+<h1>Conclusion</h1>
+<blockquote>
+<p>Заключение</p>
+</blockquote>
+<p>[Some reflections several months after the retreat]</p>
+<blockquote>
+<p>[Некоторые размышления через несколько месяцев после ретрита]</p>
+</blockquote>
+<p>[SHANNON]
+As predicted, shortly upon my return to daily living, the supremely high states of concentration faded.</p>
+<blockquote>
+<p>Как и предсказывалось, вскоре после моего возвращения к повседневной жизни чрезвычайно высокие состояния концентрации угасли.</p>
+</blockquote>
+<p>One may ask what is the point of jacking up the concentration for such a brief period of time.</p>
+<blockquote>
+<p>Можно спросить, в чем смысл настолько усиливать концентрацию на такой короткий период времени.</p>
+</blockquote>
+<p>It is hard to say in exact terms, but the perceived advantages are significant enough to make it worth attempting to describe them.</p>
+<blockquote>
+<p>Трудно сказать точно, но воспринимаемые преимущества достаточно значительны, чтобы стоило попытаться их описать.</p>
+</blockquote>
+<p>In learning the simple-to-follow instructions of the fire kasina practice, one gains confidence in attaining high concentration; daily activities undoubtedly benefit from this ability to focus in a pristine way.</p>
+<blockquote>
+<p>Изучая простые для следования инструкции практики огненной касины, человек обретает уверенность в достижении высокой концентрации; повседневные дела, несомненно, выигрывают от этой способности фокусироваться чистым образом.</p>
+</blockquote>
+<p>Combine a heightened concentration skill with wholesome orientation towards personal development in sila (virtue) and you have a powerful package with respect to personal refinement.</p>
+<blockquote>
+<p>Соедини усиленный навык концентрации с благой ориентацией на личное развитие в силе (добродетели), и получится мощный набор для личного утончения.</p>
+</blockquote>
+<p>The natural experience of pervasive luminosity from a wide, receptive perspective, which arose near the end of the retreat, quickly grew faint upon my return home, as did the capacity to intend successfully for various things (such as pre-determined elements of astral travel).</p>
+<blockquote>
+<p>Естественное переживание всепроникающей светимости с широкой, восприимчивой перспективы, возникшее ближе к концу ретрита, быстро поблекло после возвращения домой, как и способность успешно намереваться на различные вещи (например, заранее заданные элементы астрального путешествия).</p>
+</blockquote>
+<p>What has not diminished since the retreat is a subtle yet powerful knowledge that, at just the right moment, when conditions come together in a harmonious way, there is an opportunity to intend for a potentiality that previously I did not know could exist.</p>
+<blockquote>
+<p>Что не уменьшилось после ретрита, так это тонкое, но мощное знание: в точно подходящий момент, когда условия сходятся гармоничным образом, есть возможность намереваться на потенциальность, о существовании которой я раньше не знала.</p>
+</blockquote>
+<p>Just this knowledge in the background of the mind has enabled me to carry myself differently, more open to what can happen beyond the confines of how I previously approached situations, relationships and decision-making.</p>
+<blockquote>
+<p>Одно лишь это знание на фоне ума позволило мне держаться иначе, быть более открытой к тому, что может произойти за пределами того, как я раньше подходила к ситуациям, отношениям и принятию решений.</p>
+</blockquote>
+<p>Although not on the same playing field as what can happen in retreat-mode, there continues to be a delicate aura of magick in my approach to day-to-day life from this frame of mind.</p>
+<blockquote>
+<p>Хотя это не на том же уровне, что может происходить в режиме ретрита, в моем подходе к повседневной жизни из этой рамки ума продолжает присутствовать тонкая аура магии.</p>
+</blockquote>
+<p>Spending so much time with the grey of the visual field and having my attitude toward it evolve naturally over the course of the retreat was a solid take-away.</p>
+<blockquote>
+<p>То, что я провела так много времени с серым цветом визуального поля и мое отношение к нему естественно развивалось в ходе ретрита, стало важным выводом.</p>
+</blockquote>
+<p>After looking at the candle flame and closing one’s eyes, it is the watching of the colourful mental imagery eventually fading to grey, and learning how to be with that grey, which is one of the indispensable turning-points in the unfolding of the fire kasina practice.</p>
+<blockquote>
+<p>После смотрения на пламя свечи и закрытия глаз именно наблюдение за тем, как красочные ментальные образы в итоге блекнут до серого, и обучение тому, как быть с этим серым, является одним из незаменимых поворотных пунктов в разворачивании практики огненной касины.</p>
+</blockquote>
+<p>Entering back into daily living involves encountering the greyness of life, so to speak, in comparison to the rarer peaks of pleasant experiences.</p>
+<blockquote>
+<p>Возвращение в повседневную жизнь включает встречу с серостью жизни, так сказать, по сравнению с более редкими пиками приятных переживаний.</p>
+</blockquote>
+<p>Yet now, in the moments that I remember to do so, I am able to engage with the swaths of greyish neutrality throughout my day, finding captivating interest simply by settling in and paying attention to what is there.</p>
+<blockquote>
+<p>И все же теперь, в те моменты, когда я вспоминаю это делать, я могу взаимодействовать с полосами сероватой нейтральности в течение дня, находя захватывающий интерес просто через успокоение и внимание к тому, что есть.</p>
+</blockquote>
+<p>Having such a high number of fruitions, as well as seeing some of the entranceways while on retreat, has had an impact at an insight level I am not sure how to articulate clearly at this point.</p>
+<blockquote>
+<p>Такое большое количество плодоношений, а также видение некоторых входов во время ретрита оказали воздействие на уровне прозрения, которое я пока не уверена, как ясно сформулировать.</p>
+</blockquote>
+<p>However, after starting over in a new progress-of-insight cycle and gradually making my way to fruitions again, a month and a half following the retreat, there has been a palpable new baseline of calm and inner quiet connected to my deepening experiential insights into the way things work, as opposed to feeling reliant upon the presence of certain conditions one would normally associate with contentment.</p>
+<blockquote>
+<p>Однако после начала заново в новом цикле прогресса прозрения и постепенного возвращения к плодоношениям, через полтора месяца после ретрита, появился ощутимый новый базовый уровень спокойствия и внутренней тишины, связанный с моими углубляющимися переживательными прозрениями в то, как все работает, в отличие от ощущения зависимости от наличия определенных условий, которые обычно связывают с удовлетворенностью.</p>
+</blockquote>
+<p>Of course, this now needs to stand the test of time.</p>
+<blockquote>
+<p>Конечно, теперь это должно выдержать проверку временем.</p>
+</blockquote>
+<p>Presently, my everyday practice while walking around has been very gradually expanding into experiencing the luminosity of all sensations for increasingly lengthier time periods throughout.</p>
+<blockquote>
+<p>В настоящее время моя повседневная практика во время ходьбы очень постепенно расширяется до переживания светимости всех ощущений на все более длительные промежутки времени.</p>
+</blockquote>
+<p>Occasionally it comes naturally, and at other times requires remembering to exert the effort of attending to experience in this way.</p>
+<blockquote>
+<p>Иногда это приходит естественно, а в другое время требует вспомнить о необходимости приложить усилие, чтобы внимать опыту таким образом.</p>
+</blockquote>
+<p>After spending much of the retreat in full-on learning mode, including familiarising myself with the samatha, vipassana and magickal aspects of this ancient practice, I look forward to taking these newly-found skills and applying them again in a retreat setting to see where they can take me.</p>
+<blockquote>
+<p>Проведя большую часть ретрита в полноценном режиме обучения, включая знакомство с саматхическими, випассаническими и магическими аспектами этой древней практики, я с нетерпением жду возможности взять эти новообретенные навыки и снова применить их в условиях ретрита, чтобы увидеть, куда они могут меня привести.</p>
+</blockquote>
+<p>Particularly I am curious to explore the fire element more deeply, as well as taking another shot at the magickal effect of gaining a fruition through the no-self door after interaction with a deity, given its inherently potent insight value.</p>
+<blockquote>
+<p>Особенно мне интересно глубже исследовать элемент огня, а также снова попробовать магический эффект получения плодоношения через дверь не-я после взаимодействия с божеством, учитывая его изначально мощную ценность для прозрения.</p>
+</blockquote>
+<p>Everyone will have different, specific experiences from the fire kasina, depending on their meditation background and individual proclivities; yet, even from the handful of people who have shared candle-flame notes in the past year, it seems there is a fairly predictable, fascinating arc of development  that is likely to unfold.</p>
+<blockquote>
+<p>У каждого будут разные, специфические переживания огненной касины в зависимости от медитативного прошлого и индивидуальных склонностей; и все же даже по горстке людей, поделившихся за последний год заметками о пламени свечи, кажется, что существует довольно предсказуемая, увлекательная дуга развития, которая, вероятно, развернется.</p>
+</blockquote>
+<p>May this be of benefit to fellow meditators.</p>
+<blockquote>
+<p>Пусть это принесет пользу другим медитаторам.</p>
+</blockquote>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

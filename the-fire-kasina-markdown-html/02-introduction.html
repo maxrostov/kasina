@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Introduction</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f4ee;
+      --panel: #fffdf8;
+      --text: #1f2523;
+      --muted: #66706b;
+      --border: #ded6ca;
+      --accent: #8f3f27;
+      --accent-contrast: #ffffff;
+      --quote-bg: #efe7da;
+      --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #151817;
+      --panel: #1f2422;
+      --text: #ece7dd;
+      --muted: #b5ada0;
+      --border: #343c38;
+      --accent: #e39b6f;
+      --accent-contrast: #1d120d;
+      --quote-bg: #292f2c;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.16em;
+    }
+
+    .layout {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      background: var(--panel);
+      color: var(--text);
+      font: 600 0.9rem/1.2 system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(14rem, 18rem) minmax(0, 48rem);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: start;
+      max-width: 75rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 4rem);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 4.25rem;
+      max-height: calc(100vh - 5.5rem);
+      overflow: auto;
+      padding: 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-family: system-ui, sans-serif;
+      line-height: 1.35;
+    }
+
+    .site-title {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .site-nav ol {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    main {
+      min-width: 0;
+      padding: clamp(1.25rem, 4vw, 3rem);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    main > :first-child {
+      margin-top: 0;
+    }
+
+    main > :last-child {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0 0 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+      font-size: 1.55rem;
+    }
+
+    h3 {
+      margin-top: 1.8rem;
+      font-size: 1.2rem;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
+      margin: 1rem 0;
+    }
+
+    blockquote {
+      margin-left: 0;
+      padding: 0.75rem 1rem;
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--text);
+    }
+
+    code {
+      padding: 0.12rem 0.28rem;
+      border-radius: 4px;
+      background: var(--quote-bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      overflow: auto;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--quote-bg);
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+    }
+
+    @media (max-width: 820px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .site-nav {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body x-data="{ theme: $persist('light').as('kasina-theme') }" x-bind:data-theme="theme">
+  <div class="layout">
+    <header class="topbar">
+      <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+    </header>
+    <div class="shell">
+      <nav class="site-nav" aria-label="Publication chapters">
+  <a class="site-title" href="index.html">The Fire Kasina</a>
+  <ol>
+<li><a href="index.html">The Fire Kasina</a></li>
+<li><a href="01-the-authors.html">The Authors</a></li>
+<li><a href="02-introduction.html" aria-current="page">Introduction</a></li>
+<li><a href="03-prologue.html">Prologue</a></li>
+<li><a href="04-day-one.html">Day One</a></li>
+<li><a href="05-day-two.html">Day Two</a></li>
+<li><a href="06-day-three.html">Day Three</a></li>
+<li><a href="07-day-four.html">Day Four</a></li>
+<li><a href="08-day-five.html">Day Five</a></li>
+<li><a href="09-day-six.html">Day Six</a></li>
+<li><a href="10-day-seven.html">Day Seven</a></li>
+<li><a href="11-day-eight.html">Day Eight</a></li>
+<li><a href="12-day-nine.html">Day Nine</a></li>
+<li><a href="13-day-ten.html">Day Ten</a></li>
+<li><a href="14-day-eleven.html">Day Eleven</a></li>
+<li><a href="15-day-twelve.html">Day Twelve</a></li>
+<li><a href="16-day-thirteen.html">Day Thirteen</a></li>
+<li><a href="17-day-fourteen.html">Day Fourteen</a></li>
+<li><a href="18-day-fifteen.html">Day Fifteen</a></li>
+<li><a href="19-day-sixteen.html">Day Sixteen</a></li>
+<li><a href="20-day-seventeen.html">Day Seventeen</a></li>
+<li><a href="21-day-eighteen.html">Day Eighteen</a></li>
+<li><a href="22-day-twenty.html">Day Twenty</a></li>
+<li><a href="23-day-twenty-one.html">Day Twenty-One</a></li>
+<li><a href="24-day-twenty-two.html">Day Twenty-Two</a></li>
+<li><a href="25-day-twenty-three.html">Day Twenty-Three</a></li>
+<li><a href="26-day-twenty-four.html">Day Twenty-Four</a></li>
+<li><a href="27-day-twenty-five.html">Day Twenty-Five</a></li>
+<li><a href="28-two-weeks-after-the-retreat.html">Two Weeks After the Retreat</a></li>
+<li><a href="29-conclusion.html">Conclusion</a></li>
+<li><a href="30-appendix-a-glossary-of-technical-terms.html">Appendix A: Glossary of Technical Terms</a></li>
+<li><a href="31-appendix-b-nirodha-samapatti.html">Appendix B: Nirodha Samapatti</a></li>
+<li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
+  </ol>
+</nav>
+      <main>
+<h1>Introduction</h1>
+<blockquote>
+<h1>Введение</h1>
+</blockquote>
+<p>After being inspired by the material shared on-line by Daniel M. Ingram, Duncan Barford and Florian Weps following their fire kasina retreat in February, 2015, I decided to try out this practice by embarking upon a solo fire kasina retreat in the fall of the same year.</p>
+<blockquote>
+<p>Вдохновившись материалами, которыми Дэниел М. Ингрэм, Дункан Барфорд и Флориан Вепс поделились в интернете после своего ретрита по огненной касине в феврале 2015 года, я решила попробовать эту практику, отправившись осенью того же года в одиночный ретрит по огненной касине.</p>
+</blockquote>
+<p>Given the strange and sometimes challenging psychological territory one can encounter in the high concentration states that predictably comes with intense fire kasina practice, I reached out to Daniel to keep an eye on me and provide on-going guidance during the 25-day retreat.</p>
+<blockquote>
+<p>Учитывая странные и порой сложные психологические области, с которыми можно столкнуться в состояниях высокой концентрации, предсказуемо возникающих при интенсивной практике огненной касины, я обратилась к Дэниелу, чтобы он присматривал за мной и давал постоянные наставления во время 25-дневного ретрита.</p>
+</blockquote>
+<p>Florian also provided regular email support throughout the retreat.</p>
+<blockquote>
+<p>Флориан также регулярно поддерживал меня по электронной почте на протяжении всего ретрита.</p>
+</blockquote>
+<p>What follows are highlights from my daily conversations with Daniel that covered not only the fundamentals of candle flame meditation, but also a wide range of meditation and dharma topics.</p>
+<blockquote>
+<p>Далее следуют основные моменты из моих ежедневных бесед с Дэниелом, которые охватывали не только основы медитации на пламени свечи, но и широкий круг тем, связанных с медитацией и дхармой.</p>
+</blockquote>
+<p>The dialogue � based primarily on my questions to Daniel � has been organised according to the most prevalent topics discussed each day.</p>
+<blockquote>
+<p>Диалог, основанный главным образом на моих вопросах к Дэниелу, был организован в соответствии с наиболее часто обсуждавшимися темами каждого дня.</p>
+</blockquote>
+<p>The journey of awakening is a complex, organic process that can be as confusing as it is rewarding.</p>
+<blockquote>
+<p>Путь пробуждения - это сложный, органичный процесс, который может быть столь же запутанным, сколь и плодотворным.</p>
+</blockquote>
+<p>At some point the seeker begins to realise there was never any-where to arrive at, because it is all right here in the full experience of this moment.</p>
+<blockquote>
+<p>В какой-то момент ищущий начинает понимать, что никогда не было никакого места, куда нужно было бы прийти, потому что все уже здесь, в полноте переживания этого момента.</p>
+</blockquote>
+<p>Yet until this light starts to dawn, there can be much fumbling around in the dark.</p>
+<blockquote>
+<p>Но пока этот свет не начнет пробиваться, можно долго ощупью блуждать в темноте.</p>
+</blockquote>
+<p>From the time of the Buddha there has been an unbroken chain of capable, compassionate beings who have kept alive brilliant methods which, when taken up in earnest, shed light and lend efficiency to what otherwise would be a near-impossible achievement of awakening out of the darkness of ignorance.</p>
+<blockquote>
+<p>Со времен Будды существует непрерывная цепь способных и сострадательных существ, которые сохраняли живыми блестящие методы; если взяться за них всерьез, они проливают свет и придают действенность тому, что иначе было бы почти невозможным достижением пробуждения из тьмы неведения.</p>
+</blockquote>
+<p>This book is offered as one small link in that grand chain.</p>
+<blockquote>
+<p>Эта книга предлагается как одно маленькое звено в этой великой цепи.</p>
+</blockquote>
+<p>The prologue includes an intimate look at how Daniel M. Ingram, a modern meditation teacher and author of Mastering the Core Teachings of the Buddha, shook the dust off an ancient practice known as the fire kasina and revived it in his own process of enlightenment.</p>
+<blockquote>
+<p>Пролог дает близкий взгляд на то, как Дэниел М. Ингрэм, современный учитель медитации и автор книги Mastering the Core Teachings of the Buddha, стряхнул пыль с древней практики, известной как огненная касина, и возродил ее в собственном процессе просветления.</p>
+</blockquote>
+<p>The rest of the book presents lively conversations between myself and Daniel, in which he generously and joyfully shared his knowledge of the fire kasina and related dharma topics.</p>
+<blockquote>
+<p>Остальная часть книги представляет живые беседы между мной и Дэниелом, в которых он щедро и радостно делился своими знаниями об огненной касине и связанных с ней темах дхармы.</p>
+</blockquote>
+<p>It was in October of 2015 when Daniel assisted me during this 25-day solo retreat where I gained some mastery of the concentration meditation known as fire kasina.</p>
+<blockquote>
+<p>Это было в октябре 2015 года, когда Дэниел помогал мне во время этого 25-дневного одиночного ретрита, на котором я в некоторой степени овладела медитацией концентрации, известной как огненная касина.</p>
+</blockquote>
+<p>Early in the retreat he asked if I would make note if something was particularly helpful in the instructions he provided, because he had found wisdom was more easily extracted from him when someone asked questions, whereas sitting down to write was for him a slower, more arduous process.</p>
+<blockquote>
+<p>В начале ретрита он попросил меня отмечать, если что-то в его инструкциях окажется особенно полезным, потому что он обнаружил, что мудрость легче извлекается из него, когда кто-то задает вопросы, тогда как сесть и писать было для него более медленным и трудным процессом.</p>
+</blockquote>
+<p>In 2013 he had helped me almost daily on a two-month solo vipassana retreat, at the end of which the only dana he would accept was my agreement to practise well and assist others with what I knew.</p>
+<blockquote>
+<p>В 2013 году он почти ежедневно помогал мне во время двухмесячного одиночного ретрита випассаны, по окончании которого единственной даной, которую он согласился принять, было мое обещание хорошо практиковать и помогать другим тем, что я знала.</p>
+</blockquote>
+<p>On this, my next retreat, my gratitude was so heartfelt, I was keen to follow through with Daniel�s request for help.</p>
+<blockquote>
+<p>На этом, моем следующем ретрите, моя благодарность была настолько искренней, что я очень хотела выполнить просьбу Дэниела о помощи.</p>
+</blockquote>
+<p>At the end of my kasina retreat I sent him a lengthy write-up of most of my questions and his informative answers, for him to sift through as a resource for any future writing he might embark upon.</p>
+<blockquote>
+<p>В конце моего ретрита по касине я отправила ему объемную запись большинства моих вопросов и его содержательных ответов, чтобы он мог разобрать ее как материал для любых будущих текстов, за которые он, возможно, возьмется.</p>
+</blockquote>
+<p>He decided we should post it on his fire kasina website, firekasina_org*, having expanded his answers and inviting me to add personal commentary from my perspective as the retreatant.</p>
+<blockquote>
+<p>Он решил, что нам следует опубликовать это на его сайте об огненной касине, firekasina_org*, расширив свои ответы и предложив мне добавить личные комментарии с моей точки зрения как участницы ретрита.</p>
+</blockquote>
+<p>Just before we posted it, a trusted dharma friend of ours, having read the notes, suggested the writing would be an informative and unique resource as a book.</p>
+<blockquote>
+<p>Незадолго до публикации один наш надежный друг по дхарме, прочитав заметки, предположил, что в виде книги этот текст станет информативным и уникальным ресурсом.</p>
+</blockquote>
+<p>To provide the historical context of Daniel�s entry into fire kasina practice, Daniel and I decided to have another conversation, using the Q and A format that runs throughout this book.</p>
+<blockquote>
+<p>Чтобы дать исторический контекст того, как Дэниел пришел к практике огненной касины, мы с Дэниелом решили провести еще одну беседу в формате вопросов и ответов, который проходит через всю эту книгу.</p>
+</blockquote>
+<p>This forms the prologue.</p>
+<blockquote>
+<p>Это и составляет пролог.</p>
+</blockquote>
+<p>It offers invaluable information on how to establish oneself in any traditional meditation practice from the ground up, using the specifics of the fire kasina as an example.</p>
+<blockquote>
+<p>Он предлагает бесценную информацию о том, как с нуля утвердиться в любой традиционной медитативной практике, используя особенности огненной касины в качестве примера.</p>
+</blockquote>
+<p>As in the rest of the dialogue that follows, the prologue captures some of the wholesome, unique energy that is exchanged between any two beings � in particular a teacher and a student � who are passionate about dharma development.</p>
+<blockquote>
+<p>Как и в остальном последующем диалоге, пролог передает часть той благотворной, уникальной энергии, которой обмениваются любые два существа, особенно учитель и ученик, увлеченные развитием в дхарме.</p>
+</blockquote>
+<p>In this sense, these conversations embody the pragmatic elements attendant on keeping alive an ancient oral tradition stemming back thousands of years to the time of the Buddha.</p>
+<blockquote>
+<p>В этом смысле эти беседы воплощают прагматические элементы, сопутствующие сохранению живой древней устной традиции, уходящей на тысячи лет назад, ко временам Будды.</p>
+</blockquote>
+<p>[Shannon Stein]</p>
+<p>[October 8th, 2016.]</p>
+<hr>
+<p>[* Also freely available on this website are in-depth audio diaries recorded by both Daniel and myself.]</p>
+<blockquote>
+<p>[* Также на этом сайте в свободном доступе размещены подробные аудиодневники, записанные как Дэниелом, так и мной.]</p>
+</blockquote>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

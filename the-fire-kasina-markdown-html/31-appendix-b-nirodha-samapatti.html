@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Appendix B: Nirodha Samapatti</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f4ee;
+      --panel: #fffdf8;
+      --text: #1f2523;
+      --muted: #66706b;
+      --border: #ded6ca;
+      --accent: #8f3f27;
+      --accent-contrast: #ffffff;
+      --quote-bg: #efe7da;
+      --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #151817;
+      --panel: #1f2422;
+      --text: #ece7dd;
+      --muted: #b5ada0;
+      --border: #343c38;
+      --accent: #e39b6f;
+      --accent-contrast: #1d120d;
+      --quote-bg: #292f2c;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.16em;
+    }
+
+    .layout {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      background: var(--panel);
+      color: var(--text);
+      font: 600 0.9rem/1.2 system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(14rem, 18rem) minmax(0, 48rem);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: start;
+      max-width: 75rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 4rem);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 4.25rem;
+      max-height: calc(100vh - 5.5rem);
+      overflow: auto;
+      padding: 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-family: system-ui, sans-serif;
+      line-height: 1.35;
+    }
+
+    .site-title {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .site-nav ol {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    main {
+      min-width: 0;
+      padding: clamp(1.25rem, 4vw, 3rem);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    main > :first-child {
+      margin-top: 0;
+    }
+
+    main > :last-child {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0 0 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+      font-size: 1.55rem;
+    }
+
+    h3 {
+      margin-top: 1.8rem;
+      font-size: 1.2rem;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
+      margin: 1rem 0;
+    }
+
+    blockquote {
+      margin-left: 0;
+      padding: 0.75rem 1rem;
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--text);
+    }
+
+    code {
+      padding: 0.12rem 0.28rem;
+      border-radius: 4px;
+      background: var(--quote-bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      overflow: auto;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--quote-bg);
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+    }
+
+    @media (max-width: 820px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .site-nav {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body x-data="{ theme: $persist('light').as('kasina-theme') }" x-bind:data-theme="theme">
+  <div class="layout">
+    <header class="topbar">
+      <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+    </header>
+    <div class="shell">
+      <nav class="site-nav" aria-label="Publication chapters">
+  <a class="site-title" href="index.html">The Fire Kasina</a>
+  <ol>
+<li><a href="index.html">The Fire Kasina</a></li>
+<li><a href="01-the-authors.html">The Authors</a></li>
+<li><a href="02-introduction.html">Introduction</a></li>
+<li><a href="03-prologue.html">Prologue</a></li>
+<li><a href="04-day-one.html">Day One</a></li>
+<li><a href="05-day-two.html">Day Two</a></li>
+<li><a href="06-day-three.html">Day Three</a></li>
+<li><a href="07-day-four.html">Day Four</a></li>
+<li><a href="08-day-five.html">Day Five</a></li>
+<li><a href="09-day-six.html">Day Six</a></li>
+<li><a href="10-day-seven.html">Day Seven</a></li>
+<li><a href="11-day-eight.html">Day Eight</a></li>
+<li><a href="12-day-nine.html">Day Nine</a></li>
+<li><a href="13-day-ten.html">Day Ten</a></li>
+<li><a href="14-day-eleven.html">Day Eleven</a></li>
+<li><a href="15-day-twelve.html">Day Twelve</a></li>
+<li><a href="16-day-thirteen.html">Day Thirteen</a></li>
+<li><a href="17-day-fourteen.html">Day Fourteen</a></li>
+<li><a href="18-day-fifteen.html">Day Fifteen</a></li>
+<li><a href="19-day-sixteen.html">Day Sixteen</a></li>
+<li><a href="20-day-seventeen.html">Day Seventeen</a></li>
+<li><a href="21-day-eighteen.html">Day Eighteen</a></li>
+<li><a href="22-day-twenty.html">Day Twenty</a></li>
+<li><a href="23-day-twenty-one.html">Day Twenty-One</a></li>
+<li><a href="24-day-twenty-two.html">Day Twenty-Two</a></li>
+<li><a href="25-day-twenty-three.html">Day Twenty-Three</a></li>
+<li><a href="26-day-twenty-four.html">Day Twenty-Four</a></li>
+<li><a href="27-day-twenty-five.html">Day Twenty-Five</a></li>
+<li><a href="28-two-weeks-after-the-retreat.html">Two Weeks After the Retreat</a></li>
+<li><a href="29-conclusion.html">Conclusion</a></li>
+<li><a href="30-appendix-a-glossary-of-technical-terms.html">Appendix A: Glossary of Technical Terms</a></li>
+<li><a href="31-appendix-b-nirodha-samapatti.html" aria-current="page">Appendix B: Nirodha Samapatti</a></li>
+<li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
+  </ol>
+</nav>
+      <main>
+<h1>Appendix B: Nirodha Samapatti</h1>
+<blockquote>
+<p>Приложение B: Ниродха-самапатти</p>
+</blockquote>
+<p>[Nirodha Samapatti]</p>
+<blockquote>
+<p>[Ниродха-самапатти]</p>
+</blockquote>
+<p>[SHANNON]
+How long do you think a practitioner would need to be on retreat to have a good chance of experiencing nirodha samapatti?</p>
+<blockquote>
+<p>Как думаешь, сколько времени практикующему нужно было бы провести на ретрите, чтобы иметь хорошие шансы пережить ниродха-самапатти?</p>
+</blockquote>
+<p>[DANIEL]
+I have no idea.</p>
+<blockquote>
+<p>Понятия не имею.</p>
+</blockquote>
+<p>I did it in daily life the first time and, in fact, have done it more times in daily life than on retreat.</p>
+<blockquote>
+<p>В первый раз я сделал это в повседневной жизни и, фактически, делал это в повседневной жизни больше раз, чем на ретрите.</p>
+</blockquote>
+<p>Strangely for me, when on retreat my concentration is not as balanced in some ways as when I am in daily life.</p>
+<blockquote>
+<p>Как ни странно, на ретрите моя концентрация в некоторых отношениях не так сбалансирована, как в повседневной жизни.</p>
+</blockquote>
+<p>For this particular attainment (this will sound paradoxical) my concentration is more balanced and conducive when I am not in a setting where doing it is the main concern.</p>
+<blockquote>
+<p>Для этого конкретного достижения (это прозвучит парадоксально) моя концентрация более сбалансирована и благоприятна, когда я не нахожусь в обстановке, где его выполнение является главной заботой.</p>
+</blockquote>
+<p>[SHANNON]
+Is that partly due to some striving?</p>
+<blockquote>
+<p>Отчасти это из-за какого-то стремления?</p>
+</blockquote>
+<p>I can see that is where I could likely get caught up.</p>
+<blockquote>
+<p>Я вижу, что именно там я, вероятно, могла бы застрять.</p>
+</blockquote>
+<p>[DANIEL]
+Yes, right.</p>
+<blockquote>
+<p>Да, верно.</p>
+</blockquote>
+<p>In fact, it happened to me when I was not expecting it.</p>
+<blockquote>
+<p>На самом деле это случилось со мной, когда я этого не ожидал.</p>
+</blockquote>
+<p>[SHANNON]
+And had you already been trying to do it in a retreat setting?</p>
+<blockquote>
+<p>И ты уже пытался сделать это в условиях ретрита?</p>
+</blockquote>
+<p>[DANIEL]
+I had been trying to do it but not in a retreat setting.</p>
+<blockquote>
+<p>Я пытался это сделать, но не в условиях ретрита.</p>
+</blockquote>
+<p>If you like, I can tell you the story of how it first happened and transmit what I know about nirodha samapatti; then it might help you achieve it.</p>
+<blockquote>
+<p>Если хочешь, я могу рассказать историю о том, как это впервые произошло, и передать то, что знаю о ниродха-самапатти; тогда это может помочь тебе его достичь.</p>
+</blockquote>
+<p>[SHANNON]
+Fabulous.</p>
+<blockquote>
+<p>Великолепно.</p>
+</blockquote>
+<p>[DANIEL]
+Here is what I know.</p>
+<blockquote>
+<p>Вот что я знаю.</p>
+</blockquote>
+<p>I first started playing with this in 1996.</p>
+<blockquote>
+<p>Впервые я начал играть с этим в 1996 году.</p>
+</blockquote>
+<p>Bill Hamilton talked about it a lot.</p>
+<blockquote>
+<p>Билл Хэмилтон много говорил об этом.</p>
+</blockquote>
+<p>Also, I was attending retreats at Bhavana Society where Bhante Gunaratana spoke of it strangely often, considering his audience.</p>
+<blockquote>
+<p>Кроме того, я посещал ретриты в Bhavana Society, где Бханте Гунаратана говорил об этом странно часто, учитывая его аудиторию.</p>
+</blockquote>
+<p>I was asking myself, �Why do you keep doing dharma talks on nirodha samapatti for people who do not have the first jhana or anything? This is really strange.�</p>
+<blockquote>
+<p>Я спрашивал себя: «Почему ты продолжаешь читать дхарма-беседы о ниродха-самапатти для людей, у которых нет ни первой джханы, ни чего-либо подобного? Это действительно странно».</p>
+</blockquote>
+<p>Later on, when I attained what I thought was third path, I knew, according to the Visuddhimagga that you should be able to gain this attainment, and that if you were not at third path then you would not.</p>
+<blockquote>
+<p>Позже, когда я достиг того, что считал третьим путем, я знал, согласно Висуддхимагге, что ты должен быть способен обрести это достижение, и что если ты не на третьем пути, то не сможешь.</p>
+</blockquote>
+<p>So I felt this could be an interesting test.</p>
+<blockquote>
+<p>Поэтому я почувствовал, что это может быть интересной проверкой.</p>
+</blockquote>
+<p>Third path performed well in some ways for me, but it did not line up the way I expected in other ways, so I figured that by attempting nirodha samapatti maybe I could gain more data points.</p>
+<blockquote>
+<p>Третий путь в некоторых отношениях хорошо работал для меня, но в других отношениях не совпадал с тем, как я ожидал, поэтому я решил, что, пытаясь достичь ниродха-самапатти, возможно, смогу получить больше точек данных.</p>
+</blockquote>
+<p>Not to mention that it sounded totally mind-blowing, given that I enjoyed the more peculiar states and stages.</p>
+<blockquote>
+<p>Не говоря уже о том, что это звучало совершенно потрясающе, учитывая, что мне нравились более необычные состояния и стадии.</p>
+</blockquote>
+<p>The first thing is that you have to have eight jhanas; you have to be accessing the formless realms.</p>
+<blockquote>
+<p>Первое: у тебя должны быть восемь джхан; ты должен иметь доступ к бесформенным сферам.</p>
+</blockquote>
+<p>I had gained them on retreat but not in daily life.</p>
+<blockquote>
+<p>Я обрел их на ретрите, но не в повседневной жизни.</p>
+</blockquote>
+<p>So I just started working with that, particularly figuring out that transition from fourth to fifth is the real trick in terms of how you make forms disappear, and then there is the vastness of space, and then you take off into that realm.</p>
+<blockquote>
+<p>Поэтому я просто начал работать с этим, особенно разбираясь в том, что переход от четвертой к пятой - это настоящий ключ в плане того, как заставить формы исчезнуть; затем появляется обширность пространства, и затем ты взлетаешь в эту сферу.</p>
+</blockquote>
+<p>I was only working about 25 total hours per week between field data collection for a nursing professor and working online at the National AIDS Hotline.</p>
+<blockquote>
+<p>Я работал всего около 25 часов в неделю в сумме: собирал полевые данные для профессора сестринского дела и работал онлайн на Национальной горячей линии по СПИДу.</p>
+</blockquote>
+<p>I had no social life and was married to someone who was also a practitioner and supportive (this was my first wife), so I had about three to five hours a day to practise, which is a lot of practice in daily life.</p>
+<blockquote>
+<p>У меня не было социальной жизни, и я был женат на человеке, который тоже был практикующим и поддерживал меня (это была моя первая жена), поэтому у меня было около трех-пяти часов в день для практики, что очень много для практики в повседневной жизни.</p>
+</blockquote>
+<p>I had time to build up enough momentum to make some serious progress.</p>
+<blockquote>
+<p>У меня было время накопить достаточно импульса, чтобы добиться серьезного прогресса.</p>
+</blockquote>
+<p>The first thing I learned was how to access those formless realms off retreat.</p>
+<blockquote>
+<p>Первое, чему я научился, - как получать доступ к этим бесформенным сферам вне ретрита.</p>
+</blockquote>
+<p>Then I just started going for it.</p>
+<blockquote>
+<p>Затем я просто начал к этому стремиться.</p>
+</blockquote>
+<p>I would perform the set-up.</p>
+<blockquote>
+<p>Я выполнял подготовку.</p>
+</blockquote>
+<p>Bill instructed me how to do this, even though he did not believe I had stream entry at that point.</p>
+<blockquote>
+<p>Билл научил меня, как это делать, хотя в тот момент он не верил, что у меня было вхождение в поток.</p>
+</blockquote>
+<p>But he showed me anyway.</p>
+<blockquote>
+<p>Но он все равно показал мне.</p>
+</blockquote>
+<p>That was the wonderful thing about him; you could get really great dharma information out of Bill.</p>
+<blockquote>
+<p>В этом и было замечательное в нем: от Билла можно было получить действительно отличную информацию о дхарме.</p>
+</blockquote>
+<p>You just had to work at it.</p>
+<blockquote>
+<p>Нужно было только потрудиться.</p>
+</blockquote>
+<p>Thanks Bill!</p>
+<blockquote>
+<p>Спасибо, Билл!</p>
+</blockquote>
+<p>Also, I read through parts of the Visuddhimagga and Pali canon again and again, and practised what I had learned.</p>
+<blockquote>
+<p>Кроме того, я снова и снова перечитывал части Висуддхимагги и Палийского канона и практиковал то, что узнал.</p>
+</blockquote>
+<p>The first thing that is critical is to set the intent � this really is important.</p>
+<blockquote>
+<p>Первое, что критически важно, - задать намерение; это действительно важно.</p>
+</blockquote>
+<p>You sit down, you set the intent, you say: �I am going to go there�.</p>
+<blockquote>
+<p>Ты садишься, задаешь намерение, говоришь: «Я собираюсь туда пойти».</p>
+</blockquote>
+<p>When I first started doing this, I had all of the instructions and I followed all of them.</p>
+<blockquote>
+<p>Когда я впервые начал это делать, у меня были все инструкции, и я следовал им всем.</p>
+</blockquote>
+<p>There is this whole thing about the set-up: you need to make sure your robe is in order, so to speak, and you need to make sure you are in a safe place.</p>
+<blockquote>
+<p>Есть вся эта тема с подготовкой: нужно убедиться, что твоя ряса, так сказать, в порядке, и нужно убедиться, что ты находишься в безопасном месте.</p>
+</blockquote>
+<p>You make a resolution you will not die in nirodha samapatti, and that if your teacher calls, you will wake up out of it.</p>
+<blockquote>
+<p>Ты принимаешь решение, что не умрешь в ниродха-самапатти, и что если твой учитель позовет, ты пробудишься из него.</p>
+</blockquote>
+<p>There is this formal routine to it, and I would do all of that.</p>
+<blockquote>
+<p>У этого есть формальная процедура, и я выполнял все это.</p>
+</blockquote>
+<p>I later decided that I did not need to do it all, but it was beneficial.</p>
+<blockquote>
+<p>Позже я решил, что мне не нужно делать все это, но это было полезно.</p>
+</blockquote>
+<p>�He follows instructions and plays well with others�, as the saying goes.</p>
+<blockquote>
+<p>«Он следует инструкциям и хорошо взаимодействует с другими», как говорится.</p>
+</blockquote>
+<p>But the �follows instructions part� is important.</p>
+<blockquote>
+<p>Но часть «следует инструкциям» важна.</p>
+</blockquote>
+<p>Having set it up I would ask myself.</p>
+<blockquote>
+<p>Подготовив все это, я спрашивал себя.</p>
+</blockquote>
+<p>�What is the right balance?�</p>
+<blockquote>
+<p>«Каков правильный баланс?»</p>
+</blockquote>
+<p>I would try to find the right balance between concentration and insight and it turns out that, for me, it is a pretty chilled balance.</p>
+<blockquote>
+<p>Я пытался найти правильный баланс между концентрацией и прозрением, и оказалось, что для меня это довольно расслабленный баланс.</p>
+</blockquote>
+<p>I have a wired mind, so maybe it is different for other people.</p>
+<blockquote>
+<p>У меня возбужденный ум, так что для других людей, возможно, все иначе.</p>
+</blockquote>
+<p>I had to stay at about two-thirds concentration, about one-third buzzy vipassana, and that really is when I started to learn about the vipassana jhanas and samatha jhanas and finding out how to establish the balance between them.</p>
+<blockquote>
+<p>Мне нужно было держаться примерно на двух третях концентрации и примерно на одной трети вибрирующей випассаны, и именно тогда я действительно начал узнавать о випассана-джханах и саматха-джханах и выяснять, как установить баланс между ними.</p>
+</blockquote>
+<p>It would be mostly chilled, but I was making sure that one third of my brain was noticing the tingling, the shifting, the sparkling, the fluxing, and about two thirds of my brain was noticing the jhanic factors.</p>
+<blockquote>
+<p>Это было в основном расслабленно, но я следил, чтобы одна треть моего мозга замечала покалывание, смещение, искрение, текучесть, а около двух третей моего мозга замечали джханические факторы.</p>
+</blockquote>
+<p>Given my temperament, that was the right balance for me; heavier on the side of concentration but still with shifting vipassana elements so I was not really aiming for �ultra steady�.</p>
+<blockquote>
+<p>Учитывая мой темперамент, это был правильный баланс для меня: больше в сторону концентрации, но все же со смещающимися элементами випассаны, так что я на самом деле не стремился к «сверхустойчивости».</p>
+</blockquote>
+<p>Too steady does not work because it will be too tight and will not drop.</p>
+<blockquote>
+<p>Слишком устойчиво не работает, потому что будет слишком плотно и не отпустит.</p>
+</blockquote>
+<p>This I know for certain because I have tried it.</p>
+<blockquote>
+<p>Это я знаю наверняка, потому что пробовал.</p>
+</blockquote>
+<p>Initially I had the balance too far towards concentration, over-hitting the effort.</p>
+<blockquote>
+<p>Сначала мой баланс был слишком сильно смещен к концентрации, с чрезмерным усилием.</p>
+</blockquote>
+<p>I tried this for probably 30 to 50 sits.</p>
+<blockquote>
+<p>Я пробовал это, наверное, 30-50 сидений.</p>
+</blockquote>
+<p>I would try and fail.</p>
+<blockquote>
+<p>Я пытался и терпел неудачу.</p>
+</blockquote>
+<p>I would get into some vague formless thing.</p>
+<blockquote>
+<p>Я входил в какую-то неясную бесформенную вещь.</p>
+</blockquote>
+<p>Maybe I would get into neither perception nor non-perception, come out, and maybe get a fruition.</p>
+<blockquote>
+<p>Возможно, я входил в ни-восприятие-ни-невосприятие, выходил и, возможно, получал плодоношение.</p>
+</blockquote>
+<p>I was not obtaining anything different or unusual, but I just kept at it.</p>
+<blockquote>
+<p>Я не получал ничего иного или необычного, но просто продолжал.</p>
+</blockquote>
+<p>[SHANNON]
+And were you getting frustrated?</p>
+<blockquote>
+<p>И ты фрустрировался?</p>
+</blockquote>
+<p>[DANIEL]
+Oh, yeah.</p>
+<blockquote>
+<p>О да.</p>
+</blockquote>
+<p>Then, at some point, I broke through the frustration.</p>
+<blockquote>
+<p>Затем в какой-то момент я прорвался через фрустрацию.</p>
+</blockquote>
+<p>Eventually, you just get tired.</p>
+<blockquote>
+<p>В конце концов ты просто устаешь.</p>
+</blockquote>
+<p>So I came out into a space of routine where I would just set it up and try again.</p>
+<blockquote>
+<p>Поэтому я вышел в пространство рутины, где просто выполнял подготовку и пробовал снова.</p>
+</blockquote>
+<p>Eventually, the expectations went away.</p>
+<blockquote>
+<p>В конце концов ожидания ушли.</p>
+</blockquote>
+<p>I did not expect anything to happen but I was doing the practice anyway.</p>
+<blockquote>
+<p>Я не ожидал, что что-то произойдет, но все равно выполнял практику.</p>
+</blockquote>
+<p>Still sitting regularly.</p>
+<blockquote>
+<p>Все еще сидел регулярно.</p>
+</blockquote>
+<p>I was fitting this in between my AIDS Hotline work and the nursing research.</p>
+<blockquote>
+<p>Я встраивал это между работой на горячей линии по СПИДу и сестринским исследованием.</p>
+</blockquote>
+<p>I found a supply closet in the hotline centre and I would just bring my cushion and sit in the closet for an hour or so before work.</p>
+<blockquote>
+<p>Я нашел кладовку в центре горячей линии и просто приносил туда свою подушку и сидел в кладовке около часа перед работой.</p>
+</blockquote>
+<p>I was on the floor in this supply closet, my eyes were closed and I did not care.</p>
+<blockquote>
+<p>Я сидел на полу в этой кладовке, мои глаза были закрыты, и мне было все равно.</p>
+</blockquote>
+<p>It was a quiet sitting spot out of the way, off the main hall floor.</p>
+<blockquote>
+<p>Это было тихое место для сидения в стороне, вне главного зала.</p>
+</blockquote>
+<p>[SHANNON]
+A little meditation kuti for you.</p>
+<blockquote>
+<p>Маленькая медитационная кути для тебя.</p>
+</blockquote>
+<p>[DANIEL]
+Pretty much.</p>
+<blockquote>
+<p>Примерно так.</p>
+</blockquote>
+<p>You have to work with what you have.</p>
+<blockquote>
+<p>Нужно работать с тем, что есть.</p>
+</blockquote>
+<p>I would sit there and I would try for this thing and then, one day, I have no idea why this day versus any of the other days � I guess finally I had the balance right � I set it up and I sat down, and I was shifting through the stages and states like I had before, and I come up out of neither perception nor non-perception, and I resolved to go into nirodha samapatti and all of a sudden: PSHHH…</p>
+<blockquote>
+<p>Я сидел там и пытался достичь этой вещи, и однажды, понятия не имею, почему именно в этот день, а не в любой другой, - думаю, наконец-то у меня был правильный баланс, - я выполнил подготовку, сел, проходил через стадии и состояния, как и раньше, вышел из ни-восприятия-ни-невосприятия, решил войти в ниродха-самапатти, и вдруг: ПШШШ…</p>
+</blockquote>
+<p>The power-down was ridiculous!</p>
+<blockquote>
+<p>Отключение питания было невероятным!</p>
+</blockquote>
+<p>A total power-down as if someone pulled the plug on reality and the whole thing just went PSHHH, beyond the lights going out.</p>
+<blockquote>
+<p>Полное отключение питания, как будто кто-то выдернул вилку реальности, и все просто стало ПШШШ, за пределами выключения света.</p>
+</blockquote>
+<p>Space went out, but not like a fruition.</p>
+<blockquote>
+<p>Пространство исчезло, но не как при плодоношении.</p>
+</blockquote>
+<p>Oh my gosh.</p>
+<blockquote>
+<p>О боже.</p>
+</blockquote>
+<p>And then things powered back up in the same way, slow and analog, over about a second or so.</p>
+<blockquote>
+<p>А затем все снова включилось таким же образом, медленно и аналогово, примерно за секунду.</p>
+</blockquote>
+<p>And then the afterglow tail was incredible.</p>
+<blockquote>
+<p>А затем хвост послесвечения был невероятным.</p>
+</blockquote>
+<p>I have never taken Valium, but I imagine if I took 20 milligrams of Valium that is what I would feel like.</p>
+<blockquote>
+<p>Я никогда не принимал валиум, но представляю, что если бы принял 20 миллиграммов валиума, я чувствовал бы себя именно так.</p>
+</blockquote>
+<p>[SHANNON]
+And the afterglow hit immediately after?</p>
+<blockquote>
+<p>И послесвечение ударило сразу после этого?</p>
+</blockquote>
+<p>[DANIEL]
+Oh yes.</p>
+<blockquote>
+<p>О да.</p>
+</blockquote>
+<p>I wondered what had I just done to my mind.</p>
+<blockquote>
+<p>Я думал: что я только что сделал со своим умом?</p>
+</blockquote>
+<p>Am I going to be able to do my shift?</p>
+<blockquote>
+<p>Смогу ли я отработать свою смену?</p>
+</blockquote>
+<p>Am I going to be able to talk, interact with people?</p>
+<blockquote>
+<p>Смогу ли я говорить, взаимодействовать с людьми?</p>
+</blockquote>
+<p>What have I just done?</p>
+<blockquote>
+<p>Что я только что сделал?</p>
+</blockquote>
+<p>I was able to function, but I was in an incredibly contemplative, pensive state trying to talk to people on the hotline.</p>
+<blockquote>
+<p>Я мог функционировать, но был в невероятно созерцательном, задумчивом состоянии, пытаясь разговаривать с людьми на горячей линии.</p>
+</blockquote>
+<p>Fortunately they did not seem to notice anything different, but it was very obvious to me.</p>
+<blockquote>
+<p>К счастью, они, похоже, не заметили ничего необычного, но для меня это было очень очевидно.</p>
+</blockquote>
+<p>Even driving home, six hours later, I was not sure if I should be driving in such an altered, ultra-chilled space.</p>
+<blockquote>
+<p>Даже когда я ехал домой шесть часов спустя, я не был уверен, стоит ли мне вести машину в таком измененном, ультра-расслабленном пространстве.</p>
+</blockquote>
+<p>I was very clear, very lucid, but maybe not good enough to be driving.</p>
+<blockquote>
+<p>Я был очень ясен, очень осознан, но, возможно, недостаточно хорош для вождения.</p>
+</blockquote>
+<p>Is that helpful?</p>
+<blockquote>
+<p>Это полезно?</p>
+</blockquote>
+<p>[SHANNON]
+Yes.</p>
+<blockquote>
+<p>Да.</p>
+</blockquote>
+<p>I think that being exposed to how to do it will be extremely helpful for the time when I am capable of accessing that.</p>
+<blockquote>
+<p>Думаю, знакомство с тем, как это делать, будет чрезвычайно полезным к тому времени, когда я буду способна получить к этому доступ.</p>
+</blockquote>
+<p>[DANIEL]
+The biggest trick is to just try and fail and try again.</p>
+<blockquote>
+<p>Главный трюк - просто пробовать, терпеть неудачу и пробовать снова.</p>
+</blockquote>
+<p>Keep setting it up, exactly as it is supposed to be, going through the steps, with all the resolutions.</p>
+<blockquote>
+<p>Продолжай выполнять подготовку именно так, как положено, проходя шаги со всеми решениями.</p>
+</blockquote>
+<p>Read the books, do the experiments, go through the jhanas.</p>
+<blockquote>
+<p>Читай книги, проводи эксперименты, проходи через джханы.</p>
+</blockquote>
+<p>Get up to neither perception nor non-perception, come out, see what happens and incline to it gently, and the biggest thing is that once you incline to it you have to let that go.</p>
+<blockquote>
+<p>Дойди до ни-восприятия-ни-невосприятия, выйди, посмотри, что происходит, и мягко склоняйся к этому; и самое важное в том, что как только ты склоняешься к этому, нужно это отпустить.</p>
+</blockquote>
+<p>You have to make the inclination and then just sit there like a brick and do nothing.</p>
+<blockquote>
+<p>Нужно сделать склонение, а затем просто сидеть как кирпич и ничего не делать.</p>
+</blockquote>
+<p>If you do something you will screw it up.</p>
+<blockquote>
+<p>Если ты что-то сделаешь, ты все испортишь.</p>
+</blockquote>
+<p>[SHANNON]
+That is so much like the intention-setting that can be done in the further stages of the fire kasina practice.</p>
+<blockquote>
+<p>Это очень похоже на задавание намерений, которое можно делать на дальнейших стадиях практики огненной касины.</p>
+</blockquote>
+<p>[DANIEL]
+It is the same thing.</p>
+<blockquote>
+<p>Это одно и то же.</p>
+</blockquote>
+<p>[SHANNON]
+Did you ever you go on retreat just to gain mastery over nirodha samapatti or was it something you only did in daily living?</p>
+<blockquote>
+<p>Ты когда-нибудь отправлялся на ретрит специально, чтобы обрести мастерство в ниродха-самапатти, или это было тем, что ты делал только в повседневной жизни?</p>
+</blockquote>
+<p>[DANIEL]
+It would happen on retreat sometimes.</p>
+<blockquote>
+<p>Иногда это происходило на ретрите.</p>
+</blockquote>
+<p>There were two retreats where I did it.</p>
+<blockquote>
+<p>Было два ретрита, где я это сделал.</p>
+</blockquote>
+<p>It was the oddest thing, because in some ways I was a pretty insecure practitioner, even though I had all these chops.</p>
+<blockquote>
+<p>Это было страннейшей вещью, потому что в некоторых отношениях я был довольно неуверенным практикующим, хотя у меня были все эти навыки.</p>
+</blockquote>
+<p>Because I am more of an aversive type rather than a desire type, I am not that drawn by the afterglow, but it was the merit badge; I mean, it is hard not to be fascinated by the stages from a spiritually materialistic kind of view, to be honest.</p>
+<blockquote>
+<p>Поскольку я скорее тип отвращения, чем тип желания, меня не так тянет к послесвечению, но это был знак заслуги; то есть, честно говоря, трудно не быть очарованным стадиями с духовно-материалистической точки зрения.</p>
+</blockquote>
+<p>Nonetheless, I am more of an aversive type, so I do not necessarily gravitate toward these things, despite how interesting and cool and easeful.</p>
+<blockquote>
+<p>Тем не менее я скорее тип отвращения, поэтому не обязательно тяготею к этим вещам, несмотря на то, насколько они интересные, классные и легкие.</p>
+</blockquote>
+<p>The last time I attained nirodha samapatti was in 2007.</p>
+<blockquote>
+<p>Последний раз я достиг ниродха-самапатти в 2007 году.</p>
+</blockquote>
+<p>[SHANNON]
+You have not experienced it since then?</p>
+<blockquote>
+<p>С тех пор ты этого не переживал?</p>
+</blockquote>
+<p>[DANIEL]
+No.</p>
+<blockquote>
+<p>Нет.</p>
+</blockquote>
+<p>[SHANNON]
+You haven�t craved it, you haven�t needed it?</p>
+<blockquote>
+<p>Ты не жаждал этого, тебе это не было нужно?</p>
+</blockquote>
+<p>[DANIEL]
+No, but I have sometimes thought I should do it, almost in the sense that I should take medicine.</p>
+<blockquote>
+<p>Нет, но иногда я думал, что мне следует это сделать, почти в том смысле, что мне следует принять лекарство.</p>
+</blockquote>
+<p>I have thought I should do that again, not because I want to, but because I know I should, like some people should take their blood pressure meds.</p>
+<blockquote>
+<p>Я думал, что мне стоит сделать это снова, не потому что я хочу, а потому что знаю, что должен, как некоторым людям нужно принимать лекарства от давления.</p>
+</blockquote>
+<p>[SHANNON]
+That state has to be good for you.</p>
+<blockquote>
+<p>Это состояние должно быть полезно для тебя.</p>
+</blockquote>
+<p>[DANIEL]
+Oh, yes, that is my perspective on it these days.</p>
+<blockquote>
+<p>О да, сейчас я именно так на это смотрю.</p>
+</blockquote>
+<p>The last time I did it, I was studying for my first round of written medical boards in 2007.</p>
+<blockquote>
+<p>В последний раз, когда я это сделал, я готовился к первому этапу письменных медицинских экзаменов в 2007 году.</p>
+</blockquote>
+<p>I had done five hours of cramming for a very academic exam.</p>
+<blockquote>
+<p>Я пять часов зубрил перед очень академическим экзаменом.</p>
+</blockquote>
+<p>I was completely fried, and I knew I had to get more studying done.</p>
+<blockquote>
+<p>Я был полностью выжат и знал, что мне нужно еще позаниматься.</p>
+</blockquote>
+<p>But I was too cooked, so I decided to maybe do some meditation, something helpful.</p>
+<blockquote>
+<p>Но я был слишком перегоревшим, поэтому решил, возможно, помедитировать, сделать что-то полезное.</p>
+</blockquote>
+<p>Then I wondered what it would be like to study in that afterglow.</p>
+<blockquote>
+<p>Затем мне стало интересно, каково было бы заниматься в этом послесвечении.</p>
+</blockquote>
+<p>It was more of a lark, because my brain was totally frazzled, and I had not been meditating due to all the studying.</p>
+<blockquote>
+<p>Это было скорее забавой, потому что мой мозг был полностью измотан, и я не медитировал из-за всей этой учебы.</p>
+</blockquote>
+<p>I was pretty sure I would not be able to get nirodha samapatti because my concentration was really low.</p>
+<blockquote>
+<p>Я был почти уверен, что не смогу получить ниродха-самапатти, потому что моя концентрация была действительно низкой.</p>
+</blockquote>
+<p>I sat down and came out of the formless realms.</p>
+<blockquote>
+<p>Я сел и вышел из бесформенных сфер.</p>
+</blockquote>
+<p>I knew this was not the easiest thing to do, but I had nothing to lose because I had failed a thousand times before, so I just made the resolution and then all of a sudden, bam, oh my God…</p>
+<blockquote>
+<p>Я знал, что это не самая легкая вещь, но мне было нечего терять, потому что до этого я терпел неудачу тысячу раз, поэтому я просто принял решение, и вдруг - бам, о боже…</p>
+</blockquote>
+<p>I had at least another five hours of studying to do and I was in this ultra-chilled but clear space.</p>
+<blockquote>
+<p>У меня было еще как минимум пять часов учебы, и я находился в этом ультра-расслабленном, но ясном пространстве.</p>
+</blockquote>
+<p>My advice is to hold it loosely, do the set-up exactly like the instructions say, make the resolution and let it go and just do that again and again and again.</p>
+<blockquote>
+<p>Мой совет - держать это свободно, выполнять подготовку точно так, как говорят инструкции, принять решение, отпустить его и просто делать это снова, снова и снова.</p>
+</blockquote>
+<p>That is my advice.</p>
+<blockquote>
+<p>Вот мой совет.</p>
+</blockquote>
+<p>Bang it out.</p>
+<blockquote>
+<p>Просто выбивай это.</p>
+</blockquote>
+<p>You will fail and do it again.</p>
+<blockquote>
+<p>Ты потерпишь неудачу и сделаешь это снова.</p>
+</blockquote>
+<p>Fail and do it again.</p>
+<blockquote>
+<p>Потерпи неудачу и сделай снова.</p>
+</blockquote>
+<p>Like so many other things in meditation.</p>
+<blockquote>
+<p>Как и со многими другими вещами в медитации.</p>
+</blockquote>
+<p>Read the ancient books.</p>
+<blockquote>
+<p>Читай древние книги.</p>
+</blockquote>
+<p>There is something about that priming; you are gaining some solid transmission through the texts.</p>
+<blockquote>
+<p>В этой настройке что-то есть; ты получаешь некоторое прочное передавание через тексты.</p>
+</blockquote>
+<p>I know it sounds like a magickal, goofy thing to say.</p>
+<blockquote>
+<p>Я знаю, это звучит как магическое, нелепое высказывание.</p>
+</blockquote>
+<p>However, take a good look at the Culavedalla Sutta, the Shorter Series of Questions and Answers in The Middle Length Discourses (MN 44).</p>
+<blockquote>
+<p>Однако внимательно посмотри на Чулаведалла-сутту, Малую серию вопросов и ответов в «Средних наставлениях» (MN 44).</p>
+</blockquote>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

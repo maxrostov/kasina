@@ -1,0 +1,1586 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prologue</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f4ee;
+      --panel: #fffdf8;
+      --text: #1f2523;
+      --muted: #66706b;
+      --border: #ded6ca;
+      --accent: #8f3f27;
+      --accent-contrast: #ffffff;
+      --quote-bg: #efe7da;
+      --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #151817;
+      --panel: #1f2422;
+      --text: #ece7dd;
+      --muted: #b5ada0;
+      --border: #343c38;
+      --accent: #e39b6f;
+      --accent-contrast: #1d120d;
+      --quote-bg: #292f2c;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.16em;
+    }
+
+    .layout {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      background: var(--panel);
+      color: var(--text);
+      font: 600 0.9rem/1.2 system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(14rem, 18rem) minmax(0, 48rem);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: start;
+      max-width: 75rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 4rem);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 4.25rem;
+      max-height: calc(100vh - 5.5rem);
+      overflow: auto;
+      padding: 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-family: system-ui, sans-serif;
+      line-height: 1.35;
+    }
+
+    .site-title {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .site-nav ol {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    main {
+      min-width: 0;
+      padding: clamp(1.25rem, 4vw, 3rem);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    main > :first-child {
+      margin-top: 0;
+    }
+
+    main > :last-child {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0 0 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+      font-size: 1.55rem;
+    }
+
+    h3 {
+      margin-top: 1.8rem;
+      font-size: 1.2rem;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
+      margin: 1rem 0;
+    }
+
+    blockquote {
+      margin-left: 0;
+      padding: 0.75rem 1rem;
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--text);
+    }
+
+    code {
+      padding: 0.12rem 0.28rem;
+      border-radius: 4px;
+      background: var(--quote-bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      overflow: auto;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--quote-bg);
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+    }
+
+    @media (max-width: 820px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .site-nav {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body x-data="{ theme: $persist('light').as('kasina-theme') }" x-bind:data-theme="theme">
+  <div class="layout">
+    <header class="topbar">
+      <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+    </header>
+    <div class="shell">
+      <nav class="site-nav" aria-label="Publication chapters">
+  <a class="site-title" href="index.html">The Fire Kasina</a>
+  <ol>
+<li><a href="index.html">The Fire Kasina</a></li>
+<li><a href="01-the-authors.html">The Authors</a></li>
+<li><a href="02-introduction.html">Introduction</a></li>
+<li><a href="03-prologue.html" aria-current="page">Prologue</a></li>
+<li><a href="04-day-one.html">Day One</a></li>
+<li><a href="05-day-two.html">Day Two</a></li>
+<li><a href="06-day-three.html">Day Three</a></li>
+<li><a href="07-day-four.html">Day Four</a></li>
+<li><a href="08-day-five.html">Day Five</a></li>
+<li><a href="09-day-six.html">Day Six</a></li>
+<li><a href="10-day-seven.html">Day Seven</a></li>
+<li><a href="11-day-eight.html">Day Eight</a></li>
+<li><a href="12-day-nine.html">Day Nine</a></li>
+<li><a href="13-day-ten.html">Day Ten</a></li>
+<li><a href="14-day-eleven.html">Day Eleven</a></li>
+<li><a href="15-day-twelve.html">Day Twelve</a></li>
+<li><a href="16-day-thirteen.html">Day Thirteen</a></li>
+<li><a href="17-day-fourteen.html">Day Fourteen</a></li>
+<li><a href="18-day-fifteen.html">Day Fifteen</a></li>
+<li><a href="19-day-sixteen.html">Day Sixteen</a></li>
+<li><a href="20-day-seventeen.html">Day Seventeen</a></li>
+<li><a href="21-day-eighteen.html">Day Eighteen</a></li>
+<li><a href="22-day-twenty.html">Day Twenty</a></li>
+<li><a href="23-day-twenty-one.html">Day Twenty-One</a></li>
+<li><a href="24-day-twenty-two.html">Day Twenty-Two</a></li>
+<li><a href="25-day-twenty-three.html">Day Twenty-Three</a></li>
+<li><a href="26-day-twenty-four.html">Day Twenty-Four</a></li>
+<li><a href="27-day-twenty-five.html">Day Twenty-Five</a></li>
+<li><a href="28-two-weeks-after-the-retreat.html">Two Weeks After the Retreat</a></li>
+<li><a href="29-conclusion.html">Conclusion</a></li>
+<li><a href="30-appendix-a-glossary-of-technical-terms.html">Appendix A: Glossary of Technical Terms</a></li>
+<li><a href="31-appendix-b-nirodha-samapatti.html">Appendix B: Nirodha Samapatti</a></li>
+<li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
+  </ol>
+</nav>
+      <main>
+<h1>Prologue</h1>
+<blockquote>
+<h1>Пролог</h1>
+</blockquote>
+<p>[SHANNON]
+Could you start by saying how you originally began practising fire kasina?</p>
+<blockquote>
+<p>Не мог бы ты начать с рассказа о том, как ты изначально начал практиковать огненную касину?</p>
+</blockquote>
+<p>[DANIEL]
+I was a meditator and knew some people who had mentioned jhana practices, and I was on a retreat at Bhavana Society where Bhante Gunaratana talked about kasinas.</p>
+<blockquote>
+<p>Я был медитатором и знал нескольких людей, которые упоминали практики джханы, а еще я был на ретрите в Bhavana Society, где Бханте Гунаратана говорил о касинах.</p>
+</blockquote>
+<p>Well, he talked a lot about the jhanas, the meditative absorptions, and a little about kasinas, one day in a general talk about meditation.</p>
+<blockquote>
+<p>Ну, однажды в общей лекции о медитации он много говорил о джханах, медитативных поглощениях, и немного о касинах.</p>
+</blockquote>
+<p>My interest was piqued because I had read a little about it a long time ago in the suttas and the commentaries.</p>
+<blockquote>
+<p>Мой интерес пробудился, потому что задолго до этого я немного читал об этом в суттах и комментариях.</p>
+</blockquote>
+<ul>
+<li>Afterwards, when I started running into ceremonial magick, I was struck by how the visualisation aspects of magick reminded me of the Buddhist kasina practice and, because I like to �Buddhify� things, I thought maybe I will do my Buddhist visualisations once I learn how to do fire kasina.</li>
+</ul>
+<blockquote>
+<ul>
+<li>Позже, когда я начал сталкиваться с церемониальной магией, меня поразило, насколько аспекты визуализации в магии напоминали мне буддийскую практику касины; а поскольку мне нравится «буддизировать» вещи, я подумал, что, возможно, буду делать свои буддийские визуализации, когда научусь выполнять практику огненной касины.</li>
+</ul>
+</blockquote>
+<p>As a preparation for taking up the fire kasina, I started playing around with discs and colours, plates and pieces of construction paper that I would cut into circles.</p>
+<blockquote>
+<p>В качестве подготовки к огненной касине я начал экспериментировать с дисками и цветами, тарелками и кусками цветной бумаги, которые вырезал в форме кругов.</p>
+</blockquote>
+<hr>
+<p>[* Anguttara Nikaya (AN) 10.29, Visuddhimagga, Vimuttimagga.]</p>
+<blockquote>
+<p>[* Ангуттара-никая (AN) 10.29, Висуддхимагга, Вимуттимагга.]</p>
+</blockquote>
+<p>I was reading the instructions in books like the Visuddhimagga or The Jhanas in Theravada Buddhist Meditation, by Bhante Gunaratana, and whatever I could get from the old texts, which was pretty cryptic.</p>
+<blockquote>
+<p>Я читал инструкции в таких книгах, как Висуддхимагга или The Jhanas in Theravada Buddhist Meditation Бханте Гунаратаны, а также все, что мог найти в старых текстах, которые были довольно загадочными.</p>
+</blockquote>
+<p>I started playing with it all but did not get far because I was off retreat and in grad school at the time, in the late nineties.</p>
+<blockquote>
+<p>Я начал со всем этим экспериментировать, но далеко не продвинулся, потому что в то время, в конце девяностых, я не был на ретрите и учился в аспирантуре.</p>
+</blockquote>
+<p>Eventually I managed to develop strong jhana abilities and went on a 17-day retreat at the Bhavana Society in the winter of 2001 while in second year of med school.</p>
+<blockquote>
+<p>В конце концов мне удалось развить сильные способности к джхане, и зимой 2001 года, когда я был на втором курсе медицинской школы, я отправился на 17-дневный ретрит в Bhavana Society.</p>
+</blockquote>
+<p>After I had finished up yet another of the many vipassana cycles* I went through on that retreat, I was considering what to do next.</p>
+<blockquote>
+<p>После того как я завершил еще один из множества циклов випассаны*, через которые прошел на том ретрите, я размышлял, что делать дальше.</p>
+</blockquote>
+<p>At Bhavana Society, which is in West Virginia, where Bhante Gunaratana is based, they have these little kutis without power, and my kuti had a wood stove and an oil lamp.</p>
+<blockquote>
+<p>В Bhavana Society, которая находится в Западной Вирджинии и где базируется Бханте Гунаратана, есть маленькие кути без электричества, и в моей кути была дровяная печь и масляная лампа.</p>
+</blockquote>
+<p>I decided it would make an excellent kasina.</p>
+<blockquote>
+<p>Я решил, что из этого получится отличная касина.</p>
+</blockquote>
+<p>It was this great little oil lamp, with a small round wick that produced the most beautifully stable flame, and I thought: �Well let�s just try it; the heck with it, my concentration is strong.�</p>
+<blockquote>
+<p>Это была прекрасная маленькая масляная лампа с небольшим круглым фитилем, который давал удивительно устойчивое пламя, и я подумал: «Ну что ж, просто попробуем; к черту, концентрация у меня сильная».</p>
+</blockquote>
+<p>I was about 10 to 12 days into the retreat.</p>
+<blockquote>
+<p>Я был примерно на десятом или двенадцатом дне ретрита.</p>
+</blockquote>
+<p>I said to myself: �Let�s just go for it.</p>
+<blockquote>
+<p>Я сказал себе: «Давай просто сделаем это.</p>
+</blockquote>
+<p>Stare at that flame and figure this thing out.�</p>
+<blockquote>
+<p>Смотри на это пламя и разберись, как это работает».</p>
+</blockquote>
+<p>And I just started figuring it out.</p>
+<blockquote>
+<p>И я просто начал разбираться.</p>
+</blockquote>
+<p>I stared at the candle flame until I could not stand it any more and closed my eyes, saw what I saw, and went back to the flame and all of a sudden I started noticing here is this, here is this, and if I do this, then there is this, and then the next stage, and the next stage, and all of a sudden I started piecing it together basically by brute force and experimentation.</p>
+<blockquote>
+<p>Я смотрел на пламя свечи, пока уже не мог больше выдерживать, закрывал глаза, видел то, что видел, возвращался к пламени, и вдруг начал замечать: вот это, вот это, а если я делаю так, тогда появляется это, затем следующая стадия, следующая стадия, и внезапно я начал собирать все воедино, по сути грубой силой и экспериментированием.</p>
+</blockquote>
+<hr>
+<p>[* Terms that feature in our Glossary of Technical Terms (Appendix A) towards the end of this book are highlighted by underlining upon their first occurrence.]</p>
+<blockquote>
+<p>[* Термины, включенные в наш Глоссарий технических терминов (Приложение A) в конце этой книги, при первом появлении выделены подчеркиванием.]</p>
+</blockquote>
+<p>[SHANNON]
+I am curious why you did not use the flames in the wood stove as your kasina?</p>
+<blockquote>
+<p>Мне любопытно, почему ты не использовал пламя в дровяной печи как свою касину?</p>
+</blockquote>
+<p>[DANIEL]
+I could have, but the wood stove just had an iron door without an ornamental glass door.</p>
+<blockquote>
+<p>Я мог бы, но у дровяной печи была просто железная дверца без декоративной стеклянной дверцы.</p>
+</blockquote>
+<p>[SHANNON]
+You would have needed extraordinary magickal powers to see the flames through that solid iron door!</p>
+<blockquote>
+<p>Тебе понадобились бы необычайные магические способности, чтобы видеть пламя сквозь эту цельную железную дверцу!</p>
+</blockquote>
+<p>[DANIEL]
+By the end of that retreat, I could have seen through the door easily � or thought I could, anyway.</p>
+<blockquote>
+<p>К концу того ретрита я легко мог бы видеть сквозь дверцу - или, во всяком случае, думал бы, что могу.</p>
+</blockquote>
+<p>[Shared laughter.]</p>
+<blockquote>
+<p>[Общий смех.]</p>
+</blockquote>
+<p>On that retreat was the strongest concentration I ever obtained.</p>
+<blockquote>
+<p>На том ретрите у меня была самая сильная концентрация, которой я когда-либо достигал.</p>
+</blockquote>
+<p>On my more recent 12 day retreat in 2015, which was not as long, and I talked more, I did not get anything like the concentration I achieved on the 2001 retreat.</p>
+<blockquote>
+<p>На моем более недавнем 12-дневном ретрите в 2015 году, который был не таким длинным и на котором я больше разговаривал, я не получил ничего похожего на концентрацию, достигнутую на ретрите 2001 года.</p>
+</blockquote>
+<p>[SHANNON]
+Did you reach the personal goals you set out to reach on the 2015 12 day retreat?</p>
+<blockquote>
+<p>Достиг ли ты личных целей, которые ставил перед собой на 12-дневном ретрите 2015 года?</p>
+</blockquote>
+<p>[DANIEL]
+Well, the primary goal of that retreat was collective powers, which we managed to achieve: powers where you are interacting with each other in real time and seeing phenomena related to what the other people are doing.</p>
+<blockquote>
+<p>Ну, главной целью того ретрита были коллективные силы, и нам удалось их достичь: способности, при которых вы взаимодействуете друг с другом в реальном времени и видите явления, связанные с тем, что делают другие люди.</p>
+</blockquote>
+<p>That is to say, having experiences related to what the other people are doing.</p>
+<blockquote>
+<p>То есть переживаете опыты, связанные с тем, что делают другие люди.</p>
+</blockquote>
+<p>So, yes.</p>
+<blockquote>
+<p>Так что да.</p>
+</blockquote>
+<p>[SHANNON]
+Were you able to take that as far as you wanted to?</p>
+<blockquote>
+<p>Удалось ли тебе довести это так далеко, как ты хотел?</p>
+</blockquote>
+<p>[DANIEL]
+No.</p>
+<blockquote>
+<p>Нет.</p>
+</blockquote>
+<p>I really felt, God, if I had one more week, we would have been blazing.</p>
+<blockquote>
+<p>Я действительно чувствовал: боже, если бы у меня была еще одна неделя, мы бы просто горели.</p>
+</blockquote>
+<p>But, you know, 12 days is pretty short from my point of view.</p>
+<blockquote>
+<p>Но, знаешь, с моей точки зрения, 12 дней - это довольно мало.</p>
+</blockquote>
+<p>I mean, it was good.</p>
+<blockquote>
+<p>То есть это было хорошо.</p>
+</blockquote>
+<p>I achieved the basic goal of drawing something in the air, and somebody else could tell me what it was and what colour it was.</p>
+<blockquote>
+<p>Я достиг базовой цели: нарисовать что-то в воздухе так, чтобы кто-то другой мог сказать, что это было и какого это было цвета.</p>
+</blockquote>
+<p>That, we achieved.</p>
+<blockquote>
+<p>Вот этого мы достигли.</p>
+</blockquote>
+<p>[SHANNON]
+Do you think that somebody who had not been on retreat would have been able to see that?</p>
+<blockquote>
+<p>Как ты думаешь, смог бы это увидеть кто-то, кто не был на ретрите?</p>
+</blockquote>
+<p>[DANIEL]
+I do not think they would.</p>
+<blockquote>
+<p>Не думаю, что смог бы.</p>
+</blockquote>
+<p>Duncan could see it, and I do not know if Florian could, because he was looking off down the road when it happened.</p>
+<blockquote>
+<p>Дункан мог это видеть, а насчет Флориана я не знаю, потому что, когда это произошло, он смотрел куда-то вниз по дороге.</p>
+</blockquote>
+<p>[SHANNON]
+And could you see the things they were drawing as well?</p>
+<blockquote>
+<p>А ты тоже мог видеть то, что рисовали они?</p>
+</blockquote>
+<p>[DANIEL]
+The most interesting thing about that, was that we talked about doing all these experiments and then when we got into it, the retreat just took over and it became hard to stick to our original ideas because everybody went so deep into their own journey, so coordinating joint activity was pretty confusing at times.</p>
+<blockquote>
+<p>Самое интересное в этом было то, что мы обсуждали проведение всех этих экспериментов, но когда мы вошли в процесс, ретрит просто захватил все, и стало трудно придерживаться исходных идей, потому что каждый так глубоко погрузился в собственное путешествие, что координировать совместную деятельность временами было довольно запутанно.</p>
+</blockquote>
+<p>[Shared laughter.]</p>
+<blockquote>
+<p>[Общий смех.]</p>
+</blockquote>
+<p>And what happened with Duncan was a total accident.</p>
+<blockquote>
+<p>А то, что произошло с Дунканом, было полной случайностью.</p>
+</blockquote>
+<p>I was drawing pentagrams in the air and watching this liquid amber fire trace off from my finger, and it was so magnetising I was not even noticing anyone looking my way; I was lost in my own trippy thing and acting pretty eccentric.</p>
+<blockquote>
+<p>Я рисовал пентаграммы в воздухе и наблюдал, как от моего пальца тянется след жидкого янтарного огня, и это было настолько притягательно, что я даже не замечал, смотрит ли кто-то в мою сторону; я был потерян в собственной психоделической штуке и вел себя довольно эксцентрично.</p>
+</blockquote>
+<p>[more laughter]</p>
+<blockquote>
+<p>[еще смех]</p>
+</blockquote>
+<p>We were waiting to go into town because we knew we were all too odd to send anyone alone; we needed to go as a team, in case one of us wandered off into the colours or something.</p>
+<blockquote>
+<p>Мы ждали, чтобы поехать в город, потому что понимали, что все мы слишком странные, чтобы отправлять кого-то одного; нам нужно было идти командой, на случай если кто-нибудь из нас забредет в цвета или что-то такое.</p>
+</blockquote>
+<p>We were waiting for the taxi to come and pick us up in the late afternoon.</p>
+<blockquote>
+<p>Мы ждали такси, которое должно было забрать нас ближе к вечеру.</p>
+</blockquote>
+<p>I made a pentagram, and Duncan commented: �You just drew an amber, orangeish pentagram in the air.�</p>
+<blockquote>
+<p>Я сделал пентаграмму, и Дункан заметил: «Ты только что нарисовал в воздухе янтарную, оранжеватую пентаграмму».</p>
+</blockquote>
+<p>I said: �Yes, I did.�</p>
+<blockquote>
+<p>Я сказал: «Да, нарисовал».</p>
+</blockquote>
+<p>That was pretty amazing.</p>
+<blockquote>
+<p>Это было довольно удивительно.</p>
+</blockquote>
+<p>Also, we would have midnight sits � the witching hour, of course � because we were all magicky in our robes and wands � total magick geeks � where we would do interesting things as a group.</p>
+<blockquote>
+<p>Кроме того, у нас были полуночные сидения - час ведьм, конечно, - потому что мы все были такие магические, в мантиях и с жезлами, полные магические фанаты, и там мы делали интересные вещи как группа.</p>
+</blockquote>
+<p>A couple of nights this involved standing in front of each other and � you have to understand that this was in a room where the only light was firelight from a wood stove over on one side of the room, and other than that there was no light, so it was pretty dark.</p>
+<blockquote>
+<p>Пару ночей это включало стояние друг перед другом, и нужно понимать, что это происходило в комнате, где единственным светом был свет огня от дровяной печи в одной стороне комнаты, а больше света не было, так что было довольно темно.</p>
+</blockquote>
+<p>That wood stove was not putting out a lot of light by that point.</p>
+<blockquote>
+<p>К тому моменту дровяная печь уже давала не так много света.</p>
+</blockquote>
+<p>Usually, it was just glowing coals, because we were letting the fire die down for the last bit of the day.</p>
+<blockquote>
+<p>Обычно это были просто тлеющие угли, потому что к концу дня мы давали огню угаснуть.</p>
+</blockquote>
+<p>We would arrange ourselves so one stood in front of another and moved his hands in the air and drew symbols, and the other person could see the shifting colour patterns in his colour space with closed eyelids.</p>
+<blockquote>
+<p>Мы располагались так, что один стоял перед другим, двигал руками в воздухе и рисовал символы, а другой человек с закрытыми веками мог видеть меняющиеся цветовые узоры в своем цветовом пространстве.</p>
+</blockquote>
+<p>It became like liquid; you could stand in front of the other person and just wave your hand across, and his whole colour field would swirl and eddy as if the visual field was made of water with confetti or glitter in it and you were making it all move in patterns.</p>
+<blockquote>
+<p>Это становилось похожим на жидкость; можно было стоять перед другим человеком и просто проводить рукой, и все его цветовое поле начинало кружиться и завихряться, словно зрительное поле было сделано из воды с конфетти или блестками внутри, а ты заставлял все это двигаться узорами.</p>
+</blockquote>
+<p>[SHANNON]
+Almost like your hand was in their mental space.</p>
+<blockquote>
+<p>Почти как будто твоя рука находилась в их ментальном пространстве.</p>
+</blockquote>
+<p>[DANIEL]
+Right � which it clearly was!</p>
+<blockquote>
+<p>Именно - и она явно там была!</p>
+</blockquote>
+<p>[Shared laughter.]</p>
+<blockquote>
+<p>[Общий смех.]</p>
+</blockquote>
+<p>Because it was not something you could �see�, given that there was not enough light to be able to see what we were seeing.</p>
+<blockquote>
+<p>Потому что это было не то, что можно было «увидеть», учитывая, что света было недостаточно, чтобы видеть то, что мы видели.</p>
+</blockquote>
+<p>It was very much �you are in my mental space and I can see it.�</p>
+<blockquote>
+<p>Это было очень похоже на: «ты находишься в моем ментальном пространстве, и я это вижу».</p>
+</blockquote>
+<p>It seemed so normal at the time in some unexplainable way, because of the states we were in, that I did not take it as spectacular as it seems to be upon reflection.</p>
+<blockquote>
+<p>В то время это каким-то необъяснимым образом казалось настолько нормальным из-за состояний, в которых мы находились, что я не воспринял это как нечто столь впечатляющее, каким оно кажется при размышлении сейчас.</p>
+</blockquote>
+<p>[SHANNON]
+Were all three of you able to do that with each other?</p>
+<blockquote>
+<p>Все трое могли делать это друг с другом?</p>
+</blockquote>
+<p>[DANIEL]
+Yes, to varying degrees, given our individual natural aptitude for these things.</p>
+<blockquote>
+<p>Да, в разной степени, учитывая нашу индивидуальную природную склонность к таким вещам.</p>
+</blockquote>
+<p>For meditators working with this, there is an essential operating principle at play.</p>
+<blockquote>
+<p>Для медитаторов, работающих с этим, здесь действует важнейший рабочий принцип.</p>
+</blockquote>
+<p>Desire, intention and concentration: where those converge, powers arise.</p>
+<blockquote>
+<p>Желание, намерение и концентрация: там, где они сходятся, возникают силы.</p>
+</blockquote>
+<p>The stronger these factors, the stronger the powers.</p>
+<blockquote>
+<p>Чем сильнее эти факторы, тем сильнее силы.</p>
+</blockquote>
+<p>[SHANNON]
+Going back to the 2001 retreat, I am wondering how you decided to look directly at the flame without putting up any kind of disc to look through.</p>
+<blockquote>
+<p>Возвращаясь к ретриту 2001 года, мне интересно, как ты решил смотреть прямо на пламя, не устанавливая никакого диска, через который нужно было бы смотреть.</p>
+</blockquote>
+<p>[DANIEL]
+Well, that was what I had.</p>
+<blockquote>
+<p>Ну, это было то, что у меня было.</p>
+</blockquote>
+<p>All I had was a little backpack with some clothing.</p>
+<blockquote>
+<p>Все, что у меня было, - это маленький рюкзак с одеждой.</p>
+</blockquote>
+<p>I was in this stark cabin on a silent retreat with a candle flame and I had no access to anything else, really, so that is what I did.</p>
+<blockquote>
+<p>Я был в этой суровой хижине на молчаливом ретрите с пламенем свечи, и у меня, по сути, не было доступа ни к чему другому, так что я сделал именно это.</p>
+</blockquote>
+<p>[SHANNON]
+Do you think it makes any difference to look at the flame through a circle when doing fire kasina?</p>
+<blockquote>
+<p>Как ты думаешь, есть ли разница, если при практике огненной касины смотреть на пламя через круг?</p>
+</blockquote>
+<p>[DANIEL]
+The kasina is the object itself.</p>
+<blockquote>
+<p>Касина - это сам объект.</p>
+</blockquote>
+<p>Say if you were practising the earth kasina, you would make a disc out of a special colour of clay and stare at that disc.</p>
+<blockquote>
+<p>Скажем, если бы ты практиковала касину земли, ты сделала бы диск из глины особого цвета и смотрела бы на этот диск.</p>
+</blockquote>
+<p>And for space kasina, you would set up some sort of aperture, or a frame, which initially holds the sense of space until you are able to just take on space as space.</p>
+<blockquote>
+<p>А для касины пространства ты бы установила некое отверстие или рамку, которая сначала удерживает ощущение пространства, пока ты не сможешь просто воспринимать пространство как пространство.</p>
+</blockquote>
+<p>Same with water.</p>
+<blockquote>
+<p>То же самое с водой.</p>
+</blockquote>
+<p>[SHANNON]
+I suppose the flame itself with its circular shape provides its own frame.</p>
+<blockquote>
+<p>Полагаю, само пламя со своей круглой формой создает собственную рамку.</p>
+</blockquote>
+<p>[DANIEL]
+I agree.</p>
+<blockquote>
+<p>Согласен.</p>
+</blockquote>
+<p>It does.</p>
+<blockquote>
+<p>Так и есть.</p>
+</blockquote>
+<p>[SHANNON]
+After you completed your more recent group retreat, you described how you went back and forth between looking at the candle flame and looking at the flames in the wood stove.</p>
+<blockquote>
+<p>После завершения твоего более недавнего группового ретрита ты описывал, как переключался туда-сюда между смотрением на пламя свечи и смотрением на огонь в дровяной печи.</p>
+</blockquote>
+<p>How would you decide when to do that, and at what point in a practice would you suggest it is helpful to move to staring at flames in a fire?</p>
+<blockquote>
+<p>Как ты решал, когда это делать, и на каком этапе практики ты бы сказал, что полезно перейти к смотрению на пламя в огне?</p>
+</blockquote>
+<p>[DANIEL]
+By the time I switched to the fire rather than the candle, I was into fire itself as a goddess, as an element, as a living entity, as a thing to worship.</p>
+<blockquote>
+<p>К тому времени, когда я переключился с свечи на огонь, я был погружен в сам огонь как в богиню, как в элемент, как в живую сущность, как в объект поклонения.</p>
+</blockquote>
+<p>At that point in the retreat my brain had changed, my relationship to the fire had changed, my relationship to the kasina and what it was and what it meant had changed.</p>
+<blockquote>
+<p>К тому моменту ретрита мой мозг изменился, мое отношение к огню изменилось, мое отношение к касине, к тому, чем она была и что она означала, изменилось.</p>
+</blockquote>
+<p>I was seeing fire as this elemental thing that is pervading everything as one aspect of an elemental field.</p>
+<blockquote>
+<p>Я видел огонь как эту элементальную вещь, пронизывающую все, как один аспект элементального поля.</p>
+</blockquote>
+<p>Fire was the predominant one, but after a time the imbalances related to the other elements became interesting as well.</p>
+<blockquote>
+<p>Огонь был преобладающим, но через некоторое время дисбалансы, связанные с другими элементами, тоже стали интересными.</p>
+</blockquote>
+<p>It was fire as fire, not as a kasina, that I would use to obtain a concentration state, which is one relationship to it.</p>
+<blockquote>
+<p>Это был огонь как огонь, а не как касина, который я использовал для достижения состояния концентрации, и это один способ отношения к нему.</p>
+</blockquote>
+<p>Another relationship to it is as an external support used to generate an after-image and a jhana that happens to have colours and shapes with it and can be used to obtain powers.</p>
+<blockquote>
+<p>Другой способ отношения к нему - как к внешней опоре, используемой для порождения послеобраза и джханы, которая сопровождается цветами и формами и может использоваться для достижения сил.</p>
+</blockquote>
+<p>That is perhaps the more usual way of relating to it.</p>
+<blockquote>
+<p>Это, пожалуй, более обычный способ отношения к нему.</p>
+</blockquote>
+<p>By this point, however, that was not how I was relating to it.</p>
+<blockquote>
+<p>Однако к этому моменту я относился к нему уже не так.</p>
+</blockquote>
+<p>[SHANNON]
+That really draws me.</p>
+<blockquote>
+<p>Меня это очень привлекает.</p>
+</blockquote>
+<p>I find it compelling to be able to arrive at relating more to the elemental aspect of fire.</p>
+<blockquote>
+<p>Мне кажется очень притягательным прийти к более тесному отношению с элементальным аспектом огня.</p>
+</blockquote>
+<p>[DANIEL]
+It is compelling.</p>
+<blockquote>
+<p>Это действительно притягательно.</p>
+</blockquote>
+<p>For me, fire became a goddess, pervading everything: the heat in my body was the fire kasina.</p>
+<blockquote>
+<p>Для меня огонь стал богиней, пронизывающей все: тепло в моем теле было огненной касиной.</p>
+</blockquote>
+<p>All of space has fire elements to it; some colours have it more than others; and I was thinking of heat and the fire in the room and the heat in the room and the heat in my body all as fire: something that I did not talk about much in my audio diary, because it did not seem so extraordinary at the time.</p>
+<blockquote>
+<p>Все пространство содержит элементы огня; в некоторых цветах их больше, чем в других; и я воспринимал тепло, огонь в комнате, тепло в комнате и тепло в своем теле как огонь: то, о чем я мало говорил в аудиодневнике, потому что тогда это не казалось таким уж необычным.</p>
+</blockquote>
+<p>[SHANNON]
+Did that just happen on its own?</p>
+<blockquote>
+<p>Это просто произошло само собой?</p>
+</blockquote>
+<p>[DANIEL]
+That was not the relationship I was expecting.</p>
+<blockquote>
+<p>Это было не то отношение, которого я ожидал.</p>
+</blockquote>
+<p>Suddenly, that was the relationship that was occurring.</p>
+<blockquote>
+<p>Внезапно именно такое отношение и происходило.</p>
+</blockquote>
+<p>I was looking at the world as a field of elements, and I was performing a worshipful, devotional practice to the all-pervading element of fire as an entity, as a living presence, like an aspect of divinity.</p>
+<blockquote>
+<p>Я смотрел на мир как на поле элементов и выполнял почтительную, преданную практику по отношению к всепроникающему элементу огня как к сущности, как к живому присутствию, как к аспекту божественности.</p>
+</blockquote>
+<p>This is obviously a very different way of looking at the fire kasina.</p>
+<blockquote>
+<p>Очевидно, это совершенно иной способ смотреть на огненную касину.</p>
+</blockquote>
+<p>Fire had become the most obvious part of the whole thing.</p>
+<blockquote>
+<p>Огонь стал самой очевидной частью всего этого.</p>
+</blockquote>
+<p>[SHANNON]
+By then you probably could have looked just about any-where and have seen fire.</p>
+<blockquote>
+<p>К тому времени ты, наверное, мог посмотреть практически куда угодно и увидеть огонь.</p>
+</blockquote>
+<p>[DANIEL]
+More than seeing it, I was it.</p>
+<blockquote>
+<p>Больше чем видеть его - я был им.</p>
+</blockquote>
+<p>My body was the fire kasina, everything in the room was the fire kasina.</p>
+<blockquote>
+<p>Мое тело было огненной касиной, все в комнате было огненной касиной.</p>
+</blockquote>
+<p>The light of the sun was the fire kasina.</p>
+<blockquote>
+<p>Свет солнца был огненной касиной.</p>
+</blockquote>
+<p>The heat on the stove, the warmth in the stew was the fire kasina.</p>
+<blockquote>
+<p>Жар на плите, тепло в рагу - все это было огненной касиной.</p>
+</blockquote>
+<p>It was everything.</p>
+<blockquote>
+<p>Это было всем.</p>
+</blockquote>
+<p>I was in an elemental world or paradigm without really intending to end up in one.</p>
+<blockquote>
+<p>Я находился в элементальном мире или парадигме, хотя на самом деле не собирался туда попасть.</p>
+</blockquote>
+<p>[SHANNON]
+It is interesting that you experienced your concentration as higher on the 2001 retreat, yet you went deeper into the elemental aspect on this more recent retreat.</p>
+<blockquote>
+<p>Интересно, что на ретрите 2001 года ты переживал свою концентрацию как более высокую, но глубже вошел в элементальный аспект именно на этом более недавнем ретрите.</p>
+</blockquote>
+<p>[DANIEL]
+And I think the reason is that I only did five or six days of fire kasina on that 2001 retreat, after spending 10 or 12 days setting up the concentration by doing vipassana.</p>
+<blockquote>
+<p>И я думаю, причина в том, что на ретрите 2001 года я занимался огненной касиной всего пять или шесть дней, после того как провел 10 или 12 дней, выстраивая концентрацию через випассану.</p>
+</blockquote>
+<p>Whereas on the more recent retreat it was after a week or so, at least, of straight fire kasina practice that all of a sudden the world as an elemental thing began to show up.</p>
+<blockquote>
+<p>Тогда как на более недавнем ретрите, после по крайней мере недели прямой практики огненной касины, мир как элементальная вещь внезапно начал проявляться.</p>
+</blockquote>
+<p>[SHANNON]
+You took it really far � or rather it took you.</p>
+<blockquote>
+<p>Ты завел это очень далеко - или, скорее, это завело тебя.</p>
+</blockquote>
+<p>[DANIEL]
+Farther than I had before, and, yes, it definitely took me, because that was not where I was looking to go.</p>
+<blockquote>
+<p>Дальше, чем раньше, и да, это определенно увлекло меня, потому что я не стремился попасть именно туда.</p>
+</blockquote>
+<p>I was not the only one experiencing it, because at the end of day nine, or so, I noticed Duncan and Florian were going down to the creek behind the Tower of Hallbar.</p>
+<blockquote>
+<p>Я был не единственным, кто это переживал, потому что примерно в конце девятого дня я заметил, что Дункан и Флориан спускаются к ручью за башней Халлбар.</p>
+</blockquote>
+<p>I saw them going down the hill and hanging out down there.</p>
+<blockquote>
+<p>Я видел, как они спускаются с холма и проводят время там внизу.</p>
+</blockquote>
+<p>And I was sure they were noticing the elemental imbalance that I was noticing too.</p>
+<blockquote>
+<p>И я был уверен, что они тоже замечают тот элементальный дисбаланс, который замечал я.</p>
+</blockquote>
+<p>[SHANNON]
+By the way, how did you decide on the Tower of Hallbar for the retreat?</p>
+<blockquote>
+<p>Кстати, как вы выбрали башню Халлбар для ретрита?</p>
+</blockquote>
+<p>[DANIEL]
+Because I am a total geek, and I had not taken this much time away from work in 13 years, so if I was going to do it, I was going to do it right.</p>
+<blockquote>
+<p>Потому что я полный гик, и за 13 лет я не брал столько времени вдали от работы, так что если уж я собирался это делать, то собирался делать это правильно.</p>
+</blockquote>
+<p>And �right�, to me, if I were travelling to the UK, would be in a medieval tower, dressed in robes, with wands and cool people and awesome food, even if it cost a fair amount to stay there.</p>
+<blockquote>
+<p>А «правильно» для меня, если я еду в Великобританию, означало бы: в средневековой башне, в мантиях, с жезлами, классными людьми и потрясающей едой, даже если проживание там стоит немало.</p>
+</blockquote>
+<p>[SHANNON]
+Who found the tower?</p>
+<blockquote>
+<p>Кто нашел башню?</p>
+</blockquote>
+<p>[DANIEL]
+I found it.</p>
+<blockquote>
+<p>Я нашел.</p>
+</blockquote>
+<p>There are now castle rental websites, which have opened up a whole world of travel I had no idea existed.</p>
+<blockquote>
+<p>Сейчас существуют сайты аренды замков, которые открыли целый мир путешествий, о существовании которого я понятия не имел.</p>
+</blockquote>
+<p>Some of these castles have 140 rooms � it is crazy!</p>
+<blockquote>
+<p>В некоторых из этих замков по 140 комнат - это безумие!</p>
+</blockquote>
+<p>Hallbar was one of the cheaper castles, as far as castles go.</p>
+<blockquote>
+<p>Халлбар был одним из более дешевых замков, если говорить о замках.</p>
+</blockquote>
+<p>It is more of a tower than a castle, but still, there are not that many guest towers that you can rent.</p>
+<blockquote>
+<p>Это скорее башня, чем замок, но все же не так уж много гостевых башен, которые можно арендовать.</p>
+</blockquote>
+<p>So it was February in Scotland, and it was cold and wet.</p>
+<blockquote>
+<p>Итак, это был февраль в Шотландии, было холодно и сыро.</p>
+</blockquote>
+<p>A wet, chilling, Scottish cold.</p>
+<blockquote>
+<p>Влажный, пробирающий шотландский холод.</p>
+</blockquote>
+<p>When I first arrived there my bones almost ached from the chill.</p>
+<blockquote>
+<p>Когда я только туда приехал, у меня почти ломило кости от холода.</p>
+</blockquote>
+<p>Not that it is not cold in Alabama, because it can drop below zero Fahrenheit here.</p>
+<blockquote>
+<p>Не то чтобы в Алабаме не бывает холодно, потому что здесь температура может опускаться ниже нуля по Фаренгейту.</p>
+</blockquote>
+<p>It can snow here, and be icy.</p>
+<blockquote>
+<p>Здесь может идти снег и быть гололед.</p>
+</blockquote>
+<p>But something about Scotland that far north, and the short daylight, twilight by three-thirty or four in the afternoon.</p>
+<blockquote>
+<p>Но есть что-то особенное в Шотландии так далеко на севере, с коротким световым днем, когда сумерки наступают уже к половине четвертого или четырем пополудни.</p>
+</blockquote>
+<p>When I first got there, I was dressed in layers of wool and such, and yet by about seven days into it I was walking around in bare feet and a t-shirt with light fleece pants on.</p>
+<blockquote>
+<p>Когда я туда только приехал, на мне было несколько слоев шерсти и тому подобного, но примерно через семь дней я уже ходил босиком, в футболке и легких флисовых штанах.</p>
+</blockquote>
+<p>The stairway that wrapped around the tower was not heated; it is an old medieval tower, so substantial portions of it were not heated at all, including the room where I was sleeping.</p>
+<blockquote>
+<p>Лестница, которая обвивала башню, не отапливалась; это старая средневековая башня, поэтому значительные ее части вообще не отапливались, включая комнату, где я спал.</p>
+</blockquote>
+<p>Yet by seven days in, I was hot.</p>
+<blockquote>
+<p>И все же к седьмому дню мне было жарко.</p>
+</blockquote>
+<p>[SHANNON]
+Just burning up with the fire?</p>
+<blockquote>
+<p>Просто сгорал от огня?</p>
+</blockquote>
+<p>[DANIEL]
+By day seven or nine I realised it was too much fire.</p>
+<blockquote>
+<p>К седьмому или девятому дню я понял, что огня слишком много.</p>
+</blockquote>
+<p>I was starting to get fire overload, too much fire element.</p>
+<blockquote>
+<p>У меня начиналась перегрузка огнем, слишком много элемента огня.</p>
+</blockquote>
+<p>So, when I saw Duncan and Florian going down to the water, I instantly knew what they were doing, and I started spending time down there too in order to take in more water element and earth element and purposely tuning into those for elemental integration.</p>
+<blockquote>
+<p>Поэтому, когда я увидел, как Дункан и Флориан спускаются к воде, я мгновенно понял, что они делают, и тоже начал проводить время там внизу, чтобы впитать больше элемента воды и элемента земли и намеренно настроиться на них для элементальной интеграции.</p>
+</blockquote>
+<p>[SHANNON]
+I wonder if my time on the lake up at a northern cabin, and walking out in nature, on the earth, helped keep things more balanced for me during my fire kasina retreat.</p>
+<blockquote>
+<p>Интересно, помогло ли мне время на озере у северной хижины и прогулки на природе, по земле, сохранять больше равновесия во время моего ретрита по огненной касине.</p>
+</blockquote>
+<p>[DANIEL]
+Probably.</p>
+<blockquote>
+<p>Вероятно.</p>
+</blockquote>
+<p>That would make sense to me.</p>
+<blockquote>
+<p>Для меня это имело бы смысл.</p>
+</blockquote>
+<p>In fact, at the end, we talked about if we did it again we would go to the Alps of Austria and be on a lake in a chalet, with the mountains and lake and a big view with water and air to instil more balance into the practice.</p>
+<blockquote>
+<p>На самом деле в конце мы говорили, что если будем делать это снова, то поедем в австрийские Альпы и будем жить в шале на озере, с горами, озером и широким видом, с водой и воздухом, чтобы внести в практику больше равновесия.</p>
+</blockquote>
+<p>If I ever do it again that is probably where.</p>
+<blockquote>
+<p>Если я когда-нибудь сделаю это снова, вероятно, именно там.</p>
+</blockquote>
+<p>[SHANNON]
+Are you planning another retreat?</p>
+<blockquote>
+<p>Ты планируешь еще один ретрит?</p>
+</blockquote>
+<p>[DANIEL]
+Yes, on my birthday in February.</p>
+<blockquote>
+<p>Да, на мой день рождения в феврале.</p>
+</blockquote>
+<p>[SHANNON]
+Would you do fire kasina again?</p>
+<blockquote>
+<p>Ты снова стал бы практиковать огненную касину?</p>
+</blockquote>
+<p>[DANIEL]
+I would like to.</p>
+<blockquote>
+<p>Я бы хотел.</p>
+</blockquote>
+<p>I am considering also a remote cabin in the desert somewhere far south where it is not too cold, perhaps in southern or mid-Arizona.</p>
+<blockquote>
+<p>Я также рассматриваю удаленную хижину в пустыне где-нибудь далеко на юге, где не слишком холодно, возможно, в южной или центральной Аризоне.</p>
+</blockquote>
+<p>A solo retreat, because there is a depth that the social aspect of my last retreat did not allow me to access in the same way.</p>
+<blockquote>
+<p>Одиночный ретрит, потому что есть глубина, к которой социальный аспект моего последнего ретрита не позволил мне получить доступ таким же образом.</p>
+</blockquote>
+<p>Not that it was not awesome to connect with Duncan and Florian.</p>
+<blockquote>
+<p>Не то чтобы общение с Дунканом и Флорианом не было потрясающим.</p>
+</blockquote>
+<p>They are great people, and I really got to know them a whole lot better after living together for 12 days.</p>
+<blockquote>
+<p>Они замечательные люди, и после 12 дней совместной жизни я узнал их намного лучше.</p>
+</blockquote>
+<p>That was really worthwhile.</p>
+<blockquote>
+<p>Это действительно того стоило.</p>
+</blockquote>
+<p>But there is another part of me wanting to go on a totally solitary retreat, with nobody there, and I would be doing a very wide mix of formless realms, dzogchen, and general integration practice.</p>
+<blockquote>
+<p>Но есть другая часть меня, которая хочет отправиться на полностью одиночный ретрит, где никого не будет, и я бы занимался очень широким сочетанием бесформенных сфер, дзогчена и общей практики интеграции.</p>
+</blockquote>
+<p>Something deep, still, and quiet.</p>
+<blockquote>
+<p>Чем-то глубоким, неподвижным и тихим.</p>
+</blockquote>
+<p>If I do end up doing another group retreat, which are just so impressive to do with the fire kasina, then next time I would be more wary, by the time I had accessed the highly altered states, of the need to find my way back to collective goals.</p>
+<blockquote>
+<p>Если я все же проведу еще один групповой ретрит, которые с огненной касиной бывают просто очень впечатляющими, то в следующий раз, когда я достигну сильно измененных состояний, я буду осторожнее относиться к необходимости вернуться к коллективным целям.</p>
+</blockquote>
+<p>Before the retreat even started, we could need to have a careful plan, with structured magickal goals!</p>
+<blockquote>
+<p>Еще до начала ретрита нам, возможно, нужен был бы тщательный план со структурированными магическими целями!</p>
+</blockquote>
+<p>[Laughter.]</p>
+<blockquote>
+<p>[Смех.]</p>
+</blockquote>
+<p>But part of me thinks, �No, Daniel, you need to just go out in the desert and play.�</p>
+<blockquote>
+<p>Но часть меня думает: «Нет, Дэниел, тебе нужно просто отправиться в пустыню и поиграть».</p>
+</blockquote>
+<p>What I imagine doing out there would involve magick.</p>
+<blockquote>
+<p>То, что я представляю себе там, включало бы магию.</p>
+</blockquote>
+<p>Some of the focus would be energetic.</p>
+<blockquote>
+<p>Часть фокуса была бы энергетической.</p>
+</blockquote>
+<p>The other aspect of the previous retreat that I have not mentioned so far was the sense of the spirit world* being there.</p>
+<blockquote>
+<p>Другой аспект предыдущего ретрита, о котором я до сих пор не упоминал, был ощущением присутствия мира духов*.</p>
+</blockquote>
+<p>I have this strong notion if I was in the desert in New Mexico or Arizona � probably New Mexico, because it is somehow a more magickal place � I would build a circle around me and have a fire and let the energy and the spirits and the interactions � just drop the filter � and let it happen.</p>
+<blockquote>
+<p>У меня есть сильное ощущение, что если бы я был в пустыне в Нью-Мексико или Аризоне - вероятно, в Нью-Мексико, потому что это каким-то образом более магическое место, - я бы построил вокруг себя круг, развел огонь и позволил бы энергии, духам и взаимодействиям - просто сняв фильтр - происходить.</p>
+</blockquote>
+<p>There is something very compelling about that.</p>
+<blockquote>
+<p>В этом есть что-то очень притягательное.</p>
+</blockquote>
+<p>[SHANNON]
+Does it appeal to you to try to walk through the fire?</p>
+<blockquote>
+<p>Тебя привлекает идея попробовать пройти сквозь огонь?</p>
+</blockquote>
+<hr>
+<p>[* Interacting with various spirit beings, such as devas (gods), demons, ghosts, and a wide variety of other spirit entities is actually stock and standard traditional Buddhist practice.]</p>
+<blockquote>
+<p>[* Взаимодействие с различными духовными существами, такими как дэвы (боги), демоны, призраки и широкий спектр других духовных сущностей, на самом деле является обычной и стандартной традиционной буддийской практикой.]</p>
+</blockquote>
+<p>[DANIEL]
+No.</p>
+<blockquote>
+<p>Нет.</p>
+</blockquote>
+<p>I would keep the fire over there in a safe place.</p>
+<blockquote>
+<p>Я бы держал огонь вон там, в безопасном месте.</p>
+</blockquote>
+<p>[Laughter.]</p>
+<blockquote>
+<p>[Смех.]</p>
+</blockquote>
+<p>[SHANNON]
+Especially if you are on your own, in the desert.</p>
+<blockquote>
+<p>Особенно если ты один, в пустыне.</p>
+</blockquote>
+<p>[More laughter.]</p>
+<blockquote>
+<p>[Еще смех.]</p>
+</blockquote>
+<p>[DANIEL]
+Exactly.</p>
+<blockquote>
+<p>Именно.</p>
+</blockquote>
+<p>[SHANNON]
+Can you describe how you would give a simple, complete introduction on how to do the fire kasina practice?</p>
+<blockquote>
+<p>Можешь описать, как бы ты дал простое, полное введение в то, как выполнять практику огненной касины?</p>
+</blockquote>
+<p>[DANIEL]
+The most important thing is to remember that concentration on what is happening is more important than what is happening.</p>
+<blockquote>
+<p>Самое важное - помнить, что концентрация на том, что происходит, важнее того, что происходит.</p>
+</blockquote>
+<p>[SHANNON]
+But can you walk me through, right from the get-go?</p>
+<blockquote>
+<p>Но можешь провести меня через это с самого начала?</p>
+</blockquote>
+<p>Let us suppose I have never done candle flame before.</p>
+<blockquote>
+<p>Допустим, я никогда раньше не практиковала с пламенем свечи.</p>
+</blockquote>
+<p>[DANIEL]
+Right, so the first thing I would say is… that.</p>
+<blockquote>
+<p>Хорошо, первое, что я бы сказал, - это… именно это.</p>
+</blockquote>
+<p>Because I actually think that is the most important instruction: whatever is happening, one has to be paying really strong attention to it, even if it is not doing what you think it should be doing.</p>
+<blockquote>
+<p>Потому что я действительно считаю это самой важной инструкцией: что бы ни происходило, нужно уделять этому очень сильное внимание, даже если это не делает того, что, как тебе кажется, должно делать.</p>
+</blockquote>
+<p>It is the most important thing I can say.</p>
+<blockquote>
+<p>Это самое важное, что я могу сказать.</p>
+</blockquote>
+<p>[SHANNON]
+[Laughter.]</p>
+<blockquote>
+<p>[Смех.]</p>
+</blockquote>
+<p>You repeated that many times during my retreat.</p>
+<blockquote>
+<p>Ты много раз повторял это во время моего ретрита.</p>
+</blockquote>
+<p>It is surprising how one can lose sight of such a basic and essential starting point.</p>
+<blockquote>
+<p>Удивительно, как можно упустить из виду такую базовую и существенную отправную точку.</p>
+</blockquote>
+<p>[DANIEL]
+Yes.</p>
+<blockquote>
+<p>Да.</p>
+</blockquote>
+<p>That fact of attending is more important than what you are attending to because it is the attending to that makes what you are attending to do extraordinary things.</p>
+<blockquote>
+<p>Сам факт внимания важнее того, на что ты обращаешь внимание, потому что именно обращение внимания заставляет то, на что ты обращаешь внимание, делать необычайные вещи.</p>
+</blockquote>
+<p>So that would be the first and most important instruction.</p>
+<blockquote>
+<p>Так что это была бы первая и самая важная инструкция.</p>
+</blockquote>
+<p>Then, the second thing, to sit in a comfortable position about three to five feet from the candle flame in a place where there is not a lot of wind or where you have a glass frame round the flame so it does not waver.</p>
+<blockquote>
+<p>Затем второе: сесть в удобной позе примерно в трех-пяти футах от пламени свечи, в месте, где нет сильного ветра или где вокруг пламени есть стеклянная защита, чтобы оно не колебалось.</p>
+</blockquote>
+<p>Sit comfortably and stare at the flame for a minute or two or until things start feeling they are getting a little strange or a little interesting or visually purplish or something, something different.</p>
+<blockquote>
+<p>Сядь удобно и смотри на пламя минуту или две, или пока не начнет казаться, что что-то становится немного странным, немного интересным, визуально фиолетоватым или каким-то еще, каким-то другим.</p>
+</blockquote>
+<p>Then close your eyes and stare at the after-images that come, and if you see anything resembling a red dot give that more attention.</p>
+<blockquote>
+<p>Затем закрой глаза и смотри на возникающие послеобразы, и если увидишь что-то, напоминающее красную точку, удели этому больше внимания.</p>
+</blockquote>
+<p>Follow it for as long as it endures until you have just static, then open your eyes and look at the flame again.</p>
+<blockquote>
+<p>Следуй за этим столько, сколько оно длится, пока не останется только статический шум, затем открой глаза и снова посмотри на пламя.</p>
+</blockquote>
+<p>Get the visual purple after-image that will burn on your retina.</p>
+<blockquote>
+<p>Получи зрительный фиолетовый послеобраз, который отпечатается на сетчатке.</p>
+</blockquote>
+<p>Close your eyes and do it again and keep doing that again and again and again and again and again.</p>
+<blockquote>
+<p>Закрой глаза и сделай это снова, и продолжай делать это снова, снова, снова, снова и снова.</p>
+</blockquote>
+<p>And that would be it.</p>
+<blockquote>
+<p>И это было бы все.</p>
+</blockquote>
+<p>Just follow out the images with your full attention until you have really got nothing you could call organised in any sense.</p>
+<blockquote>
+<p>Просто следуй за образами всем своим вниманием, пока у тебя действительно не останется ничего, что можно было бы хоть в каком-то смысле назвать организованным.</p>
+</blockquote>
+<p>Sometimes you have to give that another minute or two, and follow it out, and something will organise out of that.</p>
+<blockquote>
+<p>Иногда нужно дать этому еще минуту или две, проследить это до конца, и из этого что-то организуется.</p>
+</blockquote>
+<p>It requires patience � that is the other thing I would say.</p>
+<blockquote>
+<p>Это требует терпения - вот еще что я бы сказал.</p>
+</blockquote>
+<p>You start to learn the cycles.</p>
+<blockquote>
+<p>Ты начинаешь узнавать циклы.</p>
+</blockquote>
+<p>You start to learn the sequence.</p>
+<blockquote>
+<p>Ты начинаешь узнавать последовательность.</p>
+</blockquote>
+<p>You start to learn how to walk up to this image, to this image, to this shape, to this volume, to this width, to this whatever, and you become familiar with the shifts.</p>
+<blockquote>
+<p>Ты начинаешь учиться подходить к этому образу, к этому образу, к этой форме, к этому объему, к этой ширине, к чему бы то ни было, и знакомишься со сдвигами.</p>
+</blockquote>
+<p>You keep this as continuous a practice as you possibly can.</p>
+<blockquote>
+<p>Ты поддерживаешь эту практику настолько непрерывной, насколько можешь.</p>
+</blockquote>
+<p>The more hours that you can do, the better.</p>
+<blockquote>
+<p>Чем больше часов ты можешь практиковать, тем лучше.</p>
+</blockquote>
+<p>Walk or exercise when you have to, but find a way to stay concentrated during that also.</p>
+<blockquote>
+<p>Ходи или делай упражнения, когда нужно, но найди способ сохранять концентрацию и во время этого.</p>
+</blockquote>
+<p>If you want to have a mantra, make sure it is one you really enjoy, which really feels great for your mind.</p>
+<blockquote>
+<p>Если хочешь использовать мантру, убедись, что это та, которая тебе действительно нравится и действительно хорошо ощущается для твоего ума.</p>
+</blockquote>
+<p>Mantras definitely help galvanise something.</p>
+<blockquote>
+<p>Мантры определенно помогают что-то активизировать.</p>
+</blockquote>
+<p>These practices are ancient, so it is useful to look at old Buddhadharma texts such as the Visuddhimagga, Vimuttimagga, and suttas such as �The Fruits of the Homeless Life�.</p>
+<blockquote>
+<p>Эти практики древние, поэтому полезно обратиться к старым текстам Буддадхармы, таким как Висуддхимагга, Вимуттимагга, и суттам вроде «Плодов бездомной жизни».</p>
+</blockquote>
+<p>Looking back, one of the most helpful experiences that prepared me for my 2001 fire kasina retreat, came after I asked Joseph Goldstein about the powers, deep concentration and the kasinas, and he sent me to Christina Feldman.</p>
+<blockquote>
+<p>Оглядываясь назад, один из самых полезных опытов, подготовивших меня к ретриту по огненной касине 2001 года, произошел после того, как я спросил Джозефа Голдстейна о силах, глубокой концентрации и касинах, а он направил меня к Кристине Фельдман.</p>
+</blockquote>
+<p>So in 1999, before medical school, I did two month-long retreats at Gaia House in England, which is where she teaches.</p>
+<blockquote>
+<p>Поэтому в 1999 году, до медицинской школы, я прошел два месячных ретрита в Gaia House в Англии, где она преподает.</p>
+</blockquote>
+<p>I got to talk with her only one time, for 10 minutes, which was very disappointing, considering that I had travelled all that way not just to go on retreat but also to ask her some questions.</p>
+<blockquote>
+<p>Мне удалось поговорить с ней только один раз, 10 минут, что было очень разочаровывающе, учитывая, что я проделал весь этот путь не только ради ретрита, но и чтобы задать ей несколько вопросов.</p>
+</blockquote>
+<p>It was a highly conflicted interview.</p>
+<blockquote>
+<p>Это было очень конфликтное интервью.</p>
+</blockquote>
+<p>I was a total brat about it, but I do not think she was expecting someone to come in and talk about the kinds of things I was talking about.</p>
+<blockquote>
+<p>Я вел себя как полный сорванец, но не думаю, что она ожидала, что кто-то придет и начнет говорить о таких вещах, о которых говорил я.</p>
+</blockquote>
+<p>It was a shock to her system, because this was not part of the culture.</p>
+<blockquote>
+<p>Для нее это было потрясением, потому что это не было частью той культуры.</p>
+</blockquote>
+<p>By the end of a very tense few minutes, I saw her manifest her full power of wrathful display, which is a rare thing to see a dharma teacher do.</p>
+<blockquote>
+<p>К концу нескольких очень напряженных минут я увидел, как она проявила всю мощь гневного проявления, что редко можно увидеть у учителя дхармы.</p>
+</blockquote>
+<p>I had really pissed her off.</p>
+<blockquote>
+<p>Я действительно вывел ее из себя.</p>
+</blockquote>
+<p>[SHANNON]
+And was it skilfully done or not?</p>
+<blockquote>
+<p>И это было сделано искусно или нет?</p>
+</blockquote>
+<p>[DANIEL]
+Oh, it was very skilfully done.</p>
+<blockquote>
+<p>О, это было сделано очень искусно.</p>
+</blockquote>
+<p>It was fantastic.</p>
+<blockquote>
+<p>Это было фантастически.</p>
+</blockquote>
+<p>Essentially, I had walked in and said I wanted her to tell me how to access the deepest concentration so I could obtain psychic powers.</p>
+<blockquote>
+<p>По сути, я вошел и сказал, что хочу, чтобы она рассказала мне, как получить доступ к глубочайшей концентрации, чтобы я мог обрести психические силы.</p>
+</blockquote>
+<p>And when she asked, �What about vipassana?� I shot back with: �I�m an anagami, but I don�t want to talk about that because I have nine minutes left.�</p>
+<blockquote>
+<p>И когда она спросила: «А как насчет випассаны?», я резко ответил: «Я анагами, но не хочу об этом говорить, потому что у меня осталось девять минут».</p>
+</blockquote>
+<p>I was watching the clock, because 10 minutes was all I had.</p>
+<blockquote>
+<p>Я смотрел на часы, потому что у меня было всего 10 минут.</p>
+</blockquote>
+<p>I had come all that way, and I was feeling: �Come on, we�ve got to get to the point!�</p>
+<blockquote>
+<p>Я проделал весь этот путь и чувствовал: «Давай же, нам нужно перейти к сути!»</p>
+</blockquote>
+<p>And she was saying, �Hold on, hold on.�</p>
+<blockquote>
+<p>А она говорила: «Подожди, подожди».</p>
+</blockquote>
+<p>I was aware we then had five minutes left, watching the seconds tick down, while she was deflecting and reacting to comments about practice.</p>
+<blockquote>
+<p>Я осознавал, что у нас осталось пять минут, смотрел, как уходят секунды, пока она отклоняла тему и реагировала на комментарии о практике.</p>
+</blockquote>
+<p>The whole conversation was really messed-up.</p>
+<blockquote>
+<p>Весь разговор был действительно совершенно сумбурным.</p>
+</blockquote>
+<p>[SHANNON]
+Do you think she had it in her to help you?</p>
+<blockquote>
+<p>Как ты думаешь, у нее было в себе то, что могло тебе помочь?</p>
+</blockquote>
+<p>[DANIEL]
+Oh, she did.</p>
+<blockquote>
+<p>О, да.</p>
+</blockquote>
+<p>She did help me.</p>
+<blockquote>
+<p>Она мне помогла.</p>
+</blockquote>
+<p>Finally at the end.</p>
+<blockquote>
+<p>Наконец, в самом конце.</p>
+</blockquote>
+<p>Finally, after me pushing every single button she had, as far as I could push it.</p>
+<blockquote>
+<p>Наконец, после того как я нажал на все ее кнопки, насколько мог.</p>
+</blockquote>
+<p>She basically dharma exploded.</p>
+<blockquote>
+<p>Она, по сути, дхармически взорвалась.</p>
+</blockquote>
+<p>It was wild to watch.</p>
+<blockquote>
+<p>На это было дико смотреть.</p>
+</blockquote>
+<p>With this ferocious, righteous indignation and anger, and also a profound passion, she said: �You really want to know how to do it?</p>
+<blockquote>
+<p>С этой свирепой, праведной возмущенностью и злостью, а также с глубокой страстью она сказала: «Ты действительно хочешь знать, как это делать?</p>
+</blockquote>
+<p>Okay.�</p>
+<blockquote>
+<p>Хорошо».</p>
+</blockquote>
+<p>And she slammed her hand out powerfully into space as hard as she could, and shouted: �The nimitta!</p>
+<blockquote>
+<p>И она мощно, изо всех сил, выбросила руку в пространство и крикнула: «Нимитта!</p>
+</blockquote>
+<p>The nimitta!</p>
+<blockquote>
+<p>Нимитта!</p>
+</blockquote>
+<p>The nimitta!</p>
+<blockquote>
+<p>Нимитта!</p>
+</blockquote>
+<p>Give all your attention to the nimitta!</p>
+<blockquote>
+<p>Отдай все свое внимание нимитте!</p>
+</blockquote>
+<p>Take Bhante Gurantana�s The Jhanas and read between the lines, but give your attention to the nimitta!�</p>
+<blockquote>
+<p>Возьми The Jhanas Бханте Гунаратаны и читай между строк, но отдай свое внимание нимитте!»</p>
+</blockquote>
+<p>And that was it.</p>
+<blockquote>
+<p>И это было все.</p>
+</blockquote>
+<p>[SHANNON]
+Wow.</p>
+<blockquote>
+<p>Вау.</p>
+</blockquote>
+<p>That really was it.</p>
+<blockquote>
+<p>Это действительно было оно.</p>
+</blockquote>
+<p>[DANIEL]
+Yes it was: a transmission.</p>
+<blockquote>
+<p>Да, это была передача.</p>
+</blockquote>
+<p>In my head I was thinking: �Okay, I should thank you.</p>
+<blockquote>
+<p>В голове я думал: «Хорошо, мне следует поблагодарить тебя.</p>
+</blockquote>
+<p>It was horrible, but I got what I came for.�</p>
+<blockquote>
+<p>Это было ужасно, но я получил то, за чем пришел».</p>
+</blockquote>
+<p>[SHANNON]
+Powerful.</p>
+<blockquote>
+<p>Сильно.</p>
+</blockquote>
+<p>[DANIEL]
+That was the retreat on which I started concentrating on kasinas, using just eyelid colours.</p>
+<blockquote>
+<p>Это был ретрит, на котором я начал концентрироваться на касинах, используя только цвета век.</p>
+</blockquote>
+<p>I was practising the white kasina.</p>
+<blockquote>
+<p>Я практиковал белую касину.</p>
+</blockquote>
+<p>I have a lot of visual confetti when I close my eyes, or if I am in a dark room, or even in a light room with my eyes open, only it is not as prominent.</p>
+<blockquote>
+<p>Когда я закрываю глаза, или нахожусь в темной комнате, или даже в светлой комнате с открытыми глазами, у меня много визуального конфетти, просто оно не такое заметное.</p>
+</blockquote>
+<p>All through space, space is rainbow static-like, for me.</p>
+<blockquote>
+<p>Для меня все пространство похоже на радужный статический шум.</p>
+</blockquote>
+<p>So I would focus on the white parts.</p>
+<blockquote>
+<p>Поэтому я сосредотачивался на белых частях.</p>
+</blockquote>
+<p>With everything I could see, I would bring out the white.</p>
+<blockquote>
+<p>Во всем, что я мог видеть, я выделял белое.</p>
+</blockquote>
+<p>Finally, I was able to reach a point where my entire body was gone and there was this massive field of white, white everywhere.</p>
+<blockquote>
+<p>В конце концов я смог достичь точки, где все мое тело исчезло, и было это огромное поле белого, белого повсюду.</p>
+</blockquote>
+<p>I knew this was good.</p>
+<blockquote>
+<p>Я знал, что это хорошо.</p>
+</blockquote>
+<p>This was doing it cold, using pure eyelid colours as the kasina.</p>
+<blockquote>
+<p>Это было выполнение практики «на холодную», с использованием чистых цветов век как касины.</p>
+</blockquote>
+<p>It was a very important foundation for the 2001 retreat, an important piece of the puzzle.</p>
+<blockquote>
+<p>Это было очень важным основанием для ретрита 2001 года, важной частью головоломки.</p>
+</blockquote>
+<p>It was that few minutes with Christina Feldman that galvanised the sense of bringing full, unbridled mental power to the thing.</p>
+<blockquote>
+<p>Именно те несколько минут с Кристиной Фельдман активизировали ощущение необходимости вложить в это всю, ничем не сдерживаемую силу ума.</p>
+</blockquote>
+<p>That was empowering.</p>
+<blockquote>
+<p>Это дало силу.</p>
+</blockquote>
+<p>I should make sure to thank her.</p>
+<blockquote>
+<p>Мне нужно обязательно ее поблагодарить.</p>
+</blockquote>
+<p>[SHANNON]
+It is interesting how these concentration practices support one another.</p>
+<blockquote>
+<p>Интересно, как эти практики концентрации поддерживают друг друга.</p>
+</blockquote>
+<p>One of the offshoots I have come to value about fire kasina practice, since my retreat, is the increasing ease of being able lucidly to explore varied states of consciousness taking place in the mental realm, without the limitations that come in the physical realm.</p>
+<blockquote>
+<p>Один из побочных результатов практики огненной касины, который я стала ценить после ретрита, - это растущая легкость ясного исследования различных состояний сознания, происходящих в ментальной сфере, без ограничений, свойственных физической сфере.</p>
+</blockquote>
+<p>Currently, I am exploring staying as conscious as possible when transitioning from the waking state to the sleeping state, including attending closely to the hypnagogia that occurs during the transition.</p>
+<blockquote>
+<p>Сейчас я исследую сохранение максимально возможной осознанности при переходе от бодрствования ко сну, включая внимательное наблюдение за гипнагогией, возникающей во время перехода.</p>
+</blockquote>
+<p>There is such a crossover of skills that can be utilised for lucid dreaming, dream yoga, fire kasina practice with the vivid colours, and the quiet dreamscape of the fourth jhana, and the out-of-body experiences that can all occur in this realm.</p>
+<blockquote>
+<p>Здесь так много пересекающихся навыков, которые можно использовать для осознанных сновидений, йоги сновидений, практики огненной касины с яркими цветами, тихого сновидческого пространства четвертой джханы и внетелесных переживаний, которые все могут происходить в этой сфере.</p>
+</blockquote>
+<p>[DANIEL]
+Yes, the realm connected to sambhogakaya.</p>
+<blockquote>
+<p>Да, сфера, связанная с самбхогакаей.</p>
+</blockquote>
+<p>[SHANNON]
+I am curious.</p>
+<blockquote>
+<p>Мне любопытно.</p>
+</blockquote>
+<p>Is dream yoga something that you still do at night when you are sleeping?</p>
+<blockquote>
+<p>Йога сновидений - это то, чем ты все еще занимаешься ночью, когда спишь?</p>
+</blockquote>
+<p>Even with your crazy schedule?</p>
+<blockquote>
+<p>Даже с твоим безумным расписанием?</p>
+</blockquote>
+<p>I mean, first of all you have to sleep to dream, but when you are as busy as you are right now, do you still have access to dreams and, in them, all the activities you were doing before?</p>
+<blockquote>
+<p>То есть прежде всего нужно спать, чтобы видеть сны, но когда ты настолько занят, как сейчас, у тебя все еще есть доступ к снам и в них ко всем тем занятиям, которыми ты занимался раньше?</p>
+</blockquote>
+<p>[DANIEL]
+Yes.</p>
+<blockquote>
+<p>Да.</p>
+</blockquote>
+<p>I still have a very active dream life.</p>
+<blockquote>
+<p>У меня все еще очень активная жизнь сновидений.</p>
+</blockquote>
+<p>Dreams have always been natural for me.</p>
+<blockquote>
+<p>Сны всегда были для меня естественными.</p>
+</blockquote>
+<p>I am sort of a lucid dreaming and vivid dreaming natural.</p>
+<blockquote>
+<p>Я в каком-то смысле природно склонен к осознанным и ярким сновидениям.</p>
+</blockquote>
+<p>I am just built that way.</p>
+<blockquote>
+<p>Я просто так устроен.</p>
+</blockquote>
+<p>I do not know how I would not do that.</p>
+<blockquote>
+<p>Я не знаю, как я мог бы этого не делать.</p>
+</blockquote>
+<p>[SHANNON]
+That is pretty cool.</p>
+<blockquote>
+<p>Это довольно здорово.</p>
+</blockquote>
+<p>So, whatever practice you were doing, such as dzogchen, you would be able to carry on while you’re dreaming?</p>
+<blockquote>
+<p>Значит, какую бы практику ты ни делал, например дзогчен, ты мог бы продолжать ее во сне?</p>
+</blockquote>
+<p>[DANIEL]
+Well, I meditate in dreams sometimes, although it is not common.</p>
+<blockquote>
+<p>Ну, я иногда медитирую во снах, хотя это нечасто.</p>
+</blockquote>
+<p>But I actually had a weird dream maybe a month or two ago.</p>
+<blockquote>
+<p>Но примерно месяц или два назад у меня действительно был странный сон.</p>
+</blockquote>
+<p>It was an uncommon dream for me.</p>
+<blockquote>
+<p>Для меня это был необычный сон.</p>
+</blockquote>
+<p>In it, I was dharma teaching, and I was sitting up on this front cushion, with all these people sitting on cushions in front of me, many of whom were wearing orange robes, and I was also wearing orange robes, so I guess in this dream I was some sort of a monk teaching monks, which was kind of surprising.</p>
+<blockquote>
+<p>В нем я преподавал дхарму и сидел на передней подушке, а передо мной на подушках сидели все эти люди, многие из которых были в оранжевых одеждах, и я тоже был в оранжевых одеждах, так что, думаю, в этом сне я был чем-то вроде монаха, обучающего монахов, что было довольно удивительно.</p>
+</blockquote>
+<p>But the interesting thing about it is that while I was teaching the dharma, I was talking about dharmakaya, and I was manifesting, as I was teaching.</p>
+<blockquote>
+<p>Но интересным было то, что, преподавая дхарму, я говорил о дхармакае и проявлял ее во время преподавания.</p>
+</blockquote>
+<p>I was really holding a dharmakaya frame to the conversation, to the space I was in and to the room, as a very intentional, a sort of living embodiment transmission or resonance.</p>
+<blockquote>
+<p>Я действительно удерживал рамку дхармакаи по отношению к разговору, пространству, в котором находился, и комнате, как очень намеренную, своего рода живую воплощенную передачу или резонанс.</p>
+</blockquote>
+<p>This was a very unusual dream for me.</p>
+<blockquote>
+<p>Это был для меня очень необычный сон.</p>
+</blockquote>
+<p>[laughter]</p>
+<blockquote>
+<p>[смех]</p>
+</blockquote>
+<p>It was not a typical Daniel dream: my typical dream is about combat, and bizarre adventures in weird landscapes.</p>
+<blockquote>
+<p>Это был не типичный сон Дэниела: мой типичный сон - о сражениях и странных приключениях в причудливых ландшафтах.</p>
+</blockquote>
+<p>[SHANNON]
+Were you intending for this kind of dream to happen?</p>
+<blockquote>
+<p>Ты намеревался, чтобы случился сон такого рода?</p>
+</blockquote>
+<p>[DANIEL]
+No.</p>
+<blockquote>
+<p>Нет.</p>
+</blockquote>
+<p>It was a very lucid dream, but it was not an intentional dream.</p>
+<blockquote>
+<p>Это был очень осознанный сон, но не намеренный сон.</p>
+</blockquote>
+<p>Do you see the difference?</p>
+<blockquote>
+<p>Видишь разницу?</p>
+</blockquote>
+<p>Lucid dreams are where you come in and you are, like, �I�m lucid dreaming, I�m in control�.</p>
+<blockquote>
+<p>Осознанные сны - это когда ты входишь и такой: «Я вижу осознанный сон, я контролирую».</p>
+</blockquote>
+<p>Then there are lucid dreams where you are very lucid.</p>
+<blockquote>
+<p>Но есть осознанные сны, где ты очень осознан.</p>
+</blockquote>
+<p>�Control� is buying the dream story.</p>
+<blockquote>
+<p>«Контроль» - это принятие истории сна за реальность.</p>
+</blockquote>
+<p>The dream story is what is happening in the lucidity, without the intention �I�m going to make this happen�.</p>
+<blockquote>
+<p>История сна - это то, что происходит в осознанности, без намерения «я собираюсь сделать так, чтобы это произошло».</p>
+</blockquote>
+<p>[SHANNON]
+Sure.</p>
+<blockquote>
+<p>Конечно.</p>
+</blockquote>
+<p>[DANIEL]
+And what was really interesting, is that, it is very unusual for me in a dream to be checking out (it is sort of a strange thing to say) my level of realisation.</p>
+<blockquote>
+<p>И что было действительно интересно: для меня очень необычно во сне проверять, как бы странно это ни звучало, свой уровень реализации.</p>
+</blockquote>
+<p>That is, it is not typical dream activity.</p>
+<blockquote>
+<p>То есть это не типичная деятельность во сне.</p>
+</blockquote>
+<p>But in this dream I was sitting there, very ultra-consciously, while sleeping, with a substantial portion of attention just on the realised quality of the field of experience, which is a very dzogchen kind of a way to be looking at things.</p>
+<blockquote>
+<p>Но в этом сне я сидел там, будучи во сне чрезвычайно сверхсознательным, и значительная часть внимания была просто на реализованном качестве поля опыта, что является очень дзогченовским способом смотреть на вещи.</p>
+</blockquote>
+<p>So this had very much a rigpa-ish quality to it, like holding rigpa as a formless frame for the whole field of experience, or something like that.</p>
+<blockquote>
+<p>Так что у этого было очень ригпа-подобное качество, как будто удерживаешь ригпу как бесформенную рамку для всего поля опыта, или что-то в этом роде.</p>
+</blockquote>
+<p>[SHANNON]
+Fascinating.</p>
+<blockquote>
+<p>Завораживающе.</p>
+</blockquote>
+<p>[DANIEL]
+Yes a pretty unusual dharma dream that is not typical for me.</p>
+<blockquote>
+<p>Да, довольно необычный дхармический сон, не типичный для меня.</p>
+</blockquote>
+<p>But how about you?</p>
+<blockquote>
+<p>А как насчет тебя?</p>
+</blockquote>
+<p>Are you going on any retreats any time soon?</p>
+<blockquote>
+<p>Ты собираешься на какие-нибудь ретриты в ближайшее время?</p>
+</blockquote>
+<p>[SHANNON]
+I am considering one in early winter of 2017.</p>
+<blockquote>
+<p>Я рассматриваю один в начале зимы 2017 года.</p>
+</blockquote>
+<p>I haven�t decided on a focus.</p>
+<blockquote>
+<p>Я еще не решила, на чем сосредоточиться.</p>
+</blockquote>
+<p>Eventually, nirodha samapatti* is something I would like to experience.</p>
+<blockquote>
+<p>В конечном счете ниродха-самапатти* - это то, что я хотела бы пережить.</p>
+</blockquote>
+<p>[DANIEL]
+Or not experience, as it were.</p>
+<blockquote>
+<p>Или не пережить, так сказать.</p>
+</blockquote>
+<p>[Shared laughter.]</p>
+<blockquote>
+<p>[Общий смех.]</p>
+</blockquote>
+<p>It is very worth doing, and I think you will really appreciate the depth of chill that happens after it.</p>
+<blockquote>
+<p>Это очень стоит сделать, и я думаю, ты действительно оценишь глубину расслабления, которая наступает после этого.</p>
+</blockquote>
+<hr>
+<p>[* See Appendix B, which contains instructions and a detailed discussion of this attainment.]</p>
+<blockquote>
+<p>[* См. Приложение B, где содержатся инструкции и подробное обсуждение этого достижения.]</p>
+</blockquote>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

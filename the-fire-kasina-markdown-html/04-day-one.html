@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day One</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f4ee;
+      --panel: #fffdf8;
+      --text: #1f2523;
+      --muted: #66706b;
+      --border: #ded6ca;
+      --accent: #8f3f27;
+      --accent-contrast: #ffffff;
+      --quote-bg: #efe7da;
+      --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #151817;
+      --panel: #1f2422;
+      --text: #ece7dd;
+      --muted: #b5ada0;
+      --border: #343c38;
+      --accent: #e39b6f;
+      --accent-contrast: #1d120d;
+      --quote-bg: #292f2c;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.16em;
+    }
+
+    .layout {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      background: var(--panel);
+      color: var(--text);
+      font: 600 0.9rem/1.2 system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(14rem, 18rem) minmax(0, 48rem);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: start;
+      max-width: 75rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 4rem);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 4.25rem;
+      max-height: calc(100vh - 5.5rem);
+      overflow: auto;
+      padding: 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-family: system-ui, sans-serif;
+      line-height: 1.35;
+    }
+
+    .site-title {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .site-nav ol {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    main {
+      min-width: 0;
+      padding: clamp(1.25rem, 4vw, 3rem);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    main > :first-child {
+      margin-top: 0;
+    }
+
+    main > :last-child {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0 0 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+      font-size: 1.55rem;
+    }
+
+    h3 {
+      margin-top: 1.8rem;
+      font-size: 1.2rem;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
+      margin: 1rem 0;
+    }
+
+    blockquote {
+      margin-left: 0;
+      padding: 0.75rem 1rem;
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--text);
+    }
+
+    code {
+      padding: 0.12rem 0.28rem;
+      border-radius: 4px;
+      background: var(--quote-bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      overflow: auto;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--quote-bg);
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+    }
+
+    @media (max-width: 820px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .site-nav {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body x-data="{ theme: $persist('light').as('kasina-theme') }" x-bind:data-theme="theme">
+  <div class="layout">
+    <header class="topbar">
+      <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+    </header>
+    <div class="shell">
+      <nav class="site-nav" aria-label="Publication chapters">
+  <a class="site-title" href="index.html">The Fire Kasina</a>
+  <ol>
+<li><a href="index.html">The Fire Kasina</a></li>
+<li><a href="01-the-authors.html">The Authors</a></li>
+<li><a href="02-introduction.html">Introduction</a></li>
+<li><a href="03-prologue.html">Prologue</a></li>
+<li><a href="04-day-one.html" aria-current="page">Day One</a></li>
+<li><a href="05-day-two.html">Day Two</a></li>
+<li><a href="06-day-three.html">Day Three</a></li>
+<li><a href="07-day-four.html">Day Four</a></li>
+<li><a href="08-day-five.html">Day Five</a></li>
+<li><a href="09-day-six.html">Day Six</a></li>
+<li><a href="10-day-seven.html">Day Seven</a></li>
+<li><a href="11-day-eight.html">Day Eight</a></li>
+<li><a href="12-day-nine.html">Day Nine</a></li>
+<li><a href="13-day-ten.html">Day Ten</a></li>
+<li><a href="14-day-eleven.html">Day Eleven</a></li>
+<li><a href="15-day-twelve.html">Day Twelve</a></li>
+<li><a href="16-day-thirteen.html">Day Thirteen</a></li>
+<li><a href="17-day-fourteen.html">Day Fourteen</a></li>
+<li><a href="18-day-fifteen.html">Day Fifteen</a></li>
+<li><a href="19-day-sixteen.html">Day Sixteen</a></li>
+<li><a href="20-day-seventeen.html">Day Seventeen</a></li>
+<li><a href="21-day-eighteen.html">Day Eighteen</a></li>
+<li><a href="22-day-twenty.html">Day Twenty</a></li>
+<li><a href="23-day-twenty-one.html">Day Twenty-One</a></li>
+<li><a href="24-day-twenty-two.html">Day Twenty-Two</a></li>
+<li><a href="25-day-twenty-three.html">Day Twenty-Three</a></li>
+<li><a href="26-day-twenty-four.html">Day Twenty-Four</a></li>
+<li><a href="27-day-twenty-five.html">Day Twenty-Five</a></li>
+<li><a href="28-two-weeks-after-the-retreat.html">Two Weeks After the Retreat</a></li>
+<li><a href="29-conclusion.html">Conclusion</a></li>
+<li><a href="30-appendix-a-glossary-of-technical-terms.html">Appendix A: Glossary of Technical Terms</a></li>
+<li><a href="31-appendix-b-nirodha-samapatti.html">Appendix B: Nirodha Samapatti</a></li>
+<li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
+  </ol>
+</nav>
+      <main>
+<h1>Day One</h1>
+<blockquote>
+<p>День первый</p>
+</blockquote>
+<p>[Concentration ~ Mantra ~ Visual ~ Third Jhana]</p>
+<blockquote>
+<p>Сосредоточение ~ Мантра ~ Визуальное восприятие ~ Третья джхана</p>
+</blockquote>
+<p>[Concentration]</p>
+<blockquote>
+<p>Сосредоточение</p>
+</blockquote>
+<p>[SHANNON]
+Although I had done intensive samatha (concentration) and vipassana (insight) meditation prior to my fire kasina experience, I had not achieved close to the level of concentration that occurred during the latter parts of the retreat.</p>
+<blockquote>
+<p>Хотя до своего опыта с огненной касиной я интенсивно практиковала саматху (сосредоточение) и випассану (прозрение), я и близко не достигала того уровня концентрации, который возник в поздние части ретрита.</p>
+</blockquote>
+<p>The phrase “high concentration” has taken on new meaning since and although the supreme concentration that was developed in retreat mode eventually faded, knowing how to achieve it has led to elevated confidence as a practitioner.</p>
+<blockquote>
+<p>С тех пор выражение «высокая концентрация» приобрело для меня новый смысл, и хотя выдающееся сосредоточение, развившееся в режиме ретрита, со временем угасло, знание того, как его достигать, значительно укрепило мою уверенность как практикующей.</p>
+</blockquote>
+<p>What did remain post-retreat was the ability to enter into satisfying concentration states for long periods of time, a skill that has been used for accomplishing day-to-day tasks with higher focus.</p>
+<blockquote>
+<p>После ретрита сохранилась способность входить в удовлетворительные состояния сосредоточения на длительные периоды, и этот навык я использовала для выполнения повседневных задач с большей собранностью.</p>
+</blockquote>
+<p>In particular, I brought the new-found concentration strength into my development of sila (ethical conduct) in order to sharpen my attempts to do as little harm as possible to all beings, including myself.</p>
+<blockquote>
+<p>В частности, я привнесла вновь обретенную силу концентрации в развитие шилы (этического поведения), чтобы сделать более точными свои попытки причинять как можно меньше вреда всем существам, включая себя.</p>
+</blockquote>
+<p>Given that the Buddha is often described foremost as an ethicist, it makes sense for gains from retreats to be used for the perfecting of conduct upon re-entering the everyday world.</p>
+<blockquote>
+<p>Поскольку Будду часто прежде всего описывают как этика, вполне логично использовать плоды ретритов для совершенствования поведения при возвращении в повседневный мир.</p>
+</blockquote>
+<p>During the retreat, conversations with Daniel about the importance of doing whatever it took to build and maintain steady concentration, both in the formal sits and during transitions, were re-visited many times.</p>
+<blockquote>
+<p>Во время ретрита мы с Дэниелом много раз возвращались к разговорам о важности делать все необходимое для построения и поддержания устойчивой концентрации как во время формальных сидений, так и в переходах между ними.</p>
+</blockquote>
+<p>It was worth having such reminders; otherwise, as a novice to this practice, I could have missed out on the experience of rarely-achieved concentration by settling for what I considered to be a relatively high standard based on past accomplishment.</p>
+<blockquote>
+<p>Такие напоминания были очень ценны; иначе, будучи новичком в этой практике, я могла бы упустить опыт редко достигаемого сосредоточения, удовлетворившись тем, что считала относительно высоким стандартом на основе прежних достижений.</p>
+</blockquote>
+<p>[DANIEL]
+Continuity of concentration is important at all times; if possible, even when not sitting.</p>
+<blockquote>
+<p>Непрерывность сосредоточения важна всегда; по возможности даже тогда, когда вы не сидите в медитации.</p>
+</blockquote>
+<p>Concentration is fragile, so protect and nourish it by always staying consciously attentive to something.</p>
+<blockquote>
+<p>Сосредоточение хрупко, поэтому защищайте и подпитывайте его, постоянно осознанно удерживая внимание на чем-либо.</p>
+</blockquote>
+<p>Meditators often underestimate what this means, but those who persist in building continuous concentration will be richly rewarded.</p>
+<blockquote>
+<p>Медитирующие часто недооценивают, что это означает, но те, кто настойчиво развивает непрерывное сосредоточение, будут щедро вознаграждены.</p>
+</blockquote>
+<p>Here are important mantra and visualising tips to help keep concentration high:</p>
+<blockquote>
+<p>Вот важные советы по мантре и визуализации, которые помогут поддерживать высокий уровень концентрации:</p>
+</blockquote>
+<p>[Mantra]</p>
+<blockquote>
+<p>Мантра</p>
+</blockquote>
+<p>[DANIEL]
+Keep a mantra going during all sits and transitions.</p>
+<blockquote>
+<p>Продолжайте мантру во время всех сидений и переходов.</p>
+</blockquote>
+<p>[SHANNON]
+Would you recommend saying it in the mind or out loud?</p>
+<blockquote>
+<p>Вы бы рекомендовали произносить ее в уме или вслух?</p>
+</blockquote>
+<p>Did you stay with the same mantra?</p>
+<blockquote>
+<p>Вы оставались с одной и той же мантрой?</p>
+</blockquote>
+<p>How long was your mantra?</p>
+<blockquote>
+<p>Насколько длинной была ваша мантра?</p>
+</blockquote>
+<p>[DANIEL]
+I oscillated between two, starting with a very resonant Hindu mantra.</p>
+<blockquote>
+<p>Я колебался между двумя, начав с очень резонансной индуистской мантры.</p>
+</blockquote>
+<p>It is better to sound it internally rather than externally.</p>
+<blockquote>
+<p>Лучше звучать ее внутренне, а не внешне.</p>
+</blockquote>
+<p>The length of the mantra is less important: what is important is to make it ring and have flowing resonance to it.</p>
+<blockquote>
+<p>Длина мантры менее важна: важно сделать так, чтобы она звенела и обладала текучим резонансом.</p>
+</blockquote>
+<p>Do not rush.</p>
+<blockquote>
+<p>Не спешите.</p>
+</blockquote>
+<p>When a mantra is very well developed, it may spontaneously start to incorporate surrounding sounds like parts of a rich orchestra.</p>
+<blockquote>
+<p>Когда мантра очень хорошо развита, она может спонтанно начать включать окружающие звуки, словно части богатого оркестра.</p>
+</blockquote>
+<p>[SHANNON]
+Is Om Ah Hung a suitable mantra?</p>
+<blockquote>
+<p>Подходит ли мантра Ом А Хунг?</p>
+</blockquote>
+<p>[DANIEL]
+Sure.</p>
+<blockquote>
+<p>Конечно.</p>
+</blockquote>
+<p>Or even just Om.</p>
+<blockquote>
+<p>Или даже просто Ом.</p>
+</blockquote>
+<p>Let the Om or whatever you choose roll and build.</p>
+<blockquote>
+<p>Позвольте Ому или тому, что вы выберете, раскатываться и нарастать.</p>
+</blockquote>
+<p>I have found this to be more effective than motoring through many different syllables or words.</p>
+<blockquote>
+<p>Я обнаружил, что это эффективнее, чем механически прогонять множество разных слогов или слов.</p>
+</blockquote>
+<p>[Visual]</p>
+<blockquote>
+<p>Визуальное восприятие</p>
+</blockquote>
+<p>[DANIEL]
+Try to obtain visual purple after-images from things when you are walking around or, even better, carry the visual of the image from your sitting meditation.</p>
+<blockquote>
+<p>Старайтесь получать визуальные фиолетовые послеобразы от предметов, когда ходите вокруг, или, что еще лучше, несите с собой визуальный образ из сидячей медитации.</p>
+</blockquote>
+<p>You can use the red dot (after-image) you derive from the candle flame.</p>
+<blockquote>
+<p>Можно использовать красную точку (послеобраз), которую вы получаете от пламени свечи.</p>
+</blockquote>
+<p>When carrying the after-image off the cushion, it generally takes a lot of attention and thus caution in how you move.</p>
+<blockquote>
+<p>Когда вы уносите послеобраз с подушки, обычно требуется много внимания и, следовательно, осторожность в движениях.</p>
+</blockquote>
+<p>With the kayaking meditation (SHANNON: I explain this below), try using an LED light at the end of your boat to get an after-image.</p>
+<blockquote>
+<p>В медитации на каяке (ШЭННОН: я объясняю это ниже) попробуйте использовать светодиодный фонарь на конце лодки, чтобы получить послеобраз.</p>
+</blockquote>
+<p>This will be best done at dawn, dusk and at night.</p>
+<blockquote>
+<p>Лучше всего это делать на рассвете, в сумерках и ночью.</p>
+</blockquote>
+<p>[SHANNON]
+Using light physical exercise to balance energy and effort was crucial early on in the retreat.</p>
+<blockquote>
+<p>Использование легких физических упражнений для уравновешивания энергии и усилия было крайне важным в начале ретрита.</p>
+</blockquote>
+<p>During the dissolution phase, which came up on Day One, I needed to find ways to increase energy and attentiveness.</p>
+<blockquote>
+<p>Во время фазы растворения, которая возникла в первый день, мне нужно было найти способы повысить энергию и внимательность.</p>
+</blockquote>
+<p>At other times, my tendency towards striving within the meditation would trigger tightness and constriction in the body, necessitating relaxing movement.</p>
+<blockquote>
+<p>В другие моменты моя склонность к старанию внутри медитации вызывала напряжение и сжатие в теле, из-за чего требовалось расслабляющее движение.</p>
+</blockquote>
+<p>Kayaking and regular walking in the fresh outdoors while maintaining the mantra were thought-free, repetitive activities that facilitated physical and mental looseness as well as mental alertness.</p>
+<blockquote>
+<p>Каякинг и обычная ходьба на свежем воздухе при поддержании мантры были свободными от мыслей повторяющимися занятиями, которые способствовали физической и умственной расслабленности, а также ментальной бодрости.</p>
+</blockquote>
+<p>The instructions outlined here for keeping up concentration could be applied to any off-cushion retreat activity.</p>
+<blockquote>
+<p>Описанные здесь инструкции по поддержанию сосредоточения можно было применять к любой ретритной активности вне подушки.</p>
+</blockquote>
+<p>[DANIEL]
+You can also do what is known as “detailing” in any of the transitions between sits.</p>
+<blockquote>
+<p>В любых переходах между сидениями можно также делать то, что называется «детализацией».</p>
+</blockquote>
+<p>This involves implementing the same trick used for staying longer in a lucid dream or a “travel” (an out-of-body experience).</p>
+<blockquote>
+<p>Это включает применение того же приема, который используют, чтобы дольше оставаться в осознанном сне или «путешествии» (внетелесном опыте).</p>
+</blockquote>
+<p>Detail with care the exact shapes and colours of the space you find yourself in.</p>
+<blockquote>
+<p>Тщательно детализируйте точные формы и цвета пространства, в котором вы находитесь.</p>
+</blockquote>
+<p>Notice the landscape, the colours, the light, and stay with vibrant, 3D experience.</p>
+<blockquote>
+<p>Замечайте ландшафт, цвета, свет и оставайтесь с ярким трехмерным переживанием.</p>
+</blockquote>
+<p>Include observing the parallax that happens with movement - see things change size and shape as the perspectives shifts.</p>
+<blockquote>
+<p>Включайте наблюдение параллакса, возникающего при движении: смотрите, как предметы меняют размер и форму по мере смещения перспективы.</p>
+</blockquote>
+<p>This detailed visual wiring will translate back to your sits.</p>
+<blockquote>
+<p>Эта подробная визуальная настройка затем перенесется обратно в ваши сидения.</p>
+</blockquote>
+<p>[SHANNON]
+These detailing tricks helped me stay in travels for longer periods later in the retreat, which in turn allowed for an expanded repertoire of experience in these altered states, such as being able to clearly notice the space surrounding the objects in the travels as opposed to only focusing on the beings or objects themselves.</p>
+<blockquote>
+<p>Эти приемы детализации позже в ретрите помогли мне дольше оставаться в путешествиях, что, в свою очередь, расширило репертуар опыта в этих измененных состояниях, например позволило ясно замечать пространство вокруг объектов в путешествиях, а не сосредотачиваться только на существах или самих объектах.</p>
+</blockquote>
+<p>On previous vipassana retreats, I had minimal success investigating the three characteristics during astral travels due to the randomness and brevity of the experiences.</p>
+<blockquote>
+<p>На предыдущих ретритах випассаны мне почти не удавалось исследовать три характеристики во время астральных путешествий из-за случайности и краткости этих переживаний.</p>
+</blockquote>
+<p>Even being able to stay in travels for seconds longer would have allowed for significantly more insight work.</p>
+<blockquote>
+<p>Даже возможность оставаться в путешествиях на несколько секунд дольше дала бы значительно больше пространства для работы прозрения.</p>
+</blockquote>
+<p>It was rewarding on the fire kasina retreat to discover a surprisingly reliable launching pad for travel and to have increased lucidity as well as significant influence during the out-of-body expeditions.</p>
+<blockquote>
+<p>На ретрите огненной касины было радостно обнаружить удивительно надежную стартовую площадку для путешествий и обрести повышенную ясность, а также значительное влияние во время внетелесных экспедиций.</p>
+</blockquote>
+<p>[Third Jhana]</p>
+<blockquote>
+<p>Третья джхана</p>
+</blockquote>
+<p>[SHANNON]
+How do I work with the phase after the red or black dot dissolves?</p>
+<blockquote>
+<p>Как мне работать с фазой после того, как красная или черная точка растворяется?</p>
+</blockquote>
+<p>When there is no clear object to focus on I keep spacing out, getting lost in vague thoughts, and I seem to be losing interest in the meditation…</p>
+<blockquote>
+<p>Когда нет ясного объекта для фокусировки, я продолжаю отключаться, теряться в смутных мыслях, и мне кажется, что я теряю интерес к медитации…</p>
+</blockquote>
+<p>I was enquiring here about what is known as the dissolution phase of the fire kasina sequence, the juncture where the second jhana begins tipping into the third.</p>
+<blockquote>
+<p>Здесь я спрашивала о том, что известно как фаза растворения в последовательности огненной касины, о стыке, где вторая джхана начинает переходить в третью.</p>
+</blockquote>
+<p>Brand new to the practice, I decided to get my meditational feet wet by engaging in a few hours of flame meditation three days prior to heading off to the retreat.</p>
+<blockquote>
+<p>Будучи совсем новой в этой практике, я решила немного попробовать медитацию, проведя несколько часов с пламенем за три дня до отъезда на ретрит.</p>
+</blockquote>
+<p>Likely due to where I was at in my vipassana work, second jhana of the fire kasina came quickly.</p>
+<blockquote>
+<p>Вероятно, из-за того уровня, на котором я находилась в своей практике випассаны, вторая джхана огненной касины пришла быстро.</p>
+</blockquote>
+<p>This was characterised by staring at the flame and then, with closed eyes, seeing an after-image of a steady and bright red oblong dot presenting itself in the centre of the visual field.</p>
+<blockquote>
+<p>Это характеризовалось смотрением на пламя, а затем, с закрытыми глазами, видением послеобраза устойчивой ярко-красной продолговатой точки, появлявшейся в центре визуального поля.</p>
+</blockquote>
+<p>It is important for meditators who find themselves starting out their candle flame meditation in first jhana not to become discouraged by the typical frustrations which can come in that early phase of the sequence (such as: multiple and/or shifting, faint dots that do not stay in the centre of the field, or a distracted mind filled with thoughts - all of which make concentration on the afterimage a challenge).</p>
+<blockquote>
+<p>Медитирующим, которые обнаруживают, что начинают медитацию на пламени свечи в первой джхане, важно не разочаровываться из-за типичных трудностей, возникающих на этой ранней фазе последовательности (например: множественных и/или смещающихся бледных точек, которые не удерживаются в центре поля, или рассеянного ума, наполненного мыслями, - все это делает сосредоточение на послеобразе сложным).</p>
+</blockquote>
+<p>Simply adhering to the instructions of patiently and repeatedly bringing one’s attention to whatever is in the field will yield the results of eventually shifting into second jhana, as described above.</p>
+<blockquote>
+<p>Простое следование инструкции терпеливо и снова и снова возвращать внимание к тому, что находится в поле, со временем даст результат перехода во вторую джхану, как описано выше.</p>
+</blockquote>
+<p>With the intense spacing out and nodding off to sleep so early into the retreat, I wondered if I was already losing my ability to do the practice.</p>
+<blockquote>
+<p>Из-за сильного отключения и клевания носом так рано в ретрите я задавалась вопросом, не теряю ли уже способность выполнять практику.</p>
+</blockquote>
+<p>It was reassuring to find out that this sloth-like mode was actually a sign of having progressed to dissolution, the cusp of third jhana.</p>
+<blockquote>
+<p>Было утешительно узнать, что этот вялый режим на самом деле был признаком продвижения к растворению, к порогу третьей джханы.</p>
+</blockquote>
+<p>[DANIEL]
+That is a tricky phase I refer to as “the murk”.</p>
+<blockquote>
+<p>Это непростая фаза, которую я называю «муть».</p>
+</blockquote>
+<p>Out past the red dot and black dot (with green stuff around it) there lies a big challenge in meditation.</p>
+<blockquote>
+<p>За пределами красной точки и черной точки (с зеленоватым вокруг нее) находится большой вызов в медитации.</p>
+</blockquote>
+<p>The phase problems and vagueness there explain why retreatants start with good concentration then feel vague near the end of sits.</p>
+<blockquote>
+<p>Проблемы этой фазы и ее расплывчатость объясняют, почему участники ретрита начинают с хорошей концентрации, а затем чувствуют смутность ближе к концу сидений.</p>
+</blockquote>
+<p>The visuals, if you can perceive them clearly, will show you something about what the brain and attention are like in that stage and why narrow attention is actually limited and will need to expand in order to progress in meditation.</p>
+<blockquote>
+<p>Визуальные образы, если вы можете воспринимать их ясно, покажут вам кое-что о том, каковы мозг и внимание на этой стадии и почему узкое внимание на самом деле ограничено и должно расшириться, чтобы продвигаться в медитации.</p>
+</blockquote>
+<p>[SHANNON]
+In that bland shapeless murk, if I look for detail at the centre of the field - where I can see faint yellow colour with barely perceivable white lines moving in circles - while also taking in the periphery of the field, then purple swaths of colour roll across the field, often past a greenish background.</p>
+<blockquote>
+<p>В этой тусклой бесформенной мути, если я ищу детали в центре поля - там, где вижу бледно-желтый цвет с едва различимыми белыми линиями, движущимися по кругу, - одновременно охватывая периферию поля, тогда фиолетовые полосы цвета прокатываются по полю, часто на зеленоватом фоне.</p>
+</blockquote>
+<p>After watching the billowing purple for long periods of time, I am wondering how often to reopen my eyes to go back to looking at the flame.</p>
+<blockquote>
+<p>После долгого наблюдения за клубящимся фиолетовым я задаюсь вопросом, как часто нужно снова открывать глаза, чтобы возвращаться к смотрению на пламя.</p>
+</blockquote>
+<p>[DANIEL]
+Staying with that purple gets to good stuff, so as long as you are still seeing colours and are able to stay attentive without spacing out, there is no need to refresh the afterimage on the flame.</p>
+<blockquote>
+<p>Оставание с этим фиолетовым приводит к хорошим вещам, поэтому пока вы все еще видите цвета и способны оставаться внимательными, не отключаясь, нет необходимости обновлять послеобраз на пламени.</p>
+</blockquote>
+<p>As I progressed in my retreat, I would often only look at the flame once at the beginning of the sit.</p>
+<blockquote>
+<p>По мере продвижения в своем ретрите я часто смотрел на пламя только один раз в начале сидения.</p>
+</blockquote>
+<p>Taking wider images around and past the red, green or black dot helps get to the murk.</p>
+<blockquote>
+<p>Восприятие более широких образов вокруг и за пределами красной, зеленой или черной точки помогает добраться до мути.</p>
+</blockquote>
+<p>At this point you can try to change the shade of colour or what you are seeing by tuning into other colours that are more subtle and amplifying them by attention or by just intending to see different colours.</p>
+<blockquote>
+<p>На этом этапе можно попробовать изменить оттенок цвета или то, что вы видите, настраиваясь на другие, более тонкие цвета и усиливая их вниманием или просто намереваясь увидеть другие цвета.</p>
+</blockquote>
+<p>You can try aiming for organised 3D structured things (such as a hallway, spiral, forest, or other more complex images).</p>
+<blockquote>
+<p>Можно попробовать нацеливаться на организованные трехмерные структурированные вещи (такие как коридор, спираль, лес или другие более сложные образы).</p>
+</blockquote>
+<p>The murk phase can cause frustration because there is a longer delay and things need to be intended and shifted with more patience, as, if you try to force it to change too rapidly, your haste will just mess up your concentration and blow it.</p>
+<blockquote>
+<p>Фаза мути может вызывать фрустрацию, потому что в ней больше задержка, и вещи нужно намеревать и смещать с большим терпением, поскольку, если вы попытаетесь заставить их измениться слишком быстро, ваша поспешность просто нарушит концентрацию и разрушит ее.</p>
+</blockquote>
+<p>It takes time for the more complex images you find out there to filter through the brain.</p>
+<blockquote>
+<p>Требуется время, чтобы более сложные образы, которые вы там находите, прошли через мозг.</p>
+</blockquote>
+<p>It is easier to gently coax something already forming into something more than to start from scratch in that phase.</p>
+<blockquote>
+<p>В этой фазе легче мягко подтолкнуть уже формирующееся к чему-то большему, чем начинать с нуля.</p>
+</blockquote>
+<p>Note that the murk can have a dreamy quality.</p>
+<blockquote>
+<p>Заметьте, что муть может иметь сновидческое качество.</p>
+</blockquote>
+<p>[SHANNON]
+Despite the fact I was not ready to set intentions, it was constructive having these seeds sewn in advance.</p>
+<blockquote>
+<p>Несмотря на то что я не была готова задавать намерения, было полезно, что эти семена были посеяны заранее.</p>
+</blockquote>
+<p>To a mind that was unaccustomed to working with the setting of intentions within meditation, repeatedly hearing what was possible had a positive impact.</p>
+<blockquote>
+<p>Для ума, не привыкшего работать с постановкой намерений внутри медитации, повторное слышание о том, что возможно, оказало положительное влияние.</p>
+</blockquote>
+<p>Although Daniel could not do the work for me and was unable to predict specifically what would unfold given my personal proclivities and idiosyncrasies, his familiarity with candle flame meditation allowed him to regularly point out various aspects of the practice that could be pursued at any point should I be interested in doing so.</p>
+<blockquote>
+<p>Хотя Дэниел не мог выполнить работу за меня и не мог точно предсказать, что развернется с учетом моих личных склонностей и особенностей, его знакомство с медитацией на пламени свечи позволяло ему регулярно указывать на различные аспекты практики, которыми можно было заняться в любой момент, если бы мне стало интересно.</p>
+</blockquote>
+<p>Another benefit in having a proficient meditator assisting was an objective viewpoint on when to try something new or stay with a current approach (for example, intending for more magickal effects versus absorbing deeply into whatever mundane aspects presented themselves during the sit).</p>
+<blockquote>
+<p>Еще одним преимуществом помощи опытного медитатора была объективная точка зрения на то, когда пробовать что-то новое, а когда оставаться с текущим подходом (например, намереваться к большему количеству магических эффектов или глубоко впитываться в любые обыденные аспекты, проявлявшиеся во время сидения).</p>
+</blockquote>
+<p>Progress with the kasina practice requires skilfully dancing with a continually moving target, a complex manoeuver to make on a solo retreat while at the same time attempting to learn basic technique.</p>
+<blockquote>
+<p>Продвижение в практике касины требует умелого танца с постоянно движущейся целью, а это сложный маневр для одиночного ретрита, когда одновременно пытаешься освоить базовую технику.</p>
+</blockquote>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

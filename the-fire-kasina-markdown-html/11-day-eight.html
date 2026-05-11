@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day Eight</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f4ee;
+      --panel: #fffdf8;
+      --text: #1f2523;
+      --muted: #66706b;
+      --border: #ded6ca;
+      --accent: #8f3f27;
+      --accent-contrast: #ffffff;
+      --quote-bg: #efe7da;
+      --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #151817;
+      --panel: #1f2422;
+      --text: #ece7dd;
+      --muted: #b5ada0;
+      --border: #343c38;
+      --accent: #e39b6f;
+      --accent-contrast: #1d120d;
+      --quote-bg: #292f2c;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.16em;
+    }
+
+    .layout {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      background: var(--panel);
+      color: var(--text);
+      font: 600 0.9rem/1.2 system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(14rem, 18rem) minmax(0, 48rem);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: start;
+      max-width: 75rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 4rem);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 4.25rem;
+      max-height: calc(100vh - 5.5rem);
+      overflow: auto;
+      padding: 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-family: system-ui, sans-serif;
+      line-height: 1.35;
+    }
+
+    .site-title {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .site-nav ol {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    main {
+      min-width: 0;
+      padding: clamp(1.25rem, 4vw, 3rem);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    main > :first-child {
+      margin-top: 0;
+    }
+
+    main > :last-child {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0 0 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+      font-size: 1.55rem;
+    }
+
+    h3 {
+      margin-top: 1.8rem;
+      font-size: 1.2rem;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
+      margin: 1rem 0;
+    }
+
+    blockquote {
+      margin-left: 0;
+      padding: 0.75rem 1rem;
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--text);
+    }
+
+    code {
+      padding: 0.12rem 0.28rem;
+      border-radius: 4px;
+      background: var(--quote-bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      overflow: auto;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--quote-bg);
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+    }
+
+    @media (max-width: 820px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .site-nav {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body x-data="{ theme: $persist('light').as('kasina-theme') }" x-bind:data-theme="theme">
+  <div class="layout">
+    <header class="topbar">
+      <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+    </header>
+    <div class="shell">
+      <nav class="site-nav" aria-label="Publication chapters">
+  <a class="site-title" href="index.html">The Fire Kasina</a>
+  <ol>
+<li><a href="index.html">The Fire Kasina</a></li>
+<li><a href="01-the-authors.html">The Authors</a></li>
+<li><a href="02-introduction.html">Introduction</a></li>
+<li><a href="03-prologue.html">Prologue</a></li>
+<li><a href="04-day-one.html">Day One</a></li>
+<li><a href="05-day-two.html">Day Two</a></li>
+<li><a href="06-day-three.html">Day Three</a></li>
+<li><a href="07-day-four.html">Day Four</a></li>
+<li><a href="08-day-five.html">Day Five</a></li>
+<li><a href="09-day-six.html">Day Six</a></li>
+<li><a href="10-day-seven.html">Day Seven</a></li>
+<li><a href="11-day-eight.html" aria-current="page">Day Eight</a></li>
+<li><a href="12-day-nine.html">Day Nine</a></li>
+<li><a href="13-day-ten.html">Day Ten</a></li>
+<li><a href="14-day-eleven.html">Day Eleven</a></li>
+<li><a href="15-day-twelve.html">Day Twelve</a></li>
+<li><a href="16-day-thirteen.html">Day Thirteen</a></li>
+<li><a href="17-day-fourteen.html">Day Fourteen</a></li>
+<li><a href="18-day-fifteen.html">Day Fifteen</a></li>
+<li><a href="19-day-sixteen.html">Day Sixteen</a></li>
+<li><a href="20-day-seventeen.html">Day Seventeen</a></li>
+<li><a href="21-day-eighteen.html">Day Eighteen</a></li>
+<li><a href="22-day-twenty.html">Day Twenty</a></li>
+<li><a href="23-day-twenty-one.html">Day Twenty-One</a></li>
+<li><a href="24-day-twenty-two.html">Day Twenty-Two</a></li>
+<li><a href="25-day-twenty-three.html">Day Twenty-Three</a></li>
+<li><a href="26-day-twenty-four.html">Day Twenty-Four</a></li>
+<li><a href="27-day-twenty-five.html">Day Twenty-Five</a></li>
+<li><a href="28-two-weeks-after-the-retreat.html">Two Weeks After the Retreat</a></li>
+<li><a href="29-conclusion.html">Conclusion</a></li>
+<li><a href="30-appendix-a-glossary-of-technical-terms.html">Appendix A: Glossary of Technical Terms</a></li>
+<li><a href="31-appendix-b-nirodha-samapatti.html">Appendix B: Nirodha Samapatti</a></li>
+<li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
+  </ol>
+</nav>
+      <main>
+<h1>Day Eight</h1>
+<blockquote>
+<p>День восьмой</p>
+</blockquote>
+<p>[Intentions ~ Eyes-Open Practice ~ Travelling versus Lucid Dreaming versus Fourth Jhana]</p>
+<blockquote>
+<p>Намерения ~ Практика с открытыми глазами ~ Путешествие, осознанное сновидение и четвертая джхана</p>
+</blockquote>
+<p>[Intentions]</p>
+<blockquote>
+<p>Намерения</p>
+</blockquote>
+<p>[SHANNON]
+Suddenly during the sit I will come up with an intention I want to make, but afterwards I have no idea if this is what I am supposed to be aiming for.</p>
+<blockquote>
+<p>Вдруг во время сидения у меня возникает намерение, которое я хочу задать, но после этого я понятия не имею, действительно ли это то, к чему мне следует стремиться.</p>
+</blockquote>
+<p>[DANIEL]
+We discover much about ourselves by what we want to see or do.</p>
+<blockquote>
+<p>Мы многое узнаем о себе по тому, что хотим увидеть или сделать.</p>
+</blockquote>
+<p>What we may realise about our real motivations is sometimes surprising.</p>
+<blockquote>
+<p>То, что мы можем осознать о своих настоящих мотивациях, иногда удивляет.</p>
+</blockquote>
+<p>[SHANNON]
+Unfortunately, at this phase, the visions and creatures in the meditations only last seconds.</p>
+<blockquote>
+<p>К сожалению, на этой фазе видения и существа в медитациях длятся всего секунды.</p>
+</blockquote>
+<p>Should I be intending for them to last longer?</p>
+<blockquote>
+<p>Следует ли мне намереваться, чтобы они длились дольше?</p>
+</blockquote>
+<p>For example, I had three whimsical characters show up in front of me and the middle one smiled at me, then they vanished.</p>
+<blockquote>
+<p>Например, передо мной появились три причудливых персонажа, и средний улыбнулся мне, а затем они исчезли.</p>
+</blockquote>
+<p>[DANIEL]
+Magick 101: intend that when beings arise, may I ask them their name and may they tell me.</p>
+<blockquote>
+<p>Магия 101: намеревайтесь, чтобы, когда возникают существа, я могла спросить их имя, и пусть они скажут мне его.</p>
+</blockquote>
+<p>Doing so can actually help stabilise the experience.</p>
+<blockquote>
+<p>Это действительно может помочь стабилизировать переживание.</p>
+</blockquote>
+<p>[SHANNON]
+The images and visions I am getting are not the Medicine Buddha, so I immediately lose interest, but is the idea to go with whatever you get?</p>
+<blockquote>
+<p>Образы и видения, которые я получаю, не являются Буддой Медицины, поэтому я сразу теряю интерес, но идея в том, чтобы идти с тем, что приходит?</p>
+</blockquote>
+<p>[DANIEL]
+This question is a source of debate in the magickal world.</p>
+<blockquote>
+<p>Этот вопрос является предметом споров в магическом мире.</p>
+</blockquote>
+<p>On one hand you have groups like the spiritualists, who are relatively indiscriminate in what they conjure and are often willing to communicate with anything out there.</p>
+<blockquote>
+<p>С одной стороны, есть группы вроде спиритуалистов, которые относительно неразборчивы в том, что вызывают, и часто готовы общаться с чем угодно, что там находится.</p>
+</blockquote>
+<p>On the other hand you have groups like ceremonial magicians, who generally are much more selective (and often elitist) in their invocations and associations.</p>
+<blockquote>
+<p>С другой стороны, есть группы вроде церемониальных магов, которые обычно гораздо более избирательны (и часто элитарны) в своих призываниях и связях.</p>
+</blockquote>
+<p>Everyone has to decide for themselves where they stand.</p>
+<blockquote>
+<p>Каждый должен сам решить, какую позицию занимает.</p>
+</blockquote>
+<p>(SHANNON - We joked about whether there should be equal rights for these entities.)</p>
+<blockquote>
+<p>(ШЭННОН - мы шутили о том, должны ли у этих сущностей быть равные права.)</p>
+</blockquote>
+<p>[Eyes-Open Practice]</p>
+<blockquote>
+<p>Практика с открытыми глазами</p>
+</blockquote>
+<p>[SHANNON]
+Stunning colours are easy to access in the sits with eyes closed but not with eyes open or walking around.</p>
+<blockquote>
+<p>Потрясающие цвета легко доступны в сидениях с закрытыми глазами, но не с открытыми глазами и не во время ходьбы.</p>
+</blockquote>
+<p>My interest in developing specific skills (such as the ability to see mental colour with my eyes open) was a fluid process, waxing and waning throughout the retreat, depending on what conditions were presenting at each particular phase.</p>
+<blockquote>
+<p>Мой интерес к развитию конкретных навыков (таких как способность видеть ментальный цвет с открытыми глазами) был текучим процессом, усиливаясь и ослабевая на протяжении ретрита в зависимости от условий, проявлявшихся на каждой конкретной фазе.</p>
+</blockquote>
+<p>Daniel patiently reiterated instructions whenever I expressed renewed interest in an earlier teaching.</p>
+<blockquote>
+<p>Дэниел терпеливо повторял инструкции всякий раз, когда я вновь проявляла интерес к более раннему учению.</p>
+</blockquote>
+<p>At one point I sheepishly apologised for getting him to run through something yet again, and he came back with: “Do you know how many times my teachers had to say the same thing over and over to me? Hundreds!”</p>
+<blockquote>
+<p>В какой-то момент я смущенно извинилась за то, что заставляю его снова проходить через одно и то же, а он ответил: «Ты знаешь, сколько раз моим учителям приходилось повторять мне одно и то же? Сотни!»</p>
+</blockquote>
+<p>Much of the challenge of what we learn to do in formal meditation lies not in the complexity, rather in the sometimes counter-intuitive yet skilful methods required to progress compared to the unproductive antics of the untrained mind.</p>
+<blockquote>
+<p>Большая часть сложности того, чему мы учимся в формальной медитации, заключается не в сложности как таковой, а в иногда контринтуитивных, но искусных методах, необходимых для продвижения, в отличие от непродуктивных выходок нетренированного ума.</p>
+</blockquote>
+<p>Regular review of meditation teachings is essential.</p>
+<blockquote>
+<p>Регулярное повторение медитативных учений необходимо.</p>
+</blockquote>
+<p>[DANIEL]
+In the Visuddhimagga the standard instructions are to obtain a stable image from the kasina, then go carefully to a different location with eyes open while maintaining the image all the way there.</p>
+<blockquote>
+<p>В «Висуддхимагге» стандартные инструкции таковы: получить устойчивый образ от касины, затем осторожно перейти в другое место с открытыми глазами, сохраняя образ на всем пути.</p>
+</blockquote>
+<p>On retreat one can practise with eyes open at night and dawn, and, as you progress, keep extending the eyes-open images out into the day.</p>
+<blockquote>
+<p>На ретрите можно практиковать с открытыми глазами ночью и на рассвете, а по мере продвижения продолжать расширять образы с открытыми глазами на дневное время.</p>
+</blockquote>
+<p>It got to the point on my last retreat where one of the other meditators could see the colours of a pentagram I was drawing in the air in broad daylight.</p>
+<blockquote>
+<p>На моем последнем ретрите дошло до того, что один из других медитирующих мог видеть цвета пентаграммы, которую я рисовал в воздухе при ярком дневном свете.</p>
+</blockquote>
+<p>[Travelling versus Lucid Dreaming versus Fourth Jhana]</p>
+<blockquote>
+<p>Путешествие, осознанное сновидение и четвертая джхана</p>
+</blockquote>
+<p>[SHANNON]
+How do you experience the difference between a vision, travelling and a lucid dream?</p>
+<blockquote>
+<p>Как вы переживаете различие между видением, путешествием и осознанным сном?</p>
+</blockquote>
+<p>And does fourth jhana fit into any of the above?</p>
+<blockquote>
+<p>И вписывается ли четвертая джхана во что-либо из этого?</p>
+</blockquote>
+<p>[DANIEL]
+Dreaming: sleeping.</p>
+<blockquote>
+<p>Сновидение: сон.</p>
+</blockquote>
+<p>Lucid dreaming: you know it is a dream and have some control.</p>
+<blockquote>
+<p>Осознанное сновидение: вы знаете, что это сон, и обладаете некоторым контролем.</p>
+</blockquote>
+<p>Hyper lucid dreaming: crackling vivid visuals and physical sensations that make ordinary waking reality look dull by comparison.</p>
+<blockquote>
+<p>Гиперосознанное сновидение: потрескивающе яркие визуальные образы и физические ощущения, по сравнению с которыми обычная бодрствующая реальность выглядит тусклой.</p>
+</blockquote>
+<p>Full travelling: can be either cracklingly, crisply visual, or quiet and dreamlike.</p>
+<blockquote>
+<p>Полное путешествие: может быть либо потрескивающе четким и визуальным, либо тихим и сноподобным.</p>
+</blockquote>
+<p>If travel occurs during formal sits, the physical body is on the cushion, but you are out doing things in a different realm.</p>
+<blockquote>
+<p>Если путешествие происходит во время формальных сидений, физическое тело находится на подушке, но вы снаружи и делаете вещи в другой сфере.</p>
+</blockquote>
+<p>Visions can set the stage for a travel.</p>
+<blockquote>
+<p>Видения могут подготовить сцену для путешествия.</p>
+</blockquote>
+<p>Those who tend to refer to this as “astral travel” often also refer to a “tether” or “cord” that causes the traveller to snap back into the body at the end of travel.</p>
+<blockquote>
+<p>Те, кто склонен называть это «астральным путешествием», часто также говорят о «привязи» или «шнуре», из-за которого путешественника в конце путешествия резко возвращает в тело.</p>
+</blockquote>
+<p>Fourth jhana: peaceful, low intensity, low vibrancy and often complex dreamscapes or luminous, intelligent beings: the sense of “me” is minimal.</p>
+<blockquote>
+<p>Четвертая джхана: мирная, низкой интенсивности, низкой яркости, часто со сложными сновидческими пейзажами или светящимися разумными существами; ощущение «я» минимально.</p>
+</blockquote>
+<p>This stage requires silence or the meditator will likely blow it.</p>
+<blockquote>
+<p>Эта стадия требует тишины, иначе медитирующий, скорее всего, ее разрушит.</p>
+</blockquote>
+<p>The fourth jhana benefits from direction in the form of pre-set intentions for interactions before one enters it.</p>
+<blockquote>
+<p>Четвертой джхане полезно направление в форме заранее заданных намерений для взаимодействий перед входом в нее.</p>
+</blockquote>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

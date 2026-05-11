@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day Seventeen</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f4ee;
+      --panel: #fffdf8;
+      --text: #1f2523;
+      --muted: #66706b;
+      --border: #ded6ca;
+      --accent: #8f3f27;
+      --accent-contrast: #ffffff;
+      --quote-bg: #efe7da;
+      --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #151817;
+      --panel: #1f2422;
+      --text: #ece7dd;
+      --muted: #b5ada0;
+      --border: #343c38;
+      --accent: #e39b6f;
+      --accent-contrast: #1d120d;
+      --quote-bg: #292f2c;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.16em;
+    }
+
+    .layout {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      background: var(--panel);
+      color: var(--text);
+      font: 600 0.9rem/1.2 system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(14rem, 18rem) minmax(0, 48rem);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: start;
+      max-width: 75rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 4rem);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 4.25rem;
+      max-height: calc(100vh - 5.5rem);
+      overflow: auto;
+      padding: 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-family: system-ui, sans-serif;
+      line-height: 1.35;
+    }
+
+    .site-title {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .site-nav ol {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    main {
+      min-width: 0;
+      padding: clamp(1.25rem, 4vw, 3rem);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    main > :first-child {
+      margin-top: 0;
+    }
+
+    main > :last-child {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0 0 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+      font-size: 1.55rem;
+    }
+
+    h3 {
+      margin-top: 1.8rem;
+      font-size: 1.2rem;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
+      margin: 1rem 0;
+    }
+
+    blockquote {
+      margin-left: 0;
+      padding: 0.75rem 1rem;
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--text);
+    }
+
+    code {
+      padding: 0.12rem 0.28rem;
+      border-radius: 4px;
+      background: var(--quote-bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      overflow: auto;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--quote-bg);
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+    }
+
+    @media (max-width: 820px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .site-nav {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body x-data="{ theme: $persist('light').as('kasina-theme') }" x-bind:data-theme="theme">
+  <div class="layout">
+    <header class="topbar">
+      <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+    </header>
+    <div class="shell">
+      <nav class="site-nav" aria-label="Publication chapters">
+  <a class="site-title" href="index.html">The Fire Kasina</a>
+  <ol>
+<li><a href="index.html">The Fire Kasina</a></li>
+<li><a href="01-the-authors.html">The Authors</a></li>
+<li><a href="02-introduction.html">Introduction</a></li>
+<li><a href="03-prologue.html">Prologue</a></li>
+<li><a href="04-day-one.html">Day One</a></li>
+<li><a href="05-day-two.html">Day Two</a></li>
+<li><a href="06-day-three.html">Day Three</a></li>
+<li><a href="07-day-four.html">Day Four</a></li>
+<li><a href="08-day-five.html">Day Five</a></li>
+<li><a href="09-day-six.html">Day Six</a></li>
+<li><a href="10-day-seven.html">Day Seven</a></li>
+<li><a href="11-day-eight.html">Day Eight</a></li>
+<li><a href="12-day-nine.html">Day Nine</a></li>
+<li><a href="13-day-ten.html">Day Ten</a></li>
+<li><a href="14-day-eleven.html">Day Eleven</a></li>
+<li><a href="15-day-twelve.html">Day Twelve</a></li>
+<li><a href="16-day-thirteen.html">Day Thirteen</a></li>
+<li><a href="17-day-fourteen.html">Day Fourteen</a></li>
+<li><a href="18-day-fifteen.html">Day Fifteen</a></li>
+<li><a href="19-day-sixteen.html">Day Sixteen</a></li>
+<li><a href="20-day-seventeen.html" aria-current="page">Day Seventeen</a></li>
+<li><a href="21-day-eighteen.html">Day Eighteen</a></li>
+<li><a href="22-day-twenty.html">Day Twenty</a></li>
+<li><a href="23-day-twenty-one.html">Day Twenty-One</a></li>
+<li><a href="24-day-twenty-two.html">Day Twenty-Two</a></li>
+<li><a href="25-day-twenty-three.html">Day Twenty-Three</a></li>
+<li><a href="26-day-twenty-four.html">Day Twenty-Four</a></li>
+<li><a href="27-day-twenty-five.html">Day Twenty-Five</a></li>
+<li><a href="28-two-weeks-after-the-retreat.html">Two Weeks After the Retreat</a></li>
+<li><a href="29-conclusion.html">Conclusion</a></li>
+<li><a href="30-appendix-a-glossary-of-technical-terms.html">Appendix A: Glossary of Technical Terms</a></li>
+<li><a href="31-appendix-b-nirodha-samapatti.html">Appendix B: Nirodha Samapatti</a></li>
+<li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
+  </ol>
+</nav>
+      <main>
+<h1>Day Seventeen</h1>
+<blockquote>
+<p>День семнадцатый</p>
+</blockquote>
+<p>[Natural Strengths ~ Getting From Third to Fourth Jhana ~ Eight Jhanas Using Attention as Object]</p>
+<blockquote>
+<p>[Естественные сильные стороны ~ Переход от третьей к четвертой джхане ~ Восемь джхан с вниманием как объектом]</p>
+</blockquote>
+<p>[Natural Strengths]</p>
+<blockquote>
+<p>[Естественные сильные стороны]</p>
+</blockquote>
+<p>[SHANNON]
+If you said, �Shannon, envision an apple or a face�, I am unable to do that.</p>
+<blockquote>
+<p>Если бы ты сказал: «Шэннон, представь яблоко или лицо», я не смогла бы этого сделать.</p>
+</blockquote>
+<p>Could that block me from image control and success in meeting the Medicine Buddha?</p>
+<blockquote>
+<p>Может ли это помешать мне контролировать образы и успешно встретить Будду Медицины?</p>
+</blockquote>
+<p>[DANIEL]
+Everyone has their proclivities, strengths and wiring.</p>
+<blockquote>
+<p>У каждого есть свои склонности, сильные стороны и устройство.</p>
+</blockquote>
+<p>Meditators clearly have different capabilities.</p>
+<blockquote>
+<p>У медитаторов явно разные способности.</p>
+</blockquote>
+<p>One person�s level of mastery is due partly to natural blessing, so try to avoid comparing your practice exactly to that of someone else, as it is likely that something they are very strong in, you may just be average in, but similarly, something you are very strong in, they may just be average in.</p>
+<blockquote>
+<p>Уровень мастерства одного человека отчасти обусловлен природным даром, поэтому старайся не сравнивать свою практику в точности с практикой кого-то другого: вполне вероятно, что в чем-то, в чем они очень сильны, ты можешь быть просто средней, и точно так же в чем-то, в чем ты очень сильна, они могут быть просто средними.</p>
+</blockquote>
+<p>Also, living entities are often not easy to get to.</p>
+<blockquote>
+<p>Кроме того, до живых сущностей часто нелегко добраться.</p>
+</blockquote>
+<p>On my last retreat I rarely and briefly got there.</p>
+<blockquote>
+<p>На своем последнем ретрите я попадал туда редко и ненадолго.</p>
+</blockquote>
+<p>[Getting From Third to Fourth Jhana]</p>
+<blockquote>
+<p>[Переход от третьей к четвертой джхане]</p>
+</blockquote>
+<p>[SHANNON]
+When in upper third jhana you described how you space out or gear down somehow.</p>
+<blockquote>
+<p>Когда ты находишься в верхней третьей джхане, ты описывал, как каким-то образом рассеиваешься или переключаешься на более низкую передачу.</p>
+</blockquote>
+<p>Do you have any other suggestions on getting to a fourth jhana with living beings?</p>
+<blockquote>
+<p>Есть ли у тебя еще какие-нибудь предложения о том, как попасть в четвертую джхану с живыми существами?</p>
+</blockquote>
+<p>What helped you make the leap?</p>
+<blockquote>
+<p>Что помогло тебе совершить этот скачок?</p>
+</blockquote>
+<p>[DANIEL]
+I dream out for a few seconds to something more broad and clean.</p>
+<blockquote>
+<p>Я на несколько секунд как бы выныриваю в сон к чему-то более широкому и чистому.</p>
+</blockquote>
+<p>(SHANNON � I realised later this happens before I travel.)</p>
+<blockquote>
+<p>(ШЭННОН - позже я поняла, что это происходит перед путешествием.)</p>
+</blockquote>
+<p>To get to a manifest image of a deity, try gazing at a picture of the Medicine Buddha before you sit.</p>
+<blockquote>
+<p>Чтобы прийти к проявленному образу божества, попробуй перед сидением смотреть на изображение Будды Медицины.</p>
+</blockquote>
+<p>Since you have decent colour control, go for better image control.</p>
+<blockquote>
+<p>Поскольку у тебя неплохой контроль цвета, работай над лучшим контролем образа.</p>
+</blockquote>
+<p>Try for two-dimensional shapes for starters.</p>
+<blockquote>
+<p>Для начала пробуй двухмерные формы.</p>
+</blockquote>
+<p>Nudge whatever images you see in the direction you want it to go in.</p>
+<blockquote>
+<p>Подталкивай любые образы, которые видишь, в том направлении, куда хочешь, чтобы они двигались.</p>
+</blockquote>
+<p>For example, try seeing faces in the images of the trees you are getting in meditation.</p>
+<blockquote>
+<p>Например, попробуй видеть лица в образах деревьев, которые появляются у тебя в медитации.</p>
+</blockquote>
+<p>Transitioning to the fourth jhana is sort of mysterious, and is outside a normal, linear way of working.</p>
+<blockquote>
+<p>Переход к четвертой джхане в каком-то смысле загадочен и находится вне обычного линейного способа работы.</p>
+</blockquote>
+<p>[Eight Jhanas Using Attention as Object]</p>
+<blockquote>
+<p>[Восемь джхан с вниманием как объектом]</p>
+</blockquote>
+<p>[SHANNON]
+I seem to have veered off the fire kasina practice and am meandering up and down through the samatha jhanas.</p>
+<blockquote>
+<p>Кажется, я отклонилась от практики огненной касины и блуждаю вверх и вниз по джханам саматхи.</p>
+</blockquote>
+<p>Can you describe your experience, going from first to eighth jhana?</p>
+<blockquote>
+<p>Можешь описать свой опыт перехода от первой к восьмой джхане?</p>
+</blockquote>
+<p>[DANIEL]
+This was a practice I did for many years after lying down in bed at night.</p>
+<blockquote>
+<p>Это была практика, которую я много лет выполнял ночью, ложась в кровать.</p>
+</blockquote>
+<p>For my object, I used the width of attention itself, which is more abstract compared to typical objects but also more fundamental.</p>
+<blockquote>
+<p>В качестве объекта я использовал саму ширину внимания, что более абстрактно по сравнению с типичными объектами, но также более фундаментально.</p>
+</blockquote>
+<p>Being an aversive type, I am generally less interested in taking pleasure as object, not that it cannot be fun.</p>
+<blockquote>
+<p>Будучи человеком склонным к отвращению, я в целом меньше заинтересован брать удовольствие в качестве объекта, хотя это и может быть приятным.</p>
+</blockquote>
+<p>Still, for this practice, I used attention-width as follows.</p>
+<blockquote>
+<p>Тем не менее для этой практики я использовал ширину внимания следующим образом.</p>
+</blockquote>
+<p>In the first jhana, attention is narrow, pointed and effortful.</p>
+<blockquote>
+<p>В первой джхане внимание узкое, направленное и требующее усилия.</p>
+</blockquote>
+<p>In the second, attention is more natural, a little wider-centred, like looking straight ahead.</p>
+<blockquote>
+<p>Во второй внимание более естественное, немного шире центрированное, как при взгляде прямо перед собой.</p>
+</blockquote>
+<p>In the third it is the opposite: the centre is vague, diffuse and spacey, like being under water.</p>
+<blockquote>
+<p>В третьей все наоборот: центр неясный, рассеянный и пространственный, как будто находишься под водой.</p>
+</blockquote>
+<p>In the fourth jhana, attention is much wider, pervasive, panoramic and neutral.</p>
+<blockquote>
+<p>В четвертой джхане внимание гораздо шире, пронизывающее, панорамное и нейтральное.</p>
+</blockquote>
+<p>In the fifth jhana of boundless space, forms and body vanish, vast boundlessness prevails.</p>
+<blockquote>
+<p>В пятой джхане безграничного пространства формы и тело исчезают, преобладает обширная безграничность.</p>
+</blockquote>
+<p>In the sixth jhana of boundless consciousness, the boundlessness of the fifth becomes (or is recognised to be) luminous, like a clear light that fills space.</p>
+<blockquote>
+<p>В шестой джхане безграничного сознания безграничность пятой становится (или распознается как) светящейся, подобно ясному свету, заполняющему пространство.</p>
+</blockquote>
+<p>In the seventh jhana, that of nothingness, it is as if boundless luminosity inverts, to take instead nothingness as object.</p>
+<blockquote>
+<p>В седьмой джхане, джхане ничто, это похоже на то, как безграничная светимость переворачивается, чтобы вместо этого взять ничто в качестве объекта.</p>
+</blockquote>
+<p>In neither-perception-nor-yet-non-perception, the eighth jhana, nothingness de-tunes out to neither-perception-nor-yet-non-perception, which is extremely hard to describe in any other way save for the fact that nothingness clearly is tuned to nothingness, and the eighth jhana is what happens when you detune from even that level of certainty about what attention is tuned to.</p>
+<blockquote>
+<p>В ни-восприятии-ни-невосприятии, восьмой джхане, ничто расстраивается в ни-восприятие-ни-невосприятие, что крайне трудно описать иначе, кроме того факта, что ничто явно настроено на ничто, а восьмая джхана - это то, что происходит, когда ты расстраиваешься даже от этого уровня уверенности в том, на что настроено внимание.</p>
+</blockquote>
+<p>Then I would come out and gain a fruition from the post-eighth jhana junction point.</p>
+<blockquote>
+<p>Затем я выходил и получал плодоношение из узловой точки после восьмой джханы.</p>
+</blockquote>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

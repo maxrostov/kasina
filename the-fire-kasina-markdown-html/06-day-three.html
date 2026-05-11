@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day Three</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f4ee;
+      --panel: #fffdf8;
+      --text: #1f2523;
+      --muted: #66706b;
+      --border: #ded6ca;
+      --accent: #8f3f27;
+      --accent-contrast: #ffffff;
+      --quote-bg: #efe7da;
+      --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #151817;
+      --panel: #1f2422;
+      --text: #ece7dd;
+      --muted: #b5ada0;
+      --border: #343c38;
+      --accent: #e39b6f;
+      --accent-contrast: #1d120d;
+      --quote-bg: #292f2c;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.16em;
+    }
+
+    .layout {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      background: var(--panel);
+      color: var(--text);
+      font: 600 0.9rem/1.2 system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(14rem, 18rem) minmax(0, 48rem);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: start;
+      max-width: 75rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 4rem);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 4.25rem;
+      max-height: calc(100vh - 5.5rem);
+      overflow: auto;
+      padding: 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-family: system-ui, sans-serif;
+      line-height: 1.35;
+    }
+
+    .site-title {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .site-nav ol {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    main {
+      min-width: 0;
+      padding: clamp(1.25rem, 4vw, 3rem);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    main > :first-child {
+      margin-top: 0;
+    }
+
+    main > :last-child {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0 0 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+      font-size: 1.55rem;
+    }
+
+    h3 {
+      margin-top: 1.8rem;
+      font-size: 1.2rem;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
+      margin: 1rem 0;
+    }
+
+    blockquote {
+      margin-left: 0;
+      padding: 0.75rem 1rem;
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--text);
+    }
+
+    code {
+      padding: 0.12rem 0.28rem;
+      border-radius: 4px;
+      background: var(--quote-bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      overflow: auto;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--quote-bg);
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+    }
+
+    @media (max-width: 820px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .site-nav {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body x-data="{ theme: $persist('light').as('kasina-theme') }" x-bind:data-theme="theme">
+  <div class="layout">
+    <header class="topbar">
+      <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+    </header>
+    <div class="shell">
+      <nav class="site-nav" aria-label="Publication chapters">
+  <a class="site-title" href="index.html">The Fire Kasina</a>
+  <ol>
+<li><a href="index.html">The Fire Kasina</a></li>
+<li><a href="01-the-authors.html">The Authors</a></li>
+<li><a href="02-introduction.html">Introduction</a></li>
+<li><a href="03-prologue.html">Prologue</a></li>
+<li><a href="04-day-one.html">Day One</a></li>
+<li><a href="05-day-two.html">Day Two</a></li>
+<li><a href="06-day-three.html" aria-current="page">Day Three</a></li>
+<li><a href="07-day-four.html">Day Four</a></li>
+<li><a href="08-day-five.html">Day Five</a></li>
+<li><a href="09-day-six.html">Day Six</a></li>
+<li><a href="10-day-seven.html">Day Seven</a></li>
+<li><a href="11-day-eight.html">Day Eight</a></li>
+<li><a href="12-day-nine.html">Day Nine</a></li>
+<li><a href="13-day-ten.html">Day Ten</a></li>
+<li><a href="14-day-eleven.html">Day Eleven</a></li>
+<li><a href="15-day-twelve.html">Day Twelve</a></li>
+<li><a href="16-day-thirteen.html">Day Thirteen</a></li>
+<li><a href="17-day-fourteen.html">Day Fourteen</a></li>
+<li><a href="18-day-fifteen.html">Day Fifteen</a></li>
+<li><a href="19-day-sixteen.html">Day Sixteen</a></li>
+<li><a href="20-day-seventeen.html">Day Seventeen</a></li>
+<li><a href="21-day-eighteen.html">Day Eighteen</a></li>
+<li><a href="22-day-twenty.html">Day Twenty</a></li>
+<li><a href="23-day-twenty-one.html">Day Twenty-One</a></li>
+<li><a href="24-day-twenty-two.html">Day Twenty-Two</a></li>
+<li><a href="25-day-twenty-three.html">Day Twenty-Three</a></li>
+<li><a href="26-day-twenty-four.html">Day Twenty-Four</a></li>
+<li><a href="27-day-twenty-five.html">Day Twenty-Five</a></li>
+<li><a href="28-two-weeks-after-the-retreat.html">Two Weeks After the Retreat</a></li>
+<li><a href="29-conclusion.html">Conclusion</a></li>
+<li><a href="30-appendix-a-glossary-of-technical-terms.html">Appendix A: Glossary of Technical Terms</a></li>
+<li><a href="31-appendix-b-nirodha-samapatti.html">Appendix B: Nirodha Samapatti</a></li>
+<li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
+  </ol>
+</nav>
+      <main>
+<h1>Day Three</h1>
+<blockquote>
+<p>День третий</p>
+</blockquote>
+<p>[Mantra]</p>
+<blockquote>
+<p>Мантра</p>
+</blockquote>
+<p>[SHANNON]
+The mantra is now singing itself, but it sounds too quiet, perhaps because I am not saying it out loud.</p>
+<blockquote>
+<p>Теперь мантра поет сама себя, но звучит слишком тихо, возможно потому, что я не произношу ее вслух.</p>
+</blockquote>
+<p>Why is it recommended the mantra be done internally?</p>
+<blockquote>
+<p>Почему рекомендуется выполнять мантру внутренне?</p>
+</blockquote>
+<p>[DANIEL]
+Aim for internal thoughts, sounds and colours to be stronger than ordinary reality.</p>
+<blockquote>
+<p>Стремитесь к тому, чтобы внутренние мысли, звуки и цвета были сильнее обычной реальности.</p>
+</blockquote>
+<p>By giving these more attention, you can shift the balance towards the internal experiences.</p>
+<blockquote>
+<p>Уделяя им больше внимания, вы можете сместить баланс в сторону внутренних переживаний.</p>
+</blockquote>
+<p>External sound is in the ordinary realm.</p>
+<blockquote>
+<p>Внешний звук находится в обычной сфере.</p>
+</blockquote>
+<p>The powers are in the internal realm, with magickal effects like mantra ringing through the room and everything else chiming in, etc.</p>
+<blockquote>
+<p>Силы находятся во внутренней сфере, с магическими эффектами вроде мантры, звенящей по комнате, и всего остального, подхватывающего этот звон, и так далее.</p>
+</blockquote>
+<p>This just takes time, good practice, and patience.</p>
+<blockquote>
+<p>Для этого просто нужны время, хорошая практика и терпение.</p>
+</blockquote>
+<p>[Travel and Intentions]</p>
+<blockquote>
+<p>Путешествия и намерения</p>
+</blockquote>
+<p>[SHANNON]
+The astral travels described below refer to the sensation of moving outside of the body while having clear awareness that the body is still sitting on the cushion.</p>
+<blockquote>
+<p>Описанные ниже астральные путешествия относятся к ощущению движения вне тела при ясном осознавании, что тело все еще сидит на подушке.</p>
+</blockquote>
+<p>A partial travel is where only part of the body is mentally experienced in movement beyond the physical body, which in my case often involved a physical and visual sensation of my hands and forearms functioning in space in front of me during the meditation while at the same time having complete understanding my hands were resting in my lap.</p>
+<blockquote>
+<p>Частичное путешествие - это когда только часть тела ментально переживается как движущаяся за пределами физического тела; в моем случае это часто включало физическое и визуальное ощущение, что мои кисти и предплечья действуют в пространстве передо мной во время медитации, при одновременном полном понимании, что мои руки покоятся у меня на коленях.</p>
+</blockquote>
+<p>Astral travel had occurred spontaneously and randomly in past meditations; what was rewarding by the end of the fire kasina retreat was not only learning how to set up the conditions for the travel to consistently occur but also to successfully set intentions for certain activities, including fruitions, to be experienced during the travels.</p>
+<blockquote>
+<p>Астральные путешествия случались спонтанно и случайно в прошлых медитациях; ценным к концу ретрита огненной касины стало не только то, что я научилась создавать условия для их регулярного возникновения, но и то, что я научилась успешно задавать намерения на определенные действия, включая плоды, которые должны были переживаться во время путешествий.</p>
+</blockquote>
+<p>I experienced a partial travel in which I found myself reaching for cutlery.</p>
+<blockquote>
+<p>Я пережила частичное путешествие, в котором обнаружила, что тянусь за столовыми приборами.</p>
+</blockquote>
+<p>This one was crystal clear.</p>
+<blockquote>
+<p>Это было кристально ясно.</p>
+</blockquote>
+<p>But I might have also fully travelled, very briefly, when there was a blur of activity and then I felt a fluttering of myself coming back into the body.</p>
+<blockquote>
+<p>Но, возможно, я также полностью путешествовала, совсем кратко, когда возникла размытая активность, а затем я почувствовала трепетное возвращение себя в тело.</p>
+</blockquote>
+<p>[DANIEL]
+In the realm of magick it is productive to ask: where do you want to travel and why?</p>
+<blockquote>
+<p>В области магии продуктивно спрашивать: куда вы хотите путешествовать и зачем?</p>
+</blockquote>
+<p>Up the ante from the mundane to exploring an aspect of yourself, or perhaps visiting with tantric wisdom beings.</p>
+<blockquote>
+<p>Поднимите ставки от обыденного к исследованию какого-либо аспекта себя или, возможно, к встречам с тантрическими существами мудрости.</p>
+</blockquote>
+<p>Directed, skilful travels are more likely to happen with intent.</p>
+<blockquote>
+<p>Направленные, искусные путешествия с большей вероятностью происходят при наличии намерения.</p>
+</blockquote>
+<p>[Importance of Audio Diary]</p>
+<blockquote>
+<p>Важность аудиодневника</p>
+</blockquote>
+<p>[DANIEL]
+I recommend that you keep an audio diary of what you are seeing each day and how the sequence is unfolding, so as to put yourself out there as an extra voice.</p>
+<blockquote>
+<p>Я рекомендую вести аудиодневник того, что вы видите каждый день и как разворачивается последовательность, чтобы вы выступили дополнительным голосом.</p>
+</blockquote>
+<p>Other meditators would likely benefit from having another reference point.</p>
+<blockquote>
+<p>Другим медитирующим, вероятно, будет полезно иметь еще одну точку отсчета.</p>
+</blockquote>
+<p>[SHANNON]
+I also began recording quick audio summaries after my talks with Daniel for post-retreat reference.</p>
+<blockquote>
+<p>Я также начала записывать короткие аудиорезюме после разговоров с Дэниелом для обращения к ним после ретрита.</p>
+</blockquote>
+<p>These ended up being an invaluable resource for this book.</p>
+<blockquote>
+<p>В итоге они стали бесценным ресурсом для этой книги.</p>
+</blockquote>
+<p>[Third Jhana]</p>
+<blockquote>
+<p>Третья джхана</p>
+</blockquote>
+<p>[SHANNON]
+Early on, is there any advantage in staying with and exploring the red dot longer, or is it better to move quickly into the purple?</p>
+<blockquote>
+<p>На раннем этапе есть ли какое-то преимущество в том, чтобы дольше оставаться с красной точкой и исследовать ее, или лучше быстро переходить к фиолетовому?</p>
+</blockquote>
+<p>I am now seeing the candle shape as well as other shapes in the room around the red dot in their complementary colour.</p>
+<blockquote>
+<p>Сейчас я вижу форму свечи, а также другие формы в комнате вокруг красной точки в их дополнительном цвете.</p>
+</blockquote>
+<p>[DANIEL]
+Building up the red dot as a foundation is productive.</p>
+<blockquote>
+<p>Развивать красную точку как основу продуктивно.</p>
+</blockquote>
+<p>As practice progresses, as you have already seen, the wider background images begin to be incorporated into the after-image around the red dot, and this widening is important, as it helps to sync with the width of the murk.</p>
+<blockquote>
+<p>По мере продвижения практики, как вы уже видели, более широкие фоновые образы начинают включаться в послеобраз вокруг красной точки, и это расширение важно, потому что помогает синхронизироваться с шириной мути.</p>
+</blockquote>
+<p>You will start to notice the subtle oscillations and shimmering of the wider field, and the mind making sense of this wider, more complex phase of third jhana leads to more coherent, structured objects.</p>
+<blockquote>
+<p>Вы начнете замечать тонкие колебания и мерцание более широкого поля, и то, как ум осмысляет эту более широкую, более сложную фазу третьей джханы, приводит к более связным, структурированным объектам.</p>
+</blockquote>
+<p>[SHANNON]
+It became helpful while on retreat, regardless of the jhana I was in, to remind myself of the importance of keeping the eye muscles loose and relaxed.</p>
+<blockquote>
+<p>Во время ретрита, независимо от того, в какой джхане я находилась, стало полезно напоминать себе о важности сохранять глазные мышцы мягкими и расслабленными.</p>
+</blockquote>
+<p>This was easier to adhere to once I figured out the inner vision does not require the use of the eyes in the same way external seeing does.</p>
+<blockquote>
+<p>Этого стало легче придерживаться, когда я поняла, что внутреннее зрение не требует использования глаз так же, как внешнее видение.</p>
+</blockquote>
+<p>Also, with some experimentation I was able to discover the value in not closing the eyes too tightly, otherwise the more subtle inner imagery had a tendency to disappear into darkness.</p>
+<blockquote>
+<p>Кроме того, немного поэкспериментировав, я смогла обнаружить ценность того, чтобы не закрывать глаза слишком плотно, иначе более тонкие внутренние образы имели тенденцию исчезать во тьме.</p>
+</blockquote>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

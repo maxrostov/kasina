@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day Twenty-Three</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f4ee;
+      --panel: #fffdf8;
+      --text: #1f2523;
+      --muted: #66706b;
+      --border: #ded6ca;
+      --accent: #8f3f27;
+      --accent-contrast: #ffffff;
+      --quote-bg: #efe7da;
+      --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #151817;
+      --panel: #1f2422;
+      --text: #ece7dd;
+      --muted: #b5ada0;
+      --border: #343c38;
+      --accent: #e39b6f;
+      --accent-contrast: #1d120d;
+      --quote-bg: #292f2c;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.16em;
+    }
+
+    .layout {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      background: var(--panel);
+      color: var(--text);
+      font: 600 0.9rem/1.2 system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(14rem, 18rem) minmax(0, 48rem);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: start;
+      max-width: 75rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 4rem);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 4.25rem;
+      max-height: calc(100vh - 5.5rem);
+      overflow: auto;
+      padding: 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-family: system-ui, sans-serif;
+      line-height: 1.35;
+    }
+
+    .site-title {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .site-nav ol {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    main {
+      min-width: 0;
+      padding: clamp(1.25rem, 4vw, 3rem);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    main > :first-child {
+      margin-top: 0;
+    }
+
+    main > :last-child {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0 0 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+      font-size: 1.55rem;
+    }
+
+    h3 {
+      margin-top: 1.8rem;
+      font-size: 1.2rem;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
+      margin: 1rem 0;
+    }
+
+    blockquote {
+      margin-left: 0;
+      padding: 0.75rem 1rem;
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--text);
+    }
+
+    code {
+      padding: 0.12rem 0.28rem;
+      border-radius: 4px;
+      background: var(--quote-bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      overflow: auto;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--quote-bg);
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+    }
+
+    @media (max-width: 820px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .site-nav {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body x-data="{ theme: $persist('light').as('kasina-theme') }" x-bind:data-theme="theme">
+  <div class="layout">
+    <header class="topbar">
+      <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+    </header>
+    <div class="shell">
+      <nav class="site-nav" aria-label="Publication chapters">
+  <a class="site-title" href="index.html">The Fire Kasina</a>
+  <ol>
+<li><a href="index.html">The Fire Kasina</a></li>
+<li><a href="01-the-authors.html">The Authors</a></li>
+<li><a href="02-introduction.html">Introduction</a></li>
+<li><a href="03-prologue.html">Prologue</a></li>
+<li><a href="04-day-one.html">Day One</a></li>
+<li><a href="05-day-two.html">Day Two</a></li>
+<li><a href="06-day-three.html">Day Three</a></li>
+<li><a href="07-day-four.html">Day Four</a></li>
+<li><a href="08-day-five.html">Day Five</a></li>
+<li><a href="09-day-six.html">Day Six</a></li>
+<li><a href="10-day-seven.html">Day Seven</a></li>
+<li><a href="11-day-eight.html">Day Eight</a></li>
+<li><a href="12-day-nine.html">Day Nine</a></li>
+<li><a href="13-day-ten.html">Day Ten</a></li>
+<li><a href="14-day-eleven.html">Day Eleven</a></li>
+<li><a href="15-day-twelve.html">Day Twelve</a></li>
+<li><a href="16-day-thirteen.html">Day Thirteen</a></li>
+<li><a href="17-day-fourteen.html">Day Fourteen</a></li>
+<li><a href="18-day-fifteen.html">Day Fifteen</a></li>
+<li><a href="19-day-sixteen.html">Day Sixteen</a></li>
+<li><a href="20-day-seventeen.html">Day Seventeen</a></li>
+<li><a href="21-day-eighteen.html">Day Eighteen</a></li>
+<li><a href="22-day-twenty.html">Day Twenty</a></li>
+<li><a href="23-day-twenty-one.html">Day Twenty-One</a></li>
+<li><a href="24-day-twenty-two.html">Day Twenty-Two</a></li>
+<li><a href="25-day-twenty-three.html" aria-current="page">Day Twenty-Three</a></li>
+<li><a href="26-day-twenty-four.html">Day Twenty-Four</a></li>
+<li><a href="27-day-twenty-five.html">Day Twenty-Five</a></li>
+<li><a href="28-two-weeks-after-the-retreat.html">Two Weeks After the Retreat</a></li>
+<li><a href="29-conclusion.html">Conclusion</a></li>
+<li><a href="30-appendix-a-glossary-of-technical-terms.html">Appendix A: Glossary of Technical Terms</a></li>
+<li><a href="31-appendix-b-nirodha-samapatti.html">Appendix B: Nirodha Samapatti</a></li>
+<li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
+  </ol>
+</nav>
+      <main>
+<h1>Day Twenty-Three</h1>
+<blockquote>
+<p>День двадцать третий</p>
+</blockquote>
+<p>[Re-Observation ~ Fire Kasina as Home Practice ~ Value of Sequence]</p>
+<blockquote>
+<p>[Повторное наблюдение ~ Огненная касина как домашняя практика ~ Ценность последовательности]</p>
+</blockquote>
+<p>[Re-Observation]</p>
+<blockquote>
+<p>[Повторное наблюдение]</p>
+</blockquote>
+<p>[SHANNON]
+What is the difference between basic re-observation and unstable states bordering on psychosis one may devolve into?</p>
+<blockquote>
+<p>В чем разница между базовым повторным наблюдением и нестабильными состояниями на грани психоза, в которые можно скатиться?</p>
+</blockquote>
+<p>[DANIEL]
+That is sometimes a fine line.</p>
+<blockquote>
+<p>Иногда это тонкая грань.</p>
+</blockquote>
+<p>The difference is mostly in being either torn down in a bad way by re-observation and spiralling into craziness versus having direct fundamental insight, which increases one�s understanding and practice while applying appropriate remedies if troubles arise.</p>
+<blockquote>
+<p>Разница в основном между тем, чтобы быть разрушенным повторным наблюдением плохим образом и закручиваться в безумие, и тем, чтобы иметь прямое фундаментальное прозрение, которое увеличивает понимание и практику человека при применении подходящих средств, если возникают трудности.</p>
+</blockquote>
+<p>There is a staggering difference between being �with it� and yet not caught in it, versus being really caught in it and freaking out.</p>
+<blockquote>
+<p>Есть поразительная разница между тем, чтобы быть «с этим» и при этом не быть пойманным этим, и тем, чтобы действительно быть пойманным этим и паниковать.</p>
+</blockquote>
+<p>In review, it is empowering to sometimes decide to stay in re-observation intentionally for a controlled period of time: �to turn the hunted into the hunter�.</p>
+<blockquote>
+<p>В обзоре иногда очень укрепляет решение намеренно оставаться в повторном наблюдении в течение контролируемого периода времени: «превратить преследуемого в охотника».</p>
+</blockquote>
+<p>[SHANNON]
+Given how far-removed the qualities of re-observation were from the deity encounters I was wanting to experience, it was quite a stretch to undertake the above recommendation.</p>
+<blockquote>
+<p>Учитывая, насколько качества повторного наблюдения были далеки от встреч с божествами, которые я хотела пережить, было довольно непросто взяться за приведенную выше рекомендацию.</p>
+</blockquote>
+<p>However, I found myself speaking extensively in my audio diary about the benefits of not shying away from any aspects of re-observation when this �ana reappeared.</p>
+<blockquote>
+<p>Однако я обнаружила, что в своем аудиодневнике подробно говорю о пользе не уклоняться ни от каких аспектов повторного наблюдения, когда эта ньяна появилась снова.</p>
+</blockquote>
+<p>In addition to being confidence-boosting, entering fully into and out of this uncomfortable state while being in such high concentration from weeks of retreat, lent this �ana an unbeatably rich, intense clarity.</p>
+<blockquote>
+<p>Помимо укрепления уверенности, полное вхождение в это неприятное состояние и выход из него при такой высокой концентрации после недель ретрита придали этой ньяне непревзойденно богатую, интенсивную ясность.</p>
+</blockquote>
+<p>Reviewing my audio diary, I was struck by how cheery and buoyant I sounded on this last phase of the retreat.</p>
+<blockquote>
+<p>Прослушивая свой аудиодневник, я была поражена тем, насколько бодро и приподнято звучала в этой последней фазе ретрита.</p>
+</blockquote>
+<p>Some heavier tones of seriousness that had been intertwined with the obstructions of striving, fear and doubt had dropped off and there was less �self� remaining to take so seriously � a welcome shift which has continued to show up post-retreat.</p>
+<blockquote>
+<p>Некоторые более тяжелые тона серьезности, переплетавшиеся с препятствиями стремления, страха и сомнения, отпали, и осталось меньше «я», которое нужно было бы принимать так серьезно, - желанный сдвиг, который продолжал проявляться после ретрита.</p>
+</blockquote>
+<p>[DANIEL]
+One of the most important and challenging questions on the path is how attention is tuned in re-observation versus wide-open space.</p>
+<blockquote>
+<p>Один из самых важных и сложных вопросов на пути - как внимание настроено в повторном наблюдении по сравнению с широко открытым пространством.</p>
+</blockquote>
+<p>It is like walking between two things that seem to be the exact antithesis of each other, but must be same thing.</p>
+<blockquote>
+<p>Это похоже на ходьбу между двумя вещами, которые кажутся точной противоположностью друг другу, но должны быть одним и тем же.</p>
+</blockquote>
+<p>[Fire Kasina As Home Practice]</p>
+<blockquote>
+<p>[Огненная касина как домашняя практика]</p>
+</blockquote>
+<p>[SHANNON]
+At home, would it be better for me to continue with fire kasina or go back to my pre-retreat vipassana meditation?</p>
+<blockquote>
+<p>Дома мне лучше продолжить огненную касину или вернуться к моей доретритной медитации випассаны?</p>
+</blockquote>
+<p>[DANIEL]
+Continuing with fire kasina would provide the world another useful data point on the speed at which strong concentration fades; keeping up the practice would also contribute to mastery as you integrate in daily living.</p>
+<blockquote>
+<p>Продолжение огненной касины дало бы миру еще одну полезную точку данных о скорости, с которой сильная концентрация угасает; поддержание практики также способствовало бы мастерству по мере интеграции в повседневную жизнь.</p>
+</blockquote>
+<p>[SHANNON]
+When walking around, do you recommend I go for that spacious, luminous view we spoke about?</p>
+<blockquote>
+<p>Когда я хожу, рекомендуешь ли ты мне стремиться к тому просторному, светящемуся видению, о котором мы говорили?</p>
+</blockquote>
+<p>I experience it as �no hard edges�.</p>
+<blockquote>
+<p>Я переживаю это как «без жестких краев».</p>
+</blockquote>
+<p>[DANIEL]
+Holding the view has tremendous value.</p>
+<blockquote>
+<p>Удерживание взгляда имеет огромную ценность.</p>
+</blockquote>
+<p>No hard edges is a good way to go, but do not miss the intricacy of everything.</p>
+<blockquote>
+<p>«Без жестких краев» - хороший путь, но не упускай сложность всего.</p>
+</blockquote>
+<p>Notice the edges of the qualities of what is in space, yet also that there are no hard edges to space itself.</p>
+<blockquote>
+<p>Замечай края качеств того, что находится в пространстве, но также и то, что у самого пространства нет жестких краев.</p>
+</blockquote>
+<p>[Value of Sequence]</p>
+<blockquote>
+<p>[Ценность последовательности]</p>
+</blockquote>
+<p>[SHANNON]
+I continue to initiate the meditations by observing the candle flame, then moving through the sequence.</p>
+<blockquote>
+<p>Я продолжаю начинать медитации с наблюдения за пламенем свечи, а затем прохожу через последовательность.</p>
+</blockquote>
+<p>Yesterday it was slower, as I was in dissolution longer.</p>
+<blockquote>
+<p>Вчера это было медленнее, поскольку я дольше находилась в растворении.</p>
+</blockquote>
+<p>Then fruitions were occurring again.</p>
+<blockquote>
+<p>Затем плодоношения снова начали происходить.</p>
+</blockquote>
+<p>I am happy with any bits of successful intending I can do before the fruitions.</p>
+<blockquote>
+<p>Я рада любым крупицам успешного намеревания, которые могу выполнить до плодоношений.</p>
+</blockquote>
+<p>[DANIEL]
+Navigating the sequence rapidly is a core skill.</p>
+<blockquote>
+<p>Быстрое прохождение последовательности - ключевой навык.</p>
+</blockquote>
+<p>[SHANNON]
+Over the course of the retreat, the candle flame was useful in the following ways:</p>
+<blockquote>
+<p>На протяжении ретрита пламя свечи было полезно следующими способами:</p>
+</blockquote>
+<ol>
+<li>To re-start the sequence in order to gain mastery by repeatedly running through the phases from start to finish.</li>
+</ol>
+<blockquote>
+<ol>
+<li>Чтобы заново запускать последовательность для обретения мастерства через многократное прохождение фаз от начала до конца.</li>
+</ol>
+</blockquote>
+<ol start="2">
+<li>To re-establish a clear after-image whenever necessary.</li>
+</ol>
+<blockquote>
+<ol start="2">
+<li>Чтобы при необходимости заново устанавливать ясный послеобраз.</li>
+</ol>
+</blockquote>
+<ol start="3">
+<li>During intense, psychologically challenging periods, sitting by the candlelight, particularly at night, was soothing.</li>
+</ol>
+<blockquote>
+<ol start="3">
+<li>Во время интенсивных, психологически сложных периодов сидение при свете свечи, особенно ночью, успокаивало.</li>
+</ol>
+</blockquote>
+<ol start="4">
+<li>When lost in dissolution, if I could muster the effort to lift my head, looking at the brightly burning flame instantly upped the mental energy.</li>
+</ol>
+<blockquote>
+<ol start="4">
+<li>Когда я терялась в растворении, если мне удавалось собрать усилие, чтобы поднять голову, взгляд на ярко горящее пламя мгновенно повышал умственную энергию.</li>
+</ol>
+</blockquote>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

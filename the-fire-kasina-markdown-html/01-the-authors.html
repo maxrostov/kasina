@@ -8,7 +8,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body x-data="{ theme: $persist('light').as('kasina-theme'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
+<body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
   <div class="layout">
     <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="site-nav" x-bind:aria-expanded="menuOpen.toString()" x-on:click="menuOpen = true">
       <span></span>
@@ -111,7 +111,10 @@
 <li><a href="32-appendix-c-candle-suggestions.html">Appendix C: Candle Suggestions</a></li>
     </ul>
   </div>
-  <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+  <div class="nav-actions">
+    <button class="theme-toggle" type="button" x-on:click="theme = theme === 'dark' ? 'light' : 'dark'" x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"></button>
+    <button class="mode-toggle" type="button" x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'" x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"></button>
+  </div>
 </nav>
 
     </div>

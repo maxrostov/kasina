@@ -59,7 +59,8 @@ a {
   display: none;
 }
 
-.theme-toggle {
+.theme-toggle,
+.mode-toggle {
   width: 100%;
   border: 1px solid var(--border);
   border-radius: 999px;
@@ -70,8 +71,14 @@ a {
   cursor: pointer;
 }
 
-.theme-toggle:hover {
+.theme-toggle:hover,
+.mode-toggle:hover {
   border-color: var(--accent);
+}
+
+.nav-actions {
+  display: grid;
+  gap: 0.6rem;
 }
 
 .shell {
@@ -184,6 +191,26 @@ blockquote {
   background: var(--quote-bg);
   border-left: 4px solid var(--accent);
   color: var(--text);
+}
+
+body[data-content-mode="translation"] main > :not(blockquote) {
+  display: none;
+}
+
+body[data-content-mode="translation"] main > blockquote {
+  margin: 1rem 0;
+  padding: 0;
+  background: transparent;
+  border-left: 0;
+  color: var(--text);
+}
+
+body[data-content-mode="translation"] main > blockquote > :first-child {
+  margin-top: 0;
+}
+
+body[data-content-mode="translation"] main > blockquote > :last-child {
+  margin-bottom: 0;
 }
 
 code {

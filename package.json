@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "node build-html.js"
+    "build": "node build-html.js",
+    "serve": "node serve.js"
   },
   "dependencies": {
     "markdown-it": "^14.1.0"

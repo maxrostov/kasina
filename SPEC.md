@@ -9,21 +9,24 @@
 ```bash
 node build-html.js <source-dir> [output-dir]
 npm run build -- <source-dir> [output-dir]
+npm run serve
 ```
 
 - `<source-dir>` обязателен и должен указывать на папку.
 - `[output-dir]` опционален.
 - Если `[output-dir]` не указан, скрипт пишет в `<source-dir>-html`.
 - Папка результата удаляется и создается заново при каждой сборке.
+- `npm run serve` запускает локальный HTTP-сервер на порту 3000 для просмотра папки `the-fire-kasina-markdown-html`.
 
 ## Файлы программы
 
 - `build-html.js`: Node.js-скрипт сборки и логика конвертации Markdown.
+- `serve.js`: Node.js-скрипт для запуска локального HTTP-сервера для просмотра сгенерированного HTML.
 - `template.html`: общий HTML-шаблон страницы.
 - `nav.html`: шаблон правой боковой навигации.
 - `styles.css`: исходный CSS оболочки, навигации, темы и layout, который копируется в результат как `publication.css`.
 - `article.css`: исходный CSS оформления текста статьи, который копируется в результат как `article.css`.
-- `package.json`: npm-скрипт и зависимость `markdown-it`.
+- `package.json`: npm-скрипты и зависимость `markdown-it`.
 
 ## Правила входных данных
 
@@ -89,6 +92,7 @@ Markdown-ссылки обрабатываются через renderer rules б�
 ```bash
 node --check build-html.js
 npm run build -- the-fire-kasina-markdown
+npm run serve
 ```
 
 Ожидаемый результат:
@@ -96,4 +100,4 @@ npm run build -- the-fire-kasina-markdown
 - существует `the-fire-kasina-markdown-html/index.html`;
 - существуют `the-fire-kasina-markdown-html/publication.css` и `the-fire-kasina-markdown-html/article.css`;
 - внутренние ссылки на документы ведут на `.html`, а не на `.md`;
-- в сгенерированных страницах нет `<header>`, нет `<ol>` в навигации и нет inline `<style>`.
+- сервер запускается на http://localhost:3000/ и корректно обслуживает статические файлы;

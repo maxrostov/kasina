@@ -10,7 +10,7 @@
 </head>
 <body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
   <div class="layout">
-    <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="site-nav" x-bind:aria-expanded="menuOpen.toString()" x-on:click="menuOpen = true">
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="site-nav" x-bind:aria-expanded="menuOpen.toString()" x-on:click="menuOpen = !menuOpen">
       <span></span>
       <span></span>
       <span></span>

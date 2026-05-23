@@ -206,7 +206,7 @@ main {
     left: 0;
     bottom: 0;
     z-index: 5;
-    width: min(20rem, calc(100vw - 3rem));
+    width: min(17rem, calc(100vw - 3rem));
     height: 100dvh;
     max-height: none;
     border-radius: 0;

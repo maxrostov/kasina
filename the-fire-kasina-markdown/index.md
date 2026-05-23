@@ -1,36 +1,9 @@
 # The Fire Kasina
 
-## Contents
+> Questions and Answers on Retreat
+> with Practice Notes and Commentary
+> Shannon Stein & Daniel M. Ingram
 
-- [The Authors](01-the-authors.md)
-- [Introduction](02-introduction.md)
-- [Prologue](03-prologue.md)
-- [Day One](04-day-one.md)
-- [Day Two](05-day-two.md)
-- [Day Three](06-day-three.md)
-- [Day Four](07-day-four.md)
-- [Day Five](08-day-five.md)
-- [Day Six](09-day-six.md)
-- [Day Seven](10-day-seven.md)
-- [Day Eight](11-day-eight.md)
-- [Day Nine](12-day-nine.md)
-- [Day Ten](13-day-ten.md)
-- [Day Eleven](14-day-eleven.md)
-- [Day Twelve](15-day-twelve.md)
-- [Day Thirteen](16-day-thirteen.md)
-- [Day Fourteen](17-day-fourteen.md)
-- [Day Fifteen](18-day-fifteen.md)
-- [Day Sixteen](19-day-sixteen.md)
-- [Day Seventeen](20-day-seventeen.md)
-- [Day Eighteen](21-day-eighteen.md)
-- [Day Twenty](22-day-twenty.md)
-- [Day Twenty-One](23-day-twenty-one.md)
-- [Day Twenty-Two](24-day-twenty-two.md)
-- [Day Twenty-Three](25-day-twenty-three.md)
-- [Day Twenty-Four](26-day-twenty-four.md)
-- [Day Twenty-Five](27-day-twenty-five.md)
-- [Two Weeks After the Retreat](28-two-weeks-after-the-retreat.md)
-- [Conclusion](29-conclusion.md)
-- [Appendix A: Glossary of Technical Terms](30-appendix-a-glossary-of-technical-terms.md)
-- [Appendix B: Nirodha Samapatti](31-appendix-b-nirodha-samapatti.md)
-- [Appendix C: Candle Suggestions](32-appendix-c-candle-suggestions.md)
+Перевод полностью сделан нейросетью `Gemini 3.1 Pro` в рамках проекта [Переведи буддиста](https://firekasina.org/fire-kasina-book/).
+
+[сайт книги](https://firekasina.org/fire-kasina-book/)

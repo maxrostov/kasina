@@ -11,32 +11,27 @@
   <script>
     document.addEventListener("click", (event) => {
       const mode = document.body.dataset.contentMode;
-      const quote = event.target.closest("main > blockquote[data-original-toggle]");
-      const original = event.target.closest("main > .original-block[data-translation-toggle]");
-
-      if (
-        (mode !== "translation" || !quote) &&
-        (mode !== "original" || !original)
-      ) {
-        return;
-      }
+      const translation = event.target.closest('main > blockquote[lang="ru"]');
+      const original = event.target.closest('main > [lang="en"]');
 
       if (event.target.closest("a, button, input, textarea, select, summary")) {
         return;
       }
 
-      if (mode === "translation") {
-        const expanded = quote.classList.toggle("original-visible");
-        quote
-          .querySelector(".translation-original")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "translation" && translation) {
+        const pairedOriginal = translation.previousElementSibling;
+
+        if (pairedOriginal?.matches('[lang="en"]')) {
+          pairedOriginal.classList.toggle("paired-visible");
+        }
       }
 
-      if (mode === "original") {
-        const expanded = original.classList.toggle("translation-visible");
-        original
-          .querySelector(".original-translation")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "original" && original) {
+        const pairedTranslation = original.nextElementSibling;
+
+        if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
+          pairedTranslation.classList.toggle("paired-visible");
+        }
       }
     });
   </script>
@@ -51,335 +46,118 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
-<div class="original-block" data-translation-toggle>
-<h1>Two Weeks After the Retreat</h1>
-<div class="original-translation" aria-hidden="true">
-<p>Две недели после ретрита</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<h1>Two Weeks After the Retreat</h1>
-</div>
-<p>Две недели после ретрита</p>
+<h1 lang="en">Two Weeks After the Retreat</h1>
+<blockquote lang="ru">
+Две недели после ретрита
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[First Jhana / Starting Over ~ Staying in a �ana ~ New Progress Territory]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Первая джхана / Начинать заново ~ Оставаться в ньяне ~ Новая территория прогресса]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[First Jhana / Starting Over ~ Staying in a �ana ~ New Progress Territory]</p>
-</div>
-<p>[Первая джхана / Начинать заново ~ Оставаться в ньяне ~ Новая территория прогресса]</p>
+<p lang="en">[First Jhana / Starting Over ~ Staying in a �ana ~ New Progress Territory]</p>
+<blockquote lang="ru">
+[Первая джхана / Начинать заново ~ Оставаться в ньяне ~ Новая территория прогресса]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[First Jhana / Starting Over]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Первая джхана / Начинать заново]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[First Jhana / Starting Over]</p>
-</div>
-<p>[Первая джхана / Начинать заново]</p>
+<p lang="en">[First Jhana / Starting Over]</p>
+<blockquote lang="ru">
+[Первая джхана / Начинать заново]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 I think I am in the first jhana.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Думаю, я нахожусь в первой джхане.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-I think I am in the first jhana.</p>
-</div>
-<p>Думаю, я нахожусь в первой джхане.</p>
+<blockquote lang="ru">
+Думаю, я нахожусь в первой джхане.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>After looking at the flame for a long time, I see a tiny dot (or multiple dots).</p>
-<div class="original-translation" aria-hidden="true">
-<p>После долгого смотрения на пламя я вижу крошечную точку (или несколько точек).</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>After looking at the flame for a long time, I see a tiny dot (or multiple dots).</p>
-</div>
-<p>После долгого смотрения на пламя я вижу крошечную точку (или несколько точек).</p>
+<p lang="en">After looking at the flame for a long time, I see a tiny dot (or multiple dots).</p>
+<blockquote lang="ru">
+После долгого смотрения на пламя я вижу крошечную точку (или несколько точек).
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>It is annoyingly hard to focus, and the dot fades quickly.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Сосредоточиться раздражающе трудно, и точка быстро исчезает.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>It is annoyingly hard to focus, and the dot fades quickly.</p>
-</div>
-<p>Сосредоточиться раздражающе трудно, и точка быстро исчезает.</p>
+<p lang="en">It is annoyingly hard to focus, and the dot fades quickly.</p>
+<blockquote lang="ru">
+Сосредоточиться раздражающе трудно, и точка быстро исчезает.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The open-eyes after-image keeps floating off to the side.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Послеобраз с открытыми глазами постоянно уплывает в сторону.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The open-eyes after-image keeps floating off to the side.</p>
-</div>
-<p>Послеобраз с открытыми глазами постоянно уплывает в сторону.</p>
+<p lang="en">The open-eyes after-image keeps floating off to the side.</p>
+<blockquote lang="ru">
+Послеобраз с открытыми глазами постоянно уплывает в сторону.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>If I sit long enough I seem to skip second jhana and go to third with purple swaths.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Если я сижу достаточно долго, кажется, я пропускаю вторую джхану и перехожу к третьей с фиолетовыми полосами.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>If I sit long enough I seem to skip second jhana and go to third with purple swaths.</p>
-</div>
-<p>Если я сижу достаточно долго, кажется, я пропускаю вторую джхану и перехожу к третьей с фиолетовыми полосами.</p>
+<p lang="en">If I sit long enough I seem to skip second jhana and go to third with purple swaths.</p>
+<blockquote lang="ru">
+Если я сижу достаточно долго, кажется, я пропускаю вторую джхану и перехожу к третьей с фиолетовыми полосами.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Given your high review phase during retreat, it makes good sense that new territory is showing up, as predicted.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Учитывая твою высокую фазу обзора во время ретрита, вполне логично, что появляется новая территория, как и предсказывалось.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Given your high review phase during retreat, it makes good sense that new territory is showing up, as predicted.</p>
-</div>
-<p>Учитывая твою высокую фазу обзора во время ретрита, вполне логично, что появляется новая территория, как и предсказывалось.</p>
+<blockquote lang="ru">
+Учитывая твою высокую фазу обзора во время ретрита, вполне логично, что появляется новая территория, как и предсказывалось.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Purple swaths of colour is not always a sign of third; I can rapidly obtain purple without the candle flame.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Фиолетовые полосы цвета не всегда являются признаком третьей; я могу быстро получить фиолетовый и без пламени свечи.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Purple swaths of colour is not always a sign of third; I can rapidly obtain purple without the candle flame.</p>
-</div>
-<p>Фиолетовые полосы цвета не всегда являются признаком третьей; я могу быстро получить фиолетовый и без пламени свечи.</p>
+<p lang="en">Purple swaths of colour is not always a sign of third; I can rapidly obtain purple without the candle flame.</p>
+<blockquote lang="ru">
+Фиолетовые полосы цвета не всегда являются признаком третьей; я могу быстро получить фиолетовый и без пламени свечи.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Strong fruitions at the end of a progress phase will be a sign it was a new cycle, otherwise, it was likely old territory.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Сильные плодоношения в конце фазы прогресса будут признаком того, что это был новый цикл; иначе, скорее всего, это была старая территория.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Strong fruitions at the end of a progress phase will be a sign it was a new cycle, otherwise, it was likely old territory.</p>
-</div>
-<p>Сильные плодоношения в конце фазы прогресса будут признаком того, что это был новый цикл; иначе, скорее всего, это была старая территория.</p>
+<p lang="en">Strong fruitions at the end of a progress phase will be a sign it was a new cycle, otherwise, it was likely old territory.</p>
+<blockquote lang="ru">
+Сильные плодоношения в конце фазы прогресса будут признаком того, что это был новый цикл; иначе, скорее всего, это была старая территория.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The instructions are the same regardless: keep up your practice!</p>
-<div class="original-translation" aria-hidden="true">
-<p>Инструкции в любом случае те же: продолжай практику!</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The instructions are the same regardless: keep up your practice!</p>
-</div>
-<p>Инструкции в любом случае те же: продолжай практику!</p>
+<p lang="en">The instructions are the same regardless: keep up your practice!</p>
+<blockquote lang="ru">
+Инструкции в любом случае те же: продолжай практику!
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Staying in a �ana]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Оставаться в ньяне]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Staying in a �ana]</p>
-</div>
-<p>[Оставаться в ньяне]</p>
+<p lang="en">[Staying in a �ana]</p>
+<blockquote lang="ru">
+[Оставаться в ньяне]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 I have been looking back on the review phase of the retreat when one decides to stay in a �ana and go deeper with it, how authentic is it really?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я оглядывалась на фазу обзора ретрита, когда человек решает оставаться в ньяне и углубляться в нее: насколько это на самом деле аутентично?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-I have been looking back on the review phase of the retreat when one decides to stay in a �ana and go deeper with it, how authentic is it really?</p>
-</div>
-<p>Я оглядывалась на фазу обзора ретрита, когда человек решает оставаться в ньяне и углубляться в нее: насколько это на самом деле аутентично?</p>
+<blockquote lang="ru">
+Я оглядывалась на фазу обзора ретрита, когда человек решает оставаться в ньяне и углубляться в нее: насколько это на самом деле аутентично?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Review phase with intentions like that during intensive practice can be very samatha-like, so the �anas you enter into may not feel as authentic.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Фаза обзора с такими намерениями во время интенсивной практики может быть очень похожей на саматху, поэтому ньяны, в которые ты входишь, могут ощущаться не такими аутентичными.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Review phase with intentions like that during intensive practice can be very samatha-like, so the �anas you enter into may not feel as authentic.</p>
-</div>
-<p>Фаза обзора с такими намерениями во время интенсивной практики может быть очень похожей на саматху, поэтому ньяны, в которые ты входишь, могут ощущаться не такими аутентичными.</p>
+<blockquote lang="ru">
+Фаза обзора с такими намерениями во время интенсивной практики может быть очень похожей на саматху, поэтому ньяны, в которые ты входишь, могут ощущаться не такими аутентичными.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Daniel and I talked about a meditator returning to �just surviving� when landing in new territory, because the �anas can feel so raw and vivid.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Мы с Дэниелом говорили о том, что медитатор возвращается к «простому выживанию», когда попадает на новую территорию, потому что ньяны могут ощущаться такими сырыми и яркими.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Daniel and I talked about a meditator returning to �just surviving� when landing in new territory, because the �anas can feel so raw and vivid.</p>
-</div>
-<p>Мы с Дэниелом говорили о том, что медитатор возвращается к «простому выживанию», когда попадает на новую территорию, потому что ньяны могут ощущаться такими сырыми и яркими.</p>
+<blockquote lang="ru">
+Мы с Дэниелом говорили о том, что медитатор возвращается к «простому выживанию», когда попадает на новую территорию, потому что ньяны могут ощущаться такими сырыми и яркими.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>There is not the level of finesse in the new, unawakened strata of mind to explore it in a samathalike review fashion, and so what is required is to figure out how to navigate through this new territory of mind.</p>
-<div class="original-translation" aria-hidden="true">
-<p>В новых, непробужденных слоях ума нет такого уровня тонкости, чтобы исследовать их в похожей на саматху манере обзора, поэтому требуется понять, как ориентироваться в этой новой территории ума.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>There is not the level of finesse in the new, unawakened strata of mind to explore it in a samathalike review fashion, and so what is required is to figure out how to navigate through this new territory of mind.</p>
-</div>
-<p>В новых, непробужденных слоях ума нет такого уровня тонкости, чтобы исследовать их в похожей на саматху манере обзора, поэтому требуется понять, как ориентироваться в этой новой территории ума.</p>
+<p lang="en">There is not the level of finesse in the new, unawakened strata of mind to explore it in a samathalike review fashion, and so what is required is to figure out how to navigate through this new territory of mind.</p>
+<blockquote lang="ru">
+В новых, непробужденных слоях ума нет такого уровня тонкости, чтобы исследовать их в похожей на саматху манере обзора, поэтому требуется понять, как ориентироваться в этой новой территории ума.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[New Progress Territory]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Новая территория прогресса]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[New Progress Territory]</p>
-</div>
-<p>[Новая территория прогресса]</p>
+<p lang="en">[New Progress Territory]</p>
+<blockquote lang="ru">
+[Новая территория прогресса]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 When you started over at the end of an insight cycle, were you aware of what new territory you were in or just that it was new?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Когда ты начинал заново в конце цикла прозрения, ты осознавал, на какой новой территории находишься, или только то, что она новая?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-When you started over at the end of an insight cycle, were you aware of what new territory you were in or just that it was new?</p>
-</div>
-<p>Когда ты начинал заново в конце цикла прозрения, ты осознавал, на какой новой территории находишься, или только то, что она новая?</p>
+<blockquote lang="ru">
+Когда ты начинал заново в конце цикла прозрения, ты осознавал, на какой новой территории находишься, или только то, что она новая?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Just that it was new, that I had no mastery of it at all, and I needed to re-learn those skills at a higher level again: how to investigate, and gain competence in that new territory.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Только то, что она была новой, что у меня вообще не было над ней мастерства, и мне нужно было заново учиться этим навыкам на более высоком уровне: как исследовать и обрести компетентность на этой новой территории.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Just that it was new, that I had no mastery of it at all, and I needed to re-learn those skills at a higher level again: how to investigate, and gain competence in that new territory.</p>
-</div>
-<p>Только то, что она была новой, что у меня вообще не было над ней мастерства, и мне нужно было заново учиться этим навыкам на более высоком уровне: как исследовать и обрести компетентность на этой новой территории.</p>
+<blockquote lang="ru">
+Только то, что она была новой, что у меня вообще не было над ней мастерства, и мне нужно было заново учиться этим навыкам на более высоком уровне: как исследовать и обрести компетентность на этой новой территории.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>I went through many cycles of this.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я прошел через множество таких циклов.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>I went through many cycles of this.</p>
-</div>
-<p>Я прошел через множество таких циклов.</p>
+<p lang="en">I went through many cycles of this.</p>
+<blockquote lang="ru">
+Я прошел через множество таких циклов.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>It takes patience to work with the new, unawakened layer of mind.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Для работы с новым, непробужденным слоем ума требуется терпение.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>It takes patience to work with the new, unawakened layer of mind.</p>
-</div>
-<p>Для работы с новым, непробужденным слоем ума требуется терпение.</p>
+<p lang="en">It takes patience to work with the new, unawakened layer of mind.</p>
+<blockquote lang="ru">
+Для работы с новым, непробужденным слоем ума требуется терпение.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>It can be frustrating, but at least you have the opportunity to apply your skills to a fresh layer.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Это может фрустрировать, но по крайней мере у тебя есть возможность применить свои навыки к свежему слою.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>It can be frustrating, but at least you have the opportunity to apply your skills to a fresh layer.</p>
-</div>
-<p>Это может фрустрировать, но по крайней мере у тебя есть возможность применить свои навыки к свежему слою.</p>
+<p lang="en">It can be frustrating, but at least you have the opportunity to apply your skills to a fresh layer.</p>
+<blockquote lang="ru">
+Это может фрустрировать, но по крайней мере у тебя есть возможность применить свои навыки к свежему слою.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 This was an encouraging reminder when I found myself struggling through new territory back at home.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Это было ободряющим напоминанием, когда дома я обнаружила, что с трудом прохожу через новую территорию.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-This was an encouraging reminder when I found myself struggling through new territory back at home.</p>
-</div>
-<p>Это было ободряющим напоминанием, когда дома я обнаружила, что с трудом прохожу через новую территорию.</p>
+<blockquote lang="ru">
+Это было ободряющим напоминанием, когда дома я обнаружила, что с трудом прохожу через новую территорию.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Bill Hamilton had a model in which everyone has a body of psychological work waiting for them at each new level: sometimes slow, dull, boring or at other times like fireworks, dramatic.</p>
-<div class="original-translation" aria-hidden="true">
-<p>У Билла Хэмилтона была модель, согласно которой на каждом новом уровне каждого ждет определенный объем психологической работы: иногда медленной, тусклой, скучной, а иногда драматичной, как фейерверк.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Bill Hamilton had a model in which everyone has a body of psychological work waiting for them at each new level: sometimes slow, dull, boring or at other times like fireworks, dramatic.</p>
-</div>
-<p>У Билла Хэмилтона была модель, согласно которой на каждом новом уровне каждого ждет определенный объем психологической работы: иногда медленной, тусклой, скучной, а иногда драматичной, как фейерверк.</p>
+<blockquote lang="ru">
+У Билла Хэмилтона была модель, согласно которой на каждом новом уровне каждого ждет определенный объем психологической работы: иногда медленной, тусклой, скучной, а иногда драматичной, как фейерверк.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Simply trust that good, useful work is being done on each new cycle.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Просто доверяй, что в каждом новом цикле выполняется хорошая, полезная работа.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Simply trust that good, useful work is being done on each new cycle.</p>
-</div>
-<p>Просто доверяй, что в каждом новом цикле выполняется хорошая, полезная работа.</p>
+<p lang="en">Simply trust that good, useful work is being done on each new cycle.</p>
+<blockquote lang="ru">
+Просто доверяй, что в каждом новом цикле выполняется хорошая, полезная работа.
 </blockquote>
 
       </main>
@@ -438,26 +216,42 @@ Bill Hamilton had a model in which everyone has a body of psychological work wai
         </ul>
     </div>
     <div class="nav-actions">
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="bilingual"
+                    x-model="contentMode"
+                />
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="translation"
+                    x-model="contentMode"
+                />
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="original"
+                    x-model="contentMode"
+                />
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
+
         <button
             class="theme-toggle"
             type="button"
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+            x-text="theme === 'dark' ? 'Светлая тема' : 'Темная тема'"
         ></button>
-        <fieldset class="mode-toggle" aria-label="Text display mode">
-            <label>
-                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
-                <span>Билингва</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
-                <span>Только перевод</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="original" x-model="contentMode">
-                <span>Только оригинал</span>
-            </label>
-        </fieldset>
     </div>
 </nav>
 

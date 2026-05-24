@@ -10,32 +10,27 @@
   <script>
     document.addEventListener("click", (event) => {
       const mode = document.body.dataset.contentMode;
-      const quote = event.target.closest("main > blockquote[data-original-toggle]");
-      const original = event.target.closest("main > .original-block[data-translation-toggle]");
-
-      if (
-        (mode !== "translation" || !quote) &&
-        (mode !== "original" || !original)
-      ) {
-        return;
-      }
+      const translation = event.target.closest('main > blockquote[lang="ru"]');
+      const original = event.target.closest('main > [lang="en"]');
 
       if (event.target.closest("a, button, input, textarea, select, summary")) {
         return;
       }
 
-      if (mode === "translation") {
-        const expanded = quote.classList.toggle("original-visible");
-        quote
-          .querySelector(".translation-original")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "translation" && translation) {
+        const pairedOriginal = translation.previousElementSibling;
+
+        if (pairedOriginal?.matches('[lang="en"]')) {
+          pairedOriginal.classList.toggle("paired-visible");
+        }
       }
 
-      if (mode === "original") {
-        const expanded = original.classList.toggle("translation-visible");
-        original
-          .querySelector(".original-translation")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "original" && original) {
+        const pairedTranslation = original.nextElementSibling;
+
+        if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
+          pairedTranslation.classList.toggle("paired-visible");
+        }
       }
     });
   </script>

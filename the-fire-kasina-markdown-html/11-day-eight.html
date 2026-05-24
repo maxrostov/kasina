@@ -11,32 +11,27 @@
   <script>
     document.addEventListener("click", (event) => {
       const mode = document.body.dataset.contentMode;
-      const quote = event.target.closest("main > blockquote[data-original-toggle]");
-      const original = event.target.closest("main > .original-block[data-translation-toggle]");
-
-      if (
-        (mode !== "translation" || !quote) &&
-        (mode !== "original" || !original)
-      ) {
-        return;
-      }
+      const translation = event.target.closest('main > blockquote[lang="ru"]');
+      const original = event.target.closest('main > [lang="en"]');
 
       if (event.target.closest("a, button, input, textarea, select, summary")) {
         return;
       }
 
-      if (mode === "translation") {
-        const expanded = quote.classList.toggle("original-visible");
-        quote
-          .querySelector(".translation-original")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "translation" && translation) {
+        const pairedOriginal = translation.previousElementSibling;
+
+        if (pairedOriginal?.matches('[lang="en"]')) {
+          pairedOriginal.classList.toggle("paired-visible");
+        }
       }
 
-      if (mode === "original") {
-        const expanded = original.classList.toggle("translation-visible");
-        original
-          .querySelector(".original-translation")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "original" && original) {
+        const pairedTranslation = original.nextElementSibling;
+
+        if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
+          pairedTranslation.classList.toggle("paired-visible");
+        }
       }
     });
   </script>
@@ -51,505 +46,175 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
-<div class="original-block" data-translation-toggle>
-<h1>Day Eight</h1>
-<div class="original-translation" aria-hidden="true">
-<p>День восьмой</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<h1>Day Eight</h1>
-</div>
-<p>День восьмой</p>
+<h1 lang="en">Day Eight</h1>
+<blockquote lang="ru">
+День восьмой
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Intentions ~ Eyes-Open Practice ~ Travelling versus Lucid Dreaming versus Fourth Jhana]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Намерения ~ Практика с открытыми глазами ~ Путешествие, осознанное сновидение и четвертая джхана</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Intentions ~ Eyes-Open Practice ~ Travelling versus Lucid Dreaming versus Fourth Jhana]</p>
-</div>
-<p>Намерения ~ Практика с открытыми глазами ~ Путешествие, осознанное сновидение и четвертая джхана</p>
+<p lang="en">[Intentions ~ Eyes-Open Practice ~ Travelling versus Lucid Dreaming versus Fourth Jhana]</p>
+<blockquote lang="ru">
+Намерения ~ Практика с открытыми глазами ~ Путешествие, осознанное сновидение и четвертая джхана
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Intentions]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Намерения</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Intentions]</p>
-</div>
-<p>Намерения</p>
+<p lang="en">[Intentions]</p>
+<blockquote lang="ru">
+Намерения
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Suddenly during the sit I will come up with an intention I want to make, but afterwards I have no idea if this is what I am supposed to be aiming for.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Вдруг во время сидения у меня возникает намерение, которое я хочу задать, но после этого я понятия не имею, действительно ли это то, к чему мне следует стремиться.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Suddenly during the sit I will come up with an intention I want to make, but afterwards I have no idea if this is what I am supposed to be aiming for.</p>
-</div>
-<p>Вдруг во время сидения у меня возникает намерение, которое я хочу задать, но после этого я понятия не имею, действительно ли это то, к чему мне следует стремиться.</p>
+<blockquote lang="ru">
+Вдруг во время сидения у меня возникает намерение, которое я хочу задать, но после этого я понятия не имею, действительно ли это то, к чему мне следует стремиться.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 We discover much about ourselves by what we want to see or do.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Мы многое узнаем о себе по тому, что хотим увидеть или сделать.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-We discover much about ourselves by what we want to see or do.</p>
-</div>
-<p>Мы многое узнаем о себе по тому, что хотим увидеть или сделать.</p>
+<blockquote lang="ru">
+Мы многое узнаем о себе по тому, что хотим увидеть или сделать.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>What we may realise about our real motivations is sometimes surprising.</p>
-<div class="original-translation" aria-hidden="true">
-<p>То, что мы можем осознать о своих настоящих мотивациях, иногда удивляет.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>What we may realise about our real motivations is sometimes surprising.</p>
-</div>
-<p>То, что мы можем осознать о своих настоящих мотивациях, иногда удивляет.</p>
+<p lang="en">What we may realise about our real motivations is sometimes surprising.</p>
+<blockquote lang="ru">
+То, что мы можем осознать о своих настоящих мотивациях, иногда удивляет.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Unfortunately, at this phase, the visions and creatures in the meditations only last seconds.</p>
-<div class="original-translation" aria-hidden="true">
-<p>К сожалению, на этой фазе видения и существа в медитациях длятся всего секунды.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Unfortunately, at this phase, the visions and creatures in the meditations only last seconds.</p>
-</div>
-<p>К сожалению, на этой фазе видения и существа в медитациях длятся всего секунды.</p>
+<blockquote lang="ru">
+К сожалению, на этой фазе видения и существа в медитациях длятся всего секунды.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Should I be intending for them to last longer?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Следует ли мне намереваться, чтобы они длились дольше?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Should I be intending for them to last longer?</p>
-</div>
-<p>Следует ли мне намереваться, чтобы они длились дольше?</p>
+<p lang="en">Should I be intending for them to last longer?</p>
+<blockquote lang="ru">
+Следует ли мне намереваться, чтобы они длились дольше?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>For example, I had three whimsical characters show up in front of me and the middle one smiled at me, then they vanished.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Например, передо мной появились три причудливых персонажа, и средний улыбнулся мне, а затем они исчезли.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>For example, I had three whimsical characters show up in front of me and the middle one smiled at me, then they vanished.</p>
-</div>
-<p>Например, передо мной появились три причудливых персонажа, и средний улыбнулся мне, а затем они исчезли.</p>
+<p lang="en">For example, I had three whimsical characters show up in front of me and the middle one smiled at me, then they vanished.</p>
+<blockquote lang="ru">
+Например, передо мной появились три причудливых персонажа, и средний улыбнулся мне, а затем они исчезли.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Magick 101: intend that when beings arise, may I ask them their name and may they tell me.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Магия 101: намеревайтесь, чтобы, когда возникают существа, я могла спросить их имя, и пусть они скажут мне его.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Magick 101: intend that when beings arise, may I ask them their name and may they tell me.</p>
-</div>
-<p>Магия 101: намеревайтесь, чтобы, когда возникают существа, я могла спросить их имя, и пусть они скажут мне его.</p>
+<blockquote lang="ru">
+Магия 101: намеревайтесь, чтобы, когда возникают существа, я могла спросить их имя, и пусть они скажут мне его.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Doing so can actually help stabilise the experience.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Это действительно может помочь стабилизировать переживание.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Doing so can actually help stabilise the experience.</p>
-</div>
-<p>Это действительно может помочь стабилизировать переживание.</p>
+<p lang="en">Doing so can actually help stabilise the experience.</p>
+<blockquote lang="ru">
+Это действительно может помочь стабилизировать переживание.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 The images and visions I am getting are not the Medicine Buddha, so I immediately lose interest, but is the idea to go with whatever you get?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Образы и видения, которые я получаю, не являются Буддой Медицины, поэтому я сразу теряю интерес, но идея в том, чтобы идти с тем, что приходит?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-The images and visions I am getting are not the Medicine Buddha, so I immediately lose interest, but is the idea to go with whatever you get?</p>
-</div>
-<p>Образы и видения, которые я получаю, не являются Буддой Медицины, поэтому я сразу теряю интерес, но идея в том, чтобы идти с тем, что приходит?</p>
+<blockquote lang="ru">
+Образы и видения, которые я получаю, не являются Буддой Медицины, поэтому я сразу теряю интерес, но идея в том, чтобы идти с тем, что приходит?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 This question is a source of debate in the magickal world.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Этот вопрос является предметом споров в магическом мире.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-This question is a source of debate in the magickal world.</p>
-</div>
-<p>Этот вопрос является предметом споров в магическом мире.</p>
+<blockquote lang="ru">
+Этот вопрос является предметом споров в магическом мире.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>On one hand you have groups like the spiritualists, who are relatively indiscriminate in what they conjure and are often willing to communicate with anything out there.</p>
-<div class="original-translation" aria-hidden="true">
-<p>С одной стороны, есть группы вроде спиритуалистов, которые относительно неразборчивы в том, что вызывают, и часто готовы общаться с чем угодно, что там находится.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>On one hand you have groups like the spiritualists, who are relatively indiscriminate in what they conjure and are often willing to communicate with anything out there.</p>
-</div>
-<p>С одной стороны, есть группы вроде спиритуалистов, которые относительно неразборчивы в том, что вызывают, и часто готовы общаться с чем угодно, что там находится.</p>
+<p lang="en">On one hand you have groups like the spiritualists, who are relatively indiscriminate in what they conjure and are often willing to communicate with anything out there.</p>
+<blockquote lang="ru">
+С одной стороны, есть группы вроде спиритуалистов, которые относительно неразборчивы в том, что вызывают, и часто готовы общаться с чем угодно, что там находится.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>On the other hand you have groups like ceremonial magicians, who generally are much more selective (and often elitist) in their invocations and associations.</p>
-<div class="original-translation" aria-hidden="true">
-<p>С другой стороны, есть группы вроде церемониальных магов, которые обычно гораздо более избирательны (и часто элитарны) в своих призываниях и связях.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>On the other hand you have groups like ceremonial magicians, who generally are much more selective (and often elitist) in their invocations and associations.</p>
-</div>
-<p>С другой стороны, есть группы вроде церемониальных магов, которые обычно гораздо более избирательны (и часто элитарны) в своих призываниях и связях.</p>
+<p lang="en">On the other hand you have groups like ceremonial magicians, who generally are much more selective (and often elitist) in their invocations and associations.</p>
+<blockquote lang="ru">
+С другой стороны, есть группы вроде церемониальных магов, которые обычно гораздо более избирательны (и часто элитарны) в своих призываниях и связях.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Everyone has to decide for themselves where they stand.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Каждый должен сам решить, какую позицию занимает.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Everyone has to decide for themselves where they stand.</p>
-</div>
-<p>Каждый должен сам решить, какую позицию занимает.</p>
+<p lang="en">Everyone has to decide for themselves where they stand.</p>
+<blockquote lang="ru">
+Каждый должен сам решить, какую позицию занимает.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>(SHANNON - We joked about whether there should be equal rights for these entities.)</p>
-<div class="original-translation" aria-hidden="true">
-<p>(ШЭННОН - мы шутили о том, должны ли у этих сущностей быть равные права.)</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>(SHANNON - We joked about whether there should be equal rights for these entities.)</p>
-</div>
-<p>(ШЭННОН - мы шутили о том, должны ли у этих сущностей быть равные права.)</p>
+<p lang="en">(SHANNON - We joked about whether there should be equal rights for these entities.)</p>
+<blockquote lang="ru">
+(ШЭННОН - мы шутили о том, должны ли у этих сущностей быть равные права.)
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Eyes-Open Practice]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Практика с открытыми глазами</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Eyes-Open Practice]</p>
-</div>
-<p>Практика с открытыми глазами</p>
+<p lang="en">[Eyes-Open Practice]</p>
+<blockquote lang="ru">
+Практика с открытыми глазами
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Stunning colours are easy to access in the sits with eyes closed but not with eyes open or walking around.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Потрясающие цвета легко доступны в сидениях с закрытыми глазами, но не с открытыми глазами и не во время ходьбы.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Stunning colours are easy to access in the sits with eyes closed but not with eyes open or walking around.</p>
-</div>
-<p>Потрясающие цвета легко доступны в сидениях с закрытыми глазами, но не с открытыми глазами и не во время ходьбы.</p>
+<blockquote lang="ru">
+Потрясающие цвета легко доступны в сидениях с закрытыми глазами, но не с открытыми глазами и не во время ходьбы.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>My interest in developing specific skills (such as the ability to see mental colour with my eyes open) was a fluid process, waxing and waning throughout the retreat, depending on what conditions were presenting at each particular phase.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Мой интерес к развитию конкретных навыков (таких как способность видеть ментальный цвет с открытыми глазами) был текучим процессом, усиливаясь и ослабевая на протяжении ретрита в зависимости от условий, проявлявшихся на каждой конкретной фазе.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>My interest in developing specific skills (such as the ability to see mental colour with my eyes open) was a fluid process, waxing and waning throughout the retreat, depending on what conditions were presenting at each particular phase.</p>
-</div>
-<p>Мой интерес к развитию конкретных навыков (таких как способность видеть ментальный цвет с открытыми глазами) был текучим процессом, усиливаясь и ослабевая на протяжении ретрита в зависимости от условий, проявлявшихся на каждой конкретной фазе.</p>
+<p lang="en">My interest in developing specific skills (such as the ability to see mental colour with my eyes open) was a fluid process, waxing and waning throughout the retreat, depending on what conditions were presenting at each particular phase.</p>
+<blockquote lang="ru">
+Мой интерес к развитию конкретных навыков (таких как способность видеть ментальный цвет с открытыми глазами) был текучим процессом, усиливаясь и ослабевая на протяжении ретрита в зависимости от условий, проявлявшихся на каждой конкретной фазе.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Daniel patiently reiterated instructions whenever I expressed renewed interest in an earlier teaching.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Дэниел терпеливо повторял инструкции всякий раз, когда я вновь проявляла интерес к более раннему учению.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Daniel patiently reiterated instructions whenever I expressed renewed interest in an earlier teaching.</p>
-</div>
-<p>Дэниел терпеливо повторял инструкции всякий раз, когда я вновь проявляла интерес к более раннему учению.</p>
+<p lang="en">Daniel patiently reiterated instructions whenever I expressed renewed interest in an earlier teaching.</p>
+<blockquote lang="ru">
+Дэниел терпеливо повторял инструкции всякий раз, когда я вновь проявляла интерес к более раннему учению.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>At one point I sheepishly apologised for getting him to run through something yet again, and he came back with: “Do you know how many times my teachers had to say the same thing over and over to me? Hundreds!”</p>
-<div class="original-translation" aria-hidden="true">
-<p>В какой-то момент я смущенно извинилась за то, что заставляю его снова проходить через одно и то же, а он ответил: «Ты знаешь, сколько раз моим учителям приходилось повторять мне одно и то же? Сотни!»</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>At one point I sheepishly apologised for getting him to run through something yet again, and he came back with: “Do you know how many times my teachers had to say the same thing over and over to me? Hundreds!”</p>
-</div>
-<p>В какой-то момент я смущенно извинилась за то, что заставляю его снова проходить через одно и то же, а он ответил: «Ты знаешь, сколько раз моим учителям приходилось повторять мне одно и то же? Сотни!»</p>
+<p lang="en">At one point I sheepishly apologised for getting him to run through something yet again, and he came back with: “Do you know how many times my teachers had to say the same thing over and over to me? Hundreds!”</p>
+<blockquote lang="ru">
+В какой-то момент я смущенно извинилась за то, что заставляю его снова проходить через одно и то же, а он ответил: «Ты знаешь, сколько раз моим учителям приходилось повторять мне одно и то же? Сотни!»
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Much of the challenge of what we learn to do in formal meditation lies not in the complexity, rather in the sometimes counter-intuitive yet skilful methods required to progress compared to the unproductive antics of the untrained mind.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Большая часть сложности того, чему мы учимся в формальной медитации, заключается не в сложности как таковой, а в иногда контринтуитивных, но искусных методах, необходимых для продвижения, в отличие от непродуктивных выходок нетренированного ума.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Much of the challenge of what we learn to do in formal meditation lies not in the complexity, rather in the sometimes counter-intuitive yet skilful methods required to progress compared to the unproductive antics of the untrained mind.</p>
-</div>
-<p>Большая часть сложности того, чему мы учимся в формальной медитации, заключается не в сложности как таковой, а в иногда контринтуитивных, но искусных методах, необходимых для продвижения, в отличие от непродуктивных выходок нетренированного ума.</p>
+<p lang="en">Much of the challenge of what we learn to do in formal meditation lies not in the complexity, rather in the sometimes counter-intuitive yet skilful methods required to progress compared to the unproductive antics of the untrained mind.</p>
+<blockquote lang="ru">
+Большая часть сложности того, чему мы учимся в формальной медитации, заключается не в сложности как таковой, а в иногда контринтуитивных, но искусных методах, необходимых для продвижения, в отличие от непродуктивных выходок нетренированного ума.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Regular review of meditation teachings is essential.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Регулярное повторение медитативных учений необходимо.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Regular review of meditation teachings is essential.</p>
-</div>
-<p>Регулярное повторение медитативных учений необходимо.</p>
+<p lang="en">Regular review of meditation teachings is essential.</p>
+<blockquote lang="ru">
+Регулярное повторение медитативных учений необходимо.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 In the Visuddhimagga the standard instructions are to obtain a stable image from the kasina, then go carefully to a different location with eyes open while maintaining the image all the way there.</p>
-<div class="original-translation" aria-hidden="true">
-<p>В «Висуддхимагге» стандартные инструкции таковы: получить устойчивый образ от касины, затем осторожно перейти в другое место с открытыми глазами, сохраняя образ на всем пути.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-In the Visuddhimagga the standard instructions are to obtain a stable image from the kasina, then go carefully to a different location with eyes open while maintaining the image all the way there.</p>
-</div>
-<p>В «Висуддхимагге» стандартные инструкции таковы: получить устойчивый образ от касины, затем осторожно перейти в другое место с открытыми глазами, сохраняя образ на всем пути.</p>
+<blockquote lang="ru">
+В «Висуддхимагге» стандартные инструкции таковы: получить устойчивый образ от касины, затем осторожно перейти в другое место с открытыми глазами, сохраняя образ на всем пути.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>On retreat one can practise with eyes open at night and dawn, and, as you progress, keep extending the eyes-open images out into the day.</p>
-<div class="original-translation" aria-hidden="true">
-<p>На ретрите можно практиковать с открытыми глазами ночью и на рассвете, а по мере продвижения продолжать расширять образы с открытыми глазами на дневное время.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>On retreat one can practise with eyes open at night and dawn, and, as you progress, keep extending the eyes-open images out into the day.</p>
-</div>
-<p>На ретрите можно практиковать с открытыми глазами ночью и на рассвете, а по мере продвижения продолжать расширять образы с открытыми глазами на дневное время.</p>
+<p lang="en">On retreat one can practise with eyes open at night and dawn, and, as you progress, keep extending the eyes-open images out into the day.</p>
+<blockquote lang="ru">
+На ретрите можно практиковать с открытыми глазами ночью и на рассвете, а по мере продвижения продолжать расширять образы с открытыми глазами на дневное время.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>It got to the point on my last retreat where one of the other meditators could see the colours of a pentagram I was drawing in the air in broad daylight.</p>
-<div class="original-translation" aria-hidden="true">
-<p>На моем последнем ретрите дошло до того, что один из других медитирующих мог видеть цвета пентаграммы, которую я рисовал в воздухе при ярком дневном свете.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>It got to the point on my last retreat where one of the other meditators could see the colours of a pentagram I was drawing in the air in broad daylight.</p>
-</div>
-<p>На моем последнем ретрите дошло до того, что один из других медитирующих мог видеть цвета пентаграммы, которую я рисовал в воздухе при ярком дневном свете.</p>
+<p lang="en">It got to the point on my last retreat where one of the other meditators could see the colours of a pentagram I was drawing in the air in broad daylight.</p>
+<blockquote lang="ru">
+На моем последнем ретрите дошло до того, что один из других медитирующих мог видеть цвета пентаграммы, которую я рисовал в воздухе при ярком дневном свете.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Travelling versus Lucid Dreaming versus Fourth Jhana]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Путешествие, осознанное сновидение и четвертая джхана</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Travelling versus Lucid Dreaming versus Fourth Jhana]</p>
-</div>
-<p>Путешествие, осознанное сновидение и четвертая джхана</p>
+<p lang="en">[Travelling versus Lucid Dreaming versus Fourth Jhana]</p>
+<blockquote lang="ru">
+Путешествие, осознанное сновидение и четвертая джхана
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 How do you experience the difference between a vision, travelling and a lucid dream?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Как вы переживаете различие между видением, путешествием и осознанным сном?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-How do you experience the difference between a vision, travelling and a lucid dream?</p>
-</div>
-<p>Как вы переживаете различие между видением, путешествием и осознанным сном?</p>
+<blockquote lang="ru">
+Как вы переживаете различие между видением, путешествием и осознанным сном?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>And does fourth jhana fit into any of the above?</p>
-<div class="original-translation" aria-hidden="true">
-<p>И вписывается ли четвертая джхана во что-либо из этого?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>And does fourth jhana fit into any of the above?</p>
-</div>
-<p>И вписывается ли четвертая джхана во что-либо из этого?</p>
+<p lang="en">And does fourth jhana fit into any of the above?</p>
+<blockquote lang="ru">
+И вписывается ли четвертая джхана во что-либо из этого?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Dreaming: sleeping.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Сновидение: сон.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Dreaming: sleeping.</p>
-</div>
-<p>Сновидение: сон.</p>
+<blockquote lang="ru">
+Сновидение: сон.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Lucid dreaming: you know it is a dream and have some control.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Осознанное сновидение: вы знаете, что это сон, и обладаете некоторым контролем.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Lucid dreaming: you know it is a dream and have some control.</p>
-</div>
-<p>Осознанное сновидение: вы знаете, что это сон, и обладаете некоторым контролем.</p>
+<p lang="en">Lucid dreaming: you know it is a dream and have some control.</p>
+<blockquote lang="ru">
+Осознанное сновидение: вы знаете, что это сон, и обладаете некоторым контролем.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Hyper lucid dreaming: crackling vivid visuals and physical sensations that make ordinary waking reality look dull by comparison.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Гиперосознанное сновидение: потрескивающе яркие визуальные образы и физические ощущения, по сравнению с которыми обычная бодрствующая реальность выглядит тусклой.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Hyper lucid dreaming: crackling vivid visuals and physical sensations that make ordinary waking reality look dull by comparison.</p>
-</div>
-<p>Гиперосознанное сновидение: потрескивающе яркие визуальные образы и физические ощущения, по сравнению с которыми обычная бодрствующая реальность выглядит тусклой.</p>
+<p lang="en">Hyper lucid dreaming: crackling vivid visuals and physical sensations that make ordinary waking reality look dull by comparison.</p>
+<blockquote lang="ru">
+Гиперосознанное сновидение: потрескивающе яркие визуальные образы и физические ощущения, по сравнению с которыми обычная бодрствующая реальность выглядит тусклой.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Full travelling: can be either cracklingly, crisply visual, or quiet and dreamlike.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Полное путешествие: может быть либо потрескивающе четким и визуальным, либо тихим и сноподобным.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Full travelling: can be either cracklingly, crisply visual, or quiet and dreamlike.</p>
-</div>
-<p>Полное путешествие: может быть либо потрескивающе четким и визуальным, либо тихим и сноподобным.</p>
+<p lang="en">Full travelling: can be either cracklingly, crisply visual, or quiet and dreamlike.</p>
+<blockquote lang="ru">
+Полное путешествие: может быть либо потрескивающе четким и визуальным, либо тихим и сноподобным.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>If travel occurs during formal sits, the physical body is on the cushion, but you are out doing things in a different realm.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Если путешествие происходит во время формальных сидений, физическое тело находится на подушке, но вы снаружи и делаете вещи в другой сфере.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>If travel occurs during formal sits, the physical body is on the cushion, but you are out doing things in a different realm.</p>
-</div>
-<p>Если путешествие происходит во время формальных сидений, физическое тело находится на подушке, но вы снаружи и делаете вещи в другой сфере.</p>
+<p lang="en">If travel occurs during formal sits, the physical body is on the cushion, but you are out doing things in a different realm.</p>
+<blockquote lang="ru">
+Если путешествие происходит во время формальных сидений, физическое тело находится на подушке, но вы снаружи и делаете вещи в другой сфере.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Visions can set the stage for a travel.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Видения могут подготовить сцену для путешествия.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Visions can set the stage for a travel.</p>
-</div>
-<p>Видения могут подготовить сцену для путешествия.</p>
+<p lang="en">Visions can set the stage for a travel.</p>
+<blockquote lang="ru">
+Видения могут подготовить сцену для путешествия.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Those who tend to refer to this as “astral travel” often also refer to a “tether” or “cord” that causes the traveller to snap back into the body at the end of travel.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Те, кто склонен называть это «астральным путешествием», часто также говорят о «привязи» или «шнуре», из-за которого путешественника в конце путешествия резко возвращает в тело.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Those who tend to refer to this as “astral travel” often also refer to a “tether” or “cord” that causes the traveller to snap back into the body at the end of travel.</p>
-</div>
-<p>Те, кто склонен называть это «астральным путешествием», часто также говорят о «привязи» или «шнуре», из-за которого путешественника в конце путешествия резко возвращает в тело.</p>
+<p lang="en">Those who tend to refer to this as “astral travel” often also refer to a “tether” or “cord” that causes the traveller to snap back into the body at the end of travel.</p>
+<blockquote lang="ru">
+Те, кто склонен называть это «астральным путешествием», часто также говорят о «привязи» или «шнуре», из-за которого путешественника в конце путешествия резко возвращает в тело.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Fourth jhana: peaceful, low intensity, low vibrancy and often complex dreamscapes or luminous, intelligent beings: the sense of “me” is minimal.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Четвертая джхана: мирная, низкой интенсивности, низкой яркости, часто со сложными сновидческими пейзажами или светящимися разумными существами; ощущение «я» минимально.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Fourth jhana: peaceful, low intensity, low vibrancy and often complex dreamscapes or luminous, intelligent beings: the sense of “me” is minimal.</p>
-</div>
-<p>Четвертая джхана: мирная, низкой интенсивности, низкой яркости, часто со сложными сновидческими пейзажами или светящимися разумными существами; ощущение «я» минимально.</p>
+<p lang="en">Fourth jhana: peaceful, low intensity, low vibrancy and often complex dreamscapes or luminous, intelligent beings: the sense of “me” is minimal.</p>
+<blockquote lang="ru">
+Четвертая джхана: мирная, низкой интенсивности, низкой яркости, часто со сложными сновидческими пейзажами или светящимися разумными существами; ощущение «я» минимально.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>This stage requires silence or the meditator will likely blow it.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Эта стадия требует тишины, иначе медитирующий, скорее всего, ее разрушит.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>This stage requires silence or the meditator will likely blow it.</p>
-</div>
-<p>Эта стадия требует тишины, иначе медитирующий, скорее всего, ее разрушит.</p>
+<p lang="en">This stage requires silence or the meditator will likely blow it.</p>
+<blockquote lang="ru">
+Эта стадия требует тишины, иначе медитирующий, скорее всего, ее разрушит.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The fourth jhana benefits from direction in the form of pre-set intentions for interactions before one enters it.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Четвертой джхане полезно направление в форме заранее заданных намерений для взаимодействий перед входом в нее.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The fourth jhana benefits from direction in the form of pre-set intentions for interactions before one enters it.</p>
-</div>
-<p>Четвертой джхане полезно направление в форме заранее заданных намерений для взаимодействий перед входом в нее.</p>
+<p lang="en">The fourth jhana benefits from direction in the form of pre-set intentions for interactions before one enters it.</p>
+<blockquote lang="ru">
+Четвертой джхане полезно направление в форме заранее заданных намерений для взаимодействий перед входом в нее.
 </blockquote>
 
       </main>
@@ -608,26 +273,42 @@ Dreaming: sleeping.</p>
         </ul>
     </div>
     <div class="nav-actions">
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="bilingual"
+                    x-model="contentMode"
+                />
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="translation"
+                    x-model="contentMode"
+                />
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="original"
+                    x-model="contentMode"
+                />
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
+
         <button
             class="theme-toggle"
             type="button"
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+            x-text="theme === 'dark' ? 'Светлая тема' : 'Темная тема'"
         ></button>
-        <fieldset class="mode-toggle" aria-label="Text display mode">
-            <label>
-                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
-                <span>Билингва</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
-                <span>Только перевод</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="original" x-model="contentMode">
-                <span>Только оригинал</span>
-            </label>
-        </fieldset>
     </div>
 </nav>
 

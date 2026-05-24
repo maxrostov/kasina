@@ -21,25 +21,41 @@
         </ul>
     </div>
     <div class="nav-actions">
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="bilingual"
+                    x-model="contentMode"
+                />
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="translation"
+                    x-model="contentMode"
+                />
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="original"
+                    x-model="contentMode"
+                />
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
+
         <button
             class="theme-toggle"
             type="button"
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+            x-text="theme === 'dark' ? 'Светлая тема' : 'Темная тема'"
         ></button>
-        <fieldset class="mode-toggle" aria-label="Text display mode">
-            <label>
-                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
-                <span>Билингва</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
-                <span>Только перевод</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="original" x-model="contentMode">
-                <span>Только оригинал</span>
-            </label>
-        </fieldset>
     </div>
 </nav>

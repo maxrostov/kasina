@@ -11,32 +11,27 @@
   <script>
     document.addEventListener("click", (event) => {
       const mode = document.body.dataset.contentMode;
-      const quote = event.target.closest("main > blockquote[data-original-toggle]");
-      const original = event.target.closest("main > .original-block[data-translation-toggle]");
-
-      if (
-        (mode !== "translation" || !quote) &&
-        (mode !== "original" || !original)
-      ) {
-        return;
-      }
+      const translation = event.target.closest('main > blockquote[lang="ru"]');
+      const original = event.target.closest('main > [lang="en"]');
 
       if (event.target.closest("a, button, input, textarea, select, summary")) {
         return;
       }
 
-      if (mode === "translation") {
-        const expanded = quote.classList.toggle("original-visible");
-        quote
-          .querySelector(".translation-original")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "translation" && translation) {
+        const pairedOriginal = translation.previousElementSibling;
+
+        if (pairedOriginal?.matches('[lang="en"]')) {
+          pairedOriginal.classList.toggle("paired-visible");
+        }
       }
 
-      if (mode === "original") {
-        const expanded = original.classList.toggle("translation-visible");
-        original
-          .querySelector(".original-translation")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "original" && original) {
+        const pairedTranslation = original.nextElementSibling;
+
+        if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
+          pairedTranslation.classList.toggle("paired-visible");
+        }
       }
     });
   </script>
@@ -51,507 +46,176 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
-<div class="original-block" data-translation-toggle>
-<h1>Day Twenty</h1>
-<div class="original-translation" aria-hidden="true">
-<p>День двадцатый</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<h1>Day Twenty</h1>
-</div>
-<p>День двадцатый</p>
+<h1 lang="en">Day Twenty</h1>
+<blockquote lang="ru">
+День двадцатый
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Mastery ~ Discouragement with Intention-Setting ~ Mantra with Anapanasati ~ Suffering Door]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Мастерство ~ Разочарование в задавании намерений ~ Мантра с анапанасати ~ Дверь страдания]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Mastery ~ Discouragement with Intention-Setting ~ Mantra with Anapanasati ~ Suffering Door]</p>
-</div>
-<p>[Мастерство ~ Разочарование в задавании намерений ~ Мантра с анапанасати ~ Дверь страдания]</p>
+<p lang="en">[Mastery ~ Discouragement with Intention-Setting ~ Mantra with Anapanasati ~ Suffering Door]</p>
+<blockquote lang="ru">
+[Мастерство ~ Разочарование в задавании намерений ~ Мантра с анапанасати ~ Дверь страдания]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Mastery]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Мастерство]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Mastery]</p>
-</div>
-<p>[Мастерство]</p>
+<p lang="en">[Mastery]</p>
+<blockquote lang="ru">
+[Мастерство]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 For several hours, I have been finishing the sequence with a fruition about every ten to fifteen minutes.</p>
-<div class="original-translation" aria-hidden="true">
-<p>В течение нескольких часов я завершала последовательность плодоношением примерно каждые десять-пятнадцать минут.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-For several hours, I have been finishing the sequence with a fruition about every ten to fifteen minutes.</p>
-</div>
-<p>В течение нескольких часов я завершала последовательность плодоношением примерно каждые десять-пятнадцать минут.</p>
+<blockquote lang="ru">
+В течение нескольких часов я завершала последовательность плодоношением примерно каждые десять-пятнадцать минут.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>I can be just thinking the word �fruition�, and I will have one and then several more.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я могу просто думать слово «плодоношение», и у меня происходит одно, а затем еще несколько.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>I can be just thinking the word �fruition�, and I will have one and then several more.</p>
-</div>
-<p>Я могу просто думать слово «плодоношение», и у меня происходит одно, а затем еще несколько.</p>
+<p lang="en">I can be just thinking the word �fruition�, and I will have one and then several more.</p>
+<blockquote lang="ru">
+Я могу просто думать слово «плодоношение», и у меня происходит одно, а затем еще несколько.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>There must be a mix of equanimity and concentration allowing things to flow.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Должно быть, есть смесь равностности и концентрации, позволяющая всему течь.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>There must be a mix of equanimity and concentration allowing things to flow.</p>
-</div>
-<p>Должно быть, есть смесь равностности и концентрации, позволяющая всему течь.</p>
+<p lang="en">There must be a mix of equanimity and concentration allowing things to flow.</p>
+<blockquote lang="ru">
+Должно быть, есть смесь равностности и концентрации, позволяющая всему течь.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>It is currently hard to believe that at the beginning of the retreat it was taking four or five days to get there.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Сейчас трудно поверить, что в начале ретрита мне требовалось четыре или пять дней, чтобы туда добраться.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>It is currently hard to believe that at the beginning of the retreat it was taking four or five days to get there.</p>
-</div>
-<p>Сейчас трудно поверить, что в начале ретрита мне требовалось четыре или пять дней, чтобы туда добраться.</p>
+<p lang="en">It is currently hard to believe that at the beginning of the retreat it was taking four or five days to get there.</p>
+<blockquote lang="ru">
+Сейчас трудно поверить, что в начале ретрита мне требовалось четыре или пять дней, чтобы туда добраться.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>When I stopped pushing was the point at which things became quiet and tranquil with easy cycling.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Когда я перестала подталкивать, все стало тихим и спокойным, с легким циклированием.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>When I stopped pushing was the point at which things became quiet and tranquil with easy cycling.</p>
-</div>
-<p>Когда я перестала подталкивать, все стало тихим и спокойным, с легким циклированием.</p>
+<p lang="en">When I stopped pushing was the point at which things became quiet and tranquil with easy cycling.</p>
+<blockquote lang="ru">
+Когда я перестала подталкивать, все стало тихим и спокойным, с легким циклированием.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Mastery!</p>
-<div class="original-translation" aria-hidden="true">
-<p>Мастерство!</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Mastery!</p>
-</div>
-<p>Мастерство!</p>
+<blockquote lang="ru">
+Мастерство!
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>A subtle trap when assisting others is the assumption it will be this easy for everyone: particularly if one has something that comes naturally.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Тонкая ловушка при помощи другим - предположение, что для всех это будет так же легко, особенно если у человека что-то получается естественно.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>A subtle trap when assisting others is the assumption it will be this easy for everyone: particularly if one has something that comes naturally.</p>
-</div>
-<p>Тонкая ловушка при помощи другим - предположение, что для всех это будет так же легко, особенно если у человека что-то получается естественно.</p>
+<p lang="en">A subtle trap when assisting others is the assumption it will be this easy for everyone: particularly if one has something that comes naturally.</p>
+<blockquote lang="ru">
+Тонкая ловушка при помощи другим - предположение, что для всех это будет так же легко, особенно если у человека что-то получается естественно.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>At a primitive level we think it is the same for everyone.</p>
-<div class="original-translation" aria-hidden="true">
-<p>На примитивном уровне мы думаем, что у всех это одинаково.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>At a primitive level we think it is the same for everyone.</p>
-</div>
-<p>На примитивном уровне мы думаем, что у всех это одинаково.</p>
+<p lang="en">At a primitive level we think it is the same for everyone.</p>
+<blockquote lang="ru">
+На примитивном уровне мы думаем, что у всех это одинаково.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Another sign a meditator is in a phase of mastery is that unlike the beginning of a retreat, where the morning sits can be slow-going due to the orientation back into the practice after a night of sleep, in mastery things often roll effortlessly at the outset of the day.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Еще один признак того, что медитатор находится в фазе мастерства: в отличие от начала ретрита, когда утренние сидения могут идти медленно из-за возвращения ориентации в практику после ночного сна, в мастерстве все часто легко разворачивается с самого начала дня.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Another sign a meditator is in a phase of mastery is that unlike the beginning of a retreat, where the morning sits can be slow-going due to the orientation back into the practice after a night of sleep, in mastery things often roll effortlessly at the outset of the day.</p>
-</div>
-<p>Еще один признак того, что медитатор находится в фазе мастерства: в отличие от начала ретрита, когда утренние сидения могут идти медленно из-за возвращения ориентации в практику после ночного сна, в мастерстве все часто легко разворачивается с самого начала дня.</p>
+<blockquote lang="ru">
+Еще один признак того, что медитатор находится в фазе мастерства: в отличие от начала ретрита, когда утренние сидения могут идти медленно из-за возвращения ориентации в практику после ночного сна, в мастерстве все часто легко разворачивается с самого начала дня.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Earlier in the retreat I would sometimes choose to briefly tune into the body bliss at the forehead and crown chakras, to help fire-up the practice at the sluggish start of a day�s sitting, whereas by the end of the retreat the first meditation of the day started immediately and naturally.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Раньше на ретрите я иногда выбирала кратко настроиться на телесное блаженство в чакрах лба и макушки, чтобы помочь разжечь практику в вялом начале дневного сидения, тогда как к концу ретрита первая медитация дня начиналась сразу и естественно.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Earlier in the retreat I would sometimes choose to briefly tune into the body bliss at the forehead and crown chakras, to help fire-up the practice at the sluggish start of a day�s sitting, whereas by the end of the retreat the first meditation of the day started immediately and naturally.</p>
-</div>
-<p>Раньше на ретрите я иногда выбирала кратко настроиться на телесное блаженство в чакрах лба и макушки, чтобы помочь разжечь практику в вялом начале дневного сидения, тогда как к концу ретрита первая медитация дня начиналась сразу и естественно.</p>
+<p lang="en">Earlier in the retreat I would sometimes choose to briefly tune into the body bliss at the forehead and crown chakras, to help fire-up the practice at the sluggish start of a day�s sitting, whereas by the end of the retreat the first meditation of the day started immediately and naturally.</p>
+<blockquote lang="ru">
+Раньше на ретрите я иногда выбирала кратко настроиться на телесное блаженство в чакрах лба и макушки, чтобы помочь разжечь практику в вялом начале дневного сидения, тогда как к концу ретрита первая медитация дня начиналась сразу и естественно.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Discouragement with Intention-Setting]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Разочарование в задавании намерений]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Discouragement with Intention-Setting]</p>
-</div>
-<p>[Разочарование в задавании намерений]</p>
+<p lang="en">[Discouragement with Intention-Setting]</p>
+<blockquote lang="ru">
+[Разочарование в задавании намерений]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 My ever-shifting attitude toward intention-setting encompassed a striving, forceful stance (not fruitful), abject skepticism and forgetfulness (equally unproductive), as well as sincerely sending out an aspiration at just the right time while turning the mind back to absorption into the meditation object with the dropping of all agenda for a result (the most rewarding, angst-free path, yet comically elusive to this novice magician).</p>
-<div class="original-translation" aria-hidden="true">
-<p>Мое постоянно меняющееся отношение к задаванию намерений включало стремящуюся, силовую позицию (не плодотворную), полнейший скептицизм и забывчивость (столь же непродуктивные), а также искреннюю отправку устремления в точно подходящий момент при возвращении ума к поглощению в объект медитации с отпусканием всякой повестки на результат (самый вознаграждающий и свободный от тревоги путь, но комично ускользающий от этой начинающей волшебницы).</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-My ever-shifting attitude toward intention-setting encompassed a striving, forceful stance (not fruitful), abject skepticism and forgetfulness (equally unproductive), as well as sincerely sending out an aspiration at just the right time while turning the mind back to absorption into the meditation object with the dropping of all agenda for a result (the most rewarding, angst-free path, yet comically elusive to this novice magician).</p>
-</div>
-<p>Мое постоянно меняющееся отношение к задаванию намерений включало стремящуюся, силовую позицию (не плодотворную), полнейший скептицизм и забывчивость (столь же непродуктивные), а также искреннюю отправку устремления в точно подходящий момент при возвращении ума к поглощению в объект медитации с отпусканием всякой повестки на результат (самый вознаграждающий и свободный от тревоги путь, но комично ускользающий от этой начинающей волшебницы).</p>
+<blockquote lang="ru">
+Мое постоянно меняющееся отношение к задаванию намерений включало стремящуюся, силовую позицию (не плодотворную), полнейший скептицизм и забывчивость (столь же непродуктивные), а также искреннюю отправку устремления в точно подходящий момент при возвращении ума к поглощению в объект медитации с отпусканием всякой повестки на результат (самый вознаграждающий и свободный от тревоги путь, но комично ускользающий от этой начинающей волшебницы).
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>I get discouraged when specific intentions do not happen.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я расстраиваюсь, когда конкретные намерения не осуществляются.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>I get discouraged when specific intentions do not happen.</p>
-</div>
-<p>Я расстраиваюсь, когда конкретные намерения не осуществляются.</p>
+<p lang="en">I get discouraged when specific intentions do not happen.</p>
+<blockquote lang="ru">
+Я расстраиваюсь, когда конкретные намерения не осуществляются.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Do I just keep trying wholeheartedly?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Мне просто продолжать пытаться от всего сердца?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Do I just keep trying wholeheartedly?</p>
-</div>
-<p>Мне просто продолжать пытаться от всего сердца?</p>
+<p lang="en">Do I just keep trying wholeheartedly?</p>
+<blockquote lang="ru">
+Мне просто продолжать пытаться от всего сердца?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 It is normal to get discouraged.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Расстраиваться нормально.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-It is normal to get discouraged.</p>
-</div>
-<p>Расстраиваться нормально.</p>
+<blockquote lang="ru">
+Расстраиваться нормально.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Eventually equanimity arises regarding intentions, which is a phase that comes after frustration.</p>
-<div class="original-translation" aria-hidden="true">
-<p>В конце концов по отношению к намерениям возникает равностность, и это фаза, которая приходит после фрустрации.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Eventually equanimity arises regarding intentions, which is a phase that comes after frustration.</p>
-</div>
-<p>В конце концов по отношению к намерениям возникает равностность, и это фаза, которая приходит после фрустрации.</p>
+<p lang="en">Eventually equanimity arises regarding intentions, which is a phase that comes after frustration.</p>
+<blockquote lang="ru">
+В конце концов по отношению к намерениям возникает равностность, и это фаза, которая приходит после фрустрации.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>When you stop caring, then, paradoxically, things are most likely to happen.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Когда тебе перестает быть важно, тогда, как ни парадоксально, вещи с наибольшей вероятностью происходят.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>When you stop caring, then, paradoxically, things are most likely to happen.</p>
-</div>
-<p>Когда тебе перестает быть важно, тогда, как ни парадоксально, вещи с наибольшей вероятностью происходят.</p>
+<p lang="en">When you stop caring, then, paradoxically, things are most likely to happen.</p>
+<blockquote lang="ru">
+Когда тебе перестает быть важно, тогда, как ни парадоксально, вещи с наибольшей вероятностью происходят.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 We talked about the similarity regarding intending for fruitions: wanting one too hard screws it up.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Мы говорили о сходстве с намерением получить плодоношения: слишком сильное желание все портит.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-We talked about the similarity regarding intending for fruitions: wanting one too hard screws it up.</p>
-</div>
-<p>Мы говорили о сходстве с намерением получить плодоношения: слишком сильное желание все портит.</p>
+<blockquote lang="ru">
+Мы говорили о сходстве с намерением получить плодоношения: слишком сильное желание все портит.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Mantra with Anapanasati]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Мантра с анапанасати]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Mantra with Anapanasati]</p>
-</div>
-<p>[Мантра с анапанасати]</p>
+<p lang="en">[Mantra with Anapanasati]</p>
+<blockquote lang="ru">
+[Мантра с анапанасати]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 When people on retreat are doing anapanasati meditation at the nose tip, would a mantra during the sits mess up the breath?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Когда люди на ретрите выполняют медитацию анапанасати на кончике носа, не будет ли мантра во время сидений сбивать дыхание?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-When people on retreat are doing anapanasati meditation at the nose tip, would a mantra during the sits mess up the breath?</p>
-</div>
-<p>Когда люди на ретрите выполняют медитацию анапанасати на кончике носа, не будет ли мантра во время сидений сбивать дыхание?</p>
+<blockquote lang="ru">
+Когда люди на ретрите выполняют медитацию анапанасати на кончике носа, не будет ли мантра во время сидений сбивать дыхание?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Mantras occupy the cognitive mind and they change something in the relationship with the inner voice; mantras make the inner voice more clear and wieldy, and so it behaves better.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Мантры занимают когнитивный ум и что-то меняют в отношениях с внутренним голосом; мантры делают внутренний голос более ясным и управляемым, и поэтому он ведет себя лучше.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Mantras occupy the cognitive mind and they change something in the relationship with the inner voice; mantras make the inner voice more clear and wieldy, and so it behaves better.</p>
-</div>
-<p>Мантры занимают когнитивный ум и что-то меняют в отношениях с внутренним голосом; мантры делают внутренний голос более ясным и управляемым, и поэтому он ведет себя лучше.</p>
+<blockquote lang="ru">
+Мантры занимают когнитивный ум и что-то меняют в отношениях с внутренним голосом; мантры делают внутренний голос более ясным и управляемым, и поэтому он ведет себя лучше.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>They are taught traditionally � for example, the Tibetans use them.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Им традиционно обучают - например, тибетцы их используют.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>They are taught traditionally � for example, the Tibetans use them.</p>
-</div>
-<p>Им традиционно обучают - например, тибетцы их используют.</p>
+<p lang="en">They are taught traditionally � for example, the Tibetans use them.</p>
+<blockquote lang="ru">
+Им традиционно обучают - например, тибетцы их используют.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>But mantras are not good for people prone to psychosis; for people hearing voices it is not helpful to amplify the inner voice.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Но мантры не подходят людям, склонным к психозу; людям, слышащим голоса, не полезно усиливать внутренний голос.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>But mantras are not good for people prone to psychosis; for people hearing voices it is not helpful to amplify the inner voice.</p>
-</div>
-<p>Но мантры не подходят людям, склонным к психозу; людям, слышащим голоса, не полезно усиливать внутренний голос.</p>
+<p lang="en">But mantras are not good for people prone to psychosis; for people hearing voices it is not helpful to amplify the inner voice.</p>
+<blockquote lang="ru">
+Но мантры не подходят людям, склонным к психозу; людям, слышащим голоса, не полезно усиливать внутренний голос.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Mantras do not mess up the breath because one can fuse the breath and mantra together.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Мантры не сбивают дыхание, потому что дыхание и мантру можно слить воедино.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Mantras do not mess up the breath because one can fuse the breath and mantra together.</p>
-</div>
-<p>Мантры не сбивают дыхание, потому что дыхание и мантру можно слить воедино.</p>
+<p lang="en">Mantras do not mess up the breath because one can fuse the breath and mantra together.</p>
+<blockquote lang="ru">
+Мантры не сбивают дыхание, потому что дыхание и мантру можно слить воедино.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Mantras have a location where they occur within the auditory field, and you can position it so that it seems to be coming from the nose or from wherever you are noticing the breath.</p>
-<div class="original-translation" aria-hidden="true">
-<p>У мантр есть место, где они возникают в слуховом поле, и ты можешь расположить ее так, чтобы казалось, будто она исходит из носа или из любого места, где ты замечаешь дыхание.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Mantras have a location where they occur within the auditory field, and you can position it so that it seems to be coming from the nose or from wherever you are noticing the breath.</p>
-</div>
-<p>У мантр есть место, где они возникают в слуховом поле, и ты можешь расположить ее так, чтобы казалось, будто она исходит из носа или из любого места, где ты замечаешь дыхание.</p>
+<p lang="en">Mantras have a location where they occur within the auditory field, and you can position it so that it seems to be coming from the nose or from wherever you are noticing the breath.</p>
+<blockquote lang="ru">
+У мантр есть место, где они возникают в слуховом поле, и ты можешь расположить ее так, чтобы казалось, будто она исходит из носа или из любого места, где ты замечаешь дыхание.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>When performing the fire kasina, you can position it centrally and then, as attention widens later, fan it out.</p>
-<div class="original-translation" aria-hidden="true">
-<p>При выполнении огненной касины ты можешь расположить ее в центре, а затем, когда внимание позже расширится, развернуть ее веером.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>When performing the fire kasina, you can position it centrally and then, as attention widens later, fan it out.</p>
-</div>
-<p>При выполнении огненной касины ты можешь расположить ее в центре, а затем, когда внимание позже расширится, развернуть ее веером.</p>
+<p lang="en">When performing the fire kasina, you can position it centrally and then, as attention widens later, fan it out.</p>
+<blockquote lang="ru">
+При выполнении огненной касины ты можешь расположить ее в центре, а затем, когда внимание позже расширится, развернуть ее веером.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The brain processes sound by positioning it.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Мозг обрабатывает звук, располагая его.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The brain processes sound by positioning it.</p>
-</div>
-<p>Мозг обрабатывает звук, располагая его.</p>
+<p lang="en">The brain processes sound by positioning it.</p>
+<blockquote lang="ru">
+Мозг обрабатывает звук, располагая его.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Meditators are often unaware of how and where they are placing the mantra, but with attention to this, can learn to recognise and control its position.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Медитаторы часто не осознают, как и где они размещают мантру, но при внимании к этому могут научиться распознавать и контролировать ее положение.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Meditators are often unaware of how and where they are placing the mantra, but with attention to this, can learn to recognise and control its position.</p>
-</div>
-<p>Медитаторы часто не осознают, как и где они размещают мантру, но при внимании к этому могут научиться распознавать и контролировать ее положение.</p>
+<p lang="en">Meditators are often unaware of how and where they are placing the mantra, but with attention to this, can learn to recognise and control its position.</p>
+<blockquote lang="ru">
+Медитаторы часто не осознают, как и где они размещают мантру, но при внимании к этому могут научиться распознавать и контролировать ее положение.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Suffering Door]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Дверь страдания]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Suffering Door]</p>
-</div>
-<p>[Дверь страдания]</p>
+<p lang="en">[Suffering Door]</p>
+<blockquote lang="ru">
+[Дверь страдания]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 There was an upsetting aspect to the three shudders before a couple of the fruitions: which door would that be?</p>
-<div class="original-translation" aria-hidden="true">
-<p>В трех дрожаниях перед несколькими плодоношениями был тревожащий аспект: какая это была бы дверь?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-There was an upsetting aspect to the three shudders before a couple of the fruitions: which door would that be?</p>
-</div>
-<p>В трех дрожаниях перед несколькими плодоношениями был тревожащий аспект: какая это была бы дверь?</p>
+<blockquote lang="ru">
+В трех дрожаниях перед несколькими плодоношениями был тревожащий аспект: какая это была бы дверь?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 When the impermanence door predominates with suffering as its secondary aspect, reality disconcertingly stutters.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Когда дверь непостоянства преобладает со страданием как вторичным аспектом, реальность тревожно заикается.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-When the impermanence door predominates with suffering as its secondary aspect, reality disconcertingly stutters.</p>
-</div>
-<p>Когда дверь непостоянства преобладает со страданием как вторичным аспектом, реальность тревожно заикается.</p>
+<blockquote lang="ru">
+Когда дверь непостоянства преобладает со страданием как вторичным аспектом, реальность тревожно заикается.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>When the suffering door predominates, there is this disturbing twisting away movement, as if everything is being ripped away, revealing the fundamental suffering of duality.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Когда преобладает дверь страдания, возникает это тревожащее скручивающееся движение прочь, как будто все отрывается, раскрывая фундаментальное страдание двойственности.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>When the suffering door predominates, there is this disturbing twisting away movement, as if everything is being ripped away, revealing the fundamental suffering of duality.</p>
-</div>
-<p>Когда преобладает дверь страдания, возникает это тревожащее скручивающееся движение прочь, как будто все отрывается, раскрывая фундаментальное страдание двойственности.</p>
+<p lang="en">When the suffering door predominates, there is this disturbing twisting away movement, as if everything is being ripped away, revealing the fundamental suffering of duality.</p>
+<blockquote lang="ru">
+Когда преобладает дверь страдания, возникает это тревожащее скручивающееся движение прочь, как будто все отрывается, раскрывая фундаментальное страдание двойственности.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The distance we insist on maintaining is torn away from us.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Дистанция, на сохранении которой мы настаиваем, отрывается от нас.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The distance we insist on maintaining is torn away from us.</p>
-</div>
-<p>Дистанция, на сохранении которой мы настаиваем, отрывается от нас.</p>
+<p lang="en">The distance we insist on maintaining is torn away from us.</p>
+<blockquote lang="ru">
+Дистанция, на сохранении которой мы настаиваем, отрывается от нас.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Experiencing the doors repeatedly provides important bridging for further insight, as the mind gets to see there is not a catastrophe on the other side.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Повторное переживание дверей создает важный мост для дальнейшего прозрения, поскольку ум видит, что на другой стороне нет катастрофы.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Experiencing the doors repeatedly provides important bridging for further insight, as the mind gets to see there is not a catastrophe on the other side.</p>
-</div>
-<p>Повторное переживание дверей создает важный мост для дальнейшего прозрения, поскольку ум видит, что на другой стороне нет катастрофы.</p>
+<p lang="en">Experiencing the doors repeatedly provides important bridging for further insight, as the mind gets to see there is not a catastrophe on the other side.</p>
+<blockquote lang="ru">
+Повторное переживание дверей создает важный мост для дальнейшего прозрения, поскольку ум видит, что на другой стороне нет катастрофы.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Daniel added that his suffering door lost its suffering aspect in 2003.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Дэниел добавил, что его дверь страдания потеряла аспект страдания в 2003 году.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Daniel added that his suffering door lost its suffering aspect in 2003.</p>
-</div>
-<p>Дэниел добавил, что его дверь страдания потеряла аспект страдания в 2003 году.</p>
+<blockquote lang="ru">
+Дэниел добавил, что его дверь страдания потеряла аспект страдания в 2003 году.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Experiencing that particular door differently was what he termed the �entryway� for him.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Переживание этой конкретной двери иначе было тем, что он называл своим «входом».</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Experiencing that particular door differently was what he termed the �entryway� for him.</p>
-</div>
-<p>Переживание этой конкретной двери иначе было тем, что он называл своим «входом».</p>
+<p lang="en">Experiencing that particular door differently was what he termed the �entryway� for him.</p>
+<blockquote lang="ru">
+Переживание этой конкретной двери иначе было тем, что он называл своим «входом».
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The sense of a centrepoint had finally vanished and therefore the suffering, violating aspect of the doors had vanished alongside.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Ощущение центральной точки наконец исчезло, и поэтому страдательный, нарушающий аспект дверей исчез вместе с ним.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The sense of a centrepoint had finally vanished and therefore the suffering, violating aspect of the doors had vanished alongside.</p>
-</div>
-<p>Ощущение центральной точки наконец исчезло, и поэтому страдательный, нарушающий аспект дверей исчез вместе с ним.</p>
+<p lang="en">The sense of a centrepoint had finally vanished and therefore the suffering, violating aspect of the doors had vanished alongside.</p>
+<blockquote lang="ru">
+Ощущение центральной точки наконец исчезло, и поэтому страдательный, нарушающий аспект дверей исчез вместе с ним.
 </blockquote>
 
       </main>
@@ -610,26 +274,42 @@ Daniel added that his suffering door lost its suffering aspect in 2003.</p>
         </ul>
     </div>
     <div class="nav-actions">
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="bilingual"
+                    x-model="contentMode"
+                />
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="translation"
+                    x-model="contentMode"
+                />
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="original"
+                    x-model="contentMode"
+                />
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
+
         <button
             class="theme-toggle"
             type="button"
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+            x-text="theme === 'dark' ? 'Светлая тема' : 'Темная тема'"
         ></button>
-        <fieldset class="mode-toggle" aria-label="Text display mode">
-            <label>
-                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
-                <span>Билингва</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
-                <span>Только перевод</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="original" x-model="contentMode">
-                <span>Только оригинал</span>
-            </label>
-        </fieldset>
     </div>
 </nav>
 

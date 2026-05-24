@@ -11,32 +11,27 @@
   <script>
     document.addEventListener("click", (event) => {
       const mode = document.body.dataset.contentMode;
-      const quote = event.target.closest("main > blockquote[data-original-toggle]");
-      const original = event.target.closest("main > .original-block[data-translation-toggle]");
-
-      if (
-        (mode !== "translation" || !quote) &&
-        (mode !== "original" || !original)
-      ) {
-        return;
-      }
+      const translation = event.target.closest('main > blockquote[lang="ru"]');
+      const original = event.target.closest('main > [lang="en"]');
 
       if (event.target.closest("a, button, input, textarea, select, summary")) {
         return;
       }
 
-      if (mode === "translation") {
-        const expanded = quote.classList.toggle("original-visible");
-        quote
-          .querySelector(".translation-original")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "translation" && translation) {
+        const pairedOriginal = translation.previousElementSibling;
+
+        if (pairedOriginal?.matches('[lang="en"]')) {
+          pairedOriginal.classList.toggle("paired-visible");
+        }
       }
 
-      if (mode === "original") {
-        const expanded = original.classList.toggle("translation-visible");
-        original
-          .querySelector(".original-translation")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "original" && original) {
+        const pairedTranslation = original.nextElementSibling;
+
+        if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
+          pairedTranslation.classList.toggle("paired-visible");
+        }
       }
     });
   </script>
@@ -51,464 +46,165 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
-<div class="original-block" data-translation-toggle>
-<h1>Day Twenty-Three</h1>
-<div class="original-translation" aria-hidden="true">
-<p>День двадцать третий</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<h1>Day Twenty-Three</h1>
-</div>
-<p>День двадцать третий</p>
+<h1 lang="en">Day Twenty-Three</h1>
+<blockquote lang="ru">
+День двадцать третий
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Re-Observation ~ Fire Kasina as Home Practice ~ Value of Sequence]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Повторное наблюдение ~ Огненная касина как домашняя практика ~ Ценность последовательности]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Re-Observation ~ Fire Kasina as Home Practice ~ Value of Sequence]</p>
-</div>
-<p>[Повторное наблюдение ~ Огненная касина как домашняя практика ~ Ценность последовательности]</p>
+<p lang="en">[Re-Observation ~ Fire Kasina as Home Practice ~ Value of Sequence]</p>
+<blockquote lang="ru">
+[Повторное наблюдение ~ Огненная касина как домашняя практика ~ Ценность последовательности]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Re-Observation]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Повторное наблюдение]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Re-Observation]</p>
-</div>
-<p>[Повторное наблюдение]</p>
+<p lang="en">[Re-Observation]</p>
+<blockquote lang="ru">
+[Повторное наблюдение]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 What is the difference between basic re-observation and unstable states bordering on psychosis one may devolve into?</p>
-<div class="original-translation" aria-hidden="true">
-<p>В чем разница между базовым повторным наблюдением и нестабильными состояниями на грани психоза, в которые можно скатиться?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-What is the difference between basic re-observation and unstable states bordering on psychosis one may devolve into?</p>
-</div>
-<p>В чем разница между базовым повторным наблюдением и нестабильными состояниями на грани психоза, в которые можно скатиться?</p>
+<blockquote lang="ru">
+В чем разница между базовым повторным наблюдением и нестабильными состояниями на грани психоза, в которые можно скатиться?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 That is sometimes a fine line.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Иногда это тонкая грань.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-That is sometimes a fine line.</p>
-</div>
-<p>Иногда это тонкая грань.</p>
+<blockquote lang="ru">
+Иногда это тонкая грань.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The difference is mostly in being either torn down in a bad way by re-observation and spiralling into craziness versus having direct fundamental insight, which increases one�s understanding and practice while applying appropriate remedies if troubles arise.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Разница в основном между тем, чтобы быть разрушенным повторным наблюдением плохим образом и закручиваться в безумие, и тем, чтобы иметь прямое фундаментальное прозрение, которое увеличивает понимание и практику человека при применении подходящих средств, если возникают трудности.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The difference is mostly in being either torn down in a bad way by re-observation and spiralling into craziness versus having direct fundamental insight, which increases one�s understanding and practice while applying appropriate remedies if troubles arise.</p>
-</div>
-<p>Разница в основном между тем, чтобы быть разрушенным повторным наблюдением плохим образом и закручиваться в безумие, и тем, чтобы иметь прямое фундаментальное прозрение, которое увеличивает понимание и практику человека при применении подходящих средств, если возникают трудности.</p>
+<p lang="en">The difference is mostly in being either torn down in a bad way by re-observation and spiralling into craziness versus having direct fundamental insight, which increases one�s understanding and practice while applying appropriate remedies if troubles arise.</p>
+<blockquote lang="ru">
+Разница в основном между тем, чтобы быть разрушенным повторным наблюдением плохим образом и закручиваться в безумие, и тем, чтобы иметь прямое фундаментальное прозрение, которое увеличивает понимание и практику человека при применении подходящих средств, если возникают трудности.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>There is a staggering difference between being �with it� and yet not caught in it, versus being really caught in it and freaking out.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Есть поразительная разница между тем, чтобы быть «с этим» и при этом не быть пойманным этим, и тем, чтобы действительно быть пойманным этим и паниковать.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>There is a staggering difference between being �with it� and yet not caught in it, versus being really caught in it and freaking out.</p>
-</div>
-<p>Есть поразительная разница между тем, чтобы быть «с этим» и при этом не быть пойманным этим, и тем, чтобы действительно быть пойманным этим и паниковать.</p>
+<p lang="en">There is a staggering difference between being �with it� and yet not caught in it, versus being really caught in it and freaking out.</p>
+<blockquote lang="ru">
+Есть поразительная разница между тем, чтобы быть «с этим» и при этом не быть пойманным этим, и тем, чтобы действительно быть пойманным этим и паниковать.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>In review, it is empowering to sometimes decide to stay in re-observation intentionally for a controlled period of time: �to turn the hunted into the hunter�.</p>
-<div class="original-translation" aria-hidden="true">
-<p>В обзоре иногда очень укрепляет решение намеренно оставаться в повторном наблюдении в течение контролируемого периода времени: «превратить преследуемого в охотника».</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>In review, it is empowering to sometimes decide to stay in re-observation intentionally for a controlled period of time: �to turn the hunted into the hunter�.</p>
-</div>
-<p>В обзоре иногда очень укрепляет решение намеренно оставаться в повторном наблюдении в течение контролируемого периода времени: «превратить преследуемого в охотника».</p>
+<p lang="en">In review, it is empowering to sometimes decide to stay in re-observation intentionally for a controlled period of time: �to turn the hunted into the hunter�.</p>
+<blockquote lang="ru">
+В обзоре иногда очень укрепляет решение намеренно оставаться в повторном наблюдении в течение контролируемого периода времени: «превратить преследуемого в охотника».
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Given how far-removed the qualities of re-observation were from the deity encounters I was wanting to experience, it was quite a stretch to undertake the above recommendation.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Учитывая, насколько качества повторного наблюдения были далеки от встреч с божествами, которые я хотела пережить, было довольно непросто взяться за приведенную выше рекомендацию.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Given how far-removed the qualities of re-observation were from the deity encounters I was wanting to experience, it was quite a stretch to undertake the above recommendation.</p>
-</div>
-<p>Учитывая, насколько качества повторного наблюдения были далеки от встреч с божествами, которые я хотела пережить, было довольно непросто взяться за приведенную выше рекомендацию.</p>
+<blockquote lang="ru">
+Учитывая, насколько качества повторного наблюдения были далеки от встреч с божествами, которые я хотела пережить, было довольно непросто взяться за приведенную выше рекомендацию.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>However, I found myself speaking extensively in my audio diary about the benefits of not shying away from any aspects of re-observation when this �ana reappeared.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Однако я обнаружила, что в своем аудиодневнике подробно говорю о пользе не уклоняться ни от каких аспектов повторного наблюдения, когда эта ньяна появилась снова.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>However, I found myself speaking extensively in my audio diary about the benefits of not shying away from any aspects of re-observation when this �ana reappeared.</p>
-</div>
-<p>Однако я обнаружила, что в своем аудиодневнике подробно говорю о пользе не уклоняться ни от каких аспектов повторного наблюдения, когда эта ньяна появилась снова.</p>
+<p lang="en">However, I found myself speaking extensively in my audio diary about the benefits of not shying away from any aspects of re-observation when this �ana reappeared.</p>
+<blockquote lang="ru">
+Однако я обнаружила, что в своем аудиодневнике подробно говорю о пользе не уклоняться ни от каких аспектов повторного наблюдения, когда эта ньяна появилась снова.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>In addition to being confidence-boosting, entering fully into and out of this uncomfortable state while being in such high concentration from weeks of retreat, lent this �ana an unbeatably rich, intense clarity.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Помимо укрепления уверенности, полное вхождение в это неприятное состояние и выход из него при такой высокой концентрации после недель ретрита придали этой ньяне непревзойденно богатую, интенсивную ясность.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>In addition to being confidence-boosting, entering fully into and out of this uncomfortable state while being in such high concentration from weeks of retreat, lent this �ana an unbeatably rich, intense clarity.</p>
-</div>
-<p>Помимо укрепления уверенности, полное вхождение в это неприятное состояние и выход из него при такой высокой концентрации после недель ретрита придали этой ньяне непревзойденно богатую, интенсивную ясность.</p>
+<p lang="en">In addition to being confidence-boosting, entering fully into and out of this uncomfortable state while being in such high concentration from weeks of retreat, lent this �ana an unbeatably rich, intense clarity.</p>
+<blockquote lang="ru">
+Помимо укрепления уверенности, полное вхождение в это неприятное состояние и выход из него при такой высокой концентрации после недель ретрита придали этой ньяне непревзойденно богатую, интенсивную ясность.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Reviewing my audio diary, I was struck by how cheery and buoyant I sounded on this last phase of the retreat.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Прослушивая свой аудиодневник, я была поражена тем, насколько бодро и приподнято звучала в этой последней фазе ретрита.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Reviewing my audio diary, I was struck by how cheery and buoyant I sounded on this last phase of the retreat.</p>
-</div>
-<p>Прослушивая свой аудиодневник, я была поражена тем, насколько бодро и приподнято звучала в этой последней фазе ретрита.</p>
+<p lang="en">Reviewing my audio diary, I was struck by how cheery and buoyant I sounded on this last phase of the retreat.</p>
+<blockquote lang="ru">
+Прослушивая свой аудиодневник, я была поражена тем, насколько бодро и приподнято звучала в этой последней фазе ретрита.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Some heavier tones of seriousness that had been intertwined with the obstructions of striving, fear and doubt had dropped off and there was less �self� remaining to take so seriously � a welcome shift which has continued to show up post-retreat.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Некоторые более тяжелые тона серьезности, переплетавшиеся с препятствиями стремления, страха и сомнения, отпали, и осталось меньше «я», которое нужно было бы принимать так серьезно, - желанный сдвиг, который продолжал проявляться после ретрита.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Some heavier tones of seriousness that had been intertwined with the obstructions of striving, fear and doubt had dropped off and there was less �self� remaining to take so seriously � a welcome shift which has continued to show up post-retreat.</p>
-</div>
-<p>Некоторые более тяжелые тона серьезности, переплетавшиеся с препятствиями стремления, страха и сомнения, отпали, и осталось меньше «я», которое нужно было бы принимать так серьезно, - желанный сдвиг, который продолжал проявляться после ретрита.</p>
+<p lang="en">Some heavier tones of seriousness that had been intertwined with the obstructions of striving, fear and doubt had dropped off and there was less �self� remaining to take so seriously � a welcome shift which has continued to show up post-retreat.</p>
+<blockquote lang="ru">
+Некоторые более тяжелые тона серьезности, переплетавшиеся с препятствиями стремления, страха и сомнения, отпали, и осталось меньше «я», которое нужно было бы принимать так серьезно, - желанный сдвиг, который продолжал проявляться после ретрита.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 One of the most important and challenging questions on the path is how attention is tuned in re-observation versus wide-open space.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Один из самых важных и сложных вопросов на пути - как внимание настроено в повторном наблюдении по сравнению с широко открытым пространством.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-One of the most important and challenging questions on the path is how attention is tuned in re-observation versus wide-open space.</p>
-</div>
-<p>Один из самых важных и сложных вопросов на пути - как внимание настроено в повторном наблюдении по сравнению с широко открытым пространством.</p>
+<blockquote lang="ru">
+Один из самых важных и сложных вопросов на пути - как внимание настроено в повторном наблюдении по сравнению с широко открытым пространством.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>It is like walking between two things that seem to be the exact antithesis of each other, but must be same thing.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Это похоже на ходьбу между двумя вещами, которые кажутся точной противоположностью друг другу, но должны быть одним и тем же.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>It is like walking between two things that seem to be the exact antithesis of each other, but must be same thing.</p>
-</div>
-<p>Это похоже на ходьбу между двумя вещами, которые кажутся точной противоположностью друг другу, но должны быть одним и тем же.</p>
+<p lang="en">It is like walking between two things that seem to be the exact antithesis of each other, but must be same thing.</p>
+<blockquote lang="ru">
+Это похоже на ходьбу между двумя вещами, которые кажутся точной противоположностью друг другу, но должны быть одним и тем же.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Fire Kasina As Home Practice]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Огненная касина как домашняя практика]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Fire Kasina As Home Practice]</p>
-</div>
-<p>[Огненная касина как домашняя практика]</p>
+<p lang="en">[Fire Kasina As Home Practice]</p>
+<blockquote lang="ru">
+[Огненная касина как домашняя практика]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 At home, would it be better for me to continue with fire kasina or go back to my pre-retreat vipassana meditation?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Дома мне лучше продолжить огненную касину или вернуться к моей доретритной медитации випассаны?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-At home, would it be better for me to continue with fire kasina or go back to my pre-retreat vipassana meditation?</p>
-</div>
-<p>Дома мне лучше продолжить огненную касину или вернуться к моей доретритной медитации випассаны?</p>
+<blockquote lang="ru">
+Дома мне лучше продолжить огненную касину или вернуться к моей доретритной медитации випассаны?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Continuing with fire kasina would provide the world another useful data point on the speed at which strong concentration fades; keeping up the practice would also contribute to mastery as you integrate in daily living.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Продолжение огненной касины дало бы миру еще одну полезную точку данных о скорости, с которой сильная концентрация угасает; поддержание практики также способствовало бы мастерству по мере интеграции в повседневную жизнь.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Continuing with fire kasina would provide the world another useful data point on the speed at which strong concentration fades; keeping up the practice would also contribute to mastery as you integrate in daily living.</p>
-</div>
-<p>Продолжение огненной касины дало бы миру еще одну полезную точку данных о скорости, с которой сильная концентрация угасает; поддержание практики также способствовало бы мастерству по мере интеграции в повседневную жизнь.</p>
+<blockquote lang="ru">
+Продолжение огненной касины дало бы миру еще одну полезную точку данных о скорости, с которой сильная концентрация угасает; поддержание практики также способствовало бы мастерству по мере интеграции в повседневную жизнь.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 When walking around, do you recommend I go for that spacious, luminous view we spoke about?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Когда я хожу, рекомендуешь ли ты мне стремиться к тому просторному, светящемуся видению, о котором мы говорили?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-When walking around, do you recommend I go for that spacious, luminous view we spoke about?</p>
-</div>
-<p>Когда я хожу, рекомендуешь ли ты мне стремиться к тому просторному, светящемуся видению, о котором мы говорили?</p>
+<blockquote lang="ru">
+Когда я хожу, рекомендуешь ли ты мне стремиться к тому просторному, светящемуся видению, о котором мы говорили?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>I experience it as �no hard edges�.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я переживаю это как «без жестких краев».</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>I experience it as �no hard edges�.</p>
-</div>
-<p>Я переживаю это как «без жестких краев».</p>
+<p lang="en">I experience it as �no hard edges�.</p>
+<blockquote lang="ru">
+Я переживаю это как «без жестких краев».
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Holding the view has tremendous value.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Удерживание взгляда имеет огромную ценность.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Holding the view has tremendous value.</p>
-</div>
-<p>Удерживание взгляда имеет огромную ценность.</p>
+<blockquote lang="ru">
+Удерживание взгляда имеет огромную ценность.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>No hard edges is a good way to go, but do not miss the intricacy of everything.</p>
-<div class="original-translation" aria-hidden="true">
-<p>«Без жестких краев» - хороший путь, но не упускай сложность всего.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>No hard edges is a good way to go, but do not miss the intricacy of everything.</p>
-</div>
-<p>«Без жестких краев» - хороший путь, но не упускай сложность всего.</p>
+<p lang="en">No hard edges is a good way to go, but do not miss the intricacy of everything.</p>
+<blockquote lang="ru">
+«Без жестких краев» - хороший путь, но не упускай сложность всего.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Notice the edges of the qualities of what is in space, yet also that there are no hard edges to space itself.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Замечай края качеств того, что находится в пространстве, но также и то, что у самого пространства нет жестких краев.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Notice the edges of the qualities of what is in space, yet also that there are no hard edges to space itself.</p>
-</div>
-<p>Замечай края качеств того, что находится в пространстве, но также и то, что у самого пространства нет жестких краев.</p>
+<p lang="en">Notice the edges of the qualities of what is in space, yet also that there are no hard edges to space itself.</p>
+<blockquote lang="ru">
+Замечай края качеств того, что находится в пространстве, но также и то, что у самого пространства нет жестких краев.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Value of Sequence]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Ценность последовательности]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Value of Sequence]</p>
-</div>
-<p>[Ценность последовательности]</p>
+<p lang="en">[Value of Sequence]</p>
+<blockquote lang="ru">
+[Ценность последовательности]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 I continue to initiate the meditations by observing the candle flame, then moving through the sequence.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я продолжаю начинать медитации с наблюдения за пламенем свечи, а затем прохожу через последовательность.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-I continue to initiate the meditations by observing the candle flame, then moving through the sequence.</p>
-</div>
-<p>Я продолжаю начинать медитации с наблюдения за пламенем свечи, а затем прохожу через последовательность.</p>
+<blockquote lang="ru">
+Я продолжаю начинать медитации с наблюдения за пламенем свечи, а затем прохожу через последовательность.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Yesterday it was slower, as I was in dissolution longer.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Вчера это было медленнее, поскольку я дольше находилась в растворении.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Yesterday it was slower, as I was in dissolution longer.</p>
-</div>
-<p>Вчера это было медленнее, поскольку я дольше находилась в растворении.</p>
+<p lang="en">Yesterday it was slower, as I was in dissolution longer.</p>
+<blockquote lang="ru">
+Вчера это было медленнее, поскольку я дольше находилась в растворении.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Then fruitions were occurring again.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Затем плодоношения снова начали происходить.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Then fruitions were occurring again.</p>
-</div>
-<p>Затем плодоношения снова начали происходить.</p>
+<p lang="en">Then fruitions were occurring again.</p>
+<blockquote lang="ru">
+Затем плодоношения снова начали происходить.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>I am happy with any bits of successful intending I can do before the fruitions.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я рада любым крупицам успешного намеревания, которые могу выполнить до плодоношений.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>I am happy with any bits of successful intending I can do before the fruitions.</p>
-</div>
-<p>Я рада любым крупицам успешного намеревания, которые могу выполнить до плодоношений.</p>
+<p lang="en">I am happy with any bits of successful intending I can do before the fruitions.</p>
+<blockquote lang="ru">
+Я рада любым крупицам успешного намеревания, которые могу выполнить до плодоношений.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Navigating the sequence rapidly is a core skill.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Быстрое прохождение последовательности - ключевой навык.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Navigating the sequence rapidly is a core skill.</p>
-</div>
-<p>Быстрое прохождение последовательности - ключевой навык.</p>
+<blockquote lang="ru">
+Быстрое прохождение последовательности - ключевой навык.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Over the course of the retreat, the candle flame was useful in the following ways:</p>
-<div class="original-translation" aria-hidden="true">
-<p>На протяжении ретрита пламя свечи было полезно следующими способами:</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Over the course of the retreat, the candle flame was useful in the following ways:</p>
-</div>
-<p>На протяжении ретрита пламя свечи было полезно следующими способами:</p>
+<blockquote lang="ru">
+На протяжении ретрита пламя свечи было полезно следующими способами:
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<ol>
+<ol lang="en">
 <li>To re-start the sequence in order to gain mastery by repeatedly running through the phases from start to finish.</li>
 </ol>
-<div class="original-translation" aria-hidden="true">
-<ol>
-<li>Чтобы заново запускать последовательность для обретения мастерства через многократное прохождение фаз от начала до конца.</li>
-</ol>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<ol>
-<li>To re-start the sequence in order to gain mastery by repeatedly running through the phases from start to finish.</li>
-</ol>
-</div>
+<blockquote lang="ru">
 <ol>
 <li>Чтобы заново запускать последовательность для обретения мастерства через многократное прохождение фаз от начала до конца.</li>
 </ol>
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<ol start="2">
+<ol lang="en" start="2">
 <li>To re-establish a clear after-image whenever necessary.</li>
 </ol>
-<div class="original-translation" aria-hidden="true">
-<ol start="2">
-<li>Чтобы при необходимости заново устанавливать ясный послеобраз.</li>
-</ol>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<ol start="2">
-<li>To re-establish a clear after-image whenever necessary.</li>
-</ol>
-</div>
+<blockquote lang="ru">
 <ol start="2">
 <li>Чтобы при необходимости заново устанавливать ясный послеобраз.</li>
 </ol>
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<ol start="3">
+<ol lang="en" start="3">
 <li>During intense, psychologically challenging periods, sitting by the candlelight, particularly at night, was soothing.</li>
 </ol>
-<div class="original-translation" aria-hidden="true">
-<ol start="3">
-<li>Во время интенсивных, психологически сложных периодов сидение при свете свечи, особенно ночью, успокаивало.</li>
-</ol>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<ol start="3">
-<li>During intense, psychologically challenging periods, sitting by the candlelight, particularly at night, was soothing.</li>
-</ol>
-</div>
+<blockquote lang="ru">
 <ol start="3">
 <li>Во время интенсивных, психологически сложных периодов сидение при свете свечи, особенно ночью, успокаивало.</li>
 </ol>
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<ol start="4">
+<ol lang="en" start="4">
 <li>When lost in dissolution, if I could muster the effort to lift my head, looking at the brightly burning flame instantly upped the mental energy.</li>
 </ol>
-<div class="original-translation" aria-hidden="true">
-<ol start="4">
-<li>Когда я терялась в растворении, если мне удавалось собрать усилие, чтобы поднять голову, взгляд на ярко горящее пламя мгновенно повышал умственную энергию.</li>
-</ol>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<ol start="4">
-<li>When lost in dissolution, if I could muster the effort to lift my head, looking at the brightly burning flame instantly upped the mental energy.</li>
-</ol>
-</div>
+<blockquote lang="ru">
 <ol start="4">
 <li>Когда я терялась в растворении, если мне удавалось собрать усилие, чтобы поднять голову, взгляд на ярко горящее пламя мгновенно повышал умственную энергию.</li>
 </ol>
@@ -570,26 +266,42 @@ Over the course of the retreat, the candle flame was useful in the following way
         </ul>
     </div>
     <div class="nav-actions">
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="bilingual"
+                    x-model="contentMode"
+                />
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="translation"
+                    x-model="contentMode"
+                />
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="original"
+                    x-model="contentMode"
+                />
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
+
         <button
             class="theme-toggle"
             type="button"
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+            x-text="theme === 'dark' ? 'Светлая тема' : 'Темная тема'"
         ></button>
-        <fieldset class="mode-toggle" aria-label="Text display mode">
-            <label>
-                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
-                <span>Билингва</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
-                <span>Только перевод</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="original" x-model="contentMode">
-                <span>Только оригинал</span>
-            </label>
-        </fieldset>
     </div>
 </nav>
 

@@ -11,32 +11,27 @@
   <script>
     document.addEventListener("click", (event) => {
       const mode = document.body.dataset.contentMode;
-      const quote = event.target.closest("main > blockquote[data-original-toggle]");
-      const original = event.target.closest("main > .original-block[data-translation-toggle]");
-
-      if (
-        (mode !== "translation" || !quote) &&
-        (mode !== "original" || !original)
-      ) {
-        return;
-      }
+      const translation = event.target.closest('main > blockquote[lang="ru"]');
+      const original = event.target.closest('main > [lang="en"]');
 
       if (event.target.closest("a, button, input, textarea, select, summary")) {
         return;
       }
 
-      if (mode === "translation") {
-        const expanded = quote.classList.toggle("original-visible");
-        quote
-          .querySelector(".translation-original")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "translation" && translation) {
+        const pairedOriginal = translation.previousElementSibling;
+
+        if (pairedOriginal?.matches('[lang="en"]')) {
+          pairedOriginal.classList.toggle("paired-visible");
+        }
       }
 
-      if (mode === "original") {
-        const expanded = original.classList.toggle("translation-visible");
-        original
-          .querySelector(".original-translation")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "original" && original) {
+        const pairedTranslation = original.nextElementSibling;
+
+        if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
+          pairedTranslation.classList.toggle("paired-visible");
+        }
       }
     });
   </script>
@@ -51,297 +46,105 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
-<div class="original-block" data-translation-toggle>
-<h1>Day Twenty-Four</h1>
-<div class="original-translation" aria-hidden="true">
-<p>День двадцать четвертый</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<h1>Day Twenty-Four</h1>
-</div>
-<p>День двадцать четвертый</p>
+<h1 lang="en">Day Twenty-Four</h1>
+<blockquote lang="ru">
+День двадцать четвертый
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Intentions ~ Thought Patterns Since Arahatship ~ Holding the View]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Намерения ~ Паттерны мыслей после арахатства ~ Удерживание взгляда]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Intentions ~ Thought Patterns Since Arahatship ~ Holding the View]</p>
-</div>
-<p>[Намерения ~ Паттерны мыслей после арахатства ~ Удерживание взгляда]</p>
+<p lang="en">[Intentions ~ Thought Patterns Since Arahatship ~ Holding the View]</p>
+<blockquote lang="ru">
+[Намерения ~ Паттерны мыслей после арахатства ~ Удерживание взгляда]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Intentions]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Намерения]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Intentions]</p>
-</div>
-<p>[Намерения]</p>
+<p lang="en">[Intentions]</p>
+<blockquote lang="ru">
+[Намерения]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 There have been successful intention-settings with partial travels: for example, I can use my astral hands to write messages and draw shapes on the colour field, which is deeply rewarding.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Были успешные задавания намерений с частичными путешествиями: например, я могу использовать свои астральные руки, чтобы писать сообщения и рисовать формы на цветовом поле, что глубоко вознаграждает.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-There have been successful intention-settings with partial travels: for example, I can use my astral hands to write messages and draw shapes on the colour field, which is deeply rewarding.</p>
-</div>
-<p>Были успешные задавания намерений с частичными путешествиями: например, я могу использовать свои астральные руки, чтобы писать сообщения и рисовать формы на цветовом поле, что глубоко вознаграждает.</p>
+<blockquote lang="ru">
+Были успешные задавания намерений с частичными путешествиями: например, я могу использовать свои астральные руки, чтобы писать сообщения и рисовать формы на цветовом поле, что глубоко вознаграждает.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>I intend, and in 30 seconds suddenly I see the hand is drawing.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я намереваюсь, и через 30 секунд внезапно вижу, что рука рисует.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>I intend, and in 30 seconds suddenly I see the hand is drawing.</p>
-</div>
-<p>Я намереваюсь, и через 30 секунд внезапно вижу, что рука рисует.</p>
+<p lang="en">I intend, and in 30 seconds suddenly I see the hand is drawing.</p>
+<blockquote lang="ru">
+Я намереваюсь, и через 30 секунд внезапно вижу, что рука рисует.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 That is exactly how it works.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Именно так это и работает.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-That is exactly how it works.</p>
-</div>
-<p>Именно так это и работает.</p>
+<blockquote lang="ru">
+Именно так это и работает.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Just let out the intention, let go of it and wait.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Просто выпусти намерение, отпусти его и жди.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Just let out the intention, let go of it and wait.</p>
-</div>
-<p>Просто выпусти намерение, отпусти его и жди.</p>
+<p lang="en">Just let out the intention, let go of it and wait.</p>
+<blockquote lang="ru">
+Просто выпусти намерение, отпусти его и жди.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Most magick and high meditative attainments, such as nirodha samapatti, are more likely to happen in the delay, a space where you are not trying to do anything.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Большинство магических и высоких медитативных достижений, таких как ниродха-самапатти, с большей вероятностью происходят в задержке, в пространстве, где ты не пытаешься ничего делать.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Most magick and high meditative attainments, such as nirodha samapatti, are more likely to happen in the delay, a space where you are not trying to do anything.</p>
-</div>
-<p>Большинство магических и высоких медитативных достижений, таких как ниродха-самапатти, с большей вероятностью происходят в задержке, в пространстве, где ты не пытаешься ничего делать.</p>
+<p lang="en">Most magick and high meditative attainments, such as nirodha samapatti, are more likely to happen in the delay, a space where you are not trying to do anything.</p>
+<blockquote lang="ru">
+Большинство магических и высоких медитативных достижений, таких как ниродха-самапатти, с большей вероятностью происходят в задержке, в пространстве, где ты не пытаешься ничего делать.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 At times I have equanimity with intentions, but still can get discouraged when nothing happens.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Временами у меня есть равностность по отношению к намерениям, но я все же могу расстраиваться, когда ничего не происходит.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-At times I have equanimity with intentions, but still can get discouraged when nothing happens.</p>
-</div>
-<p>Временами у меня есть равностность по отношению к намерениям, но я все же могу расстраиваться, когда ничего не происходит.</p>
+<blockquote lang="ru">
+Временами у меня есть равностность по отношению к намерениям, но я все же могу расстраиваться, когда ничего не происходит.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Sometimes it works, and sometimes it does not.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Иногда это работает, а иногда нет.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Sometimes it works, and sometimes it does not.</p>
-</div>
-<p>Иногда это работает, а иногда нет.</p>
+<blockquote lang="ru">
+Иногда это работает, а иногда нет.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Mastery also involves understanding the fickleness of the powers.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Мастерство также включает понимание непостоянства способностей.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Mastery also involves understanding the fickleness of the powers.</p>
-</div>
-<p>Мастерство также включает понимание непостоянства способностей.</p>
+<p lang="en">Mastery also involves understanding the fickleness of the powers.</p>
+<blockquote lang="ru">
+Мастерство также включает понимание непостоянства способностей.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Thought Patterns Since Arahatship]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Паттерны мыслей после арахатства]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Thought Patterns Since Arahatship]</p>
-</div>
-<p>[Паттерны мыслей после арахатства]</p>
+<p lang="en">[Thought Patterns Since Arahatship]</p>
+<blockquote lang="ru">
+[Паттерны мыслей после арахатства]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 I can imagine how your relationship to thoughts has changed, but, as an arahat, how have the frequency, patterns, and content of your thoughts changed, especially during downtime?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я могу представить, как изменились твои отношения с мыслями, но как у арахата изменилась частота, паттерны и содержание твоих мыслей, особенно во время простоя?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-I can imagine how your relationship to thoughts has changed, but, as an arahat, how have the frequency, patterns, and content of your thoughts changed, especially during downtime?</p>
-</div>
-<p>Я могу представить, как изменились твои отношения с мыслями, но как у арахата изменилась частота, паттерны и содержание твоих мыслей, особенно во время простоя?</p>
+<blockquote lang="ru">
+Я могу представить, как изменились твои отношения с мыслями, но как у арахата изменилась частота, паттерны и содержание твоих мыслей, особенно во время простоя?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Since 2003 insight continues to percolate back into pattern after pattern.</p>
-<div class="original-translation" aria-hidden="true">
-<p>С 2003 года прозрение продолжает просачиваться обратно в паттерн за паттерном.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Since 2003 insight continues to percolate back into pattern after pattern.</p>
-</div>
-<p>С 2003 года прозрение продолжает просачиваться обратно в паттерн за паттерном.</p>
+<blockquote lang="ru">
+С 2003 года прозрение продолжает просачиваться обратно в паттерн за паттерном.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>A painful memory arises in space, then sadness dissolves itself.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Болезненное воспоминание возникает в пространстве, затем печаль растворяет сама себя.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>A painful memory arises in space, then sadness dissolves itself.</p>
-</div>
-<p>Болезненное воспоминание возникает в пространстве, затем печаль растворяет сама себя.</p>
+<p lang="en">A painful memory arises in space, then sadness dissolves itself.</p>
+<blockquote lang="ru">
+Болезненное воспоминание возникает в пространстве, затем печаль растворяет сама себя.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Most people put up walls and rationalisations to protect themselves from painful thoughts and sensations.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Большинство людей возводят стены и рационализации, чтобы защититься от болезненных мыслей и ощущений.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Most people put up walls and rationalisations to protect themselves from painful thoughts and sensations.</p>
-</div>
-<p>Большинство людей возводят стены и рационализации, чтобы защититься от болезненных мыслей и ощущений.</p>
+<p lang="en">Most people put up walls and rationalisations to protect themselves from painful thoughts and sensations.</p>
+<blockquote lang="ru">
+Большинство людей возводят стены и рационализации, чтобы защититься от болезненных мыслей и ощущений.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Now difficult emotions are, in some ways, more available, as they are just a natural part of what is happening.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Теперь трудные эмоции в каком-то смысле более доступны, поскольку они просто естественная часть происходящего.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Now difficult emotions are, in some ways, more available, as they are just a natural part of what is happening.</p>
-</div>
-<p>Теперь трудные эмоции в каком-то смысле более доступны, поскольку они просто естественная часть происходящего.</p>
+<p lang="en">Now difficult emotions are, in some ways, more available, as they are just a natural part of what is happening.</p>
+<blockquote lang="ru">
+Теперь трудные эмоции в каком-то смысле более доступны, поскольку они просто естественная часть происходящего.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>As to the content of my thoughts, these days I mostly focus on my rather intense work-life, and so most thoughts are steadily project-related, though this could perhaps be due to the stage of life I am currently in more than realisation.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Что касается содержания моих мыслей, в эти дни я в основном сосредоточен на своей довольно интенсивной рабочей жизни, поэтому большинство мыслей устойчиво связаны с проектами, хотя, возможно, это больше связано с этапом жизни, в котором я сейчас нахожусь, чем с реализацией.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>As to the content of my thoughts, these days I mostly focus on my rather intense work-life, and so most thoughts are steadily project-related, though this could perhaps be due to the stage of life I am currently in more than realisation.</p>
-</div>
-<p>Что касается содержания моих мыслей, в эти дни я в основном сосредоточен на своей довольно интенсивной рабочей жизни, поэтому большинство мыслей устойчиво связаны с проектами, хотя, возможно, это больше связано с этапом жизни, в котором я сейчас нахожусь, чем с реализацией.</p>
+<p lang="en">As to the content of my thoughts, these days I mostly focus on my rather intense work-life, and so most thoughts are steadily project-related, though this could perhaps be due to the stage of life I am currently in more than realisation.</p>
+<blockquote lang="ru">
+Что касается содержания моих мыслей, в эти дни я в основном сосредоточен на своей довольно интенсивной рабочей жизни, поэтому большинство мыслей устойчиво связаны с проектами, хотя, возможно, это больше связано с этапом жизни, в котором я сейчас нахожусь, чем с реализацией.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>It is hard to sort out which is which.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Трудно разобраться, что из этого что.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>It is hard to sort out which is which.</p>
-</div>
-<p>Трудно разобраться, что из этого что.</p>
+<p lang="en">It is hard to sort out which is which.</p>
+<blockquote lang="ru">
+Трудно разобраться, что из этого что.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Holding the View]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Удерживание взгляда]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Holding the View]</p>
-</div>
-<p>[Удерживание взгляда]</p>
+<p lang="en">[Holding the View]</p>
+<blockquote lang="ru">
+[Удерживание взгляда]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Can you describe more about holding the view as a practice while walking around in everyday life?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Можешь подробнее описать удерживание взгляда как практику во время ходьбы в повседневной жизни?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Can you describe more about holding the view as a practice while walking around in everyday life?</p>
-</div>
-<p>Можешь подробнее описать удерживание взгляда как практику во время ходьбы в повседневной жизни?</p>
+<blockquote lang="ru">
+Можешь подробнее описать удерживание взгляда как практику во время ходьбы в повседневной жизни?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Experiencing luminosity pervading the field: seeing the mind states and their energies, ever changing, yet naturally seeing something universal about them.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Переживание светимости, пронизывающей поле: видение состояний ума и их энергий, постоянно меняющихся, но при этом естественное видение чего-то универсального в них.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Experiencing luminosity pervading the field: seeing the mind states and their energies, ever changing, yet naturally seeing something universal about them.</p>
-</div>
-<p>Переживание светимости, пронизывающей поле: видение состояний ума и их энергий, постоянно меняющихся, но при этом естественное видение чего-то универсального в них.</p>
+<blockquote lang="ru">
+Переживание светимости, пронизывающей поле: видение состояний ума и их энергий, постоянно меняющихся, но при этом естественное видение чего-то универсального в них.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Everything has its own qualities, yet this insight is not bound up in any specifics, as it applies to them all.</p>
-<div class="original-translation" aria-hidden="true">
-<p>У всего есть свои качества, но это прозрение не связано ни с какими конкретными деталями, поскольку оно относится ко всем им.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Everything has its own qualities, yet this insight is not bound up in any specifics, as it applies to them all.</p>
-</div>
-<p>У всего есть свои качества, но это прозрение не связано ни с какими конкретными деталями, поскольку оно относится ко всем им.</p>
+<p lang="en">Everything has its own qualities, yet this insight is not bound up in any specifics, as it applies to them all.</p>
+<blockquote lang="ru">
+У всего есть свои качества, но это прозрение не связано ни с какими конкретными деталями, поскольку оно относится ко всем им.
 </blockquote>
 
       </main>
@@ -400,26 +203,42 @@ Experiencing luminosity pervading the field: seeing the mind states and their en
         </ul>
     </div>
     <div class="nav-actions">
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="bilingual"
+                    x-model="contentMode"
+                />
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="translation"
+                    x-model="contentMode"
+                />
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="original"
+                    x-model="contentMode"
+                />
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
+
         <button
             class="theme-toggle"
             type="button"
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+            x-text="theme === 'dark' ? 'Светлая тема' : 'Темная тема'"
         ></button>
-        <fieldset class="mode-toggle" aria-label="Text display mode">
-            <label>
-                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
-                <span>Билингва</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
-                <span>Только перевод</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="original" x-model="contentMode">
-                <span>Только оригинал</span>
-            </label>
-        </fieldset>
     </div>
 </nav>
 

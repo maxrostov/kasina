@@ -11,32 +11,27 @@
   <script>
     document.addEventListener("click", (event) => {
       const mode = document.body.dataset.contentMode;
-      const quote = event.target.closest("main > blockquote[data-original-toggle]");
-      const original = event.target.closest("main > .original-block[data-translation-toggle]");
-
-      if (
-        (mode !== "translation" || !quote) &&
-        (mode !== "original" || !original)
-      ) {
-        return;
-      }
+      const translation = event.target.closest('main > blockquote[lang="ru"]');
+      const original = event.target.closest('main > [lang="en"]');
 
       if (event.target.closest("a, button, input, textarea, select, summary")) {
         return;
       }
 
-      if (mode === "translation") {
-        const expanded = quote.classList.toggle("original-visible");
-        quote
-          .querySelector(".translation-original")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "translation" && translation) {
+        const pairedOriginal = translation.previousElementSibling;
+
+        if (pairedOriginal?.matches('[lang="en"]')) {
+          pairedOriginal.classList.toggle("paired-visible");
+        }
       }
 
-      if (mode === "original") {
-        const expanded = original.classList.toggle("translation-visible");
-        original
-          .querySelector(".original-translation")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "original" && original) {
+        const pairedTranslation = original.nextElementSibling;
+
+        if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
+          pairedTranslation.classList.toggle("paired-visible");
+        }
       }
     });
   </script>
@@ -51,149 +46,53 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
-<div class="original-block" data-translation-toggle>
-<h1>The Authors</h1>
-<div class="original-translation" aria-hidden="true">
-<p>Авторы</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<h1>The Authors</h1>
-</div>
-<p>Авторы</p>
+<h1 lang="en">The Authors</h1>
+<blockquote lang="ru">
+Авторы
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Shannon Stein]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Шэннон Стайн]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Shannon Stein]</p>
-</div>
-<p>[Шэннон Стайн]</p>
+<p lang="en">[Shannon Stein]</p>
+<blockquote lang="ru">
+[Шэннон Стайн]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Shannon Stein has been practising like her hair is on fire since first encountering Buddhadharma in 2010.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Шэннон Стайн практикует так, будто у нее горят волосы, с тех пор как впервые встретилась с Буддадхармой в 2010 году.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Shannon Stein has been practising like her hair is on fire since first encountering Buddhadharma in 2010.</p>
-</div>
-<p>Шэннон Стайн практикует так, будто у нее горят волосы, с тех пор как впервые встретилась с Буддадхармой в 2010 году.</p>
+<p lang="en">Shannon Stein has been practising like her hair is on fire since first encountering Buddhadharma in 2010.</p>
+<blockquote lang="ru">
+Шэннон Стайн практикует так, будто у нее горят волосы, с тех пор как впервые встретилась с Буддадхармой в 2010 году.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>She is a Lama in the Namgyal Lineage of the Karma Kaygu School of Tibetan Buddhism with a strong interest in Theravada practice.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Она является ламой линии Намгьял школы Карма Кагью тибетского буддизма и глубоко интересуется практикой Тхеравады.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>She is a Lama in the Namgyal Lineage of the Karma Kaygu School of Tibetan Buddhism with a strong interest in Theravada practice.</p>
-</div>
-<p>Она является ламой линии Намгьял школы Карма Кагью тибетского буддизма и глубоко интересуется практикой Тхеравады.</p>
+<p lang="en">She is a Lama in the Namgyal Lineage of the Karma Kaygu School of Tibetan Buddhism with a strong interest in Theravada practice.</p>
+<blockquote lang="ru">
+Она является ламой линии Намгьял школы Карма Кагью тибетского буддизма и глубоко интересуется практикой Тхеравады.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Shannon teaches and runs retreats in Canada.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Шэннон преподает и проводит ретриты в Канаде.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Shannon teaches and runs retreats in Canada.</p>
-</div>
-<p>Шэннон преподает и проводит ретриты в Канаде.</p>
+<p lang="en">Shannon teaches and runs retreats in Canada.</p>
+<blockquote lang="ru">
+Шэннон преподает и проводит ретриты в Канаде.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>With a Masters Degree in Social Work, she has been providing individual, couple and family therapy for thirty years.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Имея степень магистра социальной работы, она уже тридцать лет занимается индивидуальной, парной и семейной терапией.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>With a Masters Degree in Social Work, she has been providing individual, couple and family therapy for thirty years.</p>
-</div>
-<p>Имея степень магистра социальной работы, она уже тридцать лет занимается индивидуальной, парной и семейной терапией.</p>
+<p lang="en">With a Masters Degree in Social Work, she has been providing individual, couple and family therapy for thirty years.</p>
+<blockquote lang="ru">
+Имея степень магистра социальной работы, она уже тридцать лет занимается индивидуальной, парной и семейной терапией.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>She is happily married with two caring adult children.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Она счастлива в браке и имеет двух заботливых взрослых детей.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>She is happily married with two caring adult children.</p>
-</div>
-<p>Она счастлива в браке и имеет двух заботливых взрослых детей.</p>
+<p lang="en">She is happily married with two caring adult children.</p>
+<blockquote lang="ru">
+Она счастлива в браке и имеет двух заботливых взрослых детей.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Daniel M. Ingram]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Дэниел М. Ингрэм]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Daniel M. Ingram]</p>
-</div>
-<p>[Дэниел М. Ингрэм]</p>
+<p lang="en">[Daniel M. Ingram]</p>
+<blockquote lang="ru">
+[Дэниел М. Ингрэм]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Daniel delights in exploring what is possible in meditation and magick and the open sharing of that adventure.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Дэниел с радостью исследует то, что возможно в медитации и магии, и открыто делится этим приключением.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Daniel delights in exploring what is possible in meditation and magick and the open sharing of that adventure.</p>
-</div>
-<p>Дэниел с радостью исследует то, что возможно в медитации и магии, и открыто делится этим приключением.</p>
+<p lang="en">Daniel delights in exploring what is possible in meditation and magick and the open sharing of that adventure.</p>
+<blockquote lang="ru">
+Дэниел с радостью исследует то, что возможно в медитации и магии, и открыто делится этим приключением.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>He has various degrees and titles, and aspires to benefit others with the gifts and teachings he has been given.</p>
-<div class="original-translation" aria-hidden="true">
-<p>У него есть различные степени и титулы, и он стремится приносить пользу другим с помощью даров и учений, которые ему были даны.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>He has various degrees and titles, and aspires to benefit others with the gifts and teachings he has been given.</p>
-</div>
-<p>У него есть различные степени и титулы, и он стремится приносить пользу другим с помощью даров и учений, которые ему были даны.</p>
+<p lang="en">He has various degrees and titles, and aspires to benefit others with the gifts and teachings he has been given.</p>
+<blockquote lang="ru">
+У него есть различные степени и титулы, и он стремится приносить пользу другим с помощью даров и учений, которые ему были даны.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>He wishes that all beings make skilful use of their hearts, minds and bodies.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Он желает, чтобы все существа умело использовали свои сердца, умы и тела.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>He wishes that all beings make skilful use of their hearts, minds and bodies.</p>
-</div>
-<p>Он желает, чтобы все существа умело использовали свои сердца, умы и тела.</p>
+<p lang="en">He wishes that all beings make skilful use of their hearts, minds and bodies.</p>
+<blockquote lang="ru">
+Он желает, чтобы все существа умело использовали свои сердца, умы и тела.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>For further information, consult the freely-available book Mastering the Core Teachings of the Buddha.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Для получения дополнительной информации обратитесь к свободно доступной книге Mastering the Core Teachings of the Buddha.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>For further information, consult the freely-available book Mastering the Core Teachings of the Buddha.</p>
-</div>
-<p>Для получения дополнительной информации обратитесь к свободно доступной книге Mastering the Core Teachings of the Buddha.</p>
+<p lang="en">For further information, consult the freely-available book Mastering the Core Teachings of the Buddha.</p>
+<blockquote lang="ru">
+Для получения дополнительной информации обратитесь к свободно доступной книге Mastering the Core Teachings of the Buddha.
 </blockquote>
 
       </main>
@@ -252,26 +151,42 @@
         </ul>
     </div>
     <div class="nav-actions">
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="bilingual"
+                    x-model="contentMode"
+                />
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="translation"
+                    x-model="contentMode"
+                />
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="original"
+                    x-model="contentMode"
+                />
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
+
         <button
             class="theme-toggle"
             type="button"
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+            x-text="theme === 'dark' ? 'Светлая тема' : 'Темная тема'"
         ></button>
-        <fieldset class="mode-toggle" aria-label="Text display mode">
-            <label>
-                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
-                <span>Билингва</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
-                <span>Только перевод</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="original" x-model="contentMode">
-                <span>Только оригинал</span>
-            </label>
-        </fieldset>
     </div>
 </nav>
 

@@ -11,32 +11,27 @@
   <script>
     document.addEventListener("click", (event) => {
       const mode = document.body.dataset.contentMode;
-      const quote = event.target.closest("main > blockquote[data-original-toggle]");
-      const original = event.target.closest("main > .original-block[data-translation-toggle]");
-
-      if (
-        (mode !== "translation" || !quote) &&
-        (mode !== "original" || !original)
-      ) {
-        return;
-      }
+      const translation = event.target.closest('main > blockquote[lang="ru"]');
+      const original = event.target.closest('main > [lang="en"]');
 
       if (event.target.closest("a, button, input, textarea, select, summary")) {
         return;
       }
 
-      if (mode === "translation") {
-        const expanded = quote.classList.toggle("original-visible");
-        quote
-          .querySelector(".translation-original")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "translation" && translation) {
+        const pairedOriginal = translation.previousElementSibling;
+
+        if (pairedOriginal?.matches('[lang="en"]')) {
+          pairedOriginal.classList.toggle("paired-visible");
+        }
       }
 
-      if (mode === "original") {
-        const expanded = original.classList.toggle("translation-visible");
-        original
-          .querySelector(".original-translation")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "original" && original) {
+        const pairedTranslation = original.nextElementSibling;
+
+        if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
+          pairedTranslation.classList.toggle("paired-visible");
+        }
       }
     });
   </script>
@@ -51,169 +46,61 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
-<div class="original-block" data-translation-toggle>
-<h1>Day Ten</h1>
-<div class="original-translation" aria-hidden="true">
-<p>День десятый</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<h1>Day Ten</h1>
-</div>
-<p>День десятый</p>
+<h1 lang="en">Day Ten</h1>
+<blockquote lang="ru">
+День десятый
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Intention-Setting with Travel ~ Visions]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Постановка намерения с путешествием ~ Видения</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Intention-Setting with Travel ~ Visions]</p>
-</div>
-<p>Постановка намерения с путешествием ~ Видения</p>
+<p lang="en">[Intention-Setting with Travel ~ Visions]</p>
+<blockquote lang="ru">
+Постановка намерения с путешествием ~ Видения
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Intention-Setting with Travel]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Постановка намерения с путешествием</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Intention-Setting with Travel]</p>
-</div>
-<p>Постановка намерения с путешествием</p>
+<p lang="en">[Intention-Setting with Travel]</p>
+<blockquote lang="ru">
+Постановка намерения с путешествием
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 I am travelling like crazy, sometimes 50 outings in a sit: brief but mundane travels, often using my astral hands to do things.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я путешествую как сумасшедшая, иногда по 50 выходов за одно сидение: краткие, но обыденные путешествия, часто с использованием астральных рук, чтобы что-то делать.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-I am travelling like crazy, sometimes 50 outings in a sit: brief but mundane travels, often using my astral hands to do things.</p>
-</div>
-<p>Я путешествую как сумасшедшая, иногда по 50 выходов за одно сидение: краткие, но обыденные путешествия, часто с использованием астральных рук, чтобы что-то делать.</p>
+<blockquote lang="ru">
+Я путешествую как сумасшедшая, иногда по 50 выходов за одно сидение: краткие, но обыденные путешествия, часто с использованием астральных рук, чтобы что-то делать.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>I keep intending to meet the Medicine Buddha but it has not happened.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я продолжаю намереваться встретить Будду Медицины, но этого не произошло.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>I keep intending to meet the Medicine Buddha but it has not happened.</p>
-</div>
-<p>Я продолжаю намереваться встретить Будду Медицины, но этого не произошло.</p>
+<p lang="en">I keep intending to meet the Medicine Buddha but it has not happened.</p>
+<blockquote lang="ru">
+Я продолжаю намереваться встретить Будду Медицины, но этого не произошло.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 All these things take patience and repetition.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Все эти вещи требуют терпения и повторения.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-All these things take patience and repetition.</p>
-</div>
-<p>Все эти вещи требуют терпения и повторения.</p>
+<blockquote lang="ru">
+Все эти вещи требуют терпения и повторения.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>You are only ten days in.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Вы всего лишь на десятом дне.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>You are only ten days in.</p>
-</div>
-<p>Вы всего лишь на десятом дне.</p>
+<p lang="en">You are only ten days in.</p>
+<blockquote lang="ru">
+Вы всего лишь на десятом дне.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Set intentions once at the beginning of the sit (not during), and then let it go.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Задавайте намерения один раз в начале сидения (не во время), а затем отпускайте их.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Set intentions once at the beginning of the sit (not during), and then let it go.</p>
-</div>
-<p>Задавайте намерения один раз в начале сидения (не во время), а затем отпускайте их.</p>
+<p lang="en">Set intentions once at the beginning of the sit (not during), and then let it go.</p>
+<blockquote lang="ru">
+Задавайте намерения один раз в начале сидения (не во время), а затем отпускайте их.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Paying attention makes it all happen.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Внимание заставляет все это происходить.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Paying attention makes it all happen.</p>
-</div>
-<p>Внимание заставляет все это происходить.</p>
+<p lang="en">Paying attention makes it all happen.</p>
+<blockquote lang="ru">
+Внимание заставляет все это происходить.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Visions]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Видения</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Visions]</p>
-</div>
-<p>Видения</p>
+<p lang="en">[Visions]</p>
+<blockquote lang="ru">
+Видения
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 I had several visions of a Jesus-like being outlined in dazzling light.</p>
-<div class="original-translation" aria-hidden="true">
-<p>У меня было несколько видений существа, похожего на Иисуса, очерченного ослепительным светом.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-I had several visions of a Jesus-like being outlined in dazzling light.</p>
-</div>
-<p>У меня было несколько видений существа, похожего на Иисуса, очерченного ослепительным светом.</p>
+<blockquote lang="ru">
+У меня было несколько видений существа, похожего на Иисуса, очерченного ослепительным светом.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>I was unable to stay with it long enough to ask his name.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я не смогла оставаться с ним достаточно долго, чтобы спросить его имя.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>I was unable to stay with it long enough to ask his name.</p>
-</div>
-<p>Я не смогла оставаться с ним достаточно долго, чтобы спросить его имя.</p>
+<p lang="en">I was unable to stay with it long enough to ask his name.</p>
+<blockquote lang="ru">
+Я не смогла оставаться с ним достаточно долго, чтобы спросить его имя.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Magick plays to our earliest childhood ethos and to cultural resonances.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Магия обращается к нашему самому раннему детскому этосу и культурным резонансам.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Magick plays to our earliest childhood ethos and to cultural resonances.</p>
-</div>
-<p>Магия обращается к нашему самому раннему детскому этосу и культурным резонансам.</p>
+<blockquote lang="ru">
+Магия обращается к нашему самому раннему детскому этосу и культурным резонансам.
 </blockquote>
 
       </main>
@@ -272,26 +159,42 @@ Magick plays to our earliest childhood ethos and to cultural resonances.</p>
         </ul>
     </div>
     <div class="nav-actions">
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="bilingual"
+                    x-model="contentMode"
+                />
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="translation"
+                    x-model="contentMode"
+                />
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="original"
+                    x-model="contentMode"
+                />
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
+
         <button
             class="theme-toggle"
             type="button"
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+            x-text="theme === 'dark' ? 'Светлая тема' : 'Темная тема'"
         ></button>
-        <fieldset class="mode-toggle" aria-label="Text display mode">
-            <label>
-                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
-                <span>Билингва</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
-                <span>Только перевод</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="original" x-model="contentMode">
-                <span>Только оригинал</span>
-            </label>
-        </fieldset>
     </div>
 </nav>
 

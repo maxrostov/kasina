@@ -182,9 +182,34 @@ function createMarkdownRenderer() {
   return md;
 }
 
-// В одноязычных режимах соседний блок скрыт CSS. Чтобы можно было раскрыть
-// вторую сторону конкретной фразы, копии парных блоков вкладываются друг в друга.
-function addContentModeToggles(html) {
+function markOriginalLanguage(html) {
+  return html.replace(
+    /^<([a-z][a-z0-9-]*)(\s[^>]*)?>/i,
+    (match, tagName, attributes = "") => `<${tagName} lang="en"${attributes}>`,
+  );
+}
+
+function unwrapTranslationParagraph(html) {
+  const paragraph = html.match(/^<p>([\s\S]*)<\/p>$/);
+  return paragraph ? paragraph[1] : html;
+}
+
+function markTranslationLanguage(html) {
+  return html
+    .replace(
+      /<blockquote>\n([\s\S]*?)\n<\/blockquote>/g,
+      (match, translation) =>
+        `<blockquote lang="ru">\n${unwrapTranslationParagraph(translation)}\n</blockquote>`,
+    )
+    .replace(
+      /<blockquote lang="ru">\n([\s\S]*?)\n<\/blockquote>/g,
+      (match, translation) =>
+        `<blockquote lang="ru">\n${unwrapTranslationParagraph(translation)}\n</blockquote>`,
+    );
+}
+
+// Оригинал и перевод остаются соседними блоками без служебной обвязки.
+function addContentLanguage(html) {
   const originalBlock =
     String.raw`(<h[1-6][^>]*>[\s\S]*?<\/h[1-6]>|<p[^>]*>[\s\S]*?<\/p>|<ul[^>]*>[\s\S]*?<\/ul>|<ol[^>]*>[\s\S]*?<\/ol>)`;
   const translationPairPattern = new RegExp(
@@ -192,11 +217,13 @@ function addContentModeToggles(html) {
     "g",
   );
 
-  return html.replace(
+  const pairedHtml = html.replace(
     translationPairPattern,
     (match, original, translation) =>
-      `<div class="original-block" data-translation-toggle>\n${original}\n<div class="original-translation" aria-hidden="true">\n${translation}\n</div>\n</div>\n<blockquote data-original-toggle>\n<div class="translation-original" aria-hidden="true">\n${original}\n</div>\n${translation}\n</blockquote>`,
+      `${markOriginalLanguage(original)}\n<blockquote>\n${translation}\n</blockquote>`,
   );
+
+  return markTranslationLanguage(pairedHtml);
 }
 
 // Разметка навигации лежит в nav.html; здесь собирается только список ссылок.
@@ -309,7 +336,7 @@ async function main() {
 
   // Рендерит каждый Markdown-документ в самостоятельную HTML-страницу.
   for (const page of pages) {
-    const body = addContentModeToggles(
+    const body = addContentLanguage(
       rewriteHtmlMarkdownUrls(md.render(page.markdown)),
     );
     const stylesheetLinks = stylesheets

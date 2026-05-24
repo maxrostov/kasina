@@ -11,32 +11,27 @@
   <script>
     document.addEventListener("click", (event) => {
       const mode = document.body.dataset.contentMode;
-      const quote = event.target.closest("main > blockquote[data-original-toggle]");
-      const original = event.target.closest("main > .original-block[data-translation-toggle]");
-
-      if (
-        (mode !== "translation" || !quote) &&
-        (mode !== "original" || !original)
-      ) {
-        return;
-      }
+      const translation = event.target.closest('main > blockquote[lang="ru"]');
+      const original = event.target.closest('main > [lang="en"]');
 
       if (event.target.closest("a, button, input, textarea, select, summary")) {
         return;
       }
 
-      if (mode === "translation") {
-        const expanded = quote.classList.toggle("original-visible");
-        quote
-          .querySelector(".translation-original")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "translation" && translation) {
+        const pairedOriginal = translation.previousElementSibling;
+
+        if (pairedOriginal?.matches('[lang="en"]')) {
+          pairedOriginal.classList.toggle("paired-visible");
+        }
       }
 
-      if (mode === "original") {
-        const expanded = original.classList.toggle("translation-visible");
-        original
-          .querySelector(".original-translation")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "original" && original) {
+        const pairedTranslation = original.nextElementSibling;
+
+        if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
+          pairedTranslation.classList.toggle("paired-visible");
+        }
       }
     });
   </script>
@@ -51,271 +46,96 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
-<div class="original-block" data-translation-toggle>
-<h1>Day Fifteen</h1>
-<div class="original-translation" aria-hidden="true">
-<p>День пятнадцатый</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<h1>Day Fifteen</h1>
-</div>
-<p>День пятнадцатый</p>
+<h1 lang="en">Day Fifteen</h1>
+<blockquote lang="ru">
+День пятнадцатый
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[The Grey ~ Fruitions]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Серое ~ Плодоношения]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[The Grey ~ Fruitions]</p>
-</div>
-<p>[Серое ~ Плодоношения]</p>
+<p lang="en">[The Grey ~ Fruitions]</p>
+<blockquote lang="ru">
+[Серое ~ Плодоношения]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[The Grey]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Серое]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[The Grey]</p>
-</div>
-<p>[Серое]</p>
+<p lang="en">[The Grey]</p>
+<blockquote lang="ru">
+[Серое]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 I am wasting too much time in a grey visual field.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я трачу слишком много времени в сером визуальном поле.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-I am wasting too much time in a grey visual field.</p>
-</div>
-<p>Я трачу слишком много времени в сером визуальном поле.</p>
+<blockquote lang="ru">
+Я трачу слишком много времени в сером визуальном поле.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>There is no colour.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Цвета нет.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>There is no colour.</p>
-</div>
-<p>Цвета нет.</p>
+<p lang="en">There is no colour.</p>
+<blockquote lang="ru">
+Цвета нет.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 I was also initially thrown by the grey, but then I realised grey is a fusion of black and white and all colours, like the true base colour, the equanimity of colour, the potential out of which all colours come.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Меня тоже сначала сбило с толку серое, но потом я понял, что серое - это слияние черного, белого и всех цветов, как истинный базовый цвет, равностность цвета, потенциал, из которого возникают все цвета.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-I was also initially thrown by the grey, but then I realised grey is a fusion of black and white and all colours, like the true base colour, the equanimity of colour, the potential out of which all colours come.</p>
-</div>
-<p>Меня тоже сначала сбило с толку серое, но потом я понял, что серое - это слияние черного, белого и всех цветов, как истинный базовый цвет, равностность цвета, потенциал, из которого возникают все цвета.</p>
+<blockquote lang="ru">
+Меня тоже сначала сбило с толку серое, но потом я понял, что серое - это слияние черного, белого и всех цветов, как истинный базовый цвет, равностность цвета, потенциал, из которого возникают все цвета.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>So there are two totally different relationships one can have with the grey: one not understanding, one better understanding.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Поэтому с серым возможны два совершенно разных отношения: одно - без понимания, другое - с лучшим пониманием.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>So there are two totally different relationships one can have with the grey: one not understanding, one better understanding.</p>
-</div>
-<p>Поэтому с серым возможны два совершенно разных отношения: одно - без понимания, другое - с лучшим пониманием.</p>
+<p lang="en">So there are two totally different relationships one can have with the grey: one not understanding, one better understanding.</p>
+<blockquote lang="ru">
+Поэтому с серым возможны два совершенно разных отношения: одно - без понимания, другое - с лучшим пониманием.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>I agree, initially it feels wrong to stay with the grey, but it is not.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Согласен, сначала кажется неправильным оставаться с серым, но это не так.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>I agree, initially it feels wrong to stay with the grey, but it is not.</p>
-</div>
-<p>Согласен, сначала кажется неправильным оставаться с серым, но это не так.</p>
+<p lang="en">I agree, initially it feels wrong to stay with the grey, but it is not.</p>
+<blockquote lang="ru">
+Согласен, сначала кажется неправильным оставаться с серым, но это не так.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Fruitions]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Плодоношения]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Fruitions]</p>
-</div>
-<p>[Плодоношения]</p>
+<p lang="en">[Fruitions]</p>
+<blockquote lang="ru">
+[Плодоношения]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 The initial fruition after a cycle is strongest, sometimes followed by such intense after-waves that my whole system needs to calm down before being able to rise up for another fruition.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Первое плодоношение после цикла самое сильное, иногда за ним следуют такие интенсивные последующие волны, что всей моей системе нужно успокоиться, прежде чем я смогу подняться к другому плодоношению.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-The initial fruition after a cycle is strongest, sometimes followed by such intense after-waves that my whole system needs to calm down before being able to rise up for another fruition.</p>
-</div>
-<p>Первое плодоношение после цикла самое сильное, иногда за ним следуют такие интенсивные последующие волны, что всей моей системе нужно успокоиться, прежде чем я смогу подняться к другому плодоношению.</p>
+<blockquote lang="ru">
+Первое плодоношение после цикла самое сильное, иногда за ним следуют такие интенсивные последующие волны, что всей моей системе нужно успокоиться, прежде чем я смогу подняться к другому плодоношению.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Eventually I am able to fairly easily intend for repeat fruitions, but they tend to be much milder.</p>
-<div class="original-translation" aria-hidden="true">
-<p>В итоге я могу довольно легко намереваться на повторные плодоношения, но они обычно гораздо мягче.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Eventually I am able to fairly easily intend for repeat fruitions, but they tend to be much milder.</p>
-</div>
-<p>В итоге я могу довольно легко намереваться на повторные плодоношения, но они обычно гораздо мягче.</p>
+<p lang="en">Eventually I am able to fairly easily intend for repeat fruitions, but they tend to be much milder.</p>
+<blockquote lang="ru">
+В итоге я могу довольно легко намереваться на повторные плодоношения, но они обычно гораздо мягче.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Also, I still rarely experience clear entrances.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Кроме того, я все еще редко переживаю ясные входы.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Also, I still rarely experience clear entrances.</p>
-</div>
-<p>Кроме того, я все еще редко переживаю ясные входы.</p>
+<p lang="en">Also, I still rarely experience clear entrances.</p>
+<blockquote lang="ru">
+Кроме того, я все еще редко переживаю ясные входы.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 It is normal for them to grow softer and feel less satisfying over multiple repeated fruitions, back-to-back.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Нормально, что они становятся мягче и ощущаются менее удовлетворительными при множественных повторных плодоношениях, следующих одно за другим.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-It is normal for them to grow softer and feel less satisfying over multiple repeated fruitions, back-to-back.</p>
-</div>
-<p>Нормально, что они становятся мягче и ощущаются менее удовлетворительными при множественных повторных плодоношениях, следующих одно за другим.</p>
+<blockquote lang="ru">
+Нормально, что они становятся мягче и ощущаются менее удовлетворительными при множественных повторных плодоношениях, следующих одно за другим.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>If you have had a fruition, the mind has experienced a door into it somehow, but, for many, they find that without language for it, or without someone pointing it out, they have no good way of categorising the qualities of the entrance to the door, or even remembering what happened.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Если у тебя было плодоношение, ум каким-то образом пережил дверь в него, но многие обнаруживают, что без языка для этого или без того, чтобы кто-то на это указал, у них нет хорошего способа классифицировать качества входа в дверь или даже помнить, что произошло.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>If you have had a fruition, the mind has experienced a door into it somehow, but, for many, they find that without language for it, or without someone pointing it out, they have no good way of categorising the qualities of the entrance to the door, or even remembering what happened.</p>
-</div>
-<p>Если у тебя было плодоношение, ум каким-то образом пережил дверь в него, но многие обнаруживают, что без языка для этого или без того, чтобы кто-то на это указал, у них нет хорошего способа классифицировать качества входа в дверь или даже помнить, что произошло.</p>
+<p lang="en">If you have had a fruition, the mind has experienced a door into it somehow, but, for many, they find that without language for it, or without someone pointing it out, they have no good way of categorising the qualities of the entrance to the door, or even remembering what happened.</p>
+<blockquote lang="ru">
+Если у тебя было плодоношение, ум каким-то образом пережил дверь в него, но многие обнаруживают, что без языка для этого или без того, чтобы кто-то на это указал, у них нет хорошего способа классифицировать качества входа в дверь или даже помнить, что произошло.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Look for very rapid, discreet mind moments: the experience of what is theorised in the Abhidhamma.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Ищи очень быстрые, отдельные моменты ума: переживание того, что теоретически описывается в Абхидхамме.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Look for very rapid, discreet mind moments: the experience of what is theorised in the Abhidhamma.</p>
-</div>
-<p>Ищи очень быстрые, отдельные моменты ума: переживание того, что теоретически описывается в Абхидхамме.</p>
+<p lang="en">Look for very rapid, discreet mind moments: the experience of what is theorised in the Abhidhamma.</p>
+<blockquote lang="ru">
+Ищи очень быстрые, отдельные моменты ума: переживание того, что теоретически описывается в Абхидхамме.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Are the shudders with the impermanence door visual at all?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Дрожания при двери непостоянства вообще визуальны?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Are the shudders with the impermanence door visual at all?</p>
-</div>
-<p>Дрожания при двери непостоянства вообще визуальны?</p>
+<blockquote lang="ru">
+Дрожания при двери непостоянства вообще визуальны?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>I briefly feel but do not �see� them.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я кратко ощущаю их, но не «вижу».</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>I briefly feel but do not �see� them.</p>
-</div>
-<p>Я кратко ощущаю их, но не «вижу».</p>
+<p lang="en">I briefly feel but do not �see� them.</p>
+<blockquote lang="ru">
+Я кратко ощущаю их, но не «вижу».
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 The shudders include space, time, physical awareness, full-on everything in all the sense doors, all together.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Дрожания включают пространство, время, телесное осознавание - полностью все во всех дверях чувств, все вместе.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-The shudders include space, time, physical awareness, full-on everything in all the sense doors, all together.</p>
-</div>
-<p>Дрожания включают пространство, время, телесное осознавание - полностью все во всех дверях чувств, все вместе.</p>
+<blockquote lang="ru">
+Дрожания включают пространство, время, телесное осознавание - полностью все во всех дверях чувств, все вместе.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 By the end of Day Fifteen I entered into a pristinely quiet and restorative phase, for the first time being able to watch a relatively stable visual field.</p>
-<div class="original-translation" aria-hidden="true">
-<p>К концу пятнадцатого дня я вошла в безупречно тихую и восстанавливающую фазу, впервые получив возможность наблюдать относительно стабильное визуальное поле.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-By the end of Day Fifteen I entered into a pristinely quiet and restorative phase, for the first time being able to watch a relatively stable visual field.</p>
-</div>
-<p>К концу пятнадцатого дня я вошла в безупречно тихую и восстанавливающую фазу, впервые получив возможность наблюдать относительно стабильное визуальное поле.</p>
+<blockquote lang="ru">
+К концу пятнадцатого дня я вошла в безупречно тихую и восстанавливающую фазу, впервые получив возможность наблюдать относительно стабильное визуальное поле.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The bodily vibrations that had been present throughout the retreat diminished to almost nothing.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Телесные вибрации, присутствовавшие на протяжении всего ретрита, уменьшились почти до нуля.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The bodily vibrations that had been present throughout the retreat diminished to almost nothing.</p>
-</div>
-<p>Телесные вибрации, присутствовавшие на протяжении всего ретрита, уменьшились почти до нуля.</p>
+<p lang="en">The bodily vibrations that had been present throughout the retreat diminished to almost nothing.</p>
+<blockquote lang="ru">
+Телесные вибрации, присутствовавшие на протяжении всего ретрита, уменьшились почти до нуля.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Striving dropped dramatically, replaced by a widespread sense of inner peacefulness and acceptance.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Стремление резко ослабло, сменившись широким чувством внутреннего покоя и принятия.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Striving dropped dramatically, replaced by a widespread sense of inner peacefulness and acceptance.</p>
-</div>
-<p>Стремление резко ослабло, сменившись широким чувством внутреннего покоя и принятия.</p>
+<p lang="en">Striving dropped dramatically, replaced by a widespread sense of inner peacefulness and acceptance.</p>
+<blockquote lang="ru">
+Стремление резко ослабло, сменившись широким чувством внутреннего покоя и принятия.
 </blockquote>
 
       </main>
@@ -374,26 +194,42 @@ By the end of Day Fifteen I entered into a pristinely quiet and restorative phas
         </ul>
     </div>
     <div class="nav-actions">
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="bilingual"
+                    x-model="contentMode"
+                />
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="translation"
+                    x-model="contentMode"
+                />
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="original"
+                    x-model="contentMode"
+                />
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
+
         <button
             class="theme-toggle"
             type="button"
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+            x-text="theme === 'dark' ? 'Светлая тема' : 'Темная тема'"
         ></button>
-        <fieldset class="mode-toggle" aria-label="Text display mode">
-            <label>
-                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
-                <span>Билингва</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
-                <span>Только перевод</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="original" x-model="contentMode">
-                <span>Только оригинал</span>
-            </label>
-        </fieldset>
     </div>
 </nav>
 

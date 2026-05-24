@@ -11,32 +11,27 @@
   <script>
     document.addEventListener("click", (event) => {
       const mode = document.body.dataset.contentMode;
-      const quote = event.target.closest("main > blockquote[data-original-toggle]");
-      const original = event.target.closest("main > .original-block[data-translation-toggle]");
-
-      if (
-        (mode !== "translation" || !quote) &&
-        (mode !== "original" || !original)
-      ) {
-        return;
-      }
+      const translation = event.target.closest('main > blockquote[lang="ru"]');
+      const original = event.target.closest('main > [lang="en"]');
 
       if (event.target.closest("a, button, input, textarea, select, summary")) {
         return;
       }
 
-      if (mode === "translation") {
-        const expanded = quote.classList.toggle("original-visible");
-        quote
-          .querySelector(".translation-original")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "translation" && translation) {
+        const pairedOriginal = translation.previousElementSibling;
+
+        if (pairedOriginal?.matches('[lang="en"]')) {
+          pairedOriginal.classList.toggle("paired-visible");
+        }
       }
 
-      if (mode === "original") {
-        const expanded = original.classList.toggle("translation-visible");
-        original
-          .querySelector(".original-translation")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "original" && original) {
+        const pairedTranslation = original.nextElementSibling;
+
+        if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
+          pairedTranslation.classList.toggle("paired-visible");
+        }
       }
     });
   </script>
@@ -51,719 +46,250 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
-<div class="original-block" data-translation-toggle>
-<h1>Day Two</h1>
-<div class="original-translation" aria-hidden="true">
-<p>День второй</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<h1>Day Two</h1>
-</div>
-<p>День второй</p>
+<h1 lang="en">Day Two</h1>
+<blockquote lang="ru">
+День второй
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Concentration in Transitions ~ Drawing Symbols ~ Body Bliss ~ Third Jhana]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Сосредоточение в переходах ~ Рисование символов ~ Телесное блаженство ~ Третья джхана</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Concentration in Transitions ~ Drawing Symbols ~ Body Bliss ~ Third Jhana]</p>
-</div>
-<p>Сосредоточение в переходах ~ Рисование символов ~ Телесное блаженство ~ Третья джхана</p>
+<p lang="en">[Concentration in Transitions ~ Drawing Symbols ~ Body Bliss ~ Third Jhana]</p>
+<blockquote lang="ru">
+Сосредоточение в переходах ~ Рисование символов ~ Телесное блаженство ~ Третья джхана
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Concentration in Transitions]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Сосредоточение в переходах</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Concentration in Transitions]</p>
-</div>
-<p>Сосредоточение в переходах</p>
+<p lang="en">[Concentration in Transitions]</p>
+<blockquote lang="ru">
+Сосредоточение в переходах
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Is it okay to use an LED light to refresh the mental picture of an after-image dot while moving around between sits?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Можно ли использовать светодиодный фонарь, чтобы обновлять мысленный образ точки-послеобраза, двигаясь между сидениями?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Is it okay to use an LED light to refresh the mental picture of an after-image dot while moving around between sits?</p>
-</div>
-<p>Можно ли использовать светодиодный фонарь, чтобы обновлять мысленный образ точки-послеобраза, двигаясь между сидениями?</p>
+<blockquote lang="ru">
+Можно ли использовать светодиодный фонарь, чтобы обновлять мысленный образ точки-послеобраза, двигаясь между сидениями?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Also, my most success at this point in maintaining any after-image with my eyes open in transitions is if I keep the rooms in the cabin quite dark.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Кроме того, на данный момент мне лучше всего удается сохранять какой-либо послеобраз с открытыми глазами в переходах, если я держу комнаты в хижине довольно темными.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Also, my most success at this point in maintaining any after-image with my eyes open in transitions is if I keep the rooms in the cabin quite dark.</p>
-</div>
-<p>Кроме того, на данный момент мне лучше всего удается сохранять какой-либо послеобраз с открытыми глазами в переходах, если я держу комнаты в хижине довольно темными.</p>
+<p lang="en">Also, my most success at this point in maintaining any after-image with my eyes open in transitions is if I keep the rooms in the cabin quite dark.</p>
+<blockquote lang="ru">
+Кроме того, на данный момент мне лучше всего удается сохранять какой-либо послеобраз с открытыми глазами в переходах, если я держу комнаты в хижине довольно темными.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 An LED is fine, and if the after-image is not bright enough when in more lit areas then for now stay in lesslit rooms, as whatever works is key!</p>
-<div class="original-translation" aria-hidden="true">
-<p>Светодиод подойдет, и если послеобраз недостаточно яркий в более освещенных местах, то пока оставайтесь в менее освещенных комнатах, потому что главное - то, что работает!</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-An LED is fine, and if the after-image is not bright enough when in more lit areas then for now stay in lesslit rooms, as whatever works is key!</p>
-</div>
-<p>Светодиод подойдет, и если послеобраз недостаточно яркий в более освещенных местах, то пока оставайтесь в менее освещенных комнатах, потому что главное - то, что работает!</p>
+<blockquote lang="ru">
+Светодиод подойдет, и если послеобраз недостаточно яркий в более освещенных местах, то пока оставайтесь в менее освещенных комнатах, потому что главное - то, что работает!
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Seeing the images with your eyes open in broad daylight can be hard, early on.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Видеть образы с открытыми глазами при ярком дневном свете на раннем этапе может быть трудно.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Seeing the images with your eyes open in broad daylight can be hard, early on.</p>
-</div>
-<p>Видеть образы с открытыми глазами при ярком дневном свете на раннем этапе может быть трудно.</p>
+<p lang="en">Seeing the images with your eyes open in broad daylight can be hard, early on.</p>
+<blockquote lang="ru">
+Видеть образы с открытыми глазами при ярком дневном свете на раннем этапе может быть трудно.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>When outside, you could try to take the light of the sun that you can see through closed eyelids as an object, then open your eyes while looking at something other than the sun and then take the after-image as the object; done properly, it is like looking through rose-stained glasses, and as concentration develops, you should be able to walk around holding that rose-coloured effect on your visual field.</p>
-<div class="original-translation" aria-hidden="true">
-<p>На улице можно попробовать взять в качестве объекта свет солнца, который виден через закрытые веки, затем открыть глаза, глядя на что-то кроме солнца, и после этого взять послеобраз как объект; если сделать это правильно, это похоже на смотрение через розовые очки, и по мере развития концентрации вы сможете ходить, удерживая этот розоватый эффект в визуальном поле.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>When outside, you could try to take the light of the sun that you can see through closed eyelids as an object, then open your eyes while looking at something other than the sun and then take the after-image as the object; done properly, it is like looking through rose-stained glasses, and as concentration develops, you should be able to walk around holding that rose-coloured effect on your visual field.</p>
-</div>
-<p>На улице можно попробовать взять в качестве объекта свет солнца, который виден через закрытые веки, затем открыть глаза, глядя на что-то кроме солнца, и после этого взять послеобраз как объект; если сделать это правильно, это похоже на смотрение через розовые очки, и по мере развития концентрации вы сможете ходить, удерживая этот розоватый эффект в визуальном поле.</p>
+<p lang="en">When outside, you could try to take the light of the sun that you can see through closed eyelids as an object, then open your eyes while looking at something other than the sun and then take the after-image as the object; done properly, it is like looking through rose-stained glasses, and as concentration develops, you should be able to walk around holding that rose-coloured effect on your visual field.</p>
+<blockquote lang="ru">
+На улице можно попробовать взять в качестве объекта свет солнца, который виден через закрытые веки, затем открыть глаза, глядя на что-то кроме солнца, и после этого взять послеобраз как объект; если сделать это правильно, это похоже на смотрение через розовые очки, и по мере развития концентрации вы сможете ходить, удерживая этот розоватый эффект в визуальном поле.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 I was determined to build concentration as continually as possible at the front end.</p>
-<div class="original-translation" aria-hidden="true">
-<p>В начале я была решительно настроена развивать концентрацию настолько непрерывно, насколько возможно.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-I was determined to build concentration as continually as possible at the front end.</p>
-</div>
-<p>В начале я была решительно настроена развивать концентрацию настолько непрерывно, насколько возможно.</p>
+<blockquote lang="ru">
+В начале я была решительно настроена развивать концентрацию настолько непрерывно, насколько возможно.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>One way of ascertaining high concentration was being able to maintain an eyes-open after-image of the candle while moving about between formal sits.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Одним из способов убедиться в высокой концентрации была способность поддерживать послеобраз свечи с открытыми глазами, передвигаясь между формальными сидениями.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>One way of ascertaining high concentration was being able to maintain an eyes-open after-image of the candle while moving about between formal sits.</p>
-</div>
-<p>Одним из способов убедиться в высокой концентрации была способность поддерживать послеобраз свечи с открытыми глазами, передвигаясь между формальными сидениями.</p>
+<p lang="en">One way of ascertaining high concentration was being able to maintain an eyes-open after-image of the candle while moving about between formal sits.</p>
+<blockquote lang="ru">
+Одним из способов убедиться в высокой концентрации была способность поддерживать послеобраз свечи с открытыми глазами, передвигаясь между формальными сидениями.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>It was sobering to realise how challenging this could be in broad daylight and I was relieved to be encouraged to go with whatever it took to sustain a perceivable image.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Было отрезвляюще осознать, насколько сложно это может быть при ярком дневном свете, и я испытала облегчение, когда меня поощрили использовать все, что нужно, чтобы сохранять воспринимаемый образ.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>It was sobering to realise how challenging this could be in broad daylight and I was relieved to be encouraged to go with whatever it took to sustain a perceivable image.</p>
-</div>
-<p>Было отрезвляюще осознать, насколько сложно это может быть при ярком дневном свете, и я испытала облегчение, когда меня поощрили использовать все, что нужно, чтобы сохранять воспринимаемый образ.</p>
+<p lang="en">It was sobering to realise how challenging this could be in broad daylight and I was relieved to be encouraged to go with whatever it took to sustain a perceivable image.</p>
+<blockquote lang="ru">
+Было отрезвляюще осознать, насколько сложно это может быть при ярком дневном свете, и я испытала облегчение, когда меня поощрили использовать все, что нужно, чтобы сохранять воспринимаемый образ.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>For me, it was taking a brief look at the same low-power LED light I was using at the bow of my kayak at night (I used a mini flashlight in the end of a battery for charging cell phones), in order to gain an afterimage and then moving slowly enough with eyes half-open in darkly-lit rooms to be able to still see the mental image of the light.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Для меня это означало кратко смотреть на тот же маломощный светодиодный фонарь, который я использовала ночью на носу каяка (я вставляла мини-фонарик в торец аккумулятора для зарядки телефонов), чтобы получить послеобраз, а затем двигаться достаточно медленно с полуоткрытыми глазами в слабо освещенных комнатах, чтобы все еще видеть мысленный образ света.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>For me, it was taking a brief look at the same low-power LED light I was using at the bow of my kayak at night (I used a mini flashlight in the end of a battery for charging cell phones), in order to gain an afterimage and then moving slowly enough with eyes half-open in darkly-lit rooms to be able to still see the mental image of the light.</p>
-</div>
-<p>Для меня это означало кратко смотреть на тот же маломощный светодиодный фонарь, который я использовала ночью на носу каяка (я вставляла мини-фонарик в торец аккумулятора для зарядки телефонов), чтобы получить послеобраз, а затем двигаться достаточно медленно с полуоткрытыми глазами в слабо освещенных комнатах, чтобы все еще видеть мысленный образ света.</p>
+<p lang="en">For me, it was taking a brief look at the same low-power LED light I was using at the bow of my kayak at night (I used a mini flashlight in the end of a battery for charging cell phones), in order to gain an afterimage and then moving slowly enough with eyes half-open in darkly-lit rooms to be able to still see the mental image of the light.</p>
+<blockquote lang="ru">
+Для меня это означало кратко смотреть на тот же маломощный светодиодный фонарь, который я использовала ночью на носу каяка (я вставляла мини-фонарик в торец аккумулятора для зарядки телефонов), чтобы получить послеобраз, а затем двигаться достаточно медленно с полуоткрытыми глазами в слабо освещенных комнатах, чтобы все еще видеть мысленный образ света.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>One halting step at a time, while opening the fridge for example, I would watch the small dot in front of me, then close my eyes if need be to make the dot brighter and resort to the LED light when I could no longer bring up the clear dot on my own.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Делая по одному нерешительному шагу, например открывая холодильник, я наблюдала маленькую точку перед собой, затем при необходимости закрывала глаза, чтобы сделать точку ярче, и прибегала к светодиоду, когда уже не могла самостоятельно вызвать ясную точку.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>One halting step at a time, while opening the fridge for example, I would watch the small dot in front of me, then close my eyes if need be to make the dot brighter and resort to the LED light when I could no longer bring up the clear dot on my own.</p>
-</div>
-<p>Делая по одному нерешительному шагу, например открывая холодильник, я наблюдала маленькую точку перед собой, затем при необходимости закрывала глаза, чтобы сделать точку ярче, и прибегала к светодиоду, когда уже не могла самостоятельно вызвать ясную точку.</p>
+<p lang="en">One halting step at a time, while opening the fridge for example, I would watch the small dot in front of me, then close my eyes if need be to make the dot brighter and resort to the LED light when I could no longer bring up the clear dot on my own.</p>
+<blockquote lang="ru">
+Делая по одному нерешительному шагу, например открывая холодильник, я наблюдала маленькую точку перед собой, затем при необходимости закрывала глаза, чтобы сделать точку ярче, и прибегала к светодиоду, когда уже не могла самостоятельно вызвать ясную точку.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Had anyone peeked into the windows of the northern cabin where I was retreating, they would have chuckled to watch me moving about in such a strange manner.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Если бы кто-нибудь заглянул в окна северной хижины, где я проходила ретрит, он бы посмеялся, увидев, как я передвигаюсь таким странным образом.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Had anyone peeked into the windows of the northern cabin where I was retreating, they would have chuckled to watch me moving about in such a strange manner.</p>
-</div>
-<p>Если бы кто-нибудь заглянул в окна северной хижины, где я проходила ретрит, он бы посмеялся, увидев, как я передвигаюсь таким странным образом.</p>
+<p lang="en">Had anyone peeked into the windows of the northern cabin where I was retreating, they would have chuckled to watch me moving about in such a strange manner.</p>
+<blockquote lang="ru">
+Если бы кто-нибудь заглянул в окна северной хижины, где я проходила ретрит, он бы посмеялся, увидев, как я передвигаюсь таким странным образом.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>However, it was well worth it in those initial days; the loss of the image accurately and readily indicated fading concentration.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Однако в те первые дни это полностью себя оправдывало; потеря образа точно и легко указывала на угасание концентрации.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>However, it was well worth it in those initial days; the loss of the image accurately and readily indicated fading concentration.</p>
-</div>
-<p>Однако в те первые дни это полностью себя оправдывало; потеря образа точно и легко указывала на угасание концентрации.</p>
+<p lang="en">However, it was well worth it in those initial days; the loss of the image accurately and readily indicated fading concentration.</p>
+<blockquote lang="ru">
+Однако в те первые дни это полностью себя оправдывало; потеря образа точно и легко указывала на угасание концентрации.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>An important discovery I made during this time was the concentration jumped up significantly when, in addition to making sure I could see the dot, I made the effort to look at the fine detail within and outlining it.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Важное открытие, которое я сделала в это время, заключалось в том, что концентрация значительно возрастала, когда, помимо проверки, что я вижу точку, я прилагала усилие рассмотреть мелкие детали внутри нее и по ее контуру.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>An important discovery I made during this time was the concentration jumped up significantly when, in addition to making sure I could see the dot, I made the effort to look at the fine detail within and outlining it.</p>
-</div>
-<p>Важное открытие, которое я сделала в это время, заключалось в том, что концентрация значительно возрастала, когда, помимо проверки, что я вижу точку, я прилагала усилие рассмотреть мелкие детали внутри нее и по ее контуру.</p>
+<p lang="en">An important discovery I made during this time was the concentration jumped up significantly when, in addition to making sure I could see the dot, I made the effort to look at the fine detail within and outlining it.</p>
+<blockquote lang="ru">
+Важное открытие, которое я сделала в это время, заключалось в том, что концентрация значительно возрастала, когда, помимо проверки, что я вижу точку, я прилагала усилие рассмотреть мелкие детали внутри нее и по ее контуру.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Attention to fine detail at any point on the retreat was always the gateway to progress.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Внимание к тонким деталям в любой момент ретрита всегда было воротами к продвижению.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Attention to fine detail at any point on the retreat was always the gateway to progress.</p>
-</div>
-<p>Внимание к тонким деталям в любой момент ретрита всегда было воротами к продвижению.</p>
+<p lang="en">Attention to fine detail at any point on the retreat was always the gateway to progress.</p>
+<blockquote lang="ru">
+Внимание к тонким деталям в любой момент ретрита всегда было воротами к продвижению.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Drawing Symbols in the Air]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Рисование символов в воздухе</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Drawing Symbols in the Air]</p>
-</div>
-<p>Рисование символов в воздухе</p>
+<p lang="en">[Drawing Symbols in the Air]</p>
+<blockquote lang="ru">
+Рисование символов в воздухе
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 It was helpful during the retreat to augment the formal sits with looser, creative activities that still required keen mindfulness and tilted the mind into magickal directions.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Во время ретрита было полезно дополнять формальные сидения более свободными творческими занятиями, которые все же требовали острой внимательности и склоняли ум в магические направления.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-It was helpful during the retreat to augment the formal sits with looser, creative activities that still required keen mindfulness and tilted the mind into magickal directions.</p>
-</div>
-<p>Во время ретрита было полезно дополнять формальные сидения более свободными творческими занятиями, которые все же требовали острой внимательности и склоняли ум в магические направления.</p>
+<blockquote lang="ru">
+Во время ретрита было полезно дополнять формальные сидения более свободными творческими занятиями, которые все же требовали острой внимательности и склоняли ум в магические направления.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Making line drawings in space was ideal.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Рисование линий в пространстве было идеальным.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Making line drawings in space was ideal.</p>
-</div>
-<p>Рисование линий в пространстве было идеальным.</p>
+<p lang="en">Making line drawings in space was ideal.</p>
+<blockquote lang="ru">
+Рисование линий в пространстве было идеальным.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Draw any symbol appropriate for you.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Рисуйте любой символ, подходящий вам.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Draw any symbol appropriate for you.</p>
-</div>
-<p>Рисуйте любой символ, подходящий вам.</p>
+<blockquote lang="ru">
+Рисуйте любой символ, подходящий вам.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Since you have done Tibetan training, you might draw Om or Hung.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Поскольку у вас была тибетская подготовка, вы можете рисовать Ом или Хунг.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Since you have done Tibetan training, you might draw Om or Hung.</p>
-</div>
-<p>Поскольку у вас была тибетская подготовка, вы можете рисовать Ом или Хунг.</p>
+<p lang="en">Since you have done Tibetan training, you might draw Om or Hung.</p>
+<blockquote lang="ru">
+Поскольку у вас была тибетская подготовка, вы можете рисовать Ом или Хунг.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>For best odds, try this at night in a completely dark room.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Для наилучших шансов попробуйте это ночью в полностью темной комнате.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>For best odds, try this at night in a completely dark room.</p>
-</div>
-<p>Для наилучших шансов попробуйте это ночью в полностью темной комнате.</p>
+<p lang="en">For best odds, try this at night in a completely dark room.</p>
+<blockquote lang="ru">
+Для наилучших шансов попробуйте это ночью в полностью темной комнате.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Literally draw slowly in the air, moving your fingers as if through thick syrup.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Буквально медленно рисуйте в воздухе, двигая пальцами так, словно они проходят через густой сироп.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Literally draw slowly in the air, moving your fingers as if through thick syrup.</p>
-</div>
-<p>Буквально медленно рисуйте в воздухе, двигая пальцами так, словно они проходят через густой сироп.</p>
+<p lang="en">Literally draw slowly in the air, moving your fingers as if through thick syrup.</p>
+<blockquote lang="ru">
+Буквально медленно рисуйте в воздухе, двигая пальцами так, словно они проходят через густой сироп.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Initially you may get a hint of a subtle trailing afterglow off your finger, but eventually more long-lived colour will be rolling from your fingertip.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Сначала вы можете уловить намек на тонкое тянущееся послесвечение от пальца, но со временем с кончика пальца будет струиться более долговечный цвет.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Initially you may get a hint of a subtle trailing afterglow off your finger, but eventually more long-lived colour will be rolling from your fingertip.</p>
-</div>
-<p>Сначала вы можете уловить намек на тонкое тянущееся послесвечение от пальца, но со временем с кончика пальца будет струиться более долговечный цвет.</p>
+<p lang="en">Initially you may get a hint of a subtle trailing afterglow off your finger, but eventually more long-lived colour will be rolling from your fingertip.</p>
+<blockquote lang="ru">
+Сначала вы можете уловить намек на тонкое тянущееся послесвечение от пальца, но со временем с кончика пальца будет струиться более долговечный цвет.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>This takes practice and patience.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Для этого нужны практика и терпение.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>This takes practice and patience.</p>
-</div>
-<p>Для этого нужны практика и терпение.</p>
+<p lang="en">This takes practice and patience.</p>
+<blockquote lang="ru">
+Для этого нужны практика и терпение.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Eventually, you will be able to do this in daylight.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Со временем вы сможете делать это при дневном свете.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Eventually, you will be able to do this in daylight.</p>
-</div>
-<p>Со временем вы сможете делать это при дневном свете.</p>
+<p lang="en">Eventually, you will be able to do this in daylight.</p>
+<blockquote lang="ru">
+Со временем вы сможете делать это при дневном свете.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 This evolved into a ridiculously fun activity, performed to unwind at the end of a long day dedicated to meditating.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Это превратилось в невероятно веселое занятие, которым я занималась, чтобы расслабиться в конце долгого дня, посвященного медитации.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-This evolved into a ridiculously fun activity, performed to unwind at the end of a long day dedicated to meditating.</p>
-</div>
-<p>Это превратилось в невероятно веселое занятие, которым я занималась, чтобы расслабиться в конце долгого дня, посвященного медитации.</p>
+<blockquote lang="ru">
+Это превратилось в невероятно веселое занятие, которым я занималась, чтобы расслабиться в конце долгого дня, посвященного медитации.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>By the evening of Day Ten I was finally able to produce spectacular light shooting from the end of my fingertip into the northern night sky, quite an outstanding experience for someone who had not attempted magick before.</p>
-<div class="original-translation" aria-hidden="true">
-<p>К вечеру десятого дня я наконец смогла производить впечатляющий свет, выстреливающий с кончика моего пальца в северное ночное небо, что было совершенно выдающимся опытом для человека, который раньше не пробовал магию.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>By the evening of Day Ten I was finally able to produce spectacular light shooting from the end of my fingertip into the northern night sky, quite an outstanding experience for someone who had not attempted magick before.</p>
-</div>
-<p>К вечеру десятого дня я наконец смогла производить впечатляющий свет, выстреливающий с кончика моего пальца в северное ночное небо, что было совершенно выдающимся опытом для человека, который раньше не пробовал магию.</p>
+<p lang="en">By the evening of Day Ten I was finally able to produce spectacular light shooting from the end of my fingertip into the northern night sky, quite an outstanding experience for someone who had not attempted magick before.</p>
+<blockquote lang="ru">
+К вечеру десятого дня я наконец смогла производить впечатляющий свет, выстреливающий с кончика моего пальца в северное ночное небо, что было совершенно выдающимся опытом для человека, который раньше не пробовал магию.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>It took time to settle back into formal meditation after this exhilarating surge of success with drawing in the air.</p>
-<div class="original-translation" aria-hidden="true">
-<p>После этого воодушевляющего всплеска успеха в рисовании в воздухе потребовалось время, чтобы снова успокоиться и вернуться к формальной медитации.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>It took time to settle back into formal meditation after this exhilarating surge of success with drawing in the air.</p>
-</div>
-<p>После этого воодушевляющего всплеска успеха в рисовании в воздухе потребовалось время, чтобы снова успокоиться и вернуться к формальной медитации.</p>
+<p lang="en">It took time to settle back into formal meditation after this exhilarating surge of success with drawing in the air.</p>
+<blockquote lang="ru">
+После этого воодушевляющего всплеска успеха в рисовании в воздухе потребовалось время, чтобы снова успокоиться и вернуться к формальной медитации.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Body Bliss]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Телесное блаженство</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Body Bliss]</p>
-</div>
-<p>Телесное блаженство</p>
+<p lang="en">[Body Bliss]</p>
+<blockquote lang="ru">
+Телесное блаженство
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 An enjoyable side-effect of flame meditation is the depth of relaxation that develops in the body during certain stages of the kasina sequence, allowing longer sits than would otherwise be comfortably possible.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Приятным побочным эффектом медитации на пламени является глубина расслабления, развивающаяся в теле на определенных стадиях последовательности касины, что позволяет сидеть дольше, чем иначе было бы комфортно возможно.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-An enjoyable side-effect of flame meditation is the depth of relaxation that develops in the body during certain stages of the kasina sequence, allowing longer sits than would otherwise be comfortably possible.</p>
-</div>
-<p>Приятным побочным эффектом медитации на пламени является глубина расслабления, развивающаяся в теле на определенных стадиях последовательности касины, что позволяет сидеть дольше, чем иначе было бы комфортно возможно.</p>
+<blockquote lang="ru">
+Приятным побочным эффектом медитации на пламени является глубина расслабления, развивающаяся в теле на определенных стадиях последовательности касины, что позволяет сидеть дольше, чем иначе было бы комфортно возможно.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Compared to my fledgling attempts at meditation years ago, painstakingly pressing to go beyond five minutes of attention to the breath at the nose-tip, it was a delight to feel such physical ease in the body that having to interrupt hours of continuous sitting became an annoyance rather than a relief.</p>
-<div class="original-translation" aria-hidden="true">
-<p>По сравнению с моими робкими попытками медитации много лет назад, когда я мучительно старалась выйти за пределы пяти минут внимания к дыханию у кончика носа, было наслаждением чувствовать такую физическую легкость в теле, что необходимость прерывать часы непрерывного сидения становилась раздражением, а не облегчением.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Compared to my fledgling attempts at meditation years ago, painstakingly pressing to go beyond five minutes of attention to the breath at the nose-tip, it was a delight to feel such physical ease in the body that having to interrupt hours of continuous sitting became an annoyance rather than a relief.</p>
-</div>
-<p>По сравнению с моими робкими попытками медитации много лет назад, когда я мучительно старалась выйти за пределы пяти минут внимания к дыханию у кончика носа, было наслаждением чувствовать такую физическую легкость в теле, что необходимость прерывать часы непрерывного сидения становилась раздражением, а не облегчением.</p>
+<p lang="en">Compared to my fledgling attempts at meditation years ago, painstakingly pressing to go beyond five minutes of attention to the breath at the nose-tip, it was a delight to feel such physical ease in the body that having to interrupt hours of continuous sitting became an annoyance rather than a relief.</p>
+<blockquote lang="ru">
+По сравнению с моими робкими попытками медитации много лет назад, когда я мучительно старалась выйти за пределы пяти минут внимания к дыханию у кончика носа, было наслаждением чувствовать такую физическую легкость в теле, что необходимость прерывать часы непрерывного сидения становилась раздражением, а не облегчением.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Heavily into the second jhana on Day Two, I was experiencing distractingly blissful waves of bodily vibration at the crown and forehead chakras, which reverberated throughout the entire body.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Глубоко войдя во вторую джхану на второй день, я переживала отвлекающе блаженные волны телесной вибрации в коронной и лобной чакрах, которые отдавались по всему телу.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Heavily into the second jhana on Day Two, I was experiencing distractingly blissful waves of bodily vibration at the crown and forehead chakras, which reverberated throughout the entire body.</p>
-</div>
-<p>Глубоко войдя во вторую джхану на второй день, я переживала отвлекающе блаженные волны телесной вибрации в коронной и лобной чакрах, которые отдавались по всему телу.</p>
+<p lang="en">Heavily into the second jhana on Day Two, I was experiencing distractingly blissful waves of bodily vibration at the crown and forehead chakras, which reverberated throughout the entire body.</p>
+<blockquote lang="ru">
+Глубоко войдя во вторую джхану на второй день, я переживала отвлекающе блаженные волны телесной вибрации в коронной и лобной чакрах, которые отдавались по всему телу.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>When deep bliss takes over, it is hard to keep up the mantra.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Когда глубокое блаженство берет верх, трудно поддерживать мантру.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>When deep bliss takes over, it is hard to keep up the mantra.</p>
-</div>
-<p>Когда глубокое блаженство берет верх, трудно поддерживать мантру.</p>
+<p lang="en">When deep bliss takes over, it is hard to keep up the mantra.</p>
+<blockquote lang="ru">
+Когда глубокое блаженство берет верх, трудно поддерживать мантру.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>When you were on retreat doing these practices, could you keep up the mantra when strong bliss arose?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Когда вы были на ретрите и выполняли эти практики, могли ли вы поддерживать мантру, когда возникало сильное блаженство?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>When you were on retreat doing these practices, could you keep up the mantra when strong bliss arose?</p>
-</div>
-<p>Когда вы были на ретрите и выполняли эти практики, могли ли вы поддерживать мантру, когда возникало сильное блаженство?</p>
+<p lang="en">When you were on retreat doing these practices, could you keep up the mantra when strong bliss arose?</p>
+<blockquote lang="ru">
+Когда вы были на ретрите и выполняли эти практики, могли ли вы поддерживать мантру, когда возникало сильное блаженство?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 The problem with bliss is that it pulls you away from everything, from the visuals and the mantra.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Проблема с блаженством в том, что оно уводит вас от всего: от визуальных образов и мантры.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-The problem with bliss is that it pulls you away from everything, from the visuals and the mantra.</p>
-</div>
-<p>Проблема с блаженством в том, что оно уводит вас от всего: от визуальных образов и мантры.</p>
+<blockquote lang="ru">
+Проблема с блаженством в том, что оно уводит вас от всего: от визуальных образов и мантры.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>All are valid concentration objects, but you must choose.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Все это допустимые объекты сосредоточения, но вам нужно выбрать.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>All are valid concentration objects, but you must choose.</p>
-</div>
-<p>Все это допустимые объекты сосредоточения, но вам нужно выбрать.</p>
+<p lang="en">All are valid concentration objects, but you must choose.</p>
+<blockquote lang="ru">
+Все это допустимые объекты сосредоточения, но вам нужно выбрать.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Bliss is obviously very nice but lowers the concentration that comes with staying on visuals and mantra.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Блаженство, очевидно, очень приятно, но оно снижает концентрацию, возникающую при удержании визуальных образов и мантры.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Bliss is obviously very nice but lowers the concentration that comes with staying on visuals and mantra.</p>
-</div>
-<p>Блаженство, очевидно, очень приятно, но оно снижает концентрацию, возникающую при удержании визуальных образов и мантры.</p>
+<p lang="en">Bliss is obviously very nice but lowers the concentration that comes with staying on visuals and mantra.</p>
+<blockquote lang="ru">
+Блаженство, очевидно, очень приятно, но оно снижает концентрацию, возникающую при удержании визуальных образов и мантры.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>You can become stuck in bodily bliss and, later, in peace, and then neglect your kasina objects.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Можно застрять в телесном блаженстве, а позже в покое, и затем пренебречь объектами касины.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>You can become stuck in bodily bliss and, later, in peace, and then neglect your kasina objects.</p>
-</div>
-<p>Можно застрять в телесном блаженстве, а позже в покое, и затем пренебречь объектами касины.</p>
+<p lang="en">You can become stuck in bodily bliss and, later, in peace, and then neglect your kasina objects.</p>
+<blockquote lang="ru">
+Можно застрять в телесном блаженстве, а позже в покое, и затем пренебречь объектами касины.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>That all said, sometimes it is just great to really tune into the bliss.</p>
-<div class="original-translation" aria-hidden="true">
-<p>При всем этом иногда просто прекрасно по-настоящему настроиться на блаженство.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>That all said, sometimes it is just great to really tune into the bliss.</p>
-</div>
-<p>При всем этом иногда просто прекрасно по-настоящему настроиться на блаженство.</p>
+<p lang="en">That all said, sometimes it is just great to really tune into the bliss.</p>
+<blockquote lang="ru">
+При всем этом иногда просто прекрасно по-настоящему настроиться на блаженство.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>However, generally, after a bit of doing that, we will become satisfied and/or bored with it and find we are able to move on to developing deeper concentration using our visual objects and mantra.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Однако обычно, немного побыв с ним, мы становимся удовлетворенными и/или начинаем скучать, а затем обнаруживаем, что можем перейти к развитию более глубокой концентрации, используя визуальные объекты и мантру.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>However, generally, after a bit of doing that, we will become satisfied and/or bored with it and find we are able to move on to developing deeper concentration using our visual objects and mantra.</p>
-</div>
-<p>Однако обычно, немного побыв с ним, мы становимся удовлетворенными и/или начинаем скучать, а затем обнаруживаем, что можем перейти к развитию более глубокой концентрации, используя визуальные объекты и мантру.</p>
+<p lang="en">However, generally, after a bit of doing that, we will become satisfied and/or bored with it and find we are able to move on to developing deeper concentration using our visual objects and mantra.</p>
+<blockquote lang="ru">
+Однако обычно, немного побыв с ним, мы становимся удовлетворенными и/или начинаем скучать, а затем обнаруживаем, что можем перейти к развитию более глубокой концентрации, используя визуальные объекты и мантру.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 It would be easy to downplay the role that continual recitation of the mantra plays on a retreat such as this.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Было бы легко недооценить роль, которую непрерывное повторение мантры играет на таком ретрите.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-It would be easy to downplay the role that continual recitation of the mantra plays on a retreat such as this.</p>
-</div>
-<p>Было бы легко недооценить роль, которую непрерывное повторение мантры играет на таком ретрите.</p>
+<blockquote lang="ru">
+Было бы легко недооценить роль, которую непрерывное повторение мантры играет на таком ретрите.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Although not as sharp an indicator as the visuals, the level of power of the mantra was a great gauge of concentration.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Хотя это не такой точный индикатор, как визуальные образы, уровень силы мантры был отличным мерилом концентрации.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Although not as sharp an indicator as the visuals, the level of power of the mantra was a great gauge of concentration.</p>
-</div>
-<p>Хотя это не такой точный индикатор, как визуальные образы, уровень силы мантры был отличным мерилом концентрации.</p>
+<p lang="en">Although not as sharp an indicator as the visuals, the level of power of the mantra was a great gauge of concentration.</p>
+<blockquote lang="ru">
+Хотя это не такой точный индикатор, как визуальные образы, уровень силы мантры был отличным мерилом концентрации.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>One may be tempted to use a mantra only during formal sits, but it is important to trust that the sound of the mantra throughout the day will be more wholesome than most of whatever distracting thoughts will be found tumbling about in the mind.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Может возникнуть соблазн использовать мантру только во время формальных сидений, но важно доверять тому, что звучание мантры в течение дня будет более благотворным, чем большая часть отвлекающих мыслей, которые будут кувыркаться в уме.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>One may be tempted to use a mantra only during formal sits, but it is important to trust that the sound of the mantra throughout the day will be more wholesome than most of whatever distracting thoughts will be found tumbling about in the mind.</p>
-</div>
-<p>Может возникнуть соблазн использовать мантру только во время формальных сидений, но важно доверять тому, что звучание мантры в течение дня будет более благотворным, чем большая часть отвлекающих мыслей, которые будут кувыркаться в уме.</p>
+<p lang="en">One may be tempted to use a mantra only during formal sits, but it is important to trust that the sound of the mantra throughout the day will be more wholesome than most of whatever distracting thoughts will be found tumbling about in the mind.</p>
+<blockquote lang="ru">
+Может возникнуть соблазн использовать мантру только во время формальных сидений, но важно доверять тому, что звучание мантры в течение дня будет более благотворным, чем большая часть отвлекающих мыслей, которые будут кувыркаться в уме.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Third Jhana]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Третья джхана</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Third Jhana]</p>
-</div>
-<p>Третья джхана</p>
+<p lang="en">[Third Jhana]</p>
+<blockquote lang="ru">
+Третья джхана
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Do you have suggestions on what to do with the swaths of purple predominating the visuals?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Есть ли у вас предложения, что делать с полосами фиолетового, преобладающими в визуальном поле?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Do you have suggestions on what to do with the swaths of purple predominating the visuals?</p>
-</div>
-<p>Есть ли у вас предложения, что делать с полосами фиолетового, преобладающими в визуальном поле?</p>
+<blockquote lang="ru">
+Есть ли у вас предложения, что делать с полосами фиолетового, преобладающими в визуальном поле?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Should I just be patient with gentle intentions for coherent objects?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Нужно ли мне просто быть терпеливой с мягкими намерениями к связным объектам?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Should I just be patient with gentle intentions for coherent objects?</p>
-</div>
-<p>Нужно ли мне просто быть терпеливой с мягкими намерениями к связным объектам?</p>
+<p lang="en">Should I just be patient with gentle intentions for coherent objects?</p>
+<blockquote lang="ru">
+Нужно ли мне просто быть терпеливой с мягкими намерениями к связным объектам?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Purple washing across the field: this is a relatively early phase.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Фиолетовое, омывающее поле: это относительно ранняя фаза.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Purple washing across the field: this is a relatively early phase.</p>
-</div>
-<p>Фиолетовое, омывающее поле: это относительно ранняя фаза.</p>
+<blockquote lang="ru">
+Фиолетовое, омывающее поле: это относительно ранняя фаза.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>You can try subtly intending to shape it into something alive or tantric, which eventually can lead to invaluable insight from getting a fruition* through the no-self door.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Можно попробовать тонко намереваться сформировать из него что-то живое или тантрическое, что со временем может привести к бесценному прозрению через получение плодa* через дверь не-я.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>You can try subtly intending to shape it into something alive or tantric, which eventually can lead to invaluable insight from getting a fruition* through the no-self door.</p>
-</div>
-<p>Можно попробовать тонко намереваться сформировать из него что-то живое или тантрическое, что со временем может привести к бесценному прозрению через получение плодa* через дверь не-я.</p>
+<p lang="en">You can try subtly intending to shape it into something alive or tantric, which eventually can lead to invaluable insight from getting a fruition* through the no-self door.</p>
+<blockquote lang="ru">
+Можно попробовать тонко намереваться сформировать из него что-то живое или тантрическое, что со временем может привести к бесценному прозрению через получение плодa* через дверь не-я.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>While the murk is initially disorganised, given time and continued attention, as well as a slightly looser and wider hold on attention, the mind will want to make coherent things from the murk once it figures out how.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Хотя муть поначалу неорганизованна, со временем и при продолжающемся внимании, а также при чуть более свободном и широком удержании внимания, ум захочет создавать из мути связные вещи, когда поймет как.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>While the murk is initially disorganised, given time and continued attention, as well as a slightly looser and wider hold on attention, the mind will want to make coherent things from the murk once it figures out how.</p>
-</div>
-<p>Хотя муть поначалу неорганизованна, со временем и при продолжающемся внимании, а также при чуть более свободном и широком удержании внимания, ум захочет создавать из мути связные вещи, когда поймет как.</p>
+<p lang="en">While the murk is initially disorganised, given time and continued attention, as well as a slightly looser and wider hold on attention, the mind will want to make coherent things from the murk once it figures out how.</p>
+<blockquote lang="ru">
+Хотя муть поначалу неорганизованна, со временем и при продолжающемся внимании, а также при чуть более свободном и широком удержании внимания, ум захочет создавать из мути связные вещи, когда поймет как.
 </blockquote>
 <hr>
-<blockquote>
+<blockquote lang="ru">
 <hr>
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[* The term “fruition” rather than “cessation” is used here to differentiate this meditative experience from the attainment known as “the cessation of perception and feeling” (or nirodha samapatti).</p>
-<div class="original-translation" aria-hidden="true">
-<p>[* Термин «плод», а не «прекращение», используется здесь, чтобы отличить этот медитативный опыт от достижения, известного как «прекращение восприятия и чувствования» (или ниродха-самапатти).</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[* The term “fruition” rather than “cessation” is used here to differentiate this meditative experience from the attainment known as “the cessation of perception and feeling” (or nirodha samapatti).</p>
-</div>
-<p>[* Термин «плод», а не «прекращение», используется здесь, чтобы отличить этот медитативный опыт от достижения, известного как «прекращение восприятия и чувствования» (или ниродха-самапатти).</p>
+<p lang="en">[* The term “fruition” rather than “cessation” is used here to differentiate this meditative experience from the attainment known as “the cessation of perception and feeling” (or nirodha samapatti).</p>
+<blockquote lang="ru">
+[* Термин «плод», а не «прекращение», используется здесь, чтобы отличить этот медитативный опыт от достижения, известного как «прекращение восприятия и чувствования» (или ниродха-самапатти).
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>See appendices for more details.]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Подробнее см. в приложениях.]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>See appendices for more details.]</p>
-</div>
-<p>Подробнее см. в приложениях.]</p>
+<p lang="en">See appendices for more details.]</p>
+<blockquote lang="ru">
+Подробнее см. в приложениях.]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Does spending hours with the washing of purple make sense at this stage?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Имеет ли смысл на этой стадии проводить часы с этим омыванием фиолетовым?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Does spending hours with the washing of purple make sense at this stage?</p>
-</div>
-<p>Имеет ли смысл на этой стадии проводить часы с этим омыванием фиолетовым?</p>
+<blockquote lang="ru">
+Имеет ли смысл на этой стадии проводить часы с этим омыванием фиолетовым?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Yes: it takes time for it to develop and organise.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Да: ему нужно время, чтобы развиться и организоваться.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Yes: it takes time for it to develop and organise.</p>
-</div>
-<p>Да: ему нужно время, чтобы развиться и организоваться.</p>
+<blockquote lang="ru">
+Да: ему нужно время, чтобы развиться и организоваться.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Be patient.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Будьте терпеливы.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Be patient.</p>
-</div>
-<p>Будьте терпеливы.</p>
+<p lang="en">Be patient.</p>
+<blockquote lang="ru">
+Будьте терпеливы.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Try to look for the beginnings of 3D shapes.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Старайтесь искать зачатки трехмерных форм.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Try to look for the beginnings of 3D shapes.</p>
-</div>
-<p>Старайтесь искать зачатки трехмерных форм.</p>
+<p lang="en">Try to look for the beginnings of 3D shapes.</p>
+<blockquote lang="ru">
+Старайтесь искать зачатки трехмерных форм.
 </blockquote>
 
       </main>
@@ -822,26 +348,42 @@ Yes: it takes time for it to develop and organise.</p>
         </ul>
     </div>
     <div class="nav-actions">
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="bilingual"
+                    x-model="contentMode"
+                />
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="translation"
+                    x-model="contentMode"
+                />
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="original"
+                    x-model="contentMode"
+                />
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
+
         <button
             class="theme-toggle"
             type="button"
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+            x-text="theme === 'dark' ? 'Светлая тема' : 'Темная тема'"
         ></button>
-        <fieldset class="mode-toggle" aria-label="Text display mode">
-            <label>
-                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
-                <span>Билингва</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
-                <span>Только перевод</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="original" x-model="contentMode">
-                <span>Только оригинал</span>
-            </label>
-        </fieldset>
     </div>
 </nav>
 

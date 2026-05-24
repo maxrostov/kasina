@@ -11,32 +11,27 @@
   <script>
     document.addEventListener("click", (event) => {
       const mode = document.body.dataset.contentMode;
-      const quote = event.target.closest("main > blockquote[data-original-toggle]");
-      const original = event.target.closest("main > .original-block[data-translation-toggle]");
-
-      if (
-        (mode !== "translation" || !quote) &&
-        (mode !== "original" || !original)
-      ) {
-        return;
-      }
+      const translation = event.target.closest('main > blockquote[lang="ru"]');
+      const original = event.target.closest('main > [lang="en"]');
 
       if (event.target.closest("a, button, input, textarea, select, summary")) {
         return;
       }
 
-      if (mode === "translation") {
-        const expanded = quote.classList.toggle("original-visible");
-        quote
-          .querySelector(".translation-original")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "translation" && translation) {
+        const pairedOriginal = translation.previousElementSibling;
+
+        if (pairedOriginal?.matches('[lang="en"]')) {
+          pairedOriginal.classList.toggle("paired-visible");
+        }
       }
 
-      if (mode === "original") {
-        const expanded = original.classList.toggle("translation-visible");
-        original
-          .querySelector(".original-translation")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "original" && original) {
+        const pairedTranslation = original.nextElementSibling;
+
+        if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
+          pairedTranslation.classList.toggle("paired-visible");
+        }
       }
     });
   </script>
@@ -51,281 +46,99 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
-<div class="original-block" data-translation-toggle>
-<h1>Day Thirteen</h1>
-<div class="original-translation" aria-hidden="true">
-<p>День тринадцатый</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<h1>Day Thirteen</h1>
-</div>
-<p>День тринадцатый</p>
+<h1 lang="en">Day Thirteen</h1>
+<blockquote lang="ru">
+День тринадцатый
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Importance of third Jhana ~ Vertical versus Horizontal Work ~ Positive Qualities in Meditators]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Важность третьей джханы ~ Вертикальная и горизонтальная работа ~ Положительные качества медитирующих</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Importance of third Jhana ~ Vertical versus Horizontal Work ~ Positive Qualities in Meditators]</p>
-</div>
-<p>Важность третьей джханы ~ Вертикальная и горизонтальная работа ~ Положительные качества медитирующих</p>
+<p lang="en">[Importance of third Jhana ~ Vertical versus Horizontal Work ~ Positive Qualities in Meditators]</p>
+<blockquote lang="ru">
+Важность третьей джханы ~ Вертикальная и горизонтальная работа ~ Положительные качества медитирующих
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Importance of Third Jhana]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Важность третьей джханы</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Importance of Third Jhana]</p>
-</div>
-<p>Важность третьей джханы</p>
+<p lang="en">[Importance of Third Jhana]</p>
+<blockquote lang="ru">
+Важность третьей джханы
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 I have continued exploring every minute aspect of third jhana (the murk, the billowing swaths of purple, the lustrous colours with explosive sparks, the slow moving airy 3D colours almost as silent as fourth).</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я продолжала исследовать каждый мельчайший аспект третьей джханы (муть, клубящиеся полосы фиолетового, блестящие цвета со взрывными искрами, медленно движущиеся воздушные трехмерные цвета, почти такие же тихие, как четвертая).</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-I have continued exploring every minute aspect of third jhana (the murk, the billowing swaths of purple, the lustrous colours with explosive sparks, the slow moving airy 3D colours almost as silent as fourth).</p>
-</div>
-<p>Я продолжала исследовать каждый мельчайший аспект третьей джханы (муть, клубящиеся полосы фиолетового, блестящие цвета со взрывными искрами, медленно движущиеся воздушные трехмерные цвета, почти такие же тихие, как четвертая).</p>
+<blockquote lang="ru">
+Я продолжала исследовать каждый мельчайший аспект третьей джханы (муть, клубящиеся полосы фиолетового, блестящие цвета со взрывными искрами, медленно движущиеся воздушные трехмерные цвета, почти такие же тихие, как четвертая).
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>If I am intrigued, is this still a good use of my time?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Если мне это интересно, все еще ли это хорошее использование моего времени?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>If I am intrigued, is this still a good use of my time?</p>
-</div>
-<p>Если мне это интересно, все еще ли это хорошее использование моего времени?</p>
+<p lang="en">If I am intrigued, is this still a good use of my time?</p>
+<blockquote lang="ru">
+Если мне это интересно, все еще ли это хорошее использование моего времени?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 It is putting together all those puzzle pieces which makes the fourth jhana work.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Именно складывание всех этих частей головоломки и заставляет четвертую джхану работать.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-It is putting together all those puzzle pieces which makes the fourth jhana work.</p>
-</div>
-<p>Именно складывание всех этих частей головоломки и заставляет четвертую джхану работать.</p>
+<blockquote lang="ru">
+Именно складывание всех этих частей головоломки и заставляет четвертую джхану работать.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Third, when well-developed and mastered, has much (though not all) of what fourth has, with fourth being more spatial and natural-seeming in some way, more complete, more finished, more resolved.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Третья, когда она хорошо развита и освоена, содержит многое (хотя и не все) из того, что есть в четвертой, при этом четвертая в некотором смысле более пространственная и естественно выглядящая, более полная, завершенная и разрешенная.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Third, when well-developed and mastered, has much (though not all) of what fourth has, with fourth being more spatial and natural-seeming in some way, more complete, more finished, more resolved.</p>
-</div>
-<p>Третья, когда она хорошо развита и освоена, содержит многое (хотя и не все) из того, что есть в четвертой, при этом четвертая в некотором смысле более пространственная и естественно выглядящая, более полная, завершенная и разрешенная.</p>
+<p lang="en">Third, when well-developed and mastered, has much (though not all) of what fourth has, with fourth being more spatial and natural-seeming in some way, more complete, more finished, more resolved.</p>
+<blockquote lang="ru">
+Третья, когда она хорошо развита и освоена, содержит многое (хотя и не все) из того, что есть в четвертой, при этом четвертая в некотором смысле более пространственная и естественно выглядящая, более полная, завершенная и разрешенная.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Usually our attention is in a narrow first or second jhana mode: watching television, talking to someone, staring at a screen, even driving, activities in which peripheral vision is not normally required for us to stay safe, and therefore is not well-developed.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Обычно наше внимание находится в узком режиме первой или второй джханы: просмотр телевизора, разговор с кем-то, смотрение на экран, даже вождение - занятия, в которых периферическое зрение обычно не требуется для нашей безопасности и поэтому недостаточно развито.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Usually our attention is in a narrow first or second jhana mode: watching television, talking to someone, staring at a screen, even driving, activities in which peripheral vision is not normally required for us to stay safe, and therefore is not well-developed.</p>
-</div>
-<p>Обычно наше внимание находится в узком режиме первой или второй джханы: просмотр телевизора, разговор с кем-то, смотрение на экран, даже вождение - занятия, в которых периферическое зрение обычно не требуется для нашей безопасности и поэтому недостаточно развито.</p>
+<p lang="en">Usually our attention is in a narrow first or second jhana mode: watching television, talking to someone, staring at a screen, even driving, activities in which peripheral vision is not normally required for us to stay safe, and therefore is not well-developed.</p>
+<blockquote lang="ru">
+Обычно наше внимание находится в узком режиме первой или второй джханы: просмотр телевизора, разговор с кем-то, смотрение на экран, даже вождение - занятия, в которых периферическое зрение обычно не требуется для нашей безопасности и поэтому недостаточно развито.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>However, it is important for the later two jhanas.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Однако оно важно для двух последующих джхан.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>However, it is important for the later two jhanas.</p>
-</div>
-<p>Однако оно важно для двух последующих джхан.</p>
+<p lang="en">However, it is important for the later two jhanas.</p>
+<blockquote lang="ru">
+Однако оно важно для двух последующих джхан.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Vertical versus Horizontal Work]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Вертикальная и горизонтальная работа</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Vertical versus Horizontal Work]</p>
-</div>
-<p>Вертикальная и горизонтальная работа</p>
+<p lang="en">[Vertical versus Horizontal Work]</p>
+<blockquote lang="ru">
+Вертикальная и горизонтальная работа
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Would it be good for me to know how dukkha-nanas (dark night stages) fit with phases of the third jhana?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Было бы полезно мне знать, как дуккха-ньяны (стадии темной ночи) соотносятся с фазами третьей джханы?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Would it be good for me to know how dukkha-nanas (dark night stages) fit with phases of the third jhana?</p>
-</div>
-<p>Было бы полезно мне знать, как дуккха-ньяны (стадии темной ночи) соотносятся с фазами третьей джханы?</p>
+<blockquote lang="ru">
+Было бы полезно мне знать, как дуккха-ньяны (стадии темной ночи) соотносятся с фазами третьей джханы?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Just learn the base for now: nailing the sequence is essential.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Пока просто изучайте основу: точно освоить последовательность необходимо.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Just learn the base for now: nailing the sequence is essential.</p>
-</div>
-<p>Пока просто изучайте основу: точно освоить последовательность необходимо.</p>
+<blockquote lang="ru">
+Пока просто изучайте основу: точно освоить последовательность необходимо.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>See how fast you can cycle, and when you become restless walk (or kayak, or whatever), then back to the cushion.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Посмотрите, как быстро вы можете проходить цикл, а когда становитесь беспокойной, ходите (или гребите на каяке, или что угодно), затем возвращайтесь на подушку.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>See how fast you can cycle, and when you become restless walk (or kayak, or whatever), then back to the cushion.</p>
-</div>
-<p>Посмотрите, как быстро вы можете проходить цикл, а когда становитесь беспокойной, ходите (или гребите на каяке, или что угодно), затем возвращайтесь на подушку.</p>
+<p lang="en">See how fast you can cycle, and when you become restless walk (or kayak, or whatever), then back to the cushion.</p>
+<blockquote lang="ru">
+Посмотрите, как быстро вы можете проходить цикл, а когда становитесь беспокойной, ходите (или гребите на каяке, или что угодно), затем возвращайтесь на подушку.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The big bell curve of a retreat happens over days not minutes.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Большая колоколообразная кривая ретрита разворачивается за дни, а не за минуты.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The big bell curve of a retreat happens over days not minutes.</p>
-</div>
-<p>Большая колоколообразная кривая ретрита разворачивается за дни, а не за минуты.</p>
+<p lang="en">The big bell curve of a retreat happens over days not minutes.</p>
+<blockquote lang="ru">
+Большая колоколообразная кривая ретрита разворачивается за дни, а не за минуты.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>A few days ago you had massive rapture and an incredible mantra and now things are generally more spacious and dreamy with a third jhana vibe.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Несколько дней назад у вас был мощный восторг и невероятная мантра, а теперь все в целом более просторное и сновидческое, с атмосферой третьей джханы.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>A few days ago you had massive rapture and an incredible mantra and now things are generally more spacious and dreamy with a third jhana vibe.</p>
-</div>
-<p>Несколько дней назад у вас был мощный восторг и невероятная мантра, а теперь все в целом более просторное и сновидческое, с атмосферой третьей джханы.</p>
+<p lang="en">A few days ago you had massive rapture and an incredible mantra and now things are generally more spacious and dreamy with a third jhana vibe.</p>
+<blockquote lang="ru">
+Несколько дней назад у вас был мощный восторг и невероятная мантра, а теперь все в целом более просторное и сновидческое, с атмосферой третьей джханы.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Keep going vertical until deep into fourth jhana.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Продолжайте двигаться вертикально до глубокой четвертой джханы.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Keep going vertical until deep into fourth jhana.</p>
-</div>
-<p>Продолжайте двигаться вертикально до глубокой четвертой джханы.</p>
+<p lang="en">Keep going vertical until deep into fourth jhana.</p>
+<blockquote lang="ru">
+Продолжайте двигаться вертикально до глубокой четвертой джханы.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Later, in the review phase, you will be more confident, and that is a safer, easier time for more horizontal, jhana-to-nana correlation exploration.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Позже, в фазе обзора, вы будете увереннее, и это будет более безопасное и легкое время для более горизонтального исследования корреляций между джханами и ньянами.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Later, in the review phase, you will be more confident, and that is a safer, easier time for more horizontal, jhana-to-nana correlation exploration.</p>
-</div>
-<p>Позже, в фазе обзора, вы будете увереннее, и это будет более безопасное и легкое время для более горизонтального исследования корреляций между джханами и ньянами.</p>
+<p lang="en">Later, in the review phase, you will be more confident, and that is a safer, easier time for more horizontal, jhana-to-nana correlation exploration.</p>
+<blockquote lang="ru">
+Позже, в фазе обзора, вы будете увереннее, и это будет более безопасное и легкое время для более горизонтального исследования корреляций между джханами и ньянами.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Positive Qualities in Meditators]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Положительные качества медитирующих</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Positive Qualities in Meditators]</p>
-</div>
-<p>Положительные качества медитирующих</p>
+<p lang="en">[Positive Qualities in Meditators]</p>
+<blockquote lang="ru">
+Положительные качества медитирующих
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Given your time in the meditation world, what qualities do you most appreciate in meditators you have met?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Учитывая ваше время в мире медитации, какие качества вы больше всего цените в медитирующих, которых встречали?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Given your time in the meditation world, what qualities do you most appreciate in meditators you have met?</p>
-</div>
-<p>Учитывая ваше время в мире медитации, какие качества вы больше всего цените в медитирующих, которых встречали?</p>
+<blockquote lang="ru">
+Учитывая ваше время в мире медитации, какие качества вы больше всего цените в медитирующих, которых встречали?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Strong morality!</p>
-<div class="original-translation" aria-hidden="true">
-<p>Сильную нравственность!</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Strong morality!</p>
-</div>
-<p>Сильную нравственность!</p>
+<blockquote lang="ru">
+Сильную нравственность!
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Those who don’t project their stuff, are helpful, fun, and down-to-earth, regardless of level of mastery.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Тех, кто не проецирует свои проблемы, кто полезен, весел и приземлен, независимо от уровня мастерства.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Those who don’t project their stuff, are helpful, fun, and down-to-earth, regardless of level of mastery.</p>
-</div>
-<p>Тех, кто не проецирует свои проблемы, кто полезен, весел и приземлен, независимо от уровня мастерства.</p>
+<p lang="en">Those who don’t project their stuff, are helpful, fun, and down-to-earth, regardless of level of mastery.</p>
+<blockquote lang="ru">
+Тех, кто не проецирует свои проблемы, кто полезен, весел и приземлен, независимо от уровня мастерства.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Without strong morality there are likely to be problems, especially given the fascinating stickiness that can easily come with cool meditation experiences; this can show up as self-absorption or arrogance and be very annoying to others.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Без сильной нравственности, скорее всего, будут проблемы, особенно учитывая увлекательную липкость, которая легко может сопровождать крутые медитативные переживания; это может проявляться как самопоглощенность или высокомерие и сильно раздражать других.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Without strong morality there are likely to be problems, especially given the fascinating stickiness that can easily come with cool meditation experiences; this can show up as self-absorption or arrogance and be very annoying to others.</p>
-</div>
-<p>Без сильной нравственности, скорее всего, будут проблемы, особенно учитывая увлекательную липкость, которая легко может сопровождать крутые медитативные переживания; это может проявляться как самопоглощенность или высокомерие и сильно раздражать других.</p>
+<p lang="en">Without strong morality there are likely to be problems, especially given the fascinating stickiness that can easily come with cool meditation experiences; this can show up as self-absorption or arrogance and be very annoying to others.</p>
+<blockquote lang="ru">
+Без сильной нравственности, скорее всего, будут проблемы, особенно учитывая увлекательную липкость, которая легко может сопровождать крутые медитативные переживания; это может проявляться как самопоглощенность или высокомерие и сильно раздражать других.
 </blockquote>
 
       </main>
@@ -384,26 +197,42 @@ Strong morality!</p>
         </ul>
     </div>
     <div class="nav-actions">
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="bilingual"
+                    x-model="contentMode"
+                />
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="translation"
+                    x-model="contentMode"
+                />
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="original"
+                    x-model="contentMode"
+                />
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
+
         <button
             class="theme-toggle"
             type="button"
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+            x-text="theme === 'dark' ? 'Светлая тема' : 'Темная тема'"
         ></button>
-        <fieldset class="mode-toggle" aria-label="Text display mode">
-            <label>
-                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
-                <span>Билингва</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
-                <span>Только перевод</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="original" x-model="contentMode">
-                <span>Только оригинал</span>
-            </label>
-        </fieldset>
     </div>
 </nav>
 

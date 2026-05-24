@@ -11,32 +11,27 @@
   <script>
     document.addEventListener("click", (event) => {
       const mode = document.body.dataset.contentMode;
-      const quote = event.target.closest("main > blockquote[data-original-toggle]");
-      const original = event.target.closest("main > .original-block[data-translation-toggle]");
-
-      if (
-        (mode !== "translation" || !quote) &&
-        (mode !== "original" || !original)
-      ) {
-        return;
-      }
+      const translation = event.target.closest('main > blockquote[lang="ru"]');
+      const original = event.target.closest('main > [lang="en"]');
 
       if (event.target.closest("a, button, input, textarea, select, summary")) {
         return;
       }
 
-      if (mode === "translation") {
-        const expanded = quote.classList.toggle("original-visible");
-        quote
-          .querySelector(".translation-original")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "translation" && translation) {
+        const pairedOriginal = translation.previousElementSibling;
+
+        if (pairedOriginal?.matches('[lang="en"]')) {
+          pairedOriginal.classList.toggle("paired-visible");
+        }
       }
 
-      if (mode === "original") {
-        const expanded = original.classList.toggle("translation-visible");
-        original
-          .querySelector(".original-translation")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "original" && original) {
+        const pairedTranslation = original.nextElementSibling;
+
+        if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
+          pairedTranslation.classList.toggle("paired-visible");
+        }
       }
     });
   </script>
@@ -51,323 +46,112 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
-<div class="original-block" data-translation-toggle>
-<h1>Introduction</h1>
-<div class="original-translation" aria-hidden="true">
-<h1>Введение</h1>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<h1>Introduction</h1>
-</div>
+<h1 lang="en">Introduction</h1>
+<blockquote lang="ru">
 <h1>Введение</h1>
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>After being inspired by the material shared on-line by Daniel M. Ingram, Duncan Barford and Florian Weps following their fire kasina retreat in February, 2015, I decided to try out this practice by embarking upon a solo fire kasina retreat in the fall of the same year.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Вдохновившись материалами, которыми Дэниел М. Ингрэм, Дункан Барфорд и Флориан Вепс поделились в интернете после своего ретрита по огненной касине в феврале 2015 года, я решила попробовать эту практику, отправившись осенью того же года в одиночный ретрит по огненной касине.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>After being inspired by the material shared on-line by Daniel M. Ingram, Duncan Barford and Florian Weps following their fire kasina retreat in February, 2015, I decided to try out this practice by embarking upon a solo fire kasina retreat in the fall of the same year.</p>
-</div>
-<p>Вдохновившись материалами, которыми Дэниел М. Ингрэм, Дункан Барфорд и Флориан Вепс поделились в интернете после своего ретрита по огненной касине в феврале 2015 года, я решила попробовать эту практику, отправившись осенью того же года в одиночный ретрит по огненной касине.</p>
+<p lang="en">After being inspired by the material shared on-line by Daniel M. Ingram, Duncan Barford and Florian Weps following their fire kasina retreat in February, 2015, I decided to try out this practice by embarking upon a solo fire kasina retreat in the fall of the same year.</p>
+<blockquote lang="ru">
+Вдохновившись материалами, которыми Дэниел М. Ингрэм, Дункан Барфорд и Флориан Вепс поделились в интернете после своего ретрита по огненной касине в феврале 2015 года, я решила попробовать эту практику, отправившись осенью того же года в одиночный ретрит по огненной касине.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Given the strange and sometimes challenging psychological territory one can encounter in the high concentration states that predictably comes with intense fire kasina practice, I reached out to Daniel to keep an eye on me and provide on-going guidance during the 25-day retreat.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Учитывая странные и порой сложные психологические области, с которыми можно столкнуться в состояниях высокой концентрации, предсказуемо возникающих при интенсивной практике огненной касины, я обратилась к Дэниелу, чтобы он присматривал за мной и давал постоянные наставления во время 25-дневного ретрита.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Given the strange and sometimes challenging psychological territory one can encounter in the high concentration states that predictably comes with intense fire kasina practice, I reached out to Daniel to keep an eye on me and provide on-going guidance during the 25-day retreat.</p>
-</div>
-<p>Учитывая странные и порой сложные психологические области, с которыми можно столкнуться в состояниях высокой концентрации, предсказуемо возникающих при интенсивной практике огненной касины, я обратилась к Дэниелу, чтобы он присматривал за мной и давал постоянные наставления во время 25-дневного ретрита.</p>
+<p lang="en">Given the strange and sometimes challenging psychological territory one can encounter in the high concentration states that predictably comes with intense fire kasina practice, I reached out to Daniel to keep an eye on me and provide on-going guidance during the 25-day retreat.</p>
+<blockquote lang="ru">
+Учитывая странные и порой сложные психологические области, с которыми можно столкнуться в состояниях высокой концентрации, предсказуемо возникающих при интенсивной практике огненной касины, я обратилась к Дэниелу, чтобы он присматривал за мной и давал постоянные наставления во время 25-дневного ретрита.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Florian also provided regular email support throughout the retreat.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Флориан также регулярно поддерживал меня по электронной почте на протяжении всего ретрита.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Florian also provided regular email support throughout the retreat.</p>
-</div>
-<p>Флориан также регулярно поддерживал меня по электронной почте на протяжении всего ретрита.</p>
+<p lang="en">Florian also provided regular email support throughout the retreat.</p>
+<blockquote lang="ru">
+Флориан также регулярно поддерживал меня по электронной почте на протяжении всего ретрита.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>What follows are highlights from my daily conversations with Daniel that covered not only the fundamentals of candle flame meditation, but also a wide range of meditation and dharma topics.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Далее следуют основные моменты из моих ежедневных бесед с Дэниелом, которые охватывали не только основы медитации на пламени свечи, но и широкий круг тем, связанных с медитацией и дхармой.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>What follows are highlights from my daily conversations with Daniel that covered not only the fundamentals of candle flame meditation, but also a wide range of meditation and dharma topics.</p>
-</div>
-<p>Далее следуют основные моменты из моих ежедневных бесед с Дэниелом, которые охватывали не только основы медитации на пламени свечи, но и широкий круг тем, связанных с медитацией и дхармой.</p>
+<p lang="en">What follows are highlights from my daily conversations with Daniel that covered not only the fundamentals of candle flame meditation, but also a wide range of meditation and dharma topics.</p>
+<blockquote lang="ru">
+Далее следуют основные моменты из моих ежедневных бесед с Дэниелом, которые охватывали не только основы медитации на пламени свечи, но и широкий круг тем, связанных с медитацией и дхармой.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The dialogue � based primarily on my questions to Daniel � has been organised according to the most prevalent topics discussed each day.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Диалог, основанный главным образом на моих вопросах к Дэниелу, был организован в соответствии с наиболее часто обсуждавшимися темами каждого дня.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The dialogue � based primarily on my questions to Daniel � has been organised according to the most prevalent topics discussed each day.</p>
-</div>
-<p>Диалог, основанный главным образом на моих вопросах к Дэниелу, был организован в соответствии с наиболее часто обсуждавшимися темами каждого дня.</p>
+<p lang="en">The dialogue � based primarily on my questions to Daniel � has been organised according to the most prevalent topics discussed each day.</p>
+<blockquote lang="ru">
+Диалог, основанный главным образом на моих вопросах к Дэниелу, был организован в соответствии с наиболее часто обсуждавшимися темами каждого дня.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The journey of awakening is a complex, organic process that can be as confusing as it is rewarding.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Путь пробуждения - это сложный, органичный процесс, который может быть столь же запутанным, сколь и плодотворным.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The journey of awakening is a complex, organic process that can be as confusing as it is rewarding.</p>
-</div>
-<p>Путь пробуждения - это сложный, органичный процесс, который может быть столь же запутанным, сколь и плодотворным.</p>
+<p lang="en">The journey of awakening is a complex, organic process that can be as confusing as it is rewarding.</p>
+<blockquote lang="ru">
+Путь пробуждения - это сложный, органичный процесс, который может быть столь же запутанным, сколь и плодотворным.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>At some point the seeker begins to realise there was never any-where to arrive at, because it is all right here in the full experience of this moment.</p>
-<div class="original-translation" aria-hidden="true">
-<p>В какой-то момент ищущий начинает понимать, что никогда не было никакого места, куда нужно было бы прийти, потому что все уже здесь, в полноте переживания этого момента.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>At some point the seeker begins to realise there was never any-where to arrive at, because it is all right here in the full experience of this moment.</p>
-</div>
-<p>В какой-то момент ищущий начинает понимать, что никогда не было никакого места, куда нужно было бы прийти, потому что все уже здесь, в полноте переживания этого момента.</p>
+<p lang="en">At some point the seeker begins to realise there was never any-where to arrive at, because it is all right here in the full experience of this moment.</p>
+<blockquote lang="ru">
+В какой-то момент ищущий начинает понимать, что никогда не было никакого места, куда нужно было бы прийти, потому что все уже здесь, в полноте переживания этого момента.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Yet until this light starts to dawn, there can be much fumbling around in the dark.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Но пока этот свет не начнет пробиваться, можно долго ощупью блуждать в темноте.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Yet until this light starts to dawn, there can be much fumbling around in the dark.</p>
-</div>
-<p>Но пока этот свет не начнет пробиваться, можно долго ощупью блуждать в темноте.</p>
+<p lang="en">Yet until this light starts to dawn, there can be much fumbling around in the dark.</p>
+<blockquote lang="ru">
+Но пока этот свет не начнет пробиваться, можно долго ощупью блуждать в темноте.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>From the time of the Buddha there has been an unbroken chain of capable, compassionate beings who have kept alive brilliant methods which, when taken up in earnest, shed light and lend efficiency to what otherwise would be a near-impossible achievement of awakening out of the darkness of ignorance.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Со времен Будды существует непрерывная цепь способных и сострадательных существ, которые сохраняли живыми блестящие методы; если взяться за них всерьез, они проливают свет и придают действенность тому, что иначе было бы почти невозможным достижением пробуждения из тьмы неведения.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>From the time of the Buddha there has been an unbroken chain of capable, compassionate beings who have kept alive brilliant methods which, when taken up in earnest, shed light and lend efficiency to what otherwise would be a near-impossible achievement of awakening out of the darkness of ignorance.</p>
-</div>
-<p>Со времен Будды существует непрерывная цепь способных и сострадательных существ, которые сохраняли живыми блестящие методы; если взяться за них всерьез, они проливают свет и придают действенность тому, что иначе было бы почти невозможным достижением пробуждения из тьмы неведения.</p>
+<p lang="en">From the time of the Buddha there has been an unbroken chain of capable, compassionate beings who have kept alive brilliant methods which, when taken up in earnest, shed light and lend efficiency to what otherwise would be a near-impossible achievement of awakening out of the darkness of ignorance.</p>
+<blockquote lang="ru">
+Со времен Будды существует непрерывная цепь способных и сострадательных существ, которые сохраняли живыми блестящие методы; если взяться за них всерьез, они проливают свет и придают действенность тому, что иначе было бы почти невозможным достижением пробуждения из тьмы неведения.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>This book is offered as one small link in that grand chain.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Эта книга предлагается как одно маленькое звено в этой великой цепи.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>This book is offered as one small link in that grand chain.</p>
-</div>
-<p>Эта книга предлагается как одно маленькое звено в этой великой цепи.</p>
+<p lang="en">This book is offered as one small link in that grand chain.</p>
+<blockquote lang="ru">
+Эта книга предлагается как одно маленькое звено в этой великой цепи.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The prologue includes an intimate look at how Daniel M. Ingram, a modern meditation teacher and author of Mastering the Core Teachings of the Buddha, shook the dust off an ancient practice known as the fire kasina and revived it in his own process of enlightenment.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Пролог дает близкий взгляд на то, как Дэниел М. Ингрэм, современный учитель медитации и автор книги Mastering the Core Teachings of the Buddha, стряхнул пыль с древней практики, известной как огненная касина, и возродил ее в собственном процессе просветления.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The prologue includes an intimate look at how Daniel M. Ingram, a modern meditation teacher and author of Mastering the Core Teachings of the Buddha, shook the dust off an ancient practice known as the fire kasina and revived it in his own process of enlightenment.</p>
-</div>
-<p>Пролог дает близкий взгляд на то, как Дэниел М. Ингрэм, современный учитель медитации и автор книги Mastering the Core Teachings of the Buddha, стряхнул пыль с древней практики, известной как огненная касина, и возродил ее в собственном процессе просветления.</p>
+<p lang="en">The prologue includes an intimate look at how Daniel M. Ingram, a modern meditation teacher and author of Mastering the Core Teachings of the Buddha, shook the dust off an ancient practice known as the fire kasina and revived it in his own process of enlightenment.</p>
+<blockquote lang="ru">
+Пролог дает близкий взгляд на то, как Дэниел М. Ингрэм, современный учитель медитации и автор книги Mastering the Core Teachings of the Buddha, стряхнул пыль с древней практики, известной как огненная касина, и возродил ее в собственном процессе просветления.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The rest of the book presents lively conversations between myself and Daniel, in which he generously and joyfully shared his knowledge of the fire kasina and related dharma topics.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Остальная часть книги представляет живые беседы между мной и Дэниелом, в которых он щедро и радостно делился своими знаниями об огненной касине и связанных с ней темах дхармы.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The rest of the book presents lively conversations between myself and Daniel, in which he generously and joyfully shared his knowledge of the fire kasina and related dharma topics.</p>
-</div>
-<p>Остальная часть книги представляет живые беседы между мной и Дэниелом, в которых он щедро и радостно делился своими знаниями об огненной касине и связанных с ней темах дхармы.</p>
+<p lang="en">The rest of the book presents lively conversations between myself and Daniel, in which he generously and joyfully shared his knowledge of the fire kasina and related dharma topics.</p>
+<blockquote lang="ru">
+Остальная часть книги представляет живые беседы между мной и Дэниелом, в которых он щедро и радостно делился своими знаниями об огненной касине и связанных с ней темах дхармы.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>It was in October of 2015 when Daniel assisted me during this 25-day solo retreat where I gained some mastery of the concentration meditation known as fire kasina.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Это было в октябре 2015 года, когда Дэниел помогал мне во время этого 25-дневного одиночного ретрита, на котором я в некоторой степени овладела медитацией концентрации, известной как огненная касина.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>It was in October of 2015 when Daniel assisted me during this 25-day solo retreat where I gained some mastery of the concentration meditation known as fire kasina.</p>
-</div>
-<p>Это было в октябре 2015 года, когда Дэниел помогал мне во время этого 25-дневного одиночного ретрита, на котором я в некоторой степени овладела медитацией концентрации, известной как огненная касина.</p>
+<p lang="en">It was in October of 2015 when Daniel assisted me during this 25-day solo retreat where I gained some mastery of the concentration meditation known as fire kasina.</p>
+<blockquote lang="ru">
+Это было в октябре 2015 года, когда Дэниел помогал мне во время этого 25-дневного одиночного ретрита, на котором я в некоторой степени овладела медитацией концентрации, известной как огненная касина.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Early in the retreat he asked if I would make note if something was particularly helpful in the instructions he provided, because he had found wisdom was more easily extracted from him when someone asked questions, whereas sitting down to write was for him a slower, more arduous process.</p>
-<div class="original-translation" aria-hidden="true">
-<p>В начале ретрита он попросил меня отмечать, если что-то в его инструкциях окажется особенно полезным, потому что он обнаружил, что мудрость легче извлекается из него, когда кто-то задает вопросы, тогда как сесть и писать было для него более медленным и трудным процессом.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Early in the retreat he asked if I would make note if something was particularly helpful in the instructions he provided, because he had found wisdom was more easily extracted from him when someone asked questions, whereas sitting down to write was for him a slower, more arduous process.</p>
-</div>
-<p>В начале ретрита он попросил меня отмечать, если что-то в его инструкциях окажется особенно полезным, потому что он обнаружил, что мудрость легче извлекается из него, когда кто-то задает вопросы, тогда как сесть и писать было для него более медленным и трудным процессом.</p>
+<p lang="en">Early in the retreat he asked if I would make note if something was particularly helpful in the instructions he provided, because he had found wisdom was more easily extracted from him when someone asked questions, whereas sitting down to write was for him a slower, more arduous process.</p>
+<blockquote lang="ru">
+В начале ретрита он попросил меня отмечать, если что-то в его инструкциях окажется особенно полезным, потому что он обнаружил, что мудрость легче извлекается из него, когда кто-то задает вопросы, тогда как сесть и писать было для него более медленным и трудным процессом.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>In 2013 he had helped me almost daily on a two-month solo vipassana retreat, at the end of which the only dana he would accept was my agreement to practise well and assist others with what I knew.</p>
-<div class="original-translation" aria-hidden="true">
-<p>В 2013 году он почти ежедневно помогал мне во время двухмесячного одиночного ретрита випассаны, по окончании которого единственной даной, которую он согласился принять, было мое обещание хорошо практиковать и помогать другим тем, что я знала.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>In 2013 he had helped me almost daily on a two-month solo vipassana retreat, at the end of which the only dana he would accept was my agreement to practise well and assist others with what I knew.</p>
-</div>
-<p>В 2013 году он почти ежедневно помогал мне во время двухмесячного одиночного ретрита випассаны, по окончании которого единственной даной, которую он согласился принять, было мое обещание хорошо практиковать и помогать другим тем, что я знала.</p>
+<p lang="en">In 2013 he had helped me almost daily on a two-month solo vipassana retreat, at the end of which the only dana he would accept was my agreement to practise well and assist others with what I knew.</p>
+<blockquote lang="ru">
+В 2013 году он почти ежедневно помогал мне во время двухмесячного одиночного ретрита випассаны, по окончании которого единственной даной, которую он согласился принять, было мое обещание хорошо практиковать и помогать другим тем, что я знала.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>On this, my next retreat, my gratitude was so heartfelt, I was keen to follow through with Daniel�s request for help.</p>
-<div class="original-translation" aria-hidden="true">
-<p>На этом, моем следующем ретрите, моя благодарность была настолько искренней, что я очень хотела выполнить просьбу Дэниела о помощи.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>On this, my next retreat, my gratitude was so heartfelt, I was keen to follow through with Daniel�s request for help.</p>
-</div>
-<p>На этом, моем следующем ретрите, моя благодарность была настолько искренней, что я очень хотела выполнить просьбу Дэниела о помощи.</p>
+<p lang="en">On this, my next retreat, my gratitude was so heartfelt, I was keen to follow through with Daniel�s request for help.</p>
+<blockquote lang="ru">
+На этом, моем следующем ретрите, моя благодарность была настолько искренней, что я очень хотела выполнить просьбу Дэниела о помощи.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>At the end of my kasina retreat I sent him a lengthy write-up of most of my questions and his informative answers, for him to sift through as a resource for any future writing he might embark upon.</p>
-<div class="original-translation" aria-hidden="true">
-<p>В конце моего ретрита по касине я отправила ему объемную запись большинства моих вопросов и его содержательных ответов, чтобы он мог разобрать ее как материал для любых будущих текстов, за которые он, возможно, возьмется.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>At the end of my kasina retreat I sent him a lengthy write-up of most of my questions and his informative answers, for him to sift through as a resource for any future writing he might embark upon.</p>
-</div>
-<p>В конце моего ретрита по касине я отправила ему объемную запись большинства моих вопросов и его содержательных ответов, чтобы он мог разобрать ее как материал для любых будущих текстов, за которые он, возможно, возьмется.</p>
+<p lang="en">At the end of my kasina retreat I sent him a lengthy write-up of most of my questions and his informative answers, for him to sift through as a resource for any future writing he might embark upon.</p>
+<blockquote lang="ru">
+В конце моего ретрита по касине я отправила ему объемную запись большинства моих вопросов и его содержательных ответов, чтобы он мог разобрать ее как материал для любых будущих текстов, за которые он, возможно, возьмется.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>He decided we should post it on his fire kasina website, firekasina_org*, having expanded his answers and inviting me to add personal commentary from my perspective as the retreatant.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Он решил, что нам следует опубликовать это на его сайте об огненной касине, firekasina_org*, расширив свои ответы и предложив мне добавить личные комментарии с моей точки зрения как участницы ретрита.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>He decided we should post it on his fire kasina website, firekasina_org*, having expanded his answers and inviting me to add personal commentary from my perspective as the retreatant.</p>
-</div>
-<p>Он решил, что нам следует опубликовать это на его сайте об огненной касине, firekasina_org*, расширив свои ответы и предложив мне добавить личные комментарии с моей точки зрения как участницы ретрита.</p>
+<p lang="en">He decided we should post it on his fire kasina website, firekasina_org*, having expanded his answers and inviting me to add personal commentary from my perspective as the retreatant.</p>
+<blockquote lang="ru">
+Он решил, что нам следует опубликовать это на его сайте об огненной касине, firekasina_org*, расширив свои ответы и предложив мне добавить личные комментарии с моей точки зрения как участницы ретрита.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Just before we posted it, a trusted dharma friend of ours, having read the notes, suggested the writing would be an informative and unique resource as a book.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Незадолго до публикации один наш надежный друг по дхарме, прочитав заметки, предположил, что в виде книги этот текст станет информативным и уникальным ресурсом.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Just before we posted it, a trusted dharma friend of ours, having read the notes, suggested the writing would be an informative and unique resource as a book.</p>
-</div>
-<p>Незадолго до публикации один наш надежный друг по дхарме, прочитав заметки, предположил, что в виде книги этот текст станет информативным и уникальным ресурсом.</p>
+<p lang="en">Just before we posted it, a trusted dharma friend of ours, having read the notes, suggested the writing would be an informative and unique resource as a book.</p>
+<blockquote lang="ru">
+Незадолго до публикации один наш надежный друг по дхарме, прочитав заметки, предположил, что в виде книги этот текст станет информативным и уникальным ресурсом.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>To provide the historical context of Daniel�s entry into fire kasina practice, Daniel and I decided to have another conversation, using the Q and A format that runs throughout this book.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Чтобы дать исторический контекст того, как Дэниел пришел к практике огненной касины, мы с Дэниелом решили провести еще одну беседу в формате вопросов и ответов, который проходит через всю эту книгу.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>To provide the historical context of Daniel�s entry into fire kasina practice, Daniel and I decided to have another conversation, using the Q and A format that runs throughout this book.</p>
-</div>
-<p>Чтобы дать исторический контекст того, как Дэниел пришел к практике огненной касины, мы с Дэниелом решили провести еще одну беседу в формате вопросов и ответов, который проходит через всю эту книгу.</p>
+<p lang="en">To provide the historical context of Daniel�s entry into fire kasina practice, Daniel and I decided to have another conversation, using the Q and A format that runs throughout this book.</p>
+<blockquote lang="ru">
+Чтобы дать исторический контекст того, как Дэниел пришел к практике огненной касины, мы с Дэниелом решили провести еще одну беседу в формате вопросов и ответов, который проходит через всю эту книгу.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>This forms the prologue.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Это и составляет пролог.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>This forms the prologue.</p>
-</div>
-<p>Это и составляет пролог.</p>
+<p lang="en">This forms the prologue.</p>
+<blockquote lang="ru">
+Это и составляет пролог.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>It offers invaluable information on how to establish oneself in any traditional meditation practice from the ground up, using the specifics of the fire kasina as an example.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Он предлагает бесценную информацию о том, как с нуля утвердиться в любой традиционной медитативной практике, используя особенности огненной касины в качестве примера.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>It offers invaluable information on how to establish oneself in any traditional meditation practice from the ground up, using the specifics of the fire kasina as an example.</p>
-</div>
-<p>Он предлагает бесценную информацию о том, как с нуля утвердиться в любой традиционной медитативной практике, используя особенности огненной касины в качестве примера.</p>
+<p lang="en">It offers invaluable information on how to establish oneself in any traditional meditation practice from the ground up, using the specifics of the fire kasina as an example.</p>
+<blockquote lang="ru">
+Он предлагает бесценную информацию о том, как с нуля утвердиться в любой традиционной медитативной практике, используя особенности огненной касины в качестве примера.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>As in the rest of the dialogue that follows, the prologue captures some of the wholesome, unique energy that is exchanged between any two beings � in particular a teacher and a student � who are passionate about dharma development.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Как и в остальном последующем диалоге, пролог передает часть той благотворной, уникальной энергии, которой обмениваются любые два существа, особенно учитель и ученик, увлеченные развитием в дхарме.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>As in the rest of the dialogue that follows, the prologue captures some of the wholesome, unique energy that is exchanged between any two beings � in particular a teacher and a student � who are passionate about dharma development.</p>
-</div>
-<p>Как и в остальном последующем диалоге, пролог передает часть той благотворной, уникальной энергии, которой обмениваются любые два существа, особенно учитель и ученик, увлеченные развитием в дхарме.</p>
+<p lang="en">As in the rest of the dialogue that follows, the prologue captures some of the wholesome, unique energy that is exchanged between any two beings � in particular a teacher and a student � who are passionate about dharma development.</p>
+<blockquote lang="ru">
+Как и в остальном последующем диалоге, пролог передает часть той благотворной, уникальной энергии, которой обмениваются любые два существа, особенно учитель и ученик, увлеченные развитием в дхарме.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>In this sense, these conversations embody the pragmatic elements attendant on keeping alive an ancient oral tradition stemming back thousands of years to the time of the Buddha.</p>
-<div class="original-translation" aria-hidden="true">
-<p>В этом смысле эти беседы воплощают прагматические элементы, сопутствующие сохранению живой древней устной традиции, уходящей на тысячи лет назад, ко временам Будды.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>In this sense, these conversations embody the pragmatic elements attendant on keeping alive an ancient oral tradition stemming back thousands of years to the time of the Buddha.</p>
-</div>
-<p>В этом смысле эти беседы воплощают прагматические элементы, сопутствующие сохранению живой древней устной традиции, уходящей на тысячи лет назад, ко временам Будды.</p>
+<p lang="en">In this sense, these conversations embody the pragmatic elements attendant on keeping alive an ancient oral tradition stemming back thousands of years to the time of the Buddha.</p>
+<blockquote lang="ru">
+В этом смысле эти беседы воплощают прагматические элементы, сопутствующие сохранению живой древней устной традиции, уходящей на тысячи лет назад, ко временам Будды.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Shannon Stein]</p>
+<p lang="en">[Shannon Stein]</p>
 <p>[October 8th, 2016.]</p>
 <hr>
 <p>[* Also freely available on this website are in-depth audio diaries recorded by both Daniel and myself.]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[* Также на этом сайте в свободном доступе размещены подробные аудиодневники, записанные как Дэниелом, так и мной.]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Shannon Stein]</p>
-<p>[October 8th, 2016.]</p>
-<hr>
-<p>[* Also freely available on this website are in-depth audio diaries recorded by both Daniel and myself.]</p>
-</div>
-<p>[* Также на этом сайте в свободном доступе размещены подробные аудиодневники, записанные как Дэниелом, так и мной.]</p>
+<blockquote lang="ru">
+[* Также на этом сайте в свободном доступе размещены подробные аудиодневники, записанные как Дэниелом, так и мной.]
 </blockquote>
 
       </main>
@@ -426,26 +210,42 @@
         </ul>
     </div>
     <div class="nav-actions">
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="bilingual"
+                    x-model="contentMode"
+                />
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="translation"
+                    x-model="contentMode"
+                />
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="original"
+                    x-model="contentMode"
+                />
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
+
         <button
             class="theme-toggle"
             type="button"
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+            x-text="theme === 'dark' ? 'Светлая тема' : 'Темная тема'"
         ></button>
-        <fieldset class="mode-toggle" aria-label="Text display mode">
-            <label>
-                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
-                <span>Билингва</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
-                <span>Только перевод</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="original" x-model="contentMode">
-                <span>Только оригинал</span>
-            </label>
-        </fieldset>
     </div>
 </nav>
 

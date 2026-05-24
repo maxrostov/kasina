@@ -33,14 +33,18 @@ h3 {
 }
 
 /* Text blocks */
-p,
+
 ul,
-ol,
-blockquote {
+ol {
     margin: 1rem 0;
 }
 
+p {
+    margin: 1rem 0 0 0;
+}
+
 blockquote {
+    margin: 0 0 0 0;
     font-family: sans-serif;
     font-size: 90%;
     /*margin-left: 0;*/
@@ -50,23 +54,18 @@ blockquote {
     color: var(--text);
 }
 
-.translation-original,
-.original-translation {
-    display: none;
-}
-
 /* Translation-only mode */
 body[data-content-mode="translation"] {
-    & main > :not(blockquote) {
+    & main > [lang="en"]:not(.paired-visible) {
         display: none;
     }
 
     & main > blockquote {
-        margin: 1rem 0;
+        /*margin: 1rem 0;*/
         padding: 0;
         background: transparent;
         border-left: 0;
-        color: var(--text);
+        /*color: var(--text);*/
         cursor: pointer;
 
         & > :first-child {
@@ -76,53 +75,26 @@ body[data-content-mode="translation"] {
         & > :last-child {
             margin-bottom: 0;
         }
-
-        &:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 0.35rem;
-        }
     }
 
-    & main > blockquote.original-visible {
-        padding: 0.85rem 1rem;
-        background: var(--quote-bg);
-        border-left: 4px solid var(--accent);
-    }
-
-    & main > blockquote.original-visible > .translation-original {
-        display: block;
-        margin-bottom: 0.8rem;
-        padding-bottom: 0.8rem;
-        border-bottom: 1px solid color-mix(in srgb, var(--text) 20%, transparent);
+    & main > [lang="en"].paired-visible {
         color: var(--muted);
+        background: var(--quote-bg);
     }
 }
 
 /* Original-only mode */
 body[data-content-mode="original"] {
-    & main > blockquote {
+    & main > blockquote:not(.paired-visible) {
         display: none;
     }
 
-    & main > .original-block {
+    & main > [lang="en"] {
         cursor: pointer;
     }
 
-    & main > .original-block.translation-visible {
-        margin: 1rem 0;
-        padding: 0.85rem 1rem;
-        background: var(--quote-bg);
-        border-left: 4px solid var(--accent);
-    }
-
-    & main > .original-block.translation-visible > .original-translation {
-        display: block;
-        margin-top: 0.8rem;
-        padding-top: 0.8rem;
-        border-top: 1px solid color-mix(in srgb, var(--text) 20%, transparent);
+    & main > blockquote.paired-visible {
         color: var(--muted);
-        font-family: sans-serif;
-        font-size: 90%;
     }
 }
 

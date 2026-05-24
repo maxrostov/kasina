@@ -11,32 +11,27 @@
   <script>
     document.addEventListener("click", (event) => {
       const mode = document.body.dataset.contentMode;
-      const quote = event.target.closest("main > blockquote[data-original-toggle]");
-      const original = event.target.closest("main > .original-block[data-translation-toggle]");
-
-      if (
-        (mode !== "translation" || !quote) &&
-        (mode !== "original" || !original)
-      ) {
-        return;
-      }
+      const translation = event.target.closest('main > blockquote[lang="ru"]');
+      const original = event.target.closest('main > [lang="en"]');
 
       if (event.target.closest("a, button, input, textarea, select, summary")) {
         return;
       }
 
-      if (mode === "translation") {
-        const expanded = quote.classList.toggle("original-visible");
-        quote
-          .querySelector(".translation-original")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "translation" && translation) {
+        const pairedOriginal = translation.previousElementSibling;
+
+        if (pairedOriginal?.matches('[lang="en"]')) {
+          pairedOriginal.classList.toggle("paired-visible");
+        }
       }
 
-      if (mode === "original") {
-        const expanded = original.classList.toggle("translation-visible");
-        original
-          .querySelector(".original-translation")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "original" && original) {
+        const pairedTranslation = original.nextElementSibling;
+
+        if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
+          pairedTranslation.classList.toggle("paired-visible");
+        }
       }
     });
   </script>
@@ -51,241 +46,85 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
-<div class="original-block" data-translation-toggle>
-<h1>Day Fourteen</h1>
-<div class="original-translation" aria-hidden="true">
-<p>День четырнадцатый</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<h1>Day Fourteen</h1>
-</div>
-<p>День четырнадцатый</p>
+<h1 lang="en">Day Fourteen</h1>
+<blockquote lang="ru">
+День четырнадцатый
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Fruitions]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Плодоношения]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Fruitions]</p>
-</div>
-<p>[Плодоношения]</p>
+<p lang="en">[Fruitions]</p>
+<blockquote lang="ru">
+[Плодоношения]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Fruitions]</p>
-<div class="original-translation" aria-hidden="true">
-<p>[Плодоношения]</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Fruitions]</p>
-</div>
-<p>[Плодоношения]</p>
+<p lang="en">[Fruitions]</p>
+<blockquote lang="ru">
+[Плодоношения]
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 I have been going through several full cycles of the sequence per day, with each cycle ending with a fruition.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я проходила несколько полных циклов последовательности в день, и каждый цикл завершался плодоношением.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-I have been going through several full cycles of the sequence per day, with each cycle ending with a fruition.</p>
-</div>
-<p>Я проходила несколько полных циклов последовательности в день, и каждый цикл завершался плодоношением.</p>
+<blockquote lang="ru">
+Я проходила несколько полных циклов последовательности в день, и каждый цикл завершался плодоношением.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>With fruitions, I often cannot see the entranceways.</p>
-<div class="original-translation" aria-hidden="true">
-<p>При плодоношениях я часто не могу увидеть входы.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>With fruitions, I often cannot see the entranceways.</p>
-</div>
-<p>При плодоношениях я часто не могу увидеть входы.</p>
+<p lang="en">With fruitions, I often cannot see the entranceways.</p>
+<blockquote lang="ru">
+При плодоношениях я часто не могу увидеть входы.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Would the no-self door only happen when looking into the eyes of a deity, or could I possibly gain it from mesmerisation with the swirling colours?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Дверь не-я возникает только при взгляде в глаза божества, или я могла бы получить ее через завороженность закручивающимися цветами?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Would the no-self door only happen when looking into the eyes of a deity, or could I possibly gain it from mesmerisation with the swirling colours?</p>
-</div>
-<p>Дверь не-я возникает только при взгляде в глаза божества, или я могла бы получить ее через завороженность закручивающимися цветами?</p>
+<p lang="en">Would the no-self door only happen when looking into the eyes of a deity, or could I possibly gain it from mesmerisation with the swirling colours?</p>
+<blockquote lang="ru">
+Дверь не-я возникает только при взгляде в глаза божества, или я могла бы получить ее через завороженность закручивающимися цветами?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 You can try to set an intention to see the entranceways more clearly.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Ты можешь попробовать задать намерение видеть входы яснее.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-You can try to set an intention to see the entranceways more clearly.</p>
-</div>
-<p>Ты можешь попробовать задать намерение видеть входы яснее.</p>
+<blockquote lang="ru">
+Ты можешь попробовать задать намерение видеть входы яснее.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Much insight can be gained from later reflecting on the clear experiences of entrances into the three doors.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Много прозрения можно получить, позже размышляя о ясных переживаниях входа в три двери.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Much insight can be gained from later reflecting on the clear experiences of entrances into the three doors.</p>
-</div>
-<p>Много прозрения можно получить, позже размышляя о ясных переживаниях входа в три двери.</p>
+<p lang="en">Much insight can be gained from later reflecting on the clear experiences of entrances into the three doors.</p>
+<blockquote lang="ru">
+Много прозрения можно получить, позже размышляя о ясных переживаниях входа в три двери.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The doors will take anything as object, including swirling colours.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Двери могут взять в качестве объекта что угодно, включая закручивающиеся цвета.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The doors will take anything as object, including swirling colours.</p>
-</div>
-<p>Двери могут взять в качестве объекта что угодно, включая закручивающиеся цвета.</p>
+<p lang="en">The doors will take anything as object, including swirling colours.</p>
+<blockquote lang="ru">
+Двери могут взять в качестве объекта что угодно, включая закручивающиеся цвета.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>One generally cannot choose the specific door, but one can produce higher odds for the no-self door by collapsing into the luminous eyes of a tantric image, recognising its intelligence is your intelligence.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Обычно нельзя выбрать конкретную дверь, но можно повысить вероятность двери не-я, схлопываясь в светящиеся глаза тантрического образа и распознавая, что его разумность - это твоя разумность.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>One generally cannot choose the specific door, but one can produce higher odds for the no-self door by collapsing into the luminous eyes of a tantric image, recognising its intelligence is your intelligence.</p>
-</div>
-<p>Обычно нельзя выбрать конкретную дверь, но можно повысить вероятность двери не-я, схлопываясь в светящиеся глаза тантрического образа и распознавая, что его разумность - это твоя разумность.</p>
+<p lang="en">One generally cannot choose the specific door, but one can produce higher odds for the no-self door by collapsing into the luminous eyes of a tantric image, recognising its intelligence is your intelligence.</p>
+<blockquote lang="ru">
+Обычно нельзя выбрать конкретную дверь, но можно повысить вероятность двери не-я, схлопываясь в светящиеся глаза тантрического образа и распознавая, что его разумность - это твоя разумность.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>It is hard to beat the insight gained in that way.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Трудно превзойти прозрение, полученное таким образом.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>It is hard to beat the insight gained in that way.</p>
-</div>
-<p>Трудно превзойти прозрение, полученное таким образом.</p>
+<p lang="en">It is hard to beat the insight gained in that way.</p>
+<blockquote lang="ru">
+Трудно превзойти прозрение, полученное таким образом.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 I am concerned fruitions are getting in the way of staying longer with the 3D images and moving further into the fourth jhana.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Меня беспокоит, что плодоношения мешают мне дольше оставаться с трехмерными образами и продвигаться дальше в четвертую джхану.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-I am concerned fruitions are getting in the way of staying longer with the 3D images and moving further into the fourth jhana.</p>
-</div>
-<p>Меня беспокоит, что плодоношения мешают мне дольше оставаться с трехмерными образами и продвигаться дальше в четвертую джхану.</p>
+<blockquote lang="ru">
+Меня беспокоит, что плодоношения мешают мне дольше оставаться с трехмерными образами и продвигаться дальше в четвертую джхану.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>(At this point I was still attempting to understand the dimensions of the fourth jhana.)</p>
-<div class="original-translation" aria-hidden="true">
-<p>(В этот момент я все еще пыталась понять измерения четвертой джханы.)</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>(At this point I was still attempting to understand the dimensions of the fourth jhana.)</p>
-</div>
-<p>(В этот момент я все еще пыталась понять измерения четвертой джханы.)</p>
+<p lang="en">(At this point I was still attempting to understand the dimensions of the fourth jhana.)</p>
+<blockquote lang="ru">
+(В этот момент я все еще пыталась понять измерения четвертой джханы.)
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 If one is really getting fruitions, one must be in the fourth jhana, even if it is somewhat fleetingly and not clear that one is in fourth.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Если человек действительно получает плодоношения, он должен находиться в четвертой джхане, даже если это происходит несколько мимолетно и не ясно, что он именно в четвертой.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-If one is really getting fruitions, one must be in the fourth jhana, even if it is somewhat fleetingly and not clear that one is in fourth.</p>
-</div>
-<p>Если человек действительно получает плодоношения, он должен находиться в четвертой джхане, даже если это происходит несколько мимолетно и не ясно, что он именно в четвертой.</p>
+<blockquote lang="ru">
+Если человек действительно получает плодоношения, он должен находиться в четвертой джхане, даже если это происходит несколько мимолетно и не ясно, что он именно в четвертой.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Fruitions are one of the main points.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Плодоношения - один из главных пунктов.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Fruitions are one of the main points.</p>
-</div>
-<p>Плодоношения - один из главных пунктов.</p>
+<p lang="en">Fruitions are one of the main points.</p>
+<blockquote lang="ru">
+Плодоношения - один из главных пунктов.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>After a fruition, you can decide, instead of going back to the beginning of the insight cycle, to go back into fruition, using the clarity and power of the afterglow of a fruition to make that happen.</p>
-<div class="original-translation" aria-hidden="true">
-<p>После плодоношения ты можешь решить не возвращаться к началу цикла прозрения, а снова войти в плодоношение, используя ясность и силу послесвечения плодоношения, чтобы это произошло.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>After a fruition, you can decide, instead of going back to the beginning of the insight cycle, to go back into fruition, using the clarity and power of the afterglow of a fruition to make that happen.</p>
-</div>
-<p>После плодоношения ты можешь решить не возвращаться к началу цикла прозрения, а снова войти в плодоношение, используя ясность и силу послесвечения плодоношения, чтобы это произошло.</p>
+<p lang="en">After a fruition, you can decide, instead of going back to the beginning of the insight cycle, to go back into fruition, using the clarity and power of the afterglow of a fruition to make that happen.</p>
+<blockquote lang="ru">
+После плодоношения ты можешь решить не возвращаться к началу цикла прозрения, а снова войти в плодоношение, используя ясность и силу послесвечения плодоношения, чтобы это произошло.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>(SHANNON � I would not otherwise have appreciated how possible it was to recycle back to another fruition immediately after attaining one.)</p>
-<div class="original-translation" aria-hidden="true">
-<p>(ШЭННОН - иначе я бы не оценила, насколько возможно сразу после достижения одного плодоношения перейти обратно к другому.)</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>(SHANNON � I would not otherwise have appreciated how possible it was to recycle back to another fruition immediately after attaining one.)</p>
-</div>
-<p>(ШЭННОН - иначе я бы не оценила, насколько возможно сразу после достижения одного плодоношения перейти обратно к другому.)</p>
+<p lang="en">(SHANNON � I would not otherwise have appreciated how possible it was to recycle back to another fruition immediately after attaining one.)</p>
+<blockquote lang="ru">
+(ШЭННОН - иначе я бы не оценила, насколько возможно сразу после достижения одного плодоношения перейти обратно к другому.)
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Work on mastery by going through the sequence repeatedly.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Работай над мастерством, многократно проходя через последовательность.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Work on mastery by going through the sequence repeatedly.</p>
-</div>
-<p>Работай над мастерством, многократно проходя через последовательность.</p>
+<p lang="en">Work on mastery by going through the sequence repeatedly.</p>
+<blockquote lang="ru">
+Работай над мастерством, многократно проходя через последовательность.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Keep up intending to see Medicine Buddha and attempt to drop discouragement regarding outcome.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Продолжай намереваться увидеть Будду Медицины и старайся отбросить разочарование по поводу результата.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Keep up intending to see Medicine Buddha and attempt to drop discouragement regarding outcome.</p>
-</div>
-<p>Продолжай намереваться увидеть Будду Медицины и старайся отбросить разочарование по поводу результата.</p>
+<p lang="en">Keep up intending to see Medicine Buddha and attempt to drop discouragement regarding outcome.</p>
+<blockquote lang="ru">
+Продолжай намереваться увидеть Будду Медицины и старайся отбросить разочарование по поводу результата.
 </blockquote>
 
       </main>
@@ -344,26 +183,42 @@ If one is really getting fruitions, one must be in the fourth jhana, even if it 
         </ul>
     </div>
     <div class="nav-actions">
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="bilingual"
+                    x-model="contentMode"
+                />
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="translation"
+                    x-model="contentMode"
+                />
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="original"
+                    x-model="contentMode"
+                />
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
+
         <button
             class="theme-toggle"
             type="button"
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+            x-text="theme === 'dark' ? 'Светлая тема' : 'Темная тема'"
         ></button>
-        <fieldset class="mode-toggle" aria-label="Text display mode">
-            <label>
-                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
-                <span>Билингва</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
-                <span>Только перевод</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="original" x-model="contentMode">
-                <span>Только оригинал</span>
-            </label>
-        </fieldset>
     </div>
 </nav>
 

@@ -11,32 +11,27 @@
   <script>
     document.addEventListener("click", (event) => {
       const mode = document.body.dataset.contentMode;
-      const quote = event.target.closest("main > blockquote[data-original-toggle]");
-      const original = event.target.closest("main > .original-block[data-translation-toggle]");
-
-      if (
-        (mode !== "translation" || !quote) &&
-        (mode !== "original" || !original)
-      ) {
-        return;
-      }
+      const translation = event.target.closest('main > blockquote[lang="ru"]');
+      const original = event.target.closest('main > [lang="en"]');
 
       if (event.target.closest("a, button, input, textarea, select, summary")) {
         return;
       }
 
-      if (mode === "translation") {
-        const expanded = quote.classList.toggle("original-visible");
-        quote
-          .querySelector(".translation-original")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "translation" && translation) {
+        const pairedOriginal = translation.previousElementSibling;
+
+        if (pairedOriginal?.matches('[lang="en"]')) {
+          pairedOriginal.classList.toggle("paired-visible");
+        }
       }
 
-      if (mode === "original") {
-        const expanded = original.classList.toggle("translation-visible");
-        original
-          .querySelector(".original-translation")
-          ?.setAttribute("aria-hidden", String(!expanded));
+      if (mode === "original" && original) {
+        const pairedTranslation = original.nextElementSibling;
+
+        if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
+          pairedTranslation.classList.toggle("paired-visible");
+        }
       }
     });
   </script>
@@ -51,817 +46,285 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
-<div class="original-block" data-translation-toggle>
-<h1>Day Twelve</h1>
-<div class="original-translation" aria-hidden="true">
-<p>День двенадцатый</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<h1>Day Twelve</h1>
-</div>
-<p>День двенадцатый</p>
+<h1 lang="en">Day Twelve</h1>
+<blockquote lang="ru">
+День двенадцатый
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Samatha versus Vipassana Aspects]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Аспекты саматхи и випассаны</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Samatha versus Vipassana Aspects]</p>
-</div>
-<p>Аспекты саматхи и випассаны</p>
+<p lang="en">[Samatha versus Vipassana Aspects]</p>
+<blockquote lang="ru">
+Аспекты саматхи и випассаны
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 How did you balance samatha and vipassana aspects?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Как вы уравновешивали аспекты саматхи и випассаны?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-How did you balance samatha and vipassana aspects?</p>
-</div>
-<p>Как вы уравновешивали аспекты саматхи и випассаны?</p>
+<blockquote lang="ru">
+Как вы уравновешивали аспекты саматхи и випассаны?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Would you notice that nanas, insight stages, come on strong once in awhile?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Замечали ли вы, что ньяны, стадии прозрения, время от времени проявляются сильно?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Would you notice that nanas, insight stages, come on strong once in awhile?</p>
-</div>
-<p>Замечали ли вы, что ньяны, стадии прозрения, время от времени проявляются сильно?</p>
+<p lang="en">Would you notice that nanas, insight stages, come on strong once in awhile?</p>
+<blockquote lang="ru">
+Замечали ли вы, что ньяны, стадии прозрения, время от времени проявляются сильно?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 For me they fuse together.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Для меня они сливаются воедино.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-For me they fuse together.</p>
-</div>
-<p>Для меня они сливаются воедино.</p>
+<blockquote lang="ru">
+Для меня они сливаются воедино.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Example: finely spinning gear-like things around the dot is the vipassana aspect (moving, vibratory aspect) of the jhana.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Пример: тонко вращающиеся шестеренкоподобные вещи вокруг точки - это аспект випассаны (движущийся, вибрационный аспект) джханы.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Example: finely spinning gear-like things around the dot is the vipassana aspect (moving, vibratory aspect) of the jhana.</p>
-</div>
-<p>Пример: тонко вращающиеся шестеренкоподобные вещи вокруг точки - это аспект випассаны (движущийся, вибрационный аспект) джханы.</p>
+<p lang="en">Example: finely spinning gear-like things around the dot is the vipassana aspect (moving, vibratory aspect) of the jhana.</p>
+<blockquote lang="ru">
+Пример: тонко вращающиеся шестеренкоподобные вещи вокруг точки - это аспект випассаны (движущийся, вибрационный аспект) джханы.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Post-stream entry, cycling and the forward pull of the nanas is inevitable.</p>
-<div class="original-translation" aria-hidden="true">
-<p>После входа в поток циклирование и тянущее вперед движение ньян неизбежны.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Post-stream entry, cycling and the forward pull of the nanas is inevitable.</p>
-</div>
-<p>После входа в поток циклирование и тянущее вперед движение ньян неизбежны.</p>
+<p lang="en">Post-stream entry, cycling and the forward pull of the nanas is inevitable.</p>
+<blockquote lang="ru">
+После входа в поток циклирование и тянущее вперед движение ньян неизбежны.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The insight aspect will take care of itself with pointers and clear landmarks along the way.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Аспект прозрения сам о себе позаботится при наличии указателей и ясных ориентиров на пути.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The insight aspect will take care of itself with pointers and clear landmarks along the way.</p>
-</div>
-<p>Аспект прозрения сам о себе позаботится при наличии указателей и ясных ориентиров на пути.</p>
+<p lang="en">The insight aspect will take care of itself with pointers and clear landmarks along the way.</p>
+<blockquote lang="ru">
+Аспект прозрения сам о себе позаботится при наличии указателей и ясных ориентиров на пути.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Nanas organically taking over at times is normal.</p>
-<div class="original-translation" aria-hidden="true">
-<p>То, что ньяны временами органично берут верх, нормально.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Nanas organically taking over at times is normal.</p>
-</div>
-<p>То, что ньяны временами органично берут верх, нормально.</p>
+<p lang="en">Nanas organically taking over at times is normal.</p>
+<blockquote lang="ru">
+То, что ньяны временами органично берут верх, нормально.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Daniel described an image of a grid with insight along one axis and concentration along the other and he pointed out how practice can fall off the concentration side into a nana, or go too heavy on the concentration side where it is too stable to see clearly the insight aspects.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Дэниел описал образ сетки, где прозрение расположено вдоль одной оси, а концентрация - вдоль другой, и указал, как практика может сорваться со стороны концентрации в ньяну или слишком сильно уйти в сторону концентрации, где она становится слишком стабильной, чтобы ясно видеть аспекты прозрения.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Daniel described an image of a grid with insight along one axis and concentration along the other and he pointed out how practice can fall off the concentration side into a nana, or go too heavy on the concentration side where it is too stable to see clearly the insight aspects.</p>
-</div>
-<p>Дэниел описал образ сетки, где прозрение расположено вдоль одной оси, а концентрация - вдоль другой, и указал, как практика может сорваться со стороны концентрации в ньяну или слишком сильно уйти в сторону концентрации, где она становится слишком стабильной, чтобы ясно видеть аспекты прозрения.</p>
+<blockquote lang="ru">
+Дэниел описал образ сетки, где прозрение расположено вдоль одной оси, а концентрация - вдоль другой, и указал, как практика может сорваться со стороны концентрации в ньяну или слишком сильно уйти в сторону концентрации, где она становится слишком стабильной, чтобы ясно видеть аспекты прозрения.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>When insight and concentration are both strong, there will be luminosity, images, and vipassana insight based on those.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Когда и прозрение, и концентрация сильны, будут светоносность, образы и основанное на них прозрение випассаны.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>When insight and concentration are both strong, there will be luminosity, images, and vipassana insight based on those.</p>
-</div>
-<p>Когда и прозрение, и концентрация сильны, будут светоносность, образы и основанное на них прозрение випассаны.</p>
+<p lang="en">When insight and concentration are both strong, there will be luminosity, images, and vipassana insight based on those.</p>
+<blockquote lang="ru">
+Когда и прозрение, и концентрация сильны, будут светоносность, образы и основанное на них прозрение випассаны.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Sequence Description]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Описание последовательности</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Sequence Description]</p>
-</div>
-<p>Описание последовательности</p>
+<p lang="en">[Sequence Description]</p>
+<blockquote lang="ru">
+Описание последовательности
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 I would like to describe what has been happening with my sequence lately.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я хотела бы описать, что в последнее время происходит с моей последовательностью.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-I would like to describe what has been happening with my sequence lately.</p>
-</div>
-<p>Я хотела бы описать, что в последнее время происходит с моей последовательностью.</p>
+<blockquote lang="ru">
+Я хотела бы описать, что в последнее время происходит с моей последовательностью.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 Great: the sequence is key!</p>
-<div class="original-translation" aria-hidden="true">
-<p>Отлично: последовательность - ключ!</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-Great: the sequence is key!</p>
-</div>
-<p>Отлично: последовательность - ключ!</p>
+<blockquote lang="ru">
+Отлично: последовательность - ключ!
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Okay, so: I look at the flame, close my eyes, see the vivid red dot, then neat stuff shows up in the centre or on the edges of the dot, and then I often see the after-images of the shapes of things in the room.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Итак: я смотрю на пламя, закрываю глаза, вижу яркую красную точку, затем в центре или по краям точки появляются интересные вещи, а потом я часто вижу послеобразы форм предметов в комнате.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Okay, so: I look at the flame, close my eyes, see the vivid red dot, then neat stuff shows up in the centre or on the edges of the dot, and then I often see the after-images of the shapes of things in the room.</p>
-</div>
-<p>Итак: я смотрю на пламя, закрываю глаза, вижу яркую красную точку, затем в центре или по краям точки появляются интересные вещи, а потом я часто вижу послеобразы форм предметов в комнате.</p>
+<blockquote lang="ru">
+Итак: я смотрю на пламя, закрываю глаза, вижу яркую красную точку, затем в центре или по краям точки появляются интересные вещи, а потом я часто вижу послеобразы форм предметов в комнате.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Then the murk, which at times can be quite dark, is much easier to transition through when I notice the luminosity.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Затем муть, которая временами может быть довольно темной, становится гораздо легче проходимой, когда я замечаю светоносность.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Then the murk, which at times can be quite dark, is much easier to transition through when I notice the luminosity.</p>
-</div>
-<p>Затем муть, которая временами может быть довольно темной, становится гораздо легче проходимой, когда я замечаю светоносность.</p>
+<p lang="en">Then the murk, which at times can be quite dark, is much easier to transition through when I notice the luminosity.</p>
+<blockquote lang="ru">
+Затем муть, которая временами может быть довольно темной, становится гораздо легче проходимой, когда я замечаю светоносность.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Then I have airy colours that are gaining 3D depth, but are still quite abstract.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Затем у меня появляются воздушные цвета, которые набирают трехмерную глубину, но все еще остаются довольно абстрактными.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Then I have airy colours that are gaining 3D depth, but are still quite abstract.</p>
-</div>
-<p>Затем у меня появляются воздушные цвета, которые набирают трехмерную глубину, но все еще остаются довольно абстрактными.</p>
+<p lang="en">Then I have airy colours that are gaining 3D depth, but are still quite abstract.</p>
+<blockquote lang="ru">
+Затем у меня появляются воздушные цвета, которые набирают трехмерную глубину, но все еще остаются довольно абстрактными.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 The surprising thing is that black is as luminous as white.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Удивительно то, что черный так же светоносен, как белый.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-The surprising thing is that black is as luminous as white.</p>
-</div>
-<p>Удивительно то, что черный так же светоносен, как белый.</p>
+<blockquote lang="ru">
+Удивительно то, что черный так же светоносен, как белый.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>When you obtain colours with depth, that is the more developed part of the third jhana, as opposed to the early, dissolution part of the third jhana continuum.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Когда вы получаете цвета с глубиной, это более развитая часть третьей джханы, в отличие от ранней части растворения в континууме третьей джханы.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>When you obtain colours with depth, that is the more developed part of the third jhana, as opposed to the early, dissolution part of the third jhana continuum.</p>
-</div>
-<p>Когда вы получаете цвета с глубиной, это более развитая часть третьей джханы, в отличие от ранней части растворения в континууме третьей джханы.</p>
+<p lang="en">When you obtain colours with depth, that is the more developed part of the third jhana, as opposed to the early, dissolution part of the third jhana continuum.</p>
+<blockquote lang="ru">
+Когда вы получаете цвета с глубиной, это более развитая часть третьей джханы, в отличие от ранней части растворения в континууме третьей джханы.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 When I rest attention on the colours, the colour screen flips and a moving object, such as a bottle with an opening and closing lid, appears on the screen.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Когда я успокаиваю внимание на цветах, цветовой экран переворачивается, и на нем появляется движущийся объект, например бутылка с открывающейся и закрывающейся крышкой.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-When I rest attention on the colours, the colour screen flips and a moving object, such as a bottle with an opening and closing lid, appears on the screen.</p>
-</div>
-<p>Когда я успокаиваю внимание на цветах, цветовой экран переворачивается, и на нем появляется движущийся объект, например бутылка с открывающейся и закрывающейся крышкой.</p>
+<blockquote lang="ru">
+Когда я успокаиваю внимание на цветах, цветовой экран переворачивается, и на нем появляется движущийся объект, например бутылка с открывающейся и закрывающейся крышкой.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>At one point a butterfly wing peeled up off the visual field towards me, and my arms felt like wings flapping in space.</p>
-<div class="original-translation" aria-hidden="true">
-<p>В какой-то момент крыло бабочки отделилось от визуального поля и поднялось ко мне, а мои руки ощущались как крылья, хлопающие в пространстве.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>At one point a butterfly wing peeled up off the visual field towards me, and my arms felt like wings flapping in space.</p>
-</div>
-<p>В какой-то момент крыло бабочки отделилось от визуального поля и поднялось ко мне, а мои руки ощущались как крылья, хлопающие в пространстве.</p>
+<p lang="en">At one point a butterfly wing peeled up off the visual field towards me, and my arms felt like wings flapping in space.</p>
+<blockquote lang="ru">
+В какой-то момент крыло бабочки отделилось от визуального поля и поднялось ко мне, а мои руки ощущались как крылья, хлопающие в пространстве.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Then I either have what I think is a fruition, or I slip back into colours.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Затем у меня либо происходит то, что я считаю плодом, либо я соскальзываю обратно в цвета.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Then I either have what I think is a fruition, or I slip back into colours.</p>
-</div>
-<p>Затем у меня либо происходит то, что я считаю плодом, либо я соскальзываю обратно в цвета.</p>
+<p lang="en">Then I either have what I think is a fruition, or I slip back into colours.</p>
+<blockquote lang="ru">
+Затем у меня либо происходит то, что я считаю плодом, либо я соскальзываю обратно в цвета.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>The audio journal entries recorded throughout the retreat were often recorded while in highly-altered states just after experiencing things like the above.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Записи аудиодневника, сделанные на протяжении ретрита, часто записывались в сильно измененных состояниях сразу после переживаний вроде описанных выше.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>The audio journal entries recorded throughout the retreat were often recorded while in highly-altered states just after experiencing things like the above.</p>
-</div>
-<p>Записи аудиодневника, сделанные на протяжении ретрита, часто записывались в сильно измененных состояниях сразу после переживаний вроде описанных выше.</p>
+<p lang="en">The audio journal entries recorded throughout the retreat were often recorded while in highly-altered states just after experiencing things like the above.</p>
+<blockquote lang="ru">
+Записи аудиодневника, сделанные на протяжении ретрита, часто записывались в сильно измененных состояниях сразу после переживаний вроде описанных выше.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Although periodically I sound as if I am high on recreational drugs, my states were in fact 100% meditation-induced.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Хотя временами я звучу так, будто нахожусь под воздействием рекреационных наркотиков, мои состояния на самом деле были на 100% вызваны медитацией.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Although periodically I sound as if I am high on recreational drugs, my states were in fact 100% meditation-induced.</p>
-</div>
-<p>Хотя временами я звучу так, будто нахожусь под воздействием рекреационных наркотиков, мои состояния на самом деле были на 100% вызваны медитацией.</p>
+<p lang="en">Although periodically I sound as if I am high on recreational drugs, my states were in fact 100% meditation-induced.</p>
+<blockquote lang="ru">
+Хотя временами я звучу так, будто нахожусь под воздействием рекреационных наркотиков, мои состояния на самом деле были на 100% вызваны медитацией.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>I also narrated a couple of sits in real-time, beginning with observing the candle flame, up to the cusp of third jhana.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я также в реальном времени комментировала пару сидений, начиная с наблюдения пламени свечи и до порога третьей джханы.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>I also narrated a couple of sits in real-time, beginning with observing the candle flame, up to the cusp of third jhana.</p>
-</div>
-<p>Я также в реальном времени комментировала пару сидений, начиная с наблюдения пламени свечи и до порога третьей джханы.</p>
+<p lang="en">I also narrated a couple of sits in real-time, beginning with observing the candle flame, up to the cusp of third jhana.</p>
+<blockquote lang="ru">
+Я также в реальном времени комментировала пару сидений, начиная с наблюдения пламени свечи и до порога третьей джханы.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 After a fruition, you have options.</p>
-<div class="original-translation" aria-hidden="true">
-<p>После плода у вас есть варианты.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-After a fruition, you have options.</p>
-</div>
-<p>После плода у вас есть варианты.</p>
+<blockquote lang="ru">
+После плода у вас есть варианты.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>You can begin back at the beginning of the cycle with the candle flame to recharge; this builds a strong foundation.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Вы можете снова начать с начала цикла, с пламени свечи, чтобы перезарядиться; это строит прочную основу.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>You can begin back at the beginning of the cycle with the candle flame to recharge; this builds a strong foundation.</p>
-</div>
-<p>Вы можете снова начать с начала цикла, с пламени свечи, чтобы перезарядиться; это строит прочную основу.</p>
+<p lang="en">You can begin back at the beginning of the cycle with the candle flame to recharge; this builds a strong foundation.</p>
+<blockquote lang="ru">
+Вы можете снова начать с начала цикла, с пламени свечи, чтобы перезарядиться; это строит прочную основу.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Or, when falling back into the third jhana, you can then drift back to the fourth, and this cross-boundary transition, done again and again, builds mastery by hovering on those transition points and navigating them more easily.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Или, возвращаясь в третью джхану, вы можете затем снова дрейфовать к четвертой, и этот переход через границу, повторяемый снова и снова, строит мастерство за счет зависания на этих точках перехода и более легкой навигации по ним.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Or, when falling back into the third jhana, you can then drift back to the fourth, and this cross-boundary transition, done again and again, builds mastery by hovering on those transition points and navigating them more easily.</p>
-</div>
-<p>Или, возвращаясь в третью джхану, вы можете затем снова дрейфовать к четвертой, и этот переход через границу, повторяемый снова и снова, строит мастерство за счет зависания на этих точках перехода и более легкой навигации по ним.</p>
+<p lang="en">Or, when falling back into the third jhana, you can then drift back to the fourth, and this cross-boundary transition, done again and again, builds mastery by hovering on those transition points and navigating them more easily.</p>
+<blockquote lang="ru">
+Или, возвращаясь в третью джхану, вы можете затем снова дрейфовать к четвертой, и этот переход через границу, повторяемый снова и снова, строит мастерство за счет зависания на этих точках перехода и более легкой навигации по ним.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>So explore what is the same and what is different about each side of the third / fourth jhana boundary, and really learn how to make that transition work.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Поэтому исследуйте, что одинаково и что различается по обе стороны границы третьей и четвертой джханы, и по-настоящему учитесь тому, как заставить этот переход работать.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>So explore what is the same and what is different about each side of the third / fourth jhana boundary, and really learn how to make that transition work.</p>
-</div>
-<p>Поэтому исследуйте, что одинаково и что различается по обе стороны границы третьей и четвертой джханы, и по-настоящему учитесь тому, как заставить этот переход работать.</p>
+<p lang="en">So explore what is the same and what is different about each side of the third / fourth jhana boundary, and really learn how to make that transition work.</p>
+<blockquote lang="ru">
+Поэтому исследуйте, что одинаково и что различается по обе стороны границы третьей и четвертой джханы, и по-настоящему учитесь тому, как заставить этот переход работать.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Restlessness]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Беспокойство</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Restlessness]</p>
-</div>
-<p>Беспокойство</p>
+<p lang="en">[Restlessness]</p>
+<blockquote lang="ru">
+Беспокойство
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Sometimes I drop out of these higher states into intense feelings of restlessness.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Иногда я выпадаю из этих более высоких состояний в сильные чувства беспокойства.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Sometimes I drop out of these higher states into intense feelings of restlessness.</p>
-</div>
-<p>Иногда я выпадаю из этих более высоких состояний в сильные чувства беспокойства.</p>
+<blockquote lang="ru">
+Иногда я выпадаю из этих более высоких состояний в сильные чувства беспокойства.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 With restlessness one can:</p>
-<div class="original-translation" aria-hidden="true">
-<p>С беспокойством можно сделать следующее:</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-With restlessness one can:</p>
-</div>
-<p>С беспокойством можно сделать следующее:</p>
+<blockquote lang="ru">
+С беспокойством можно сделать следующее:
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<ol>
+<ol lang="en">
 <li>Totally power-down all controls and try to just passively sit, this being what might initially feel like “bad practice”; but, you will find this floating can restore an imbalance regarding tranquillity.</li>
 </ol>
-<div class="original-translation" aria-hidden="true">
-<ol>
-<li>Полностью отключить все рычаги управления и попробовать просто пассивно сидеть, даже если сначала это может ощущаться как «плохая практика»; но вы обнаружите, что это плавание может восстановить дисбаланс в отношении спокойствия.</li>
-</ol>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<ol>
-<li>Totally power-down all controls and try to just passively sit, this being what might initially feel like “bad practice”; but, you will find this floating can restore an imbalance regarding tranquillity.</li>
-</ol>
-</div>
+<blockquote lang="ru">
 <ol>
 <li>Полностью отключить все рычаги управления и попробовать просто пассивно сидеть, даже если сначала это может ощущаться как «плохая практика»; но вы обнаружите, что это плавание может восстановить дисбаланс в отношении спокойствия.</li>
 </ol>
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<ol start="2">
+<ol lang="en" start="2">
 <li>It may be you are just sitting too long and your body is telling you that, so you could go kayaking, or try more walking to balance energy.</li>
 </ol>
-<div class="original-translation" aria-hidden="true">
-<ol start="2">
-<li>Возможно, вы просто сидите слишком долго, и тело сообщает вам об этом, поэтому можно пойти покататься на каяке или попробовать больше ходить, чтобы уравновесить энергию.</li>
-</ol>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<ol start="2">
-<li>It may be you are just sitting too long and your body is telling you that, so you could go kayaking, or try more walking to balance energy.</li>
-</ol>
-</div>
+<blockquote lang="ru">
 <ol start="2">
 <li>Возможно, вы просто сидите слишком долго, и тело сообщает вам об этом, поэтому можно пойти покататься на каяке или попробовать больше ходить, чтобы уравновесить энергию.</li>
 </ol>
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Becoming more physically grounded will likely help the sits.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Более сильное физическое заземление, вероятно, поможет сидениям.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Becoming more physically grounded will likely help the sits.</p>
-</div>
-<p>Более сильное физическое заземление, вероятно, поможет сидениям.</p>
+<p lang="en">Becoming more physically grounded will likely help the sits.</p>
+<blockquote lang="ru">
+Более сильное физическое заземление, вероятно, поможет сидениям.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Parallax]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Параллакс</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Parallax]</p>
-</div>
-<p>Параллакс</p>
+<p lang="en">[Parallax]</p>
+<blockquote lang="ru">
+Параллакс
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>What is parallax?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Что такое параллакс?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>What is parallax?</p>
-</div>
-<p>Что такое параллакс?</p>
+<p lang="en">What is parallax?</p>
+<blockquote lang="ru">
+Что такое параллакс?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]</p>
+<p lang="en">[SHANNON]</p>
 <p>[DANIEL]
 Things change shape and relation to each other in the visual field as we move around.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Вещи меняют форму и отношения друг к другу в визуальном поле, когда мы движемся.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]</p>
-<p>[DANIEL]
-Things change shape and relation to each other in the visual field as we move around.</p>
-</div>
-<p>Вещи меняют форму и отношения друг к другу в визуальном поле, когда мы движемся.</p>
+<blockquote lang="ru">
+Вещи меняют форму и отношения друг к другу в визуальном поле, когда мы движемся.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Observe when you move your head back and forth, the thing in the frontal vision close to you moves in relationship to the wall.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Понаблюдайте: когда вы двигаете голову вперед и назад, предмет в переднем поле зрения рядом с вами движется относительно стены.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Observe when you move your head back and forth, the thing in the frontal vision close to you moves in relationship to the wall.</p>
-</div>
-<p>Понаблюдайте: когда вы двигаете голову вперед и назад, предмет в переднем поле зрения рядом с вами движется относительно стены.</p>
+<p lang="en">Observe when you move your head back and forth, the thing in the frontal vision close to you moves in relationship to the wall.</p>
+<blockquote lang="ru">
+Понаблюдайте: когда вы двигаете голову вперед и назад, предмет в переднем поле зрения рядом с вами движется относительно стены.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Usually people do not notice it much, but it is useful to notice it for teaching the brain something about how to make 3D images and travel, as well as to just keep attention stabilised on the details of the visual field and what it is actually doing.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Обычно люди почти этого не замечают, но замечать это полезно, чтобы научить мозг чему-то о создании трехмерных образов и путешествии, а также просто удерживать внимание стабилизированным на деталях визуального поля и на том, что оно на самом деле делает.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Usually people do not notice it much, but it is useful to notice it for teaching the brain something about how to make 3D images and travel, as well as to just keep attention stabilised on the details of the visual field and what it is actually doing.</p>
-</div>
-<p>Обычно люди почти этого не замечают, но замечать это полезно, чтобы научить мозг чему-то о создании трехмерных образов и путешествии, а также просто удерживать внимание стабилизированным на деталях визуального поля и на том, что оно на самом деле делает.</p>
+<p lang="en">Usually people do not notice it much, but it is useful to notice it for teaching the brain something about how to make 3D images and travel, as well as to just keep attention stabilised on the details of the visual field and what it is actually doing.</p>
+<blockquote lang="ru">
+Обычно люди почти этого не замечают, но замечать это полезно, чтобы научить мозг чему-то о создании трехмерных образов и путешествии, а также просто удерживать внимание стабилизированным на деталях визуального поля и на том, что оно на самом деле делает.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Black Disc]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Черный диск</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Black Disc]</p>
-</div>
-<p>Черный диск</p>
+<p lang="en">[Black Disc]</p>
+<blockquote lang="ru">
+Черный диск
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Can you describe what is referred to as “the black disc”?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Можете описать то, что называется «черным диском»?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Can you describe what is referred to as “the black disc”?</p>
-</div>
-<p>Можете описать то, что называется «черным диском»?</p>
+<blockquote lang="ru">
+Можете описать то, что называется «черным диском»?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 When the red dot turns dark green or fades out, the meditator can get a bigger black dot with colour around it.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Когда красная точка становится темно-зеленой или исчезает, медитирующий может получить более крупную черную точку с цветом вокруг нее.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-When the red dot turns dark green or fades out, the meditator can get a bigger black dot with colour around it.</p>
-</div>
-<p>Когда красная точка становится темно-зеленой или исчезает, медитирующий может получить более крупную черную точку с цветом вокруг нее.</p>
+<blockquote lang="ru">
+Когда красная точка становится темно-зеленой или исчезает, медитирующий может получить более крупную черную точку с цветом вокруг нее.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>This black dot can be taken as object.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Эту черную точку можно взять как объект.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>This black dot can be taken as object.</p>
-</div>
-<p>Эту черную точку можно взять как объект.</p>
+<p lang="en">This black dot can be taken as object.</p>
+<blockquote lang="ru">
+Эту черную точку можно взять как объект.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>(Shannon - We talked about the value of staying with that transition from second to third jhana as the black dot fades in and out and some red peeks through again.)</p>
-<div class="original-translation" aria-hidden="true">
-<p>(Шэннон - мы говорили о ценности оставания с этим переходом от второй к третьей джхане, когда черная точка то появляется, то исчезает, и снова немного проглядывает красный.)</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>(Shannon - We talked about the value of staying with that transition from second to third jhana as the black dot fades in and out and some red peeks through again.)</p>
-</div>
-<p>(Шэннон - мы говорили о ценности оставания с этим переходом от второй к третьей джхане, когда черная точка то появляется, то исчезает, и снова немного проглядывает красный.)</p>
+<p lang="en">(Shannon - We talked about the value of staying with that transition from second to third jhana as the black dot fades in and out and some red peeks through again.)</p>
+<blockquote lang="ru">
+(Шэннон - мы говорили о ценности оставания с этим переходом от второй к третьей джхане, когда черная точка то появляется, то исчезает, и снова немного проглядывает красный.)
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Crossing Transitions]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Пересечение переходов</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Crossing Transitions]</p>
-</div>
-<p>Пересечение переходов</p>
+<p lang="en">[Crossing Transitions]</p>
+<blockquote lang="ru">
+Пересечение переходов
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 I am finding that sitting on the fence between two parts of the sequence, as I go along, is fascinating.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я обнаруживаю, что по мере продвижения сидеть на границе между двумя частями последовательности увлекательно.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-I am finding that sitting on the fence between two parts of the sequence, as I go along, is fascinating.</p>
-</div>
-<p>Я обнаруживаю, что по мере продвижения сидеть на границе между двумя частями последовательности увлекательно.</p>
+<blockquote lang="ru">
+Я обнаруживаю, что по мере продвижения сидеть на границе между двумя частями последовательности увлекательно.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 It is normal to go back and forth across these points as we learn to transition into one and give up the other.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Нормально двигаться туда-сюда через эти точки, пока мы учимся переходить в одно и отпускать другое.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-It is normal to go back and forth across these points as we learn to transition into one and give up the other.</p>
-</div>
-<p>Нормально двигаться туда-сюда через эти точки, пока мы учимся переходить в одно и отпускать другое.</p>
+<blockquote lang="ru">
+Нормально двигаться туда-сюда через эти точки, пока мы учимся переходить в одно и отпускать другое.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Learning what width of attention does can help with every further insight cycle.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Понимание того, что делает ширина внимания, может помочь в каждом последующем цикле прозрения.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Learning what width of attention does can help with every further insight cycle.</p>
-</div>
-<p>Понимание того, что делает ширина внимания, может помочь в каждом последующем цикле прозрения.</p>
+<p lang="en">Learning what width of attention does can help with every further insight cycle.</p>
+<blockquote lang="ru">
+Понимание того, что делает ширина внимания, может помочь в каждом последующем цикле прозрения.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>For example, transitioning from dark night to equanimity, watching the visuals and how our experience of space changes, gives us clues on how to shift out of dark states.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Например, переход от темной ночи к невозмутимости, наблюдение визуальных образов и того, как меняется наше переживание пространства, дает нам подсказки о том, как выходить из темных состояний.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>For example, transitioning from dark night to equanimity, watching the visuals and how our experience of space changes, gives us clues on how to shift out of dark states.</p>
-</div>
-<p>Например, переход от темной ночи к невозмутимости, наблюдение визуальных образов и того, как меняется наше переживание пространства, дает нам подсказки о том, как выходить из темных состояний.</p>
+<p lang="en">For example, transitioning from dark night to equanimity, watching the visuals and how our experience of space changes, gives us clues on how to shift out of dark states.</p>
+<blockquote lang="ru">
+Например, переход от темной ночи к невозмутимости, наблюдение визуальных образов и того, как меняется наше переживание пространства, дает нам подсказки о том, как выходить из темных состояний.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Kasina practice gives a visual diagram of what attention does across states.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Практика касины дает визуальную диаграмму того, что внимание делает в разных состояниях.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Kasina practice gives a visual diagram of what attention does across states.</p>
-</div>
-<p>Практика касины дает визуальную диаграмму того, что внимание делает в разных состояниях.</p>
+<p lang="en">Kasina practice gives a visual diagram of what attention does across states.</p>
+<blockquote lang="ru">
+Практика касины дает визуальную диаграмму того, что внимание делает в разных состояниях.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 I found it exceptionally helpful to be encouraged to explore my interest in transitions.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Мне было исключительно полезно получить поддержку в исследовании моего интереса к переходам.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-I found it exceptionally helpful to be encouraged to explore my interest in transitions.</p>
-</div>
-<p>Мне было исключительно полезно получить поддержку в исследовании моего интереса к переходам.</p>
+<blockquote lang="ru">
+Мне было исключительно полезно получить поддержку в исследовании моего интереса к переходам.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>One of my on-line audio journals includes an in-depth description of the transition across third jhana, teetering on the edge into fourth.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Один из моих онлайн-аудиодневников включает подробное описание перехода через третью джхану, балансирования на краю четвертой.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>One of my on-line audio journals includes an in-depth description of the transition across third jhana, teetering on the edge into fourth.</p>
-</div>
-<p>Один из моих онлайн-аудиодневников включает подробное описание перехода через третью джхану, балансирования на краю четвертой.</p>
+<p lang="en">One of my on-line audio journals includes an in-depth description of the transition across third jhana, teetering on the edge into fourth.</p>
+<blockquote lang="ru">
+Один из моих онлайн-аудиодневников включает подробное описание перехода через третью джхану, балансирования на краю четвертой.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[Re-Observation]</p>
-<div class="original-translation" aria-hidden="true">
-<p>Повторное наблюдение</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[Re-Observation]</p>
-</div>
-<p>Повторное наблюдение</p>
+<p lang="en">[Re-Observation]</p>
+<blockquote lang="ru">
+Повторное наблюдение
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[SHANNON]
+<p lang="en">[SHANNON]
 Can you tell me how you experienced re-observation when you were doing fire kasina practice on retreat?</p>
-<div class="original-translation" aria-hidden="true">
-<p>Можете рассказать, как вы переживали повторное наблюдение, когда выполняли практику огненной касины на ретрите?</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[SHANNON]
-Can you tell me how you experienced re-observation when you were doing fire kasina practice on retreat?</p>
-</div>
-<p>Можете рассказать, как вы переживали повторное наблюдение, когда выполняли практику огненной касины на ретрите?</p>
+<blockquote lang="ru">
+Можете рассказать, как вы переживали повторное наблюдение, когда выполняли практику огненной касины на ретрите?
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>[DANIEL]
+<p lang="en">[DANIEL]
 On my first fire kasina retreat, which was during approximately the second half of a 17-day retreat at Bhavana Society in 2001 over the winter break, at the peak of my practice, re-observation was just this vast, elaborate, manifold radial symmetry design in what I call “rainbow flux lines”, meaning white lines with some colours at the edges, like light that had passed through a crystal and had split slightly into its component colours.</p>
-<div class="original-translation" aria-hidden="true">
-<p>На моем первом ретрите огненной касины, который проходил примерно во второй половине 17-дневного ретрита в Bhavana Society в 2001 году во время зимних каникул, на пике моей практики повторное наблюдение было просто огромным, сложным, многослойным узором радиальной симметрии в том, что я называю «радужными потоковыми линиями», то есть белыми линиями с некоторыми цветами по краям, похожими на свет, прошедший через кристалл и слегка расщепившийся на составляющие цвета.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>[DANIEL]
-On my first fire kasina retreat, which was during approximately the second half of a 17-day retreat at Bhavana Society in 2001 over the winter break, at the peak of my practice, re-observation was just this vast, elaborate, manifold radial symmetry design in what I call “rainbow flux lines”, meaning white lines with some colours at the edges, like light that had passed through a crystal and had split slightly into its component colours.</p>
-</div>
-<p>На моем первом ретрите огненной касины, который проходил примерно во второй половине 17-дневного ретрита в Bhavana Society в 2001 году во время зимних каникул, на пике моей практики повторное наблюдение было просто огромным, сложным, многослойным узором радиальной симметрии в том, что я называю «радужными потоковыми линиями», то есть белыми линиями с некоторыми цветами по краям, похожими на свет, прошедший через кристалл и слегка расщепившийся на составляющие цвета.</p>
+<blockquote lang="ru">
+На моем первом ретрите огненной касины, который проходил примерно во второй половине 17-дневного ретрита в Bhavana Society в 2001 году во время зимних каникул, на пике моей практики повторное наблюдение было просто огромным, сложным, многослойным узором радиальной симметрии в том, что я называю «радужными потоковыми линиями», то есть белыми линиями с некоторыми цветами по краям, похожими на свет, прошедший через кристалл и слегка расщепившийся на составляющие цвета.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>It would grow wider and wider, making gently swirling symmetrical patterns, which seemed to have an Aztec or Mayan art theme, and to stay with it properly required a very chill, diffuse, extremely broad attention to all that complexity at the same time without really focusing on any of it.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Он становился все шире и шире, создавая мягко закручивающиеся симметричные узоры, которые, казалось, имели тему ацтекского или майянского искусства, и чтобы правильно оставаться с этим, требовалось очень спокойное, рассеянное, чрезвычайно широкое внимание ко всей этой сложности одновременно, без настоящей фокусировки на чем-либо одном.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>It would grow wider and wider, making gently swirling symmetrical patterns, which seemed to have an Aztec or Mayan art theme, and to stay with it properly required a very chill, diffuse, extremely broad attention to all that complexity at the same time without really focusing on any of it.</p>
-</div>
-<p>Он становился все шире и шире, создавая мягко закручивающиеся симметричные узоры, которые, казалось, имели тему ацтекского или майянского искусства, и чтобы правильно оставаться с этим, требовалось очень спокойное, рассеянное, чрезвычайно широкое внимание ко всей этой сложности одновременно, без настоящей фокусировки на чем-либо одном.</p>
+<p lang="en">It would grow wider and wider, making gently swirling symmetrical patterns, which seemed to have an Aztec or Mayan art theme, and to stay with it properly required a very chill, diffuse, extremely broad attention to all that complexity at the same time without really focusing on any of it.</p>
+<blockquote lang="ru">
+Он становился все шире и шире, создавая мягко закручивающиеся симметричные узоры, которые, казалось, имели тему ацтекского или майянского искусства, и чтобы правильно оставаться с этим, требовалось очень спокойное, рассеянное, чрезвычайно широкое внимание ко всей этой сложности одновременно, без настоящей фокусировки на чем-либо одном.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>It would progress, and seemed to curl around behind me like it was drawn on the inside of a huge invisible hemisphere, and thus would flow to the far wide extremes of my visual field, as if it was trying to come around behind me and encircle me, though my body was barely perceptible at that point.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Это продвигалось и, казалось, заворачивалось позади меня, словно было нарисовано на внутренней стороне огромной невидимой полусферы, и поэтому текло к дальним широким краям моего визуального поля, как будто пыталось зайти за меня и окружить меня, хотя мое тело в этот момент было едва воспринимаемо.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>It would progress, and seemed to curl around behind me like it was drawn on the inside of a huge invisible hemisphere, and thus would flow to the far wide extremes of my visual field, as if it was trying to come around behind me and encircle me, though my body was barely perceptible at that point.</p>
-</div>
-<p>Это продвигалось и, казалось, заворачивалось позади меня, словно было нарисовано на внутренней стороне огромной невидимой полусферы, и поэтому текло к дальним широким краям моего визуального поля, как будто пыталось зайти за меня и окружить меня, хотя мое тело в этот момент было едва воспринимаемо.</p>
+<p lang="en">It would progress, and seemed to curl around behind me like it was drawn on the inside of a huge invisible hemisphere, and thus would flow to the far wide extremes of my visual field, as if it was trying to come around behind me and encircle me, though my body was barely perceptible at that point.</p>
+<blockquote lang="ru">
+Это продвигалось и, казалось, заворачивалось позади меня, словно было нарисовано на внутренней стороне огромной невидимой полусферы, и поэтому текло к дальним широким краям моего визуального поля, как будто пыталось зайти за меня и окружить меня, хотя мое тело в этот момент было едва воспринимаемо.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>There was no restlessness, no irritation, just beautiful, exquisitely complex, refined sacred geometry.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Не было ни беспокойства, ни раздражения, только прекрасная, изысканно сложная, утонченная сакральная геометрия.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>There was no restlessness, no irritation, just beautiful, exquisitely complex, refined sacred geometry.</p>
-</div>
-<p>Не было ни беспокойства, ни раздражения, только прекрасная, изысканно сложная, утонченная сакральная геометрия.</p>
+<p lang="en">There was no restlessness, no irritation, just beautiful, exquisitely complex, refined sacred geometry.</p>
+<blockquote lang="ru">
+Не было ни беспокойства, ни раздражения, только прекрасная, изысканно сложная, утонченная сакральная геометрия.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>On my more recent retreat, which was only 12 days and involved more talking, I obtained some images but nothing that perfectly refined, and so re-observation often had more unevenness and restlessness.</p>
-<div class="original-translation" aria-hidden="true">
-<p>На моем более недавнем ретрите, который длился всего 12 дней и включал больше разговоров, я получил некоторые образы, но ничего настолько совершенно утонченного, и поэтому повторное наблюдение часто имело больше неровности и беспокойства.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>On my more recent retreat, which was only 12 days and involved more talking, I obtained some images but nothing that perfectly refined, and so re-observation often had more unevenness and restlessness.</p>
-</div>
-<p>На моем более недавнем ретрите, который длился всего 12 дней и включал больше разговоров, я получил некоторые образы, но ничего настолько совершенно утонченного, и поэтому повторное наблюдение часто имело больше неровности и беспокойства.</p>
+<p lang="en">On my more recent retreat, which was only 12 days and involved more talking, I obtained some images but nothing that perfectly refined, and so re-observation often had more unevenness and restlessness.</p>
+<blockquote lang="ru">
+На моем более недавнем ретрите, который длился всего 12 дней и включал больше разговоров, я получил некоторые образы, но ничего настолько совершенно утонченного, и поэтому повторное наблюдение часто имело больше неровности и беспокойства.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>I was restless to figure how to come back into the vast, clear images of the fourth jhana.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Я беспокоился, пытаясь понять, как вернуться к огромным, ясным образам четвертой джханы.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>I was restless to figure how to come back into the vast, clear images of the fourth jhana.</p>
-</div>
-<p>Я беспокоился, пытаясь понять, как вернуться к огромным, ясным образам четвертой джханы.</p>
+<p lang="en">I was restless to figure how to come back into the vast, clear images of the fourth jhana.</p>
+<blockquote lang="ru">
+Я беспокоился, пытаясь понять, как вернуться к огромным, ясным образам четвертой джханы.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Despite brilliant colours and heavy bodily bliss, I was still edgy to move onward.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Несмотря на сияющие цвета и сильное телесное блаженство, я все еще был напряженно устремлен двигаться дальше.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Despite brilliant colours and heavy bodily bliss, I was still edgy to move onward.</p>
-</div>
-<p>Несмотря на сияющие цвета и сильное телесное блаженство, я все еще был напряженно устремлен двигаться дальше.</p>
+<p lang="en">Despite brilliant colours and heavy bodily bliss, I was still edgy to move onward.</p>
+<blockquote lang="ru">
+Несмотря на сияющие цвета и сильное телесное блаженство, я все еще был напряженно устремлен двигаться дальше.
 </blockquote>
-<div class="original-block" data-translation-toggle>
-<p>Had I had more time, I think re-observation would have stabilised and purified to just images again, as I could see it progressing in that direction when I passed through it.</p>
-<div class="original-translation" aria-hidden="true">
-<p>Если бы у меня было больше времени, думаю, повторное наблюдение стабилизировалось бы и снова очистилось до одних лишь образов, поскольку я видел, что оно продвигается в этом направлении, когда проходил через него.</p>
-</div>
-</div>
-<blockquote data-original-toggle>
-<div class="translation-original" aria-hidden="true">
-<p>Had I had more time, I think re-observation would have stabilised and purified to just images again, as I could see it progressing in that direction when I passed through it.</p>
-</div>
-<p>Если бы у меня было больше времени, думаю, повторное наблюдение стабилизировалось бы и снова очистилось до одних лишь образов, поскольку я видел, что оно продвигается в этом направлении, когда проходил через него.</p>
+<p lang="en">Had I had more time, I think re-observation would have stabilised and purified to just images again, as I could see it progressing in that direction when I passed through it.</p>
+<blockquote lang="ru">
+Если бы у меня было больше времени, думаю, повторное наблюдение стабилизировалось бы и снова очистилось до одних лишь образов, поскольку я видел, что оно продвигается в этом направлении, когда проходил через него.
 </blockquote>
 
       </main>
@@ -920,26 +383,42 @@ On my first fire kasina retreat, which was during approximately the second half 
         </ul>
     </div>
     <div class="nav-actions">
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="bilingual"
+                    x-model="contentMode"
+                />
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="translation"
+                    x-model="contentMode"
+                />
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input
+                    type="radio"
+                    name="content-mode"
+                    value="original"
+                    x-model="contentMode"
+                />
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
+
         <button
             class="theme-toggle"
             type="button"
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
+            x-text="theme === 'dark' ? 'Светлая тема' : 'Темная тема'"
         ></button>
-        <fieldset class="mode-toggle" aria-label="Text display mode">
-            <label>
-                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
-                <span>Билингва</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
-                <span>Только перевод</span>
-            </label>
-            <label>
-                <input type="radio" name="content-mode" value="original" x-model="contentMode">
-                <span>Только оригинал</span>
-            </label>
-        </fieldset>
     </div>
 </nav>
 

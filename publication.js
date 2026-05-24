@@ -103,6 +103,7 @@
     const navBackdrop = document.querySelector(".nav-backdrop");
     const navClose = document.querySelector(".nav-close");
     const siteNav = document.querySelector(".site-nav");
+    const offlineStatus = document.querySelector(".offline-status");
     const themeToggle = document.querySelector(".theme-toggle");
     const contentModeInputs = Array.from(
       document.querySelectorAll('input[name="content-mode"]'),
@@ -183,6 +184,17 @@
 
       if (shouldPersist) {
         storageSet(contentModeKey, nextContentMode);
+      }
+    }
+
+    /**
+     * Показывает статус офлайн-режима, когда браузер действительно потерял сеть.
+     *
+     * @returns {void}
+     */
+    function updateOfflineStatus() {
+      if (offlineStatus) {
+        offlineStatus.hidden = navigator.onLine;
       }
     }
 
@@ -315,12 +327,15 @@
     setTheme(storageGet(themeKey));
     setContentMode(storageGet(contentModeKey));
     setMenuOpen(false);
+    updateOfflineStatus();
 
     menuToggle?.addEventListener("click", handleMenuToggleClick);
     navBackdrop?.addEventListener("click", closeMenu);
     navClose?.addEventListener("click", closeMenu);
     siteNav?.addEventListener("click", handleSiteNavClick);
     document.addEventListener("keydown", handleDocumentKeydown);
+    window.addEventListener("online", updateOfflineStatus);
+    window.addEventListener("offline", updateOfflineStatus);
     themeToggle?.addEventListener("click", handleThemeToggleClick);
 
     for (const input of contentModeInputs) {

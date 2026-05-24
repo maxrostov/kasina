@@ -7,6 +7,13 @@
   <link rel="stylesheet" href="publication.css">
   <link rel="stylesheet" href="article.css">
   <script defer src="publication.js"></script>
+  <script>
+    if ("serviceWorker" in navigator && window.isSecureContext && /^(https?:)$/.test(window.location.protocol)) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("sw.js").catch(function () {});
+      });
+    }
+  </script>
 </head>
 <body data-theme="light" data-content-mode="bilingual" data-menu-open="false">
   <div class="layout">

@@ -1,27 +1,32 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{title}}</title>
-{{stylesheets}}
-{{scripts}}
-{{serviceWorker}}
-</head>
-<body data-theme="light" {{contentModeAttributes}} data-menu-open="false">
-  <div class="layout">
-    <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="site-nav" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <div class="nav-backdrop"></div>
-    <div class="shell">
-      <main>
-{{body}}
-      </main>
-      {{nav}}
-    </div>
-  </div>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+        <title>{{title}}</title>
+        {{stylesheets}} {{scripts}} {{serviceWorker}}
+    </head>
+    <body data-theme="light" {{contentModeAttributes}} data-menu-open="false">
+        <div class="layout">
+            <button
+                class="menu-toggle"
+                type="button"
+                aria-label="Open menu"
+                aria-controls="site-nav"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-backdrop"></div>
+            <div class="shell">
+                <main>{{body}}</main>
+                {{nav}}
+            </div>
+        </div>
+    </body>
 </html>

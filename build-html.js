@@ -24,8 +24,12 @@ const templatePath = path.join(__dirname, "template.html");
 const navTemplatePath = path.join(__dirname, "nav.html");
 const stylesheets = [
   {
-    sourcePath: path.join(__dirname, "styles.css"),
-    outputPath: "publication.css",
+    sourcePath: path.join(__dirname, "main.css"),
+    outputPath: "main.css",
+  },
+  {
+    sourcePath: path.join(__dirname, "nav.css"),
+    outputPath: "nav.css",
   },
   {
     sourcePath: path.join(__dirname, "article.css"),

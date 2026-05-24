@@ -26,6 +26,7 @@ npm run serve
 - `nav.html`: шаблон правой боковой навигации.
 - `styles.css`: исходный CSS оболочки, навигации, темы и layout, который копируется в результат как `publication.css`.
 - `article.css`: исходный CSS оформления текста статьи, который копируется в результат как `article.css`.
+- `publication.js`: исходный JavaScript оболочки, навигации, темы и режимов чтения, который копируется в результат как `publication.js`.
 - `package.json`: npm-скрипты и зависимость `markdown-it`.
 
 ## Правила входных данных
@@ -59,10 +60,9 @@ Markdown-ссылки обрабатываются через renderer rules б�
 
 - Каждая страница использует `template.html`.
 - Каждая страница подключает `publication.css` и `article.css`.
-- Каждая страница подключает Alpine.js и `@alpinejs/persist` через CDN.
+- Каждая страница подключает локальный `publication.js` без внешних CDN-зависимостей.
 - Тема сохраняется в `localStorage` под ключом `kasina-theme`.
 - Режим отображения текста сохраняется в `localStorage` под ключом `kasina-content-mode`.
-- На desktop навигация отображается как правая боковая панель.
 - На mobile навигация скрыта под кнопкой-«бутербродом» и выезжает справа.
 
 ## Режимы отображения текста
@@ -96,20 +96,3 @@ npm run build the-fire-kasina-markdown
 
 - Команда запускается без дополнительного запроса подтверждения.
 - Если сборка завершается ошибкой, ошибку нужно исправить или явно зафиксировать как блокер текущего изменения.
-
-## Проверка
-
-Команды:
-
-```bash
-node --check build-html.js
-npm run build -- the-fire-kasina-markdown
-npm run serve
-```
-
-Ожидаемый результат:
-
-- существует `the-fire-kasina-markdown-html/index.html`;
-- существуют `the-fire-kasina-markdown-html/publication.css` и `the-fire-kasina-markdown-html/article.css`;
-- внутренние ссылки на документы ведут на `.html`, а не на `.md`;
-- сервер запускается на http://localhost:3000/ и корректно обслуживает статические файлы;

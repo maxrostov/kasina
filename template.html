@@ -5,44 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{title}}</title>
 {{stylesheets}}
-  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script>
-    document.addEventListener("click", (event) => {
-      const mode = document.body.dataset.contentMode;
-      const translation = event.target.closest('main > blockquote[lang="ru"]');
-      const original = event.target.closest('main > [lang="en"]');
-
-      if (event.target.closest("a, button, input, textarea, select, summary")) {
-        return;
-      }
-
-      if (mode === "translation" && translation) {
-        const pairedOriginal = translation.previousElementSibling;
-
-        if (pairedOriginal?.matches('[lang="en"]')) {
-          pairedOriginal.classList.toggle("paired-visible");
-        }
-      }
-
-      if (mode === "original" && original) {
-        const pairedTranslation = original.nextElementSibling;
-
-        if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
-          pairedTranslation.classList.toggle("paired-visible");
-        }
-      }
-    });
-  </script>
+{{scripts}}
 </head>
-<body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
+<body data-theme="light" data-content-mode="bilingual" data-menu-open="false">
   <div class="layout">
-    <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="site-nav" x-bind:aria-expanded="menuOpen.toString()" x-on:click="menuOpen = !menuOpen">
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="site-nav" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
     </button>
-    <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
+    <div class="nav-backdrop"></div>
     <div class="shell">
       <main>
 {{body}}

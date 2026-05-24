@@ -31,6 +31,12 @@ const stylesheets = [
     outputPath: "article.css",
   },
 ];
+const scripts = [
+  {
+    sourcePath: path.join(__dirname, "publication.js"),
+    outputPath: "publication.js",
+  },
+];
 
 const toPosix = (value) => value.split(path.sep).join(path.posix.sep);
 
@@ -246,10 +252,11 @@ function renderNav({ template, pages, currentPage }) {
 }
 
 // Оболочка страницы лежит в template.html; плейсхолдеры намеренно простые.
-function renderPage({ template, title, stylesheetLinks, body, nav }) {
+function renderPage({ template, title, stylesheetLinks, scriptTags, body, nav }) {
   return template
     .replaceAll("{{title}}", escapeHtml(title))
     .replaceAll("{{stylesheets}}", stylesheetLinks)
+    .replaceAll("{{scripts}}", scriptTags)
     .replaceAll("{{nav}}", nav)
     .replaceAll("{{body}}", body);
 }
@@ -334,6 +341,10 @@ async function main() {
     );
   }
 
+  for (const script of scripts) {
+    await fs.copyFile(script.sourcePath, path.join(outputDir, script.outputPath));
+  }
+
   // Рендерит каждый Markdown-документ в самостоятельную HTML-страницу.
   for (const page of pages) {
     const body = addContentLanguage(
@@ -345,10 +356,17 @@ async function main() {
         return `  <link rel="stylesheet" href="${escapeHtml(href)}">`;
       })
       .join("\n");
+    const scriptTags = scripts
+      .map((script) => {
+        const src = relativeHref(page.htmlPath, script.outputPath);
+        return `  <script defer src="${escapeHtml(src)}"></script>`;
+      })
+      .join("\n");
     const html = renderPage({
       template,
       title: page.title,
       stylesheetLinks,
+      scriptTags,
       body,
       nav: renderNav({ template: navTemplate, pages, currentPage: page }),
     });

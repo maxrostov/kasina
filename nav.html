@@ -2,13 +2,11 @@
     id="site-nav"
     class="site-nav"
     aria-label="Publication chapters"
-    x-on:click="if ($event.target.closest('a')) menuOpen = false"
 >
     <button
         class="nav-close"
         type="button"
         aria-label="Close menu"
-        x-on:click="menuOpen = false"
     >
         <span></span>
         <span></span>
@@ -27,7 +25,7 @@
                     type="radio"
                     name="content-mode"
                     value="bilingual"
-                    x-model="contentMode"
+                    checked
                 />
                 <span>Билингва</span>
             </label>
@@ -36,7 +34,6 @@
                     type="radio"
                     name="content-mode"
                     value="translation"
-                    x-model="contentMode"
                 />
                 <span>Только перевод</span>
             </label>
@@ -45,7 +42,6 @@
                     type="radio"
                     name="content-mode"
                     value="original"
-                    x-model="contentMode"
                 />
                 <span>Только оригинал</span>
             </label>
@@ -54,8 +50,6 @@
         <button
             class="theme-toggle"
             type="button"
-            x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
-            x-text="theme === 'dark' ? 'Светлая тема' : 'Темная тема'"
-        ></button>
+        >Темная тема</button>
     </div>
 </nav>

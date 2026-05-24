@@ -8,7 +8,7 @@
 
 Перевод полностью сделан нейросетью `Gemini 3.1 Pro` в рамках проекта [Переведи буддиста](https://firekasina.org/fire-kasina-book/).
 
-[сайт книги](https://firekasina.org/fire-kasina-book/){:target="_blank"}
+[сайт книги](https://firekasina.org/fire-kasina-book/)
 
 ### Мобильный телефон
 - главы книги доступны через иконку (внизу справа).

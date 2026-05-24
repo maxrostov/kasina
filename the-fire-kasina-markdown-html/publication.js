@@ -43,6 +43,7 @@
     const contentModeInputs = Array.from(
       document.querySelectorAll('input[name="content-mode"]'),
     );
+    const isContentModeEnabled = body.dataset.contentModeDisabled !== "true";
 
     function setMenuOpen(isOpen) {
       body.dataset.menuOpen = String(isOpen);
@@ -68,6 +69,10 @@
     }
 
     function setContentMode(contentMode, shouldPersist = false) {
+      if (!isContentModeEnabled) {
+        return;
+      }
+
       const nextContentMode = normalizedValue(
         contentMode,
         contentModes,
@@ -119,13 +124,17 @@
 
     for (const input of contentModeInputs) {
       input.addEventListener("change", () => {
-        if (input.checked) {
+        if (isContentModeEnabled && input.checked) {
           setContentMode(input.value, true);
         }
       });
     }
 
     document.addEventListener("click", (event) => {
+      if (!isContentModeEnabled) {
+        return;
+      }
+
       const target =
         event.target instanceof Element
           ? event.target

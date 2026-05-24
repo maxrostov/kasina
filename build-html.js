@@ -130,6 +130,10 @@ function markdownPathToHtmlPath(markdownPath) {
   return markdownPath.replace(/\.md$/i, ".html");
 }
 
+function isIndexPage(page) {
+  return page.htmlPath === "index.html";
+}
+
 // Первый H1 становится title страницы и подписью в навигации.
 function pageTitle(markdown, fallback) {
   const heading = markdown.match(/^#\s+(.+?)\s*$/m);
@@ -263,12 +267,14 @@ function renderPage({
   serviceWorkerRegistration,
   body,
   nav,
+  contentModeAttributes,
 }) {
   return template
     .replaceAll("{{title}}", escapeHtml(title))
     .replaceAll("{{stylesheets}}", stylesheetLinks)
     .replaceAll("{{scripts}}", scriptTags)
     .replaceAll("{{serviceWorker}}", serviceWorkerRegistration)
+    .replaceAll("{{contentModeAttributes}}", contentModeAttributes)
     .replaceAll("{{nav}}", nav)
     .replaceAll("{{body}}", body);
 }
@@ -588,6 +594,9 @@ async function main() {
       scriptTags,
       serviceWorkerRegistration,
       body,
+      contentModeAttributes: isIndexPage(page)
+        ? 'data-content-mode-disabled="true"'
+        : 'data-content-mode="bilingual"',
       nav: renderNav({ template: navTemplate, pages, currentPage: page }),
     });
     const targetPath = path.join(outputDir, page.htmlPath);

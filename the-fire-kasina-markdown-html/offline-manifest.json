@@ -1,133 +1,133 @@
 {
-  "version": "c631f287c35a3fa8",
+  "version": "125e9626a3fbc29f",
   "files": [
     {
       "url": "01-the-authors.html",
-      "revision": "4f2724a240d62dd108e2206baffe6ec75af6ac2d5b76a41defca43710239bea5"
+      "revision": "c8595b756a632f71b68ed379fe38b662054cee7158958c0947c64f3d75896a0b"
     },
     {
       "url": "02-introduction.html",
-      "revision": "4dfad45f315aec0655f4a7ca4a67bbbe02b8f5c5c35b476075e541aa81bea9b8"
+      "revision": "c70dfbbf1ec5f2d50d8094fd7256fda44a49bc408a8cba531ff8436450db380f"
     },
     {
       "url": "03-prologue.html",
-      "revision": "a6d122c108025fa1de3725573777c86773272c1b53fd5c04b01ad7c9c80e7d0d"
+      "revision": "792b1e5d40f40d173a14a554341ab39b052bf88f18d7d0f84dac0d26923a8878"
     },
     {
       "url": "04-day-one.html",
-      "revision": "11d87d09b6dc9ef4ff48658359b8550dc3d4b2861e84e5bbe991067c7a62fcd3"
+      "revision": "179cee30594209150eb9aa93c2d4ba50586b49b20b13f421c32dbd86ca15bf2d"
     },
     {
       "url": "05-day-two.html",
-      "revision": "dc233191f7af82ff9f954b9e46590ffcb7c5acd0eaf2fe61f47385ca29ac3ce5"
+      "revision": "da3d89743500be7c6ed9b92d46512489db6a5f373649fe83d1cbde3fb6e1951f"
     },
     {
       "url": "06-day-three.html",
-      "revision": "92bd358ac79a59f3f98241a3aa9f019d32fb636c5717ebaf97e0cefe43c66541"
+      "revision": "47a095bece7c44dd480c061bfd1440cdbd6c91837bb4a95bd882e56f0495761e"
     },
     {
       "url": "07-day-four.html",
-      "revision": "4d2f008228b31429fea632bec32c88af079fc660fc5205fb899c74e3016eb647"
+      "revision": "718b48b7cfb506384f5347bd2e1ddb0bc052cc54bc775c41c5c6ad36b9a2c41d"
     },
     {
       "url": "08-day-five.html",
-      "revision": "dea895ef404ec1f48d5c1e9f71020fc6819e1d614305647725bb058436e30041"
+      "revision": "fa7258f1fe8aa1ff4387b7fb7c11393c12962fe6c7e0c77826a12474c8477dd2"
     },
     {
       "url": "09-day-six.html",
-      "revision": "587dd4071588cc8b00cb6a77230d7aa077f26af1a616982dc479ccecec4d67a7"
+      "revision": "877d70ac7d0a43edbd0be5a8b9497ce712bb31be009e8663ff4ba4db1e30a84c"
     },
     {
       "url": "10-day-seven.html",
-      "revision": "ce59a673952b3575a2a180bfbc5dedc9e79c3099b7606be0b536a8e7b38a8e61"
+      "revision": "efea23dc29dd527db34c4162ce7ac54836a1fc16c2aef029931dc1c62acf12d9"
     },
     {
       "url": "11-day-eight.html",
-      "revision": "09ec940f2eab47a7bca2f456d5743811b5711100f2c23a416770ff5f29f7205b"
+      "revision": "07ac33664b52935d8d13a125957e135acb1d7ce8a13af7827e99ea8e73f3493d"
     },
     {
       "url": "12-day-nine.html",
-      "revision": "8b9efcc456beded15fe8ca48fb556c2a1f73cdbeffd3ab6eb53dfb82cf6b10d4"
+      "revision": "15aa8c6cef68de902284d228b4185e5ed6187aa58b3531b09b19653e2f8fe81f"
     },
     {
       "url": "13-day-ten.html",
-      "revision": "d4c6f24ad30ed289ead1f0687939a33d229126bb2603e5241f09696f65db0bdf"
+      "revision": "cda701206c378b08df05262e3c593cddf5a79ccc53eb3a4b92d9fefc1d9d0a8c"
     },
     {
       "url": "14-day-eleven.html",
-      "revision": "d35ee0ca8931ada3162b68e509ec5dad7b53939711a0630f9fe10a820c47bac5"
+      "revision": "01b65e7295dafd2dbc741c92456b65c31b1fd919b2b21847ce9b29f580dfcc3b"
     },
     {
       "url": "15-day-twelve.html",
-      "revision": "0b99c62fad3146767d9e7cb2acab8318ffdcfd4a6b3721c43c866ac44c9978a4"
+      "revision": "0e372e96c1fe3bdaae7af932e163c49e6be0fefa04ff34a8f80bad268de28a50"
     },
     {
       "url": "16-day-thirteen.html",
-      "revision": "6a56a8b6d6294145a6e06c215c890e9df6ab501e279179aafc8cc4cafeda25a0"
+      "revision": "f1b58e6f6449eefd3eeecdcc522e8629b04f7d999079536d3c02b42faa1dee77"
     },
     {
       "url": "17-day-fourteen.html",
-      "revision": "d09a0824164b7e0283b9c72ebc0e147e42b08012f6632bfb063f84ee1c0eb12f"
+      "revision": "9eb309aa62f663e67ab97295ff25dc47ebb248af74fe56ede1b9184ece0f6bc5"
     },
     {
       "url": "18-day-fifteen.html",
-      "revision": "8d2ed1247f3515c87649a6096281306e84fdc8174394b6dcb4942ed171c5c7f4"
+      "revision": "cca1d3ebc5d8bb38b04eb7a52b0fa0805d5c248d4087c960472d08d915c1ad7f"
     },
     {
       "url": "19-day-sixteen.html",
-      "revision": "b9d4292218e27c4da78e9fe62e27d2ed7c6324f4bd2a32840deb285645523a35"
+      "revision": "89f19ce5f369e6b3ee0739ab6b8687228cd5bac35eee391d47f246de50a5452e"
     },
     {
       "url": "20-day-seventeen.html",
-      "revision": "9cace25ae3220f884b27276250ee5baebe749448b6ba5c0ec65426ef928d3d08"
+      "revision": "206f3fc4f79940128f7f28956465afafb7a9b6cdc592d3aca0c3af4282a57cd1"
     },
     {
       "url": "21-day-eighteen.html",
-      "revision": "92f237cdfb85be5e6311ed86775085ddfc763e8f7e8303059f251f4fb7e938b4"
+      "revision": "04b6b2d7acc285aefa58185dfb2c259599180b61b83e4d0b8a8c83b82a43e327"
     },
     {
       "url": "22-day-twenty.html",
-      "revision": "840cf7adb6d99e14c745a1f4ac60d7a3533552d715ea7d382f1263b4ed301df7"
+      "revision": "fe062b386b41f812ad14eb8cb52815798a6396694d3dbb2e3f55fa780fc725de"
     },
     {
       "url": "23-day-twenty-one.html",
-      "revision": "8c75d18145d81fb41e572588d77ae3a95779ad4b02fb73e2947e223ed8b0d931"
+      "revision": "9bf22b4461e42eb01a4b2c712d55cdd8b7155abcdae0d601aef601efdbf46bbd"
     },
     {
       "url": "24-day-twenty-two.html",
-      "revision": "686d139f1b120213495fbe3babfb5ea4d3d0aa65bdca1d3405540fbe09c45335"
+      "revision": "bdaf50db4c5471c96c6ba97a7233b019af81d5240142114b35f6489650c8996e"
     },
     {
       "url": "25-day-twenty-three.html",
-      "revision": "f3f1e1c89521a9c260ee2e84369fb8bfe2de33e0b911b4c9e79b3a59a66fa165"
+      "revision": "00de3025882b0893365bedb0bd037d936496e7d1042e656103a6bc7a799f10d9"
     },
     {
       "url": "26-day-twenty-four.html",
-      "revision": "d72ca13ca9fc24764c00dad09861db9ea3f3cc27cd2e135659b912589ec6954f"
+      "revision": "ba61204c0dc31341c8409a5639476a21e19b901550bd9c586a32e19b86b061e0"
     },
     {
       "url": "27-day-twenty-five.html",
-      "revision": "44f960468f37af17f2e3af09fc8286fc4f91ffa1a072d63b8a679ed76c18c06a"
+      "revision": "7fad8961423e9ffedbd859e6244ddf65f51b179b51afa895b98fcfc2d6e0816b"
     },
     {
       "url": "28-two-weeks-after-the-retreat.html",
-      "revision": "9dc98898b52d256ed314cc3b90d6d776c369a1f1bd36b440d34e5601f80f11a4"
+      "revision": "7aa95d0e8287d468df5a04412d87785de4ab14046a6864e4d9ac66827c88ebd7"
     },
     {
       "url": "29-conclusion.html",
-      "revision": "62d5100ba7cee0ad785fec261c2aaddf191723ee30900db6a45fdf19b43646e1"
+      "revision": "7c761325a3714adbfea2cabcb8de2dd2fd096132e33e4ce9eaa1ece4fb298cab"
     },
     {
       "url": "30-appendix-a-glossary-of-technical-terms.html",
-      "revision": "6cefd8dc85e0d63c8946f80b0c03ea3fb9b6c230b59266f93eee71394147ec1d"
+      "revision": "abd03a698aed89fc37e0822b5ac137f1deb8f8977f6ca138872d104c76b0a05c"
     },
     {
       "url": "31-appendix-b-nirodha-samapatti.html",
-      "revision": "233d8ae9ca8299c400347300b3b7ca4c26e68b02bdb9f92c7173d31e68e6b1f1"
+      "revision": "fc2387c58102966e3534ba04abd237cadaff891965d198e5b22f738826e80f40"
     },
     {
       "url": "32-appendix-c-candle-suggestions.html",
-      "revision": "87e514fdc79f4fa15916e55f35999d65ba956cac9a812079f417e088bc56846e"
+      "revision": "e5131ce77828eff6bc0887e8064d8003496053675dee0edac9cb956d769f530a"
     },
     {
       "url": "article.css",
@@ -135,7 +135,7 @@
     },
     {
       "url": "index.html",
-      "revision": "9555ec0714423925fcac361df9254259cab35a6ba351ed17714da9074f5073cc"
+      "revision": "9a5ee2228ce4ede8d9fd6e8b5dbc68076e3b1e2c6ea37a6d0c1779927edee7bb"
     },
     {
       "url": "main.css",

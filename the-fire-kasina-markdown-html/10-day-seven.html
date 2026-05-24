@@ -8,6 +8,38 @@
   <link rel="stylesheet" href="article.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    document.addEventListener("click", (event) => {
+      const mode = document.body.dataset.contentMode;
+      const quote = event.target.closest("main > blockquote[data-original-toggle]");
+      const original = event.target.closest("main > .original-block[data-translation-toggle]");
+
+      if (
+        (mode !== "translation" || !quote) &&
+        (mode !== "original" || !original)
+      ) {
+        return;
+      }
+
+      if (event.target.closest("a, button, input, textarea, select, summary")) {
+        return;
+      }
+
+      if (mode === "translation") {
+        const expanded = quote.classList.toggle("original-visible");
+        quote
+          .querySelector(".translation-original")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+
+      if (mode === "original") {
+        const expanded = original.classList.toggle("translation-visible");
+        original
+          .querySelector(".original-translation")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+    });
+  </script>
 </head>
 <body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
   <div class="layout">
@@ -19,195 +51,562 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
+<div class="original-block" data-translation-toggle>
 <h1>Day Seven</h1>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>День седьмой</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<h1>Day Seven</h1>
+</div>
 <p>День седьмой</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Intention-Setting ~ Fourth Jhana ~ High Concentration versus Ordinary Mind ~ Re-Observation]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Постановка намерений ~ Четвертая джхана ~ Высокая концентрация и обычный ум ~ Повторное наблюдение</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Intention-Setting ~ Fourth Jhana ~ High Concentration versus Ordinary Mind ~ Re-Observation]</p>
+</div>
 <p>Постановка намерений ~ Четвертая джхана ~ Высокая концентрация и обычный ум ~ Повторное наблюдение</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Intention-Setting]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Постановка намерений</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Intention-Setting]</p>
+</div>
 <p>Постановка намерений</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Intention-setting is a subtle thing.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Постановка намерений - тонкая вещь.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Intention-setting is a subtle thing.</p>
+</div>
 <p>Постановка намерений - тонкая вещь.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Keep in mind there will be a slight delay.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Имейте в виду, что будет небольшая задержка.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Keep in mind there will be a slight delay.</p>
+</div>
 <p>Имейте в виду, что будет небольшая задержка.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Before looking at the flame, set intentions, look at the flame, go through the cycle, and see what happens at the end, then look at the flame again or not.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Перед тем как смотреть на пламя, задайте намерения, посмотрите на пламя, пройдите цикл и посмотрите, что произойдет в конце, а затем снова посмотрите на пламя или не смотрите.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Before looking at the flame, set intentions, look at the flame, go through the cycle, and see what happens at the end, then look at the flame again or not.</p>
+</div>
 <p>Перед тем как смотреть на пламя, задайте намерения, посмотрите на пламя, пройдите цикл и посмотрите, что произойдет в конце, а затем снова посмотрите на пламя или не смотрите.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Repetition is the exercise.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Повторение и есть упражнение.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Repetition is the exercise.</p>
+</div>
 <p>Повторение и есть упражнение.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Just keep at it.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Просто продолжайте.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Just keep at it.</p>
+</div>
 <p>Просто продолжайте.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Much cushion time was required to nuance fully surrendering to whatever was happening in the field while remaining mentally open to the possibilities for magickal effects.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Потребовалось много времени на подушке, чтобы тонко освоить полную сдачу тому, что происходит в поле, при сохранении ментальной открытости к возможностям магических эффектов.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Much cushion time was required to nuance fully surrendering to whatever was happening in the field while remaining mentally open to the possibilities for magickal effects.</p>
+</div>
 <p>Потребовалось много времени на подушке, чтобы тонко освоить полную сдачу тому, что происходит в поле, при сохранении ментальной открытости к возможностям магических эффектов.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Fourth Jhana]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Четвертая джхана</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Fourth Jhana]</p>
+</div>
 <p>Четвертая джхана</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Eventually should I be intending for photo-realistic pictures?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Должна ли я в конечном счете намереваться на фотореалистичные картины?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Eventually should I be intending for photo-realistic pictures?</p>
+</div>
 <p>Должна ли я в конечном счете намереваться на фотореалистичные картины?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 The photo-realistic images show up in a space and mind state that is not manipulable in an ordinary way.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Фотореалистичные образы появляются в пространстве и состоянии ума, которыми нельзя управлять обычным способом.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+The photo-realistic images show up in a space and mind state that is not manipulable in an ordinary way.</p>
+</div>
 <p>Фотореалистичные образы появляются в пространстве и состоянии ума, которыми нельзя управлять обычным способом.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>That realm is what it is, and when it arises, it does what it does.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Эта сфера такова, какова она есть, и когда она возникает, она делает то, что делает.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>That realm is what it is, and when it arises, it does what it does.</p>
+</div>
 <p>Эта сфера такова, какова она есть, и когда она возникает, она делает то, что делает.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>You cannot tweak it like when you have colour and image control in earlier stages.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Ее нельзя подправлять так, как тогда, когда на более ранних стадиях у вас есть контроль цвета и образа.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>You cannot tweak it like when you have colour and image control in earlier stages.</p>
+</div>
 <p>Ее нельзя подправлять так, как тогда, когда на более ранних стадиях у вас есть контроль цвета и образа.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Do images just gradually get more realistic?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Образы просто постепенно становятся более реалистичными?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Do images just gradually get more realistic?</p>
+</div>
 <p>Образы просто постепенно становятся более реалистичными?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 The jumps are surprising: when the realistic images arise, this happens in a total shift into a different way of doing things.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Скачки удивительны: когда возникают реалистичные образы, это происходит как полный сдвиг в другой способ функционирования.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+The jumps are surprising: when the realistic images arise, this happens in a total shift into a different way of doing things.</p>
+</div>
 <p>Скачки удивительны: когда возникают реалистичные образы, это происходит как полный сдвиг в другой способ функционирования.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Fourth jhana really is its own thing; it is as if suddenly you notice you are dreaming.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Четвертая джхана действительно является чем-то самостоятельным; это словно вы внезапно замечаете, что спите.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Fourth jhana really is its own thing; it is as if suddenly you notice you are dreaming.</p>
+</div>
 <p>Четвертая джхана действительно является чем-то самостоятельным; это словно вы внезапно замечаете, что спите.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The transition into it comes after a weird period of spacing out and relaxation, which allows the shift to occur.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Переход в нее происходит после странного периода отключения и расслабления, который позволяет этому сдвигу случиться.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The transition into it comes after a weird period of spacing out and relaxation, which allows the shift to occur.</p>
+</div>
 <p>Переход в нее происходит после странного периода отключения и расслабления, который позволяет этому сдвигу случиться.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 How can I stay in these altered states and make the fleeting visions that do arise last longer?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Как мне оставаться в этих измененных состояниях и делать возникающие мимолетные видения более продолжительными?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+How can I stay in these altered states and make the fleeting visions that do arise last longer?</p>
+</div>
 <p>Как мне оставаться в этих измененных состояниях и делать возникающие мимолетные видения более продолжительными?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Fragility of the very realistic images is normal.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Хрупкость очень реалистичных образов нормальна.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Fragility of the very realistic images is normal.</p>
+</div>
 <p>Хрупкость очень реалистичных образов нормальна.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Learning to allow it to just be, to do what it does takes time, and simply developing more concentration is key.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Научиться позволять этому просто быть и делать то, что оно делает, требует времени, и ключевым является простое развитие большей концентрации.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Learning to allow it to just be, to do what it does takes time, and simply developing more concentration is key.</p>
+</div>
 <p>Научиться позволять этому просто быть и делать то, что оно делает, требует времени, и ключевым является простое развитие большей концентрации.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Staying in longer is harder for me, as I get pulled into fruitions or travel or have jarring, powerful interaction with a deity, all of which cause the images to end.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Дольше оставаться там для меня труднее, поскольку меня затягивает в плоды или путешествие, либо происходит резкое, мощное взаимодействие с божеством, и все это приводит к завершению образов.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Staying in longer is harder for me, as I get pulled into fruitions or travel or have jarring, powerful interaction with a deity, all of which cause the images to end.</p>
+</div>
 <p>Дольше оставаться там для меня труднее, поскольку меня затягивает в плоды или путешествие, либо происходит резкое, мощное взаимодействие с божеством, и все это приводит к завершению образов.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The idea is to “get to the point” (meaning fruition), and not necessarily to stay in those realms longer.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Идея в том, чтобы «добраться до сути» (то есть до плода), а не обязательно оставаться в этих сферах дольше.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The idea is to “get to the point” (meaning fruition), and not necessarily to stay in those realms longer.</p>
+</div>
 <p>Идея в том, чтобы «добраться до сути» (то есть до плода), а не обязательно оставаться в этих сферах дольше.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[High Concentration versus Ordinary Mind]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Высокая концентрация и обычный ум</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[High Concentration versus Ordinary Mind]</p>
+</div>
 <p>Высокая концентрация и обычный ум</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Since the Medicine Buddha is not coming to me, I have decided to practise intending to travel outside the cabin, perhaps to the realm of deities, and have managed to walk through a luminous door in one of my travels.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Поскольку Будда Медицины ко мне не приходит, я решила практиковать намерение путешествовать за пределы хижины, возможно в сферу божеств, и в одном из путешествий мне удалось пройти через светящуюся дверь.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Since the Medicine Buddha is not coming to me, I have decided to practise intending to travel outside the cabin, perhaps to the realm of deities, and have managed to walk through a luminous door in one of my travels.</p>
+</div>
 <p>Поскольку Будда Медицины ко мне не приходит, я решила практиковать намерение путешествовать за пределы хижины, возможно в сферу божеств, и в одном из путешествий мне удалось пройти через светящуюся дверь.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>I come out of high states like this into such ordinary living.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Из таких высоких состояний я выхожу в такую обычную жизнь.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>I come out of high states like this into such ordinary living.</p>
+</div>
 <p>Из таких высоких состояний я выхожу в такую обычную жизнь.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It can be a harsh adjustment, yet the high states feel natural at the time they are occurring.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это может быть резкой адаптацией, хотя сами высокие состояния кажутся естественными в тот момент, когда они происходят.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It can be a harsh adjustment, yet the high states feel natural at the time they are occurring.</p>
+</div>
 <p>Это может быть резкой адаптацией, хотя сами высокие состояния кажутся естественными в тот момент, когда они происходят.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 I offer two perspectives.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Я предлагаю две точки зрения.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+I offer two perspectives.</p>
+</div>
 <p>Я предлагаю две точки зрения.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The first is that these rare states are incompatible with anything apart from a deeply meditative setting.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Первая состоит в том, что эти редкие состояния несовместимы ни с чем, кроме глубоко медитативной обстановки.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The first is that these rare states are incompatible with anything apart from a deeply meditative setting.</p>
+</div>
 <p>Первая состоит в том, что эти редкие состояния несовместимы ни с чем, кроме глубоко медитативной обстановки.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>And the second, which is my dream, is that I could be able to move fluidly between rarified, deeply concentrated, magick-induced states and ordinary mind with no bad side-effects or interference between either.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>А вторая, которая является моей мечтой, состоит в том, чтобы я мог свободно переходить между разреженными, глубоко сосредоточенными, вызванными магией состояниями и обычным умом без плохих побочных эффектов или взаимных помех.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>And the second, which is my dream, is that I could be able to move fluidly between rarified, deeply concentrated, magick-induced states and ordinary mind with no bad side-effects or interference between either.</p>
+</div>
 <p>А вторая, которая является моей мечтой, состоит в том, чтобы я мог свободно переходить между разреженными, глубоко сосредоточенными, вызванными магией состояниями и обычным умом без плохих побочных эффектов или взаимных помех.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>I have not managed that yet.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Мне пока этого не удалось.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>I have not managed that yet.</p>
+</div>
 <p>Мне пока этого не удалось.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 There was an on-going balancing act of opening up to the exalted moments of meditation, accepting they would not be ever-present, and finding a way back to the basic practice, without fixating on wanting to gain the peaks again or fantasising about what might lie ahead.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это было постоянное балансирование: открываться возвышенным моментам медитации, принимать, что они не будут присутствовать всегда, и находить путь обратно к базовой практике, не фиксируясь на желании снова достичь вершин и не фантазируя о том, что может ждать впереди.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+There was an on-going balancing act of opening up to the exalted moments of meditation, accepting they would not be ever-present, and finding a way back to the basic practice, without fixating on wanting to gain the peaks again or fantasising about what might lie ahead.</p>
+</div>
 <p>Это было постоянное балансирование: открываться возвышенным моментам медитации, принимать, что они не будут присутствовать всегда, и находить путь обратно к базовой практике, не фиксируясь на желании снова достичь вершин и не фантазируя о том, что может ждать впереди.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Proficiency in working with intentions can only come with a masterful, light touch with no agenda of expectation for results - an easy concept to comprehend intellectually, yet challenging to realise.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Умение работать с намерениями может прийти только с мастерским, легким прикосновением без программы ожидания результатов - эта концепция легко понимается интеллектуально, но трудна для реализации.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Proficiency in working with intentions can only come with a masterful, light touch with no agenda of expectation for results - an easy concept to comprehend intellectually, yet challenging to realise.</p>
+</div>
 <p>Умение работать с намерениями может прийти только с мастерским, легким прикосновением без программы ожидания результатов - эта концепция легко понимается интеллектуально, но трудна для реализации.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Re-Observation]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Повторное наблюдение</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Re-Observation]</p>
+</div>
 <p>Повторное наблюдение</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 I am grateful to be conversant with the vipassana nanas, because I was in re-observation recently yet able to easily climb out of it.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Я благодарна, что знакома с ньянами випассаны, потому что недавно была в повторном наблюдении, но смогла легко выбраться из него.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+I am grateful to be conversant with the vipassana nanas, because I was in re-observation recently yet able to easily climb out of it.</p>
+</div>
 <p>Я благодарна, что знакома с ньянами випассаны, потому что недавно была в повторном наблюдении, но смогла легко выбраться из него.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Some personal and work tasks arising from my city life interrupted the flow of concentration and were likely the trigger for re-observation.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Некоторые личные и рабочие задачи, возникшие из моей городской жизни, прервали поток концентрации и, вероятно, стали триггером повторного наблюдения.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Some personal and work tasks arising from my city life interrupted the flow of concentration and were likely the trigger for re-observation.</p>
+</div>
 <p>Некоторые личные и рабочие задачи, возникшие из моей городской жизни, прервали поток концентрации и, вероятно, стали триггером повторного наблюдения.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Re-observation can be so convincing, with its distorted thinking, that it took me a while to realise that the onset of heavy striving, fatigue, difficulty reciting the mantra and overall discouragement were linked to my location in the nanas.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Повторное наблюдение может быть настолько убедительным со своим искаженным мышлением, что мне понадобилось время, чтобы понять: появление сильного старания, усталости, трудности с повторением мантры и общего уныния было связано с моим местоположением в ньянах.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Re-observation can be so convincing, with its distorted thinking, that it took me a while to realise that the onset of heavy striving, fatigue, difficulty reciting the mantra and overall discouragement were linked to my location in the nanas.</p>
+</div>
 <p>Повторное наблюдение может быть настолько убедительным со своим искаженным мышлением, что мне понадобилось время, чтобы понять: появление сильного старания, усталости, трудности с повторением мантры и общего уныния было связано с моим местоположением в ньянах.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Once recognition dawned, I took a long hot shower, drank a latte, and lay in the yoga corpse pose for hours, rebuilding a slow, loose mantra.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Когда пришло распознавание, я приняла долгий горячий душ, выпила латте и часами лежала в йогической позе трупа, заново выстраивая медленную, свободную мантру.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Once recognition dawned, I took a long hot shower, drank a latte, and lay in the yoga corpse pose for hours, rebuilding a slow, loose mantra.</p>
+</div>
 <p>Когда пришло распознавание, я приняла долгий горячий душ, выпила латте и часами лежала в йогической позе трупа, заново выстраивая медленную, свободную мантру.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It was humbling to realise that wanting concentration and having concentration were two different things.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Было отрезвляюще осознать, что хотеть концентрации и иметь концентрацию - две разные вещи.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It was humbling to realise that wanting concentration and having concentration were two different things.</p>
+</div>
 <p>Было отрезвляюще осознать, что хотеть концентрации и иметь концентрацию - две разные вещи.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Finding the nimbleness to ease off from the practice when required was useful.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Было полезно найти гибкость, чтобы при необходимости ослаблять практику.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Finding the nimbleness to ease off from the practice when required was useful.</p>
+</div>
 <p>Было полезно найти гибкость, чтобы при необходимости ослаблять практику.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Next time, notice the colour aspects of re-observation and what it looks like: murky, creepy and how it tempts you to either too much effort or not enough.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В следующий раз замечайте цветовые аспекты повторного наблюдения и то, как оно выглядит: мутно, жутковато, и как оно соблазняет вас либо чрезмерным усилием, либо недостаточным.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Next time, notice the colour aspects of re-observation and what it looks like: murky, creepy and how it tempts you to either too much effort or not enough.</p>
+</div>
 <p>В следующий раз замечайте цветовые аспекты повторного наблюдения и то, как оно выглядит: мутно, жутковато, и как оно соблазняет вас либо чрезмерным усилием, либо недостаточным.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 There is a natural trajectory on retreats that heads towards a mastery phase, a coming together of what has been learned.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>На ретритах есть естественная траектория, ведущая к фазе мастерства, к соединению того, что было изучено.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+There is a natural trajectory on retreats that heads towards a mastery phase, a coming together of what has been learned.</p>
+</div>
 <p>На ретритах есть естественная траектория, ведущая к фазе мастерства, к соединению того, что было изучено.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>This is an appropriate time to delve into territory that prior to mastery would have been destabilising or confusing.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это подходящее время, чтобы углубиться в территорию, которая до мастерства была бы дестабилизирующей или запутывающей.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>This is an appropriate time to delve into territory that prior to mastery would have been destabilising or confusing.</p>
+</div>
 <p>Это подходящее время, чтобы углубиться в территорию, которая до мастерства была бы дестабилизирующей или запутывающей.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>On Day Eighteen, the entry into the mastery phase of my retreat, Daniel provides details for developing expertise in working laterally with the dukkha nanas in the context of the third jhana of the fire kasina sequence.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>На восемнадцатый день, при входе в фазу мастерства моего ретрита, Дэниел дает подробности о развитии умения латерально работать с дуккха-ньянами в контексте третьей джханы последовательности огненной касины.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>On Day Eighteen, the entry into the mastery phase of my retreat, Daniel provides details for developing expertise in working laterally with the dukkha nanas in the context of the third jhana of the fire kasina sequence.</p>
+</div>
 <p>На восемнадцатый день, при входе в фазу мастерства моего ретрита, Дэниел дает подробности о развитии умения латерально работать с дуккха-ньянами в контексте третьей джханы последовательности огненной касины.</p>
 </blockquote>
 
@@ -273,12 +672,20 @@ There is a natural trajectory on retreats that heads towards a mastery phase, a 
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
             x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
         ></button>
-        <button
-            class="mode-toggle"
-            type="button"
-            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
-            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
-        ></button>
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="original" x-model="contentMode">
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
     </div>
 </nav>
 

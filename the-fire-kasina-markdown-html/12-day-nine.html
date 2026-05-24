@@ -8,6 +8,38 @@
   <link rel="stylesheet" href="article.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    document.addEventListener("click", (event) => {
+      const mode = document.body.dataset.contentMode;
+      const quote = event.target.closest("main > blockquote[data-original-toggle]");
+      const original = event.target.closest("main > .original-block[data-translation-toggle]");
+
+      if (
+        (mode !== "translation" || !quote) &&
+        (mode !== "original" || !original)
+      ) {
+        return;
+      }
+
+      if (event.target.closest("a, button, input, textarea, select, summary")) {
+        return;
+      }
+
+      if (mode === "translation") {
+        const expanded = quote.classList.toggle("original-visible");
+        quote
+          .querySelector(".translation-original")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+
+      if (mode === "original") {
+        const expanded = original.classList.toggle("translation-visible");
+        original
+          .querySelector(".original-translation")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+    });
+  </script>
 </head>
 <body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
   <div class="layout">
@@ -19,161 +51,462 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
+<div class="original-block" data-translation-toggle>
 <h1>Day Nine</h1>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>День девятый</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<h1>Day Nine</h1>
+</div>
 <p>День девятый</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Brilliant Colour ~ Intention-Setting with Travel ~ Fourth Jhana ~ Magickal Suggestion]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Сияющий цвет ~ Постановка намерения с путешествием ~ Четвертая джхана ~ Магическое предложение</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Brilliant Colour ~ Intention-Setting with Travel ~ Fourth Jhana ~ Magickal Suggestion]</p>
+</div>
 <p>Сияющий цвет ~ Постановка намерения с путешествием ~ Четвертая джхана ~ Магическое предложение</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Brilliant Colour]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Сияющий цвет</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Brilliant Colour]</p>
+</div>
 <p>Сияющий цвет</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 The colours are more brilliant than anything I have seen in my life: the main feature of the stage before this was a subtle, wide range of colour and now it is the brilliance.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Цвета ярче всего, что я видела в жизни: главной особенностью предыдущей стадии был тонкий, широкий диапазон цвета, а теперь это сияние.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+The colours are more brilliant than anything I have seen in my life: the main feature of the stage before this was a subtle, wide range of colour and now it is the brilliance.</p>
+</div>
 <p>Цвета ярче всего, что я видела в жизни: главной особенностью предыдущей стадии был тонкий, широкий диапазон цвета, а теперь это сияние.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In one of the sits, an electrifyingly pink colour filled the visual field with even brighter pink stars bursting off of it.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В одном из сидений электризующе-розовый цвет заполнил визуальное поле, и от него взрывались еще более яркие розовые звезды.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In one of the sits, an electrifyingly pink colour filled the visual field with even brighter pink stars bursting off of it.</p>
+</div>
 <p>В одном из сидений электризующе-розовый цвет заполнил визуальное поле, и от него взрывались еще более яркие розовые звезды.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 “More real than real”: this is the prequel to the realm of malleability.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>«Более реально, чем реальность»: это пролог к сфере податливости.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+“More real than real”: this is the prequel to the realm of malleability.</p>
+</div>
 <p>«Более реально, чем реальность»: это пролог к сфере податливости.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 It is no wonder the Buddha is said to have recommended meditation take place “at the root of a tree”.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Неудивительно, что, как говорят, Будда рекомендовал медитировать «у корня дерева».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+It is no wonder the Buddha is said to have recommended meditation take place “at the root of a tree”.</p>
+</div>
 <p>Неудивительно, что, как говорят, Будда рекомендовал медитировать «у корня дерева».</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Retreating in the Precambrian shield of northern Canada proved to have many advantages.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Ретрит в области Канадского щита на севере Канады оказался имеющим множество преимуществ.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Retreating in the Precambrian shield of northern Canada proved to have many advantages.</p>
+</div>
 <p>Ретрит в области Канадского щита на севере Канады оказался имеющим множество преимуществ.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>For example, when the colours described above began showing up in the sits, walking through the glorious autumn woods made for an easy transfer of the internal visionary progress to external perceptual abilities.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Например, когда описанные выше цвета начали появляться в сидениях, прогулки по великолепному осеннему лесу легко переносили внутренний визионерский прогресс во внешние способности восприятия.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>For example, when the colours described above began showing up in the sits, walking through the glorious autumn woods made for an easy transfer of the internal visionary progress to external perceptual abilities.</p>
+</div>
 <p>Например, когда описанные выше цвета начали появляться в сидениях, прогулки по великолепному осеннему лесу легко переносили внутренний визионерский прогресс во внешние способности восприятия.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Also, being situated in nature and spending time on the water was profoundly grounding during re-observation phases.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Кроме того, пребывание на природе и время, проведенное на воде, глубоко заземляли во время фаз повторного наблюдения.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Also, being situated in nature and spending time on the water was profoundly grounding during re-observation phases.</p>
+</div>
 <p>Кроме того, пребывание на природе и время, проведенное на воде, глубоко заземляли во время фаз повторного наблюдения.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>And, for a magician’s paradise, nothing can beat drawing symbols in the midnight sky while watching shooting stars during the full eclipse of the moon.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>А для рая мага ничто не сравнится с рисованием символов в полуночном небе во время наблюдения падающих звезд при полном лунном затмении.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>And, for a magician’s paradise, nothing can beat drawing symbols in the midnight sky while watching shooting stars during the full eclipse of the moon.</p>
+</div>
 <p>А для рая мага ничто не сравнится с рисованием символов в полуночном небе во время наблюдения падающих звезд при полном лунном затмении.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>To sit in the city is not a show-stopper, but it is best to try to find a quiet place in nature when delving into retreat work.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Сидеть в городе не является непреодолимым препятствием, но при углублении в ретритную работу лучше постараться найти тихое место на природе.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>To sit in the city is not a show-stopper, but it is best to try to find a quiet place in nature when delving into retreat work.</p>
+</div>
 <p>Сидеть в городе не является непреодолимым препятствием, но при углублении в ретритную работу лучше постараться найти тихое место на природе.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Intention-Setting with Travel]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Постановка намерения с путешествием</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Intention-Setting with Travel]</p>
+</div>
 <p>Постановка намерения с путешествием</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Several times during lying meditation, I experienced a visceral whoosh where I know I was lying down but there was another experience of me sitting up: it is my version of pre-travel.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Несколько раз во время медитации лежа я переживала телесный свистящий рывок, при котором я знала, что лежу, но одновременно было другое переживание того, что я сажусь: это моя версия предпутешествия.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Several times during lying meditation, I experienced a visceral whoosh where I know I was lying down but there was another experience of me sitting up: it is my version of pre-travel.</p>
+</div>
 <p>Несколько раз во время медитации лежа я переживала телесный свистящий рывок, при котором я знала, что лежу, но одновременно было другое переживание того, что я сажусь: это моя версия предпутешествия.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Intend for the mind to automatically stabilise on any travel activity and give it somewhere interesting to go and something to do.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Намеревайтесь, чтобы ум автоматически стабилизировался на любой активности путешествия, и дайте ему интересное место, куда пойти, и занятие, которое выполнить.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Intend for the mind to automatically stabilise on any travel activity and give it somewhere interesting to go and something to do.</p>
+</div>
 <p>Намеревайтесь, чтобы ум автоматически стабилизировался на любой активности путешествия, и дайте ему интересное место, куда пойти, и занятие, которое выполнить.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>What calls to the deeper parts of your heart is more likely to happen.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>То, что зовет более глубокие части вашего сердца, с большей вероятностью произойдет.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>What calls to the deeper parts of your heart is more likely to happen.</p>
+</div>
 <p>То, что зовет более глубокие части вашего сердца, с большей вероятностью произойдет.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Fourth Jhana]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Четвертая джхана</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Fourth Jhana]</p>
+</div>
 <p>Четвертая джхана</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 I am very briefly getting into quiet dreamlike spaces that may be my first glimpses of fourth jhana.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Я очень кратко попадаю в тихие сноподобные пространства, которые могут быть моими первыми проблесками четвертой джханы.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+I am very briefly getting into quiet dreamlike spaces that may be my first glimpses of fourth jhana.</p>
+</div>
 <p>Я очень кратко попадаю в тихие сноподобные пространства, которые могут быть моими первыми проблесками четвертой джханы.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Is there a way I can get there more efficiently from third jhana?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Есть ли способ добираться туда из третьей джханы эффективнее?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Is there a way I can get there more efficiently from third jhana?</p>
+</div>
 <p>Есть ли способ добираться туда из третьей джханы эффективнее?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 You have to give up brilliance and even control, but not too early or you will fall back into lower jhanas and rapture: as clearly stated in the scriptures.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Вам нужно отказаться от сияния и даже от контроля, но не слишком рано, иначе вы упадете обратно в более низкие джханы и восторг, как ясно сказано в писаниях.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+You have to give up brilliance and even control, but not too early or you will fall back into lower jhanas and rapture: as clearly stated in the scriptures.</p>
+</div>
 <p>Вам нужно отказаться от сияния и даже от контроля, но не слишком рано, иначе вы упадете обратно в более низкие джханы и восторг, как ясно сказано в писаниях.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Set up the base by attending to the lower three jhanas, then gently send the mind in the direction of the next jhana, as, if you have set up the base well, and have the skills developed from repeated practice, then when you let the mind go, it can go there.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Создайте основу, уделяя внимание трем нижним джханам, затем мягко направьте ум в сторону следующей джханы, поскольку, если вы хорошо подготовили основу и развили навыки повторной практикой, тогда, когда вы отпустите ум, он сможет туда пойти.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Set up the base by attending to the lower three jhanas, then gently send the mind in the direction of the next jhana, as, if you have set up the base well, and have the skills developed from repeated practice, then when you let the mind go, it can go there.</p>
+</div>
 <p>Создайте основу, уделяя внимание трем нижним джханам, затем мягко направьте ум в сторону следующей джханы, поскольку, если вы хорошо подготовили основу и развили навыки повторной практикой, тогда, когда вы отпустите ум, он сможет туда пойти.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Magickal Suggestions]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Магические предложения</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Magickal Suggestions]</p>
+</div>
 <p>Магические предложения</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Start thinking about magickal effects, such as the classic intention to make the candle flame move.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Начните думать о магических эффектах, например о классическом намерении заставить пламя свечи двигаться.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Start thinking about magickal effects, such as the classic intention to make the candle flame move.</p>
+</div>
 <p>Начните думать о магических эффектах, например о классическом намерении заставить пламя свечи двигаться.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Standard method: go up to fourth jhana, come out, resolve, and then forget about it.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Стандартный метод: подняться до четвертой джханы, выйти, сделать решимость, а затем забыть об этом.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Standard method: go up to fourth jhana, come out, resolve, and then forget about it.</p>
+</div>
 <p>Стандартный метод: подняться до четвертой джханы, выйти, сделать решимость, а затем забыть об этом.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The forgetting is often the hardest part.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Забывание часто является самой трудной частью.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The forgetting is often the hardest part.</p>
+</div>
 <p>Забывание часто является самой трудной частью.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Just take your foot off the gas, and, if nothing happens, resume practice.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Просто уберите ногу с газа, и если ничего не происходит, возобновите практику.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Just take your foot off the gas, and, if nothing happens, resume practice.</p>
+</div>
 <p>Просто уберите ногу с газа, и если ничего не происходит, возобновите практику.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Daniel described an experience of electrical light shooting out of him towards an oil-lamp and then causing its flame to flicker, after he had resolved to move the flame with his mind.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Дэниел описал опыт, когда электрический свет выстрелил из него в сторону масляной лампы и затем заставил ее пламя мерцать после того, как он решил сдвинуть пламя своим умом.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Daniel described an experience of electrical light shooting out of him towards an oil-lamp and then causing its flame to flicker, after he had resolved to move the flame with his mind.</p>
+</div>
 <p>Дэниел описал опыт, когда электрический свет выстрелил из него в сторону масляной лампы и затем заставил ее пламя мерцать после того, как он решил сдвинуть пламя своим умом.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>He also suggested I try seeing colours of the chakras and emotions as colours in the body, and reminded me to intend for teachings from the Medicine Buddha.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Он также предложил мне попробовать видеть цвета чакр и эмоции как цвета в теле и напомнил намереваться на получение учений от Будды Медицины.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>He also suggested I try seeing colours of the chakras and emotions as colours in the body, and reminded me to intend for teachings from the Medicine Buddha.</p>
+</div>
 <p>Он также предложил мне попробовать видеть цвета чакр и эмоции как цвета в теле и напомнил намереваться на получение учений от Будды Медицины.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 I am curious how much of the powers you have in daily living?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Мне любопытно, какая часть сил у вас есть в повседневной жизни?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+I am curious how much of the powers you have in daily living?</p>
+</div>
 <p>Мне любопытно, какая часть сил у вас есть в повседневной жизни?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Regarding the level where you are now, just brief, occasional flashes.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Что касается уровня, на котором вы сейчас находитесь, это лишь краткие, случайные вспышки.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Regarding the level where you are now, just brief, occasional flashes.</p>
+</div>
 <p>Что касается уровня, на котором вы сейчас находитесь, это лишь краткие, случайные вспышки.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The level of powers you are cultivating now on retreat generally requires the right conditions.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Уровень сил, который вы сейчас развиваете на ретрите, обычно требует подходящих условий.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The level of powers you are cultivating now on retreat generally requires the right conditions.</p>
+</div>
 <p>Уровень сил, который вы сейчас развиваете на ретрите, обычно требует подходящих условий.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>While you have it, use it, but, when you stop practising all day, it is likely to fade rapidly.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Пока это у вас есть, используйте это, но когда вы перестанете практиковать весь день, оно, скорее всего, быстро угаснет.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>While you have it, use it, but, when you stop practising all day, it is likely to fade rapidly.</p>
+</div>
 <p>Пока это у вас есть, используйте это, но когда вы перестанете практиковать весь день, оно, скорее всего, быстро угаснет.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Still, having seen the territory, it is easier to get to it next time.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Тем не менее, увидев эту территорию, в следующий раз легче добраться до нее.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Still, having seen the territory, it is easier to get to it next time.</p>
+</div>
 <p>Тем не менее, увидев эту территорию, в следующий раз легче добраться до нее.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 After completing the cycle do you feel quite normal at that point?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>После завершения цикла вы в этот момент чувствуете себя вполне нормально?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+After completing the cycle do you feel quite normal at that point?</p>
+</div>
 <p>После завершения цикла вы в этот момент чувствуете себя вполне нормально?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Yes, however, it is an odd “fourth jhana normal”, with an ultra chill, clear feel to it.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Да, однако это странная «нормальность четвертой джханы» с ультраспокойным, ясным ощущением.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Yes, however, it is an odd “fourth jhana normal”, with an ultra chill, clear feel to it.</p>
+</div>
 <p>Да, однако это странная «нормальность четвертой джханы» с ультраспокойным, ясным ощущением.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In some ways it feels normal, yet really there is nothing normal about it.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В каком-то смысле это ощущается нормально, но на самом деле в этом нет ничего нормального.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In some ways it feels normal, yet really there is nothing normal about it.</p>
+</div>
 <p>В каком-то смысле это ощущается нормально, но на самом деле в этом нет ничего нормального.</p>
 </blockquote>
 
@@ -239,12 +572,20 @@ Yes, however, it is an odd “fourth jhana normal”, with an ultra chill, clear
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
             x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
         ></button>
-        <button
-            class="mode-toggle"
-            type="button"
-            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
-            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
-        ></button>
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="original" x-model="contentMode">
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
     </div>
 </nav>
 

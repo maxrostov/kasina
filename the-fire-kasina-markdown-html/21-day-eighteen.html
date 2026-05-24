@@ -8,6 +8,38 @@
   <link rel="stylesheet" href="article.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    document.addEventListener("click", (event) => {
+      const mode = document.body.dataset.contentMode;
+      const quote = event.target.closest("main > blockquote[data-original-toggle]");
+      const original = event.target.closest("main > .original-block[data-translation-toggle]");
+
+      if (
+        (mode !== "translation" || !quote) &&
+        (mode !== "original" || !original)
+      ) {
+        return;
+      }
+
+      if (event.target.closest("a, button, input, textarea, select, summary")) {
+        return;
+      }
+
+      if (mode === "translation") {
+        const expanded = quote.classList.toggle("original-visible");
+        quote
+          .querySelector(".translation-original")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+
+      if (mode === "original") {
+        const expanded = original.classList.toggle("translation-visible");
+        original
+          .querySelector(".original-translation")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+    });
+  </script>
 </head>
 <body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
   <div class="layout">
@@ -19,229 +51,666 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
+<div class="original-block" data-translation-toggle>
 <h1>Day Eighteen</h1>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>День восемнадцатый</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<h1>Day Eighteen</h1>
+</div>
 <p>День восемнадцатый</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Fruitions ~ Entrance to Fruitions ~ Fruitions with Deities ~ Vertical versus Horizontal Work ~ Hearing Voices ~ Panoramic Vision]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Плодоношения ~ Вход в плодоношения ~ Плодоношения с божествами ~ Вертикальная и горизонтальная работа ~ Слышание голосов ~ Панорамное зрение]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Fruitions ~ Entrance to Fruitions ~ Fruitions with Deities ~ Vertical versus Horizontal Work ~ Hearing Voices ~ Panoramic Vision]</p>
+</div>
 <p>[Плодоношения ~ Вход в плодоношения ~ Плодоношения с божествами ~ Вертикальная и горизонтальная работа ~ Слышание голосов ~ Панорамное зрение]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Fruitions]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Плодоношения]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Fruitions]</p>
+</div>
 <p>[Плодоношения]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Pre-retreat fruitions only happened when I was in high eleventh (equanimity) �ana, after noticing fine vibrations in the experience field for extended periods.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>До ретрита плодоношения случались только тогда, когда я была в высокой одиннадцатой (равностной) ньяне, после длительного замечания тонких вибраций в поле опыта.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Pre-retreat fruitions only happened when I was in high eleventh (equanimity) �ana, after noticing fine vibrations in the experience field for extended periods.</p>
+</div>
 <p>До ретрита плодоношения случались только тогда, когда я была в высокой одиннадцатой (равностной) ньяне, после длительного замечания тонких вибраций в поле опыта.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>One highlight of this retreat is the ability to have fruitions in versatile ways.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Одним из ярких моментов этого ретрита стала способность получать плодоношения самыми разными способами.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>One highlight of this retreat is the ability to have fruitions in versatile ways.</p>
+</div>
 <p>Одним из ярких моментов этого ретрита стала способность получать плодоношения самыми разными способами.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>I have had them just sitting doing �nothing� or when intensely looking at something while out walking, then shifting my gaze quickly; and, in meditation, suddenly hearing unexpected loud noises; and also, in sits, going through doorways in a travel.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Они происходили у меня, когда я просто сидела и «ничего» не делала, или когда во время прогулки пристально смотрела на что-то, а затем быстро переводила взгляд; а также в медитации при внезапном слышании неожиданных громких звуков; и еще во время сидений при прохождении через дверные проемы в путешествии.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>I have had them just sitting doing �nothing� or when intensely looking at something while out walking, then shifting my gaze quickly; and, in meditation, suddenly hearing unexpected loud noises; and also, in sits, going through doorways in a travel.</p>
+</div>
 <p>Они происходили у меня, когда я просто сидела и «ничего» не делала, или когда во время прогулки пристально смотрела на что-то, а затем быстро переводила взгляд; а также в медитации при внезапном слышании неожиданных громких звуков; и еще во время сидений при прохождении через дверные проемы в путешествии.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Going through doorways is a common way to have a fruition.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Прохождение через дверные проемы - распространенный способ получить плодоношение.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Going through doorways is a common way to have a fruition.</p>
+</div>
 <p>Прохождение через дверные проемы - распространенный способ получить плодоношение.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Consciousness blinks out briefly when exiting one room and then reappears when entering another, and the well-trained mind can catch that as object and utilise it to obtain a fruition.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Сознание на краткий миг гаснет при выходе из одной комнаты, а затем снова появляется при входе в другую, и хорошо натренированный ум может поймать это как объект и использовать для получения плодоношения.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Consciousness blinks out briefly when exiting one room and then reappears when entering another, and the well-trained mind can catch that as object and utilise it to obtain a fruition.</p>
+</div>
 <p>Сознание на краткий миг гаснет при выходе из одной комнаты, а затем снова появляется при входе в другую, и хорошо натренированный ум может поймать это как объект и использовать для получения плодоношения.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The fortunate convergence of the phase of the breath, the walking through the door, the state of mind, the phase of practice, a lack of distractions, these can result in fruition.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Удачное совпадение фазы дыхания, прохождения через дверь, состояния ума, фазы практики и отсутствия отвлечений может привести к плодоношению.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The fortunate convergence of the phase of the breath, the walking through the door, the state of mind, the phase of practice, a lack of distractions, these can result in fruition.</p>
+</div>
 <p>Удачное совпадение фазы дыхания, прохождения через дверь, состояния ума, фазы практики и отсутствия отвлечений может привести к плодоношению.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>With walking, fruitions often happen for those who are well-trained on the turnaround in walking meditation.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>При ходьбе у хорошо натренированных практикующих плодоношения часто происходят на развороте в медитации ходьбы.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>With walking, fruitions often happen for those who are well-trained on the turnaround in walking meditation.</p>
+</div>
 <p>При ходьбе у хорошо натренированных практикующих плодоношения часто происходят на развороте в медитации ходьбы.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>As for the loud, unexpected noise, stories of people awakening to the sound of the bell or the master shouting abound for this reason, because it is an easy object for the mind to suddenly lock totally on to, and then vanish at the end of.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Что касается громкого неожиданного звука, именно поэтому так много историй о людях, пробуждавшихся от звука колокола или крика мастера: это легкий объект, на котором ум может внезапно полностью зафиксироваться, а затем исчезнуть в его конце.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>As for the loud, unexpected noise, stories of people awakening to the sound of the bell or the master shouting abound for this reason, because it is an easy object for the mind to suddenly lock totally on to, and then vanish at the end of.</p>
+</div>
 <p>Что касается громкого неожиданного звука, именно поэтому так много историй о людях, пробуждавшихся от звука колокола или крика мастера: это легкий объект, на котором ум может внезапно полностью зафиксироваться, а затем исчезнуть в его конце.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The mind is figuring out how to go home, to get the thing it wants.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Ум выясняет, как вернуться домой, как получить то, чего он хочет.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The mind is figuring out how to go home, to get the thing it wants.</p>
+</div>
 <p>Ум выясняет, как вернуться домой, как получить то, чего он хочет.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Then the mind keeps opening channels for obtaining fruitions in new ways.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Затем ум продолжает открывать каналы для получения плодоношений новыми способами.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Then the mind keeps opening channels for obtaining fruitions in new ways.</p>
+</div>
 <p>Затем ум продолжает открывать каналы для получения плодоношений новыми способами.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Entrance to Fruitions]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Вход в плодоношения]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Entrance to Fruitions]</p>
+</div>
 <p>[Вход в плодоношения]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 The three discreet shudders before fruition are so fast, how does the mind know what insight is to be gained from this?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Три отдельных дрожания перед плодоношением настолько быстры: как ум знает, какое прозрение из этого нужно получить?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+The three discreet shudders before fruition are so fast, how does the mind know what insight is to be gained from this?</p>
+</div>
 <p>Три отдельных дрожания перед плодоношением настолько быстры: как ум знает, какое прозрение из этого нужно получить?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 The degree of natural understanding of the implications of the three doors and what they mean for practice and what they tell us about reality is wide.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Степень естественного понимания последствий трех дверей, того, что они значат для практики и что сообщают нам о реальности, сильно различается.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+The degree of natural understanding of the implications of the three doors and what they mean for practice and what they tell us about reality is wide.</p>
+</div>
 <p>Степень естественного понимания последствий трех дверей, того, что они значат для практики и что сообщают нам о реальности, сильно различается.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Some are freaked out by the doors.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Некоторых двери пугают.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Some are freaked out by the doors.</p>
+</div>
 <p>Некоторых двери пугают.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Others instantly grasp their profound, ultimate implications.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Другие мгновенно схватывают их глубокие, предельные последствия.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Others instantly grasp their profound, ultimate implications.</p>
+</div>
 <p>Другие мгновенно схватывают их глубокие, предельные последствия.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Most are somewhere in the middle.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Большинство находится где-то посередине.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Most are somewhere in the middle.</p>
+</div>
 <p>Большинство находится где-то посередине.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Good instruction can help people who do not grasp it on their own to better understand the implications of what they experience.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Хорошее наставление может помочь людям, которые не схватывают это самостоятельно, лучше понять последствия того, что они переживают.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Good instruction can help people who do not grasp it on their own to better understand the implications of what they experience.</p>
+</div>
 <p>Хорошее наставление может помочь людям, которые не схватывают это самостоятельно, лучше понять последствия того, что они переживают.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Each door gives a different clue: they each fill in part of the puzzle related to one of the three characteristics and so one of the three illusions.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Каждая дверь дает отдельную подсказку: каждая заполняет часть головоломки, связанную с одной из трех характеристик и, соответственно, с одной из трех иллюзий.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Each door gives a different clue: they each fill in part of the puzzle related to one of the three characteristics and so one of the three illusions.</p>
+</div>
 <p>Каждая дверь дает отдельную подсказку: каждая заполняет часть головоломки, связанную с одной из трех характеристик и, соответственно, с одной из трех иллюзий.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The no-self door provides counter-evidence against the fiercely-held myth that collapsing into reality would be horrible.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Дверь не-я дает контрдоказательство против крепко удерживаемого мифа о том, что схлопнуться в реальность было бы ужасно.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The no-self door provides counter-evidence against the fiercely-held myth that collapsing into reality would be horrible.</p>
+</div>
 <p>Дверь не-я дает контрдоказательство против крепко удерживаемого мифа о том, что схлопнуться в реальность было бы ужасно.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>One may have to cross the pain to get there, but it turns out that the other side is better.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Возможно, чтобы туда попасть, придется пересечь боль, но оказывается, что другая сторона лучше.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>One may have to cross the pain to get there, but it turns out that the other side is better.</p>
+</div>
 <p>Возможно, чтобы туда попасть, придется пересечь боль, но оказывается, что другая сторона лучше.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Doors give us rare opportunities to see this.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Двери дают нам редкие возможности это увидеть.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Doors give us rare opportunities to see this.</p>
+</div>
 <p>Двери дают нам редкие возможности это увидеть.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Can you still have significant insight without being able to see all of the entranceways clearly?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Можно ли все же получить значительное прозрение, не будучи способной ясно видеть все входы?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Can you still have significant insight without being able to see all of the entranceways clearly?</p>
+</div>
 <p>Можно ли все же получить значительное прозрение, не будучи способной ясно видеть все входы?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Yes, but still, it is helpful to have a contextual framework for these experiences, as much of our processing memory has linguistic components.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Да, но все же полезно иметь контекстуальную рамку для этих переживаний, поскольку большая часть нашей обрабатывающей памяти имеет языковые компоненты.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Yes, but still, it is helpful to have a contextual framework for these experiences, as much of our processing memory has linguistic components.</p>
+</div>
 <p>Да, но все же полезно иметь контекстуальную рамку для этих переживаний, поскольку большая часть нашей обрабатывающей памяти имеет языковые компоненты.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>I personally have rare phenomenological ability.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Лично у меня редкая феноменологическая способность.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>I personally have rare phenomenological ability.</p>
+</div>
 <p>Лично у меня редкая феноменологическая способность.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>I had some teachers with spacious, natural realisation, yet who had relatively low capabilities to explain fine phenomenology.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>У меня были учителя с просторной, естественной реализацией, но с относительно слабой способностью объяснять тонкую феноменологию.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>I had some teachers with spacious, natural realisation, yet who had relatively low capabilities to explain fine phenomenology.</p>
+</div>
 <p>У меня были учителя с просторной, естественной реализацией, но с относительно слабой способностью объяснять тонкую феноменологию.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>However, I still derived great benefit from studying with them, as they had other strengths and wisdom to share which was of great value.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Тем не менее я все равно получил большую пользу от обучения у них, поскольку у них были другие сильные стороны и мудрость, которыми они могли поделиться, и это имело большую ценность.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>However, I still derived great benefit from studying with them, as they had other strengths and wisdom to share which was of great value.</p>
+</div>
 <p>Тем не менее я все равно получил большую пользу от обучения у них, поскольку у них были другие сильные стороны и мудрость, которыми они могли поделиться, и это имело большую ценность.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Fruitions with Deities]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Плодоношения с божествами]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Fruitions with Deities]</p>
+</div>
 <p>[Плодоношения с божествами]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 If I am able to see a living figure looking at me, say in a travel or the fourth jhana, do you think my mind will know what to do with that?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Если я смогу увидеть живую фигуру, смотрящую на меня, скажем, в путешествии или в четвертой джхане, как ты думаешь, мой ум будет знать, что с этим делать?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+If I am able to see a living figure looking at me, say in a travel or the fourth jhana, do you think my mind will know what to do with that?</p>
+</div>
 <p>Если я смогу увидеть живую фигуру, смотрящую на меня, скажем, в путешествии или в четвертой джхане, как ты думаешь, мой ум будет знать, что с этим делать?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Many have visions of deities without collapsing into them.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>У многих бывают видения божеств без схлопывания в них.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Many have visions of deities without collapsing into them.</p>
+</div>
 <p>У многих бывают видения божеств без схлопывания в них.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>But one of the major points of tantric practice is to recognise how the intrinsic intelligence of the deity is the same as yours, and this deep insight causes the collapse, which produces further fundamental, direct insight.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Но один из главных пунктов тантрической практики - распознать, что внутренняя разумность божества является той же, что и твоя, и это глубокое прозрение вызывает схлопывание, которое производит дальнейшее фундаментальное, прямое прозрение.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>But one of the major points of tantric practice is to recognise how the intrinsic intelligence of the deity is the same as yours, and this deep insight causes the collapse, which produces further fundamental, direct insight.</p>
+</div>
 <p>Но один из главных пунктов тантрической практики - распознать, что внутренняя разумность божества является той же, что и твоя, и это глубокое прозрение вызывает схлопывание, которое производит дальнейшее фундаментальное, прямое прозрение.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The more you practise, the more likely this is to occur.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Чем больше ты практикуешь, тем вероятнее, что это произойдет.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The more you practise, the more likely this is to occur.</p>
+</div>
 <p>Чем больше ты практикуешь, тем вероятнее, что это произойдет.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Vertical versus Horizontal Work]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Вертикальная и горизонтальная работа]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Vertical versus Horizontal Work]</p>
+</div>
 <p>[Вертикальная и горизонтальная работа]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Can you describe working laterally with the dukkha �anas and the benefits of developing this skill?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Можешь описать боковую работу с дуккха-ньянами и пользу развития этого навыка?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Can you describe working laterally with the dukkha �anas and the benefits of developing this skill?</p>
+</div>
 <p>Можешь описать боковую работу с дуккха-ньянами и пользу развития этого навыка?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Sure.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Конечно.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Sure.</p>
+</div>
 <p>Конечно.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Use the flame to get past dissolving the red dot into the murk.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Используй пламя, чтобы пройти дальше растворения красной точки в мутности.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Use the flame to get past dissolving the red dot into the murk.</p>
+</div>
 <p>Используй пламя, чтобы пройти дальше растворения красной точки в мутности.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Then shift into your body to drop into and stay in dissolution.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Затем переключись в тело, чтобы провалиться в растворение и оставаться в нем.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Then shift into your body to drop into and stay in dissolution.</p>
+</div>
 <p>Затем переключись в тело, чтобы провалиться в растворение и оставаться в нем.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Keep a light touch on the colours, then switch heavily into investigating the transitory qualities of dissolution, which is vague, wide, and diffuse.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Сохраняй легкое касание цветов, затем сильно переключись на исследование преходящих качеств растворения, которое является неясным, широким и рассеянным.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Keep a light touch on the colours, then switch heavily into investigating the transitory qualities of dissolution, which is vague, wide, and diffuse.</p>
+</div>
 <p>Сохраняй легкое касание цветов, затем сильно переключись на исследование преходящих качеств растворения, которое является неясным, широким и рассеянным.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Keep attention about 20% on the colours and 80% on other qualities of body, jhanic sensations.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Держи внимание примерно на 20% на цветах и на 80% на других качествах тела, джханических ощущениях.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Keep attention about 20% on the colours and 80% on other qualities of body, jhanic sensations.</p>
+</div>
 <p>Держи внимание примерно на 20% на цветах и на 80% на других качествах тела, джханических ощущениях.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Then try to shift up into fear, switching back to 80% colours, 20% overall fear.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Затем попробуй сдвинуться вверх в страх, переключаясь обратно на 80% цветов и 20% общего страха.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Then try to shift up into fear, switching back to 80% colours, 20% overall fear.</p>
+</div>
 <p>Затем попробуй сдвинуться вверх в страх, переключаясь обратно на 80% цветов и 20% общего страха.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Then ask the mind to shift in colours to misery and see what the colours do, then shift more fully into the vibrational, emotional elements of misery, etc.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Затем попроси ум сдвинуться в цветах к страданию и посмотри, что делают цвета, а затем полнее переключись в вибрационные, эмоциональные элементы страдания и так далее.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Then ask the mind to shift in colours to misery and see what the colours do, then shift more fully into the vibrational, emotional elements of misery, etc.</p>
+</div>
 <p>Затем попроси ум сдвинуться в цветах к страданию и посмотри, что делают цвета, а затем полнее переключись в вибрационные, эмоциональные элементы страдания и так далее.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It is like climbing a ladder, one foot at a time.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это похоже на подъем по лестнице, по одной ноге за раз.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It is like climbing a ladder, one foot at a time.</p>
+</div>
 <p>Это похоже на подъем по лестнице, по одной ноге за раз.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Benefits of horizontal work: it opens flexibility and gives coherent mastery across mind states, as well as integrating the knowledge of the �anas, jhanas, colours, vibrations and emotions.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Польза горизонтальной работы: она открывает гибкость и дает согласованное мастерство в разных состояниях ума, а также интегрирует знание ньян, джхан, цветов, вибраций и эмоций.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Benefits of horizontal work: it opens flexibility and gives coherent mastery across mind states, as well as integrating the knowledge of the �anas, jhanas, colours, vibrations and emotions.</p>
+</div>
 <p>Польза горизонтальной работы: она открывает гибкость и дает согласованное мастерство в разных состояниях ума, а также интегрирует знание ньян, джхан, цветов, вибраций и эмоций.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Horizontal work builds the ability to recognise these states in others by their tone of voice, word choice, quality of being, etc.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Горизонтальная работа развивает способность распознавать эти состояния у других по тону голоса, выбору слов, качеству присутствия и так далее.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Horizontal work builds the ability to recognise these states in others by their tone of voice, word choice, quality of being, etc.</p>
+</div>
 <p>Горизонтальная работа развивает способность распознавать эти состояния у других по тону голоса, выбору слов, качеству присутствия и так далее.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Hearing Voices]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Слышание голосов]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Hearing Voices]</p>
+</div>
 <p>[Слышание голосов]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 I am occasionally hearing a voice out-of-the-blue say a sentence to me, with the utmost conviction.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Иногда я слышу, как голос ни с того ни с сего произносит мне фразу с предельной убежденностью.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+I am occasionally hearing a voice out-of-the-blue say a sentence to me, with the utmost conviction.</p>
+</div>
 <p>Иногда я слышу, как голос ни с того ни с сего произносит мне фразу с предельной убежденностью.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>(Daniel mentioned some examples of similar experiences both on and off-retreat, some of which had held profound meaning for him.)</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>(Дэниел упомянул несколько примеров похожих переживаний как на ретрите, так и вне ретрита, некоторые из которых имели для него глубокий смысл.)</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>(Daniel mentioned some examples of similar experiences both on and off-retreat, some of which had held profound meaning for him.)</p>
+</div>
 <p>(Дэниел упомянул несколько примеров похожих переживаний как на ретрите, так и вне ретрита, некоторые из которых имели для него глубокий смысл.)</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Panoramic Vision]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Панорамное зрение]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Panoramic Vision]</p>
+</div>
 <p>[Панорамное зрение]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 When walking around, my way of seeing has significantly shifted: not just noticing the depth of colour and radiance but taking a much wider view.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Во время прогулок мой способ видения значительно изменился: я не просто замечаю глубину цвета и сияние, но охватываю гораздо более широкий обзор.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+When walking around, my way of seeing has significantly shifted: not just noticing the depth of colour and radiance but taking a much wider view.</p>
+</div>
 <p>Во время прогулок мой способ видения значительно изменился: я не просто замечаю глубину цвета и сияние, но охватываю гораздо более широкий обзор.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 This is fourth jhana pervading.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это пронизывание четвертой джханы.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+This is fourth jhana pervading.</p>
+</div>
 <p>Это пронизывание четвертой джханы.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Attention naturally becomes more panoramic, which is psychologically healthier.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Внимание естественно становится более панорамным, что психологически здоровее.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Attention naturally becomes more panoramic, which is psychologically healthier.</p>
+</div>
 <p>Внимание естественно становится более панорамным, что психологически здоровее.</p>
 </blockquote>
 
@@ -307,12 +776,20 @@ This is fourth jhana pervading.</p>
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
             x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
         ></button>
-        <button
-            class="mode-toggle"
-            type="button"
-            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
-            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
-        ></button>
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="original" x-model="contentMode">
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
     </div>
 </nav>
 

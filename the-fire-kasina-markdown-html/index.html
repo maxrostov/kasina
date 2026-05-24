@@ -8,6 +8,38 @@
   <link rel="stylesheet" href="article.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    document.addEventListener("click", (event) => {
+      const mode = document.body.dataset.contentMode;
+      const quote = event.target.closest("main > blockquote[data-original-toggle]");
+      const original = event.target.closest("main > .original-block[data-translation-toggle]");
+
+      if (
+        (mode !== "translation" || !quote) &&
+        (mode !== "original" || !original)
+      ) {
+        return;
+      }
+
+      if (event.target.closest("a, button, input, textarea, select, summary")) {
+        return;
+      }
+
+      if (mode === "translation") {
+        const expanded = quote.classList.toggle("original-visible");
+        quote
+          .querySelector(".translation-original")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+
+      if (mode === "original") {
+        const expanded = original.classList.toggle("translation-visible");
+        original
+          .querySelector(".original-translation")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+    });
+  </script>
 </head>
 <body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
   <div class="layout">
@@ -19,8 +51,18 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
+<div class="original-block" data-translation-toggle>
 <h1>The Fire Kasina</h1>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Questions and Answers on Retreat
+with Practice Notes and Commentary
+Shannon Stein &amp; Daniel M. Ingram</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<h1>The Fire Kasina</h1>
+</div>
 <p>Questions and Answers on Retreat
 with Practice Notes and Commentary
 Shannon Stein &amp; Daniel M. Ingram</p>
@@ -90,12 +132,20 @@ Shannon Stein &amp; Daniel M. Ingram</p>
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
             x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
         ></button>
-        <button
-            class="mode-toggle"
-            type="button"
-            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
-            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
-        ></button>
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="original" x-model="contentMode">
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
     </div>
 </nav>
 

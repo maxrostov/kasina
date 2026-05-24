@@ -8,6 +8,38 @@
   <link rel="stylesheet" href="article.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    document.addEventListener("click", (event) => {
+      const mode = document.body.dataset.contentMode;
+      const quote = event.target.closest("main > blockquote[data-original-toggle]");
+      const original = event.target.closest("main > .original-block[data-translation-toggle]");
+
+      if (
+        (mode !== "translation" || !quote) &&
+        (mode !== "original" || !original)
+      ) {
+        return;
+      }
+
+      if (event.target.closest("a, button, input, textarea, select, summary")) {
+        return;
+      }
+
+      if (mode === "translation") {
+        const expanded = quote.classList.toggle("original-visible");
+        quote
+          .querySelector(".translation-original")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+
+      if (mode === "original") {
+        const expanded = original.classList.toggle("translation-visible");
+        original
+          .querySelector(".original-translation")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+    });
+  </script>
 </head>
 <body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
   <div class="layout">
@@ -19,198 +51,576 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
+<div class="original-block" data-translation-toggle>
 <h1>Day Twenty-Two</h1>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>День двадцать второй</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<h1>Day Twenty-Two</h1>
+</div>
 <p>День двадцать второй</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Meta-Cognition Messes with Concentration ~ Integrating Luminosity ~ Fruition with Deity or Self-Image ~ Formless Realms]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Мета-когниция мешает концентрации ~ Интеграция светимости ~ Плодоношение с божеством или образом себя ~ Бесформенные сферы]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Meta-Cognition Messes with Concentration ~ Integrating Luminosity ~ Fruition with Deity or Self-Image ~ Formless Realms]</p>
+</div>
 <p>[Мета-когниция мешает концентрации ~ Интеграция светимости ~ Плодоношение с божеством или образом себя ~ Бесформенные сферы]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Meta-Cognition Messes with Concentration]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Мета-когниция мешает концентрации]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Meta-Cognition Messes with Concentration]</p>
+</div>
 <p>[Мета-когниция мешает концентрации]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Did you start working with dragon images deep into third jhana where colours were swirling and more 3D?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Ты начал работать с образами дракона глубоко в третьей джхане, где цвета закручивались и становились более трехмерными?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Did you start working with dragon images deep into third jhana where colours were swirling and more 3D?</p>
+</div>
 <p>Ты начал работать с образами дракона глубоко в третьей джхане, где цвета закручивались и становились более трехмерными?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Even earlier.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Даже раньше.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Even earlier.</p>
+</div>
 <p>Даже раньше.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Working with shapes got me to fourth.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Работа с формами привела меня к четвертой.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Working with shapes got me to fourth.</p>
+</div>
 <p>Работа с формами привела меня к четвертой.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Be aware the meta-cognition and mapping is not a substitute for concentration, and, although this can seem subtle, this is an important distinction.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Имей в виду: мета-когниция и картографирование не заменяют концентрацию, и хотя это может казаться тонким, это важное различие.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Be aware the meta-cognition and mapping is not a substitute for concentration, and, although this can seem subtle, this is an important distinction.</p>
+</div>
 <p>Имей в виду: мета-когниция и картографирование не заменяют концентрацию, и хотя это может казаться тонким, это важное различие.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Drop the reactions and the commentary.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Отбрось реакции и комментарии.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Drop the reactions and the commentary.</p>
+</div>
 <p>Отбрось реакции и комментарии.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Tune in to the images like a fascination with a dream.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Настройся на образы, как на завороженность сном.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Tune in to the images like a fascination with a dream.</p>
+</div>
 <p>Настройся на образы, как на завороженность сном.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Integrating Luminosity]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Интеграция светимости]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Integrating Luminosity]</p>
+</div>
 <p>[Интеграция светимости]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Can you say more about the luminosity of other senses (beyond visual) and how it takes time to integrate that?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Можешь подробнее сказать о светимости других чувств (помимо зрительного) и о том, почему для ее интеграции требуется время?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Can you say more about the luminosity of other senses (beyond visual) and how it takes time to integrate that?</p>
+</div>
 <p>Можешь подробнее сказать о светимости других чувств (помимо зрительного) и о том, почему для ее интеграции требуется время?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Is it closely connected to what is experienced when in the spaciousness of higher equanimity in the eleventh �ana?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это тесно связано с тем, что переживается в просторности высшей равностности в одиннадцатой ньяне?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Is it closely connected to what is experienced when in the spaciousness of higher equanimity in the eleventh �ana?</p>
+</div>
 <p>Это тесно связано с тем, что переживается в просторности высшей равностности в одиннадцатой ньяне?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Luminosity, in theory, applies to visual sensations.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Светимость, теоретически, относится к зрительным ощущениям.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Luminosity, in theory, applies to visual sensations.</p>
+</div>
 <p>Светимость, теоретически, относится к зрительным ощущениям.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In practice, it applies to everything.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>На практике она относится ко всему.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In practice, it applies to everything.</p>
+</div>
 <p>На практике она относится ко всему.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Hold the view there is just one sense door: space and everything in it are integrated.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Удерживай взгляд, что существует только одна дверь чувств: пространство и все в нем интегрированы.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Hold the view there is just one sense door: space and everything in it are integrated.</p>
+</div>
 <p>Удерживай взгляд, что существует только одна дверь чувств: пространство и все в нем интегрированы.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Given the luminosity of all phenomena, we can �see� everything in space similar to the way visual objects are seen.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>С учетом светимости всех явлений мы можем «видеть» все в пространстве подобно тому, как видятся зрительные объекты.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Given the luminosity of all phenomena, we can �see� everything in space similar to the way visual objects are seen.</p>
+</div>
 <p>С учетом светимости всех явлений мы можем «видеть» все в пространстве подобно тому, как видятся зрительные объекты.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Everything manifests in space with its own awareness.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Все проявляется в пространстве со своим собственным осознаванием.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Everything manifests in space with its own awareness.</p>
+</div>
 <p>Все проявляется в пространстве со своим собственным осознаванием.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>For example, when touching the thumb and fingertip together, the tip of the finger is cognisant of the tip of the thumb; where it is in space.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Например, когда большой палец и кончик другого пальца соприкасаются, кончик пальца осознает кончик большого пальца: где он находится в пространстве.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>For example, when touching the thumb and fingertip together, the tip of the finger is cognisant of the tip of the thumb; where it is in space.</p>
+</div>
 <p>Например, когда большой палец и кончик другого пальца соприкасаются, кончик пальца осознает кончик большого пальца: где он находится в пространстве.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The more one can walk around holding the view, the closer the connection to this aspect of ultimate reality in the present moment.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Чем больше человек может ходить, удерживая этот взгляд, тем ближе связь с этим аспектом предельной реальности в настоящем моменте.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The more one can walk around holding the view, the closer the connection to this aspect of ultimate reality in the present moment.</p>
+</div>
 <p>Чем больше человек может ходить, удерживая этот взгляд, тем ближе связь с этим аспектом предельной реальности в настоящем моменте.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The eleventh �ana is the closest to it until you actually get there.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Одиннадцатая ньяна ближе всего к этому, пока ты действительно туда не доберешься.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The eleventh �ana is the closest to it until you actually get there.</p>
+</div>
 <p>Одиннадцатая ньяна ближе всего к этому, пока ты действительно туда не доберешься.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Fruition with Deity or Self-Image]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Плодоношение с божеством или образом себя]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Fruition with Deity or Self-Image]</p>
+</div>
 <p>[Плодоношение с божеством или образом себя]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 What is the significance of looking into the eyes of a deity (or, even better, one�s own eyes) and obtaining a fruition?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Каково значение взгляда в глаза божества (или, еще лучше, в собственные глаза) и получения плодоношения?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+What is the significance of looking into the eyes of a deity (or, even better, one�s own eyes) and obtaining a fruition?</p>
+</div>
 <p>Каково значение взгляда в глаза божества (или, еще лучше, в собственные глаза) и получения плодоношения?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Have you had fruitions during eye contact with people in this realm or by looking into a mirror?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Бывали ли у тебя плодоношения во время зрительного контакта с людьми в этой сфере или при взгляде в зеркало?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Have you had fruitions during eye contact with people in this realm or by looking into a mirror?</p>
+</div>
 <p>Бывали ли у тебя плодоношения во время зрительного контакта с людьми в этой сфере или при взгляде в зеркало?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Fruitions like this reveal things about the nature and location of awareness.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Такие плодоношения раскрывают вещи о природе и местоположении осознавания.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Fruitions like this reveal things about the nature and location of awareness.</p>
+</div>
 <p>Такие плодоношения раскрывают вещи о природе и местоположении осознавания.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>My understanding of the Tibetan strategy is the practitioner is trained in reverence for the intelligence of an external tantric being, which provides a stepping-stone along the route to a realisation about one�s own nature.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Мое понимание тибетской стратегии таково: практикующего обучают благоговению перед разумностью внешнего тантрического существа, что создает ступень на пути к реализации собственной природы.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>My understanding of the Tibetan strategy is the practitioner is trained in reverence for the intelligence of an external tantric being, which provides a stepping-stone along the route to a realisation about one�s own nature.</p>
+</div>
 <p>Мое понимание тибетской стратегии таково: практикующего обучают благоговению перед разумностью внешнего тантрического существа, что создает ступень на пути к реализации собственной природы.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>By collapsing �your� awareness into the eyes (awareness) of the �other entity�, each realises it is the same thing.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Схлопывая «свое» осознавание в глаза (осознавание) «другой сущности», каждый осознает, что это одно и то же.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>By collapsing �your� awareness into the eyes (awareness) of the �other entity�, each realises it is the same thing.</p>
+</div>
 <p>Схлопывая «свое» осознавание в глаза (осознавание) «другой сущности», каждый осознает, что это одно и то же.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The direct route is to have awareness collapse into your own image, which sort of eliminates the tantric �middleman� or �middlewoman�.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Прямой путь - это схлопывание осознавания в твой собственный образ, что как бы устраняет тантрического «посредника» или «посредницу».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The direct route is to have awareness collapse into your own image, which sort of eliminates the tantric �middleman� or �middlewoman�.</p>
+</div>
 <p>Прямой путь - это схлопывание осознавания в твой собственный образ, что как бы устраняет тантрического «посредника» или «посредницу».</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Try to see yourself, as in an out-of-body experience, and look into your own eyes.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Попробуй увидеть себя, как во внетелесном опыте, и посмотреть себе в глаза.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Try to see yourself, as in an out-of-body experience, and look into your own eyes.</p>
+</div>
 <p>Попробуй увидеть себя, как во внетелесном опыте, и посмотреть себе в глаза.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Daniel described obtaining fruitions from a self-image by accident and being able to gain them looking into a mirror.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Дэниел описал, как случайно получал плодоношения от образа себя и как мог получать их, глядя в зеркало.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Daniel described obtaining fruitions from a self-image by accident and being able to gain them looking into a mirror.</p>
+</div>
 <p>Дэниел описал, как случайно получал плодоношения от образа себя и как мог получать их, глядя в зеркало.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The idea of obtaining them from people�s eyes in the ordinary realm intrigued him, but he had not experienced that.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Идея получать их из глаз людей в обычной сфере его заинтриговала, но такого опыта у него не было.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The idea of obtaining them from people�s eyes in the ordinary realm intrigued him, but he had not experienced that.</p>
+</div>
 <p>Идея получать их из глаз людей в обычной сфере его заинтриговала, но такого опыта у него не было.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Formless Realms]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Бесформенные сферы]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Formless Realms]</p>
+</div>
 <p>[Бесформенные сферы]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 How can meditators skilfully navigate through the formless realms?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Как медитаторы могут искусно ориентироваться в бесформенных сферах?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+How can meditators skilfully navigate through the formless realms?</p>
+</div>
 <p>Как медитаторы могут искусно ориентироваться в бесформенных сферах?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Consider fourth jhana.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Рассмотри четвертую джхану.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Consider fourth jhana.</p>
+</div>
 <p>Рассмотри четвертую джхану.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Extend awareness as far as you can see and hear to notice the boundaryless quality around form.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Распространи осознавание настолько далеко, насколько можешь видеть и слышать, чтобы заметить безграничное качество вокруг формы.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Extend awareness as far as you can see and hear to notice the boundaryless quality around form.</p>
+</div>
 <p>Распространи осознавание настолько далеко, насколько можешь видеть и слышать, чтобы заметить безграничное качество вокруг формы.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Everyone on the way to fruition goes through a vj4.j5, vj4.j6, vj4.j7, vj4.j8 phase, even if the vj4.j8 phase to most is imperceptible.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Каждый на пути к плодоношению проходит фазу vj4.j5, vj4.j6, vj4.j7, vj4.j8, даже если фаза vj4.j8 для большинства незаметна.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Everyone on the way to fruition goes through a vj4.j5, vj4.j6, vj4.j7, vj4.j8 phase, even if the vj4.j8 phase to most is imperceptible.</p>
+</div>
 <p>Каждый на пути к плодоношению проходит фазу vj4.j5, vj4.j6, vj4.j7, vj4.j8, даже если фаза vj4.j8 для большинства незаметна.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>(SHANNON � For those not familiar with it, this terminology denotes vipassana jhana_subjhana, and refers to sub-aspects of the vipassana jhana in question, in this case four subjhanic formless aspects of the formed fourth jhana.)</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>(ШЭННОН - для тех, кто с этим не знаком: эта терминология обозначает випассана-джхана_субджхана и относится к подаспектам соответствующей випассана-джханы, в данном случае к четырем субджханическим бесформенным аспектам сформированной четвертой джханы.)</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>(SHANNON � For those not familiar with it, this terminology denotes vipassana jhana_subjhana, and refers to sub-aspects of the vipassana jhana in question, in this case four subjhanic formless aspects of the formed fourth jhana.)</p>
+</div>
 <p>(ШЭННОН - для тех, кто с этим не знаком: эта терминология обозначает випассана-джхана_субджхана и относится к подаспектам соответствующей випассана-джханы, в данном случае к четырем субджханическим бесформенным аспектам сформированной четвертой джханы.)</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Fifth jhana: By noticing the width of fourth and then de-tuning from fourth one can go directly to fifth, or, one can use the boundaryless aspect as the focus to drop all form.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Пятая джхана: замечая ширину четвертой и затем расстраиваясь от четвертой, можно перейти прямо к пятой; или можно использовать безграничный аспект как фокус, чтобы отбросить всю форму.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Fifth jhana: By noticing the width of fourth and then de-tuning from fourth one can go directly to fifth, or, one can use the boundaryless aspect as the focus to drop all form.</p>
+</div>
 <p>Пятая джхана: замечая ширину четвертой и затем расстраиваясь от четвертой, можно перейти прямо к пятой; или можно использовать безграничный аспект как фокус, чтобы отбросить всю форму.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Fifth is like looking at space with a black background: the volume is now the focus.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Пятая похожа на смотрение на пространство с черным фоном: теперь фокусом является объем.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Fifth is like looking at space with a black background: the volume is now the focus.</p>
+</div>
 <p>Пятая похожа на смотрение на пространство с черным фоном: теперь фокусом является объем.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Sixth jhana: From sj4.j6 (SHANNON � That is, the boundless space aspect of the fourth samatha jhana), there is wide fascination and the sense of the observer is subtle.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Шестая джхана: из sj4.j6 (ШЭННОН - то есть аспекта безграничного пространства четвертой джханы саматхи) возникает широкая завороженность, а ощущение наблюдателя тонкое.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Sixth jhana: From sj4.j6 (SHANNON � That is, the boundless space aspect of the fourth samatha jhana), there is wide fascination and the sense of the observer is subtle.</p>
+</div>
 <p>Шестая джхана: из sj4.j6 (ШЭННОН - то есть аспекта безграничного пространства четвертой джханы саматхи) возникает широкая завороженность, а ощущение наблюдателя тонкое.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Tune into luminosity and the location of everything for sixth jhana, or one can drop directly from fifth to sixth by noticing space is luminous, in that there is awareness of the volume, like space filling with clear light.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Настройся на светимость и местоположение всего для шестой джханы; или можно перейти прямо из пятой в шестую, заметив, что пространство светится, поскольку есть осознавание объема, как будто пространство наполняется ясным светом.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Tune into luminosity and the location of everything for sixth jhana, or one can drop directly from fifth to sixth by noticing space is luminous, in that there is awareness of the volume, like space filling with clear light.</p>
+</div>
 <p>Настройся на светимость и местоположение всего для шестой джханы; или можно перейти прямо из пятой в шестую, заметив, что пространство светится, поскольку есть осознавание объема, как будто пространство наполняется ясным светом.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>There is a paradox here, as the luminous cognisance of all things is very obvious at all times, yet it helps to have teachers point it out.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Здесь есть парадокс: светящееся познавание всех вещей всегда очень очевидно, и все же помогает, когда учителя на него указывают.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>There is a paradox here, as the luminous cognisance of all things is very obvious at all times, yet it helps to have teachers point it out.</p>
+</div>
 <p>Здесь есть парадокс: светящееся познавание всех вещей всегда очень очевидно, и все же помогает, когда учителя на него указывают.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In the sixth jhana, it is much more obvious, as that is basically all there is.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В шестой джхане это гораздо очевиднее, поскольку это, по сути, все, что есть.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In the sixth jhana, it is much more obvious, as that is basically all there is.</p>
+</div>
 <p>В шестой джхане это гораздо очевиднее, поскольку это, по сути, все, что есть.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Seventh jhana: You can think of it as black, but really it is a subtle twist of space that detunes from vastness in the other direction, if there is such a thing, to nothingness: the antithesis of the two earlier formless jhanas, just like the third jhana (cool, wide) is the opposite of the first and second (narrow, rapturous).</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Седьмая джхана: можно думать о ней как о черной, но на самом деле это тонкий изгиб пространства, который расстраивается от обширности в другом направлении, если такое вообще есть, к ничто: антитеза двум более ранним бесформенным джханам, точно так же как третья джхана (прохладная, широкая) противоположна первой и второй (узким, восторженным).</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Seventh jhana: You can think of it as black, but really it is a subtle twist of space that detunes from vastness in the other direction, if there is such a thing, to nothingness: the antithesis of the two earlier formless jhanas, just like the third jhana (cool, wide) is the opposite of the first and second (narrow, rapturous).</p>
+</div>
 <p>Седьмая джхана: можно думать о ней как о черной, но на самом деле это тонкий изгиб пространства, который расстраивается от обширности в другом направлении, если такое вообще есть, к ничто: антитеза двум более ранним бесформенным джханам, точно так же как третья джхана (прохладная, широкая) противоположна первой и второй (узким, восторженным).</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Eighth jhana: The state that follows eight often has an ordinary feel to it, yet is a powerful time to do many things.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Восьмая джхана: состояние, которое следует за восьмой, часто ощущается обычным, но это мощное время для выполнения многих вещей.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Eighth jhana: The state that follows eight often has an ordinary feel to it, yet is a powerful time to do many things.</p>
+</div>
 <p>Восьмая джхана: состояние, которое следует за восьмой, часто ощущается обычным, но это мощное время для выполнения многих вещей.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Daniel outlined the benefit of having mastered shifting from state to state, for example: slam-shifting from first jhana to seventh, or choosing to go from the worst of re-observation (the epitome of an irritated, contracted mind) to spacious equanimity.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Дэниел обрисовал пользу овладения переходом из состояния в состояние, например: резкого переключения из первой джханы в седьмую или выбора перейти из худшего варианта повторного наблюдения (воплощения раздраженного, сжатого ума) в просторную равностность.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Daniel outlined the benefit of having mastered shifting from state to state, for example: slam-shifting from first jhana to seventh, or choosing to go from the worst of re-observation (the epitome of an irritated, contracted mind) to spacious equanimity.</p>
+</div>
 <p>Дэниел обрисовал пользу овладения переходом из состояния в состояние, например: резкого переключения из первой джханы в седьмую или выбора перейти из худшего варианта повторного наблюдения (воплощения раздраженного, сжатого ума) в просторную равностность.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>At some point his practice became: �every moment, every state, all qualities must be IT.�</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В какой-то момент его практика стала такой: «каждый момент, каждое состояние, все качества должны быть ЭТИМ».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>At some point his practice became: �every moment, every state, all qualities must be IT.�</p>
+</div>
 <p>В какой-то момент его практика стала такой: «каждый момент, каждое состояние, все качества должны быть ЭТИМ».</p>
 </blockquote>
 
@@ -276,12 +686,20 @@ Daniel outlined the benefit of having mastered shifting from state to state, for
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
             x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
         ></button>
-        <button
-            class="mode-toggle"
-            type="button"
-            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
-            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
-        ></button>
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="original" x-model="contentMode">
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
     </div>
 </nav>
 

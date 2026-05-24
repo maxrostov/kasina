@@ -8,6 +8,38 @@
   <link rel="stylesheet" href="article.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    document.addEventListener("click", (event) => {
+      const mode = document.body.dataset.contentMode;
+      const quote = event.target.closest("main > blockquote[data-original-toggle]");
+      const original = event.target.closest("main > .original-block[data-translation-toggle]");
+
+      if (
+        (mode !== "translation" || !quote) &&
+        (mode !== "original" || !original)
+      ) {
+        return;
+      }
+
+      if (event.target.closest("a, button, input, textarea, select, summary")) {
+        return;
+      }
+
+      if (mode === "translation") {
+        const expanded = quote.classList.toggle("original-visible");
+        quote
+          .querySelector(".translation-original")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+
+      if (mode === "original") {
+        const expanded = original.classList.toggle("translation-visible");
+        original
+          .querySelector(".original-translation")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+    });
+  </script>
 </head>
 <body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
   <div class="layout">
@@ -19,177 +51,510 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
+<div class="original-block" data-translation-toggle>
 <h1>Day Six</h1>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>День шестой</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<h1>Day Six</h1>
+</div>
 <p>День шестой</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Murk ~ Colour Control ~ Mesmerisation ~ Intention-Setting for Deity]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Муть ~ Управление цветом ~ Завороженность ~ Постановка намерения для божества</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Murk ~ Colour Control ~ Mesmerisation ~ Intention-Setting for Deity]</p>
+</div>
 <p>Муть ~ Управление цветом ~ Завороженность ~ Постановка намерения для божества</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Murk]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Муть</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Murk]</p>
+</div>
 <p>Муть</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 I spent a lot of time in the murk last night: I do not know why.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Прошлой ночью я провела много времени в мути: я не знаю почему.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+I spent a lot of time in the murk last night: I do not know why.</p>
+</div>
 <p>Прошлой ночью я провела много времени в мути: я не знаю почему.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 That is where progress comes.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Именно там приходит прогресс.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+That is where progress comes.</p>
+</div>
 <p>Именно там приходит прогресс.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The red dot is relatively easy, even for people new to meditation, but the murk is a slipperier journey to the other side.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Красная точка относительно проста, даже для людей, новых в медитации, но муть - это более скользкое путешествие на другую сторону.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The red dot is relatively easy, even for people new to meditation, but the murk is a slipperier journey to the other side.</p>
+</div>
 <p>Красная точка относительно проста, даже для людей, новых в медитации, но муть - это более скользкое путешествие на другую сторону.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 When Daniel encouraged me throughout the retreat to let the mind sync with the visual field, such as in this murky phase of the meditation, I initially struggled to understand what he meant.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Когда Дэниел на протяжении ретрита поощрял меня позволять уму синхронизироваться с визуальным полем, например в этой мутной фазе медитации, сначала мне было трудно понять, что он имеет в виду.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+When Daniel encouraged me throughout the retreat to let the mind sync with the visual field, such as in this murky phase of the meditation, I initially struggled to understand what he meant.</p>
+</div>
 <p>Когда Дэниел на протяжении ретрита поощрял меня позволять уму синхронизироваться с визуальным полем, например в этой мутной фазе медитации, сначала мне было трудно понять, что он имеет в виду.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Gradually meditation breakthroughs arose when the act of perceiving became an intimate connection with the details of the field, which involved “getting myself out of the way” and attending in a bare manner to the visuals.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Постепенно медитативные прорывы возникали тогда, когда акт восприятия становился близкой связью с деталями поля, что включало «убрать себя с дороги» и голым образом внимать визуальным образам.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Gradually meditation breakthroughs arose when the act of perceiving became an intimate connection with the details of the field, which involved “getting myself out of the way” and attending in a bare manner to the visuals.</p>
+</div>
 <p>Постепенно медитативные прорывы возникали тогда, когда акт восприятия становился близкой связью с деталями поля, что включало «убрать себя с дороги» и голым образом внимать визуальным образам.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>A push for something else to happen dropped away at these times.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В такие моменты исчезало стремление, чтобы произошло что-то еще.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>A push for something else to happen dropped away at these times.</p>
+</div>
 <p>В такие моменты исчезало стремление, чтобы произошло что-то еще.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It was as if the field suddenly came closer, with the flickers and flecks of colour becoming fascinating.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Было так, словно поле внезапно приближалось, а мерцания и пятнышки цвета становились завораживающими.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It was as if the field suddenly came closer, with the flickers and flecks of colour becoming fascinating.</p>
+</div>
 <p>Было так, словно поле внезапно приближалось, а мерцания и пятнышки цвета становились завораживающими.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>By sweeping the field for one minuscule fleck of colour that held particular interest, an intense red for example, and gently inclining my mind toward that colour, suddenly the entire field would come alive with incredible colour.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Прочесывая поле в поисках одного крошечного пятнышка цвета, вызывавшего особый интерес, например интенсивного красного, и мягко склоняя ум к этому цвету, я вдруг видела, как все поле оживает невероятным цветом.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>By sweeping the field for one minuscule fleck of colour that held particular interest, an intense red for example, and gently inclining my mind toward that colour, suddenly the entire field would come alive with incredible colour.</p>
+</div>
 <p>Прочесывая поле в поисках одного крошечного пятнышка цвета, вызывавшего особый интерес, например интенсивного красного, и мягко склоняя ум к этому цвету, я вдруг видела, как все поле оживает невероятным цветом.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>A mind-to-field synchronisation began unfolding.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Начала разворачиваться синхронизация ума и поля.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>A mind-to-field synchronisation began unfolding.</p>
+</div>
 <p>Начала разворачиваться синхронизация ума и поля.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Colour Control]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Управление цветом</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Colour Control]</p>
+</div>
 <p>Управление цветом</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 I am seeing a beautiful mauve shape of the candle, but only a brief red dot.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Я вижу красивую лиловую форму свечи, но только краткую красную точку.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+I am seeing a beautiful mauve shape of the candle, but only a brief red dot.</p>
+</div>
 <p>Я вижу красивую лиловую форму свечи, но только краткую красную точку.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Today I saw spectacular colours, many unnamable, across a delicate range.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Сегодня я видела впечатляющие цвета, многие из которых невозможно назвать, в тонком диапазоне.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Today I saw spectacular colours, many unnamable, across a delicate range.</p>
+</div>
 <p>Сегодня я видела впечатляющие цвета, многие из которых невозможно назвать, в тонком диапазоне.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Try tuning the colour shades to suit your interior design tastes.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Попробуйте настраивать оттенки цветов в соответствии со своими вкусами в дизайне интерьера.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Try tuning the colour shades to suit your interior design tastes.</p>
+</div>
 <p>Попробуйте настраивать оттенки цветов в соответствии со своими вкусами в дизайне интерьера.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Be gentle.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Будьте мягки.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Be gentle.</p>
+</div>
 <p>Будьте мягки.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Appreciate it takes the brain time to process and manifest our intentions in this phase; immediate control will not work, as before, and will mess it up.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Учитывайте, что в этой фазе мозгу нужно время, чтобы обработать и проявить наши намерения; немедленный контроль, как прежде, не сработает и все испортит.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Appreciate it takes the brain time to process and manifest our intentions in this phase; immediate control will not work, as before, and will mess it up.</p>
+</div>
 <p>Учитывайте, что в этой фазе мозгу нужно время, чтобы обработать и проявить наши намерения; немедленный контроль, как прежде, не сработает и все испортит.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It is not like deciding to move your arm.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это не похоже на решение пошевелить рукой.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It is not like deciding to move your arm.</p>
+</div>
 <p>Это не похоже на решение пошевелить рукой.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 After my attempt to change purple into red resulted in a dreary brown, I was disappointed, until realising the red I intended for had mixed with the purple wash to create brown.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>После того как моя попытка изменить фиолетовый на красный привела к унылому коричневому, я была разочарована, пока не поняла, что красный, к которому я стремилась, смешался с фиолетовым потоком и создал коричневый.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+After my attempt to change purple into red resulted in a dreary brown, I was disappointed, until realising the red I intended for had mixed with the purple wash to create brown.</p>
+</div>
 <p>После того как моя попытка изменить фиолетовый на красный привела к унылому коричневому, я была разочарована, пока не поняла, что красный, к которому я стремилась, смешался с фиолетовым потоком и создал коричневый.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Eventually, over the course of the retreat, I was able to finesse the colours that showed up on the visual screen by using a feather-light mental inclination towards a particular shade and then “adding” other colours if whatever showed up did not meet my satisfaction.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В конце концов, в ходе ретрита, я смогла тонко доводить цвета, появлявшиеся на визуальном экране, используя легчайший ментальный наклон к определенному оттенку, а затем «добавляя» другие цвета, если появившееся не удовлетворяло меня.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Eventually, over the course of the retreat, I was able to finesse the colours that showed up on the visual screen by using a feather-light mental inclination towards a particular shade and then “adding” other colours if whatever showed up did not meet my satisfaction.</p>
+</div>
 <p>В конце концов, в ходе ретрита, я смогла тонко доводить цвета, появлявшиеся на визуальном экране, используя легчайший ментальный наклон к определенному оттенку, а затем «добавляя» другие цвета, если появившееся не удовлетворяло меня.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>To get the exquisite teal I was after, for instance, I would commence with a blue and gradually add increasing amounts of green and white.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Например, чтобы получить изысканный бирюзово-синий, которого я добивалась, я начинала с синего и постепенно добавляла все больше зеленого и белого.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>To get the exquisite teal I was after, for instance, I would commence with a blue and gradually add increasing amounts of green and white.</p>
+</div>
 <p>Например, чтобы получить изысканный бирюзово-синий, которого я добивалась, я начинала с синего и постепенно добавляла все больше зеленого и белого.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Mesmerisation]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Завороженность</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Mesmerisation]</p>
+</div>
 <p>Завороженность</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 The colours become so mesmerising I lose the mantra altogether.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Цвета становятся настолько завораживающими, что я полностью теряю мантру.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+The colours become so mesmerising I lose the mantra altogether.</p>
+</div>
 <p>Цвета становятся настолько завораживающими, что я полностью теряю мантру.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 At this point, this is beneficial, as mesmerisation is important for deeper concentration: less striving for something, and just relaxing into the magnetism.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>На этом этапе это полезно, поскольку завороженность важна для более глубокой концентрации: меньше стремления к чему-то и больше расслабления в магнетизм.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+At this point, this is beneficial, as mesmerisation is important for deeper concentration: less striving for something, and just relaxing into the magnetism.</p>
+</div>
 <p>На этом этапе это полезно, поскольку завороженность важна для более глубокой концентрации: меньше стремления к чему-то и больше расслабления в магнетизм.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Setting up any intentions for what the colours will do is best done earlier, before you end up deep into things.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Любые намерения относительно того, что будут делать цвета, лучше задавать раньше, до того как вы глубоко войдете в процесс.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Setting up any intentions for what the colours will do is best done earlier, before you end up deep into things.</p>
+</div>
 <p>Любые намерения относительно того, что будут делать цвета, лучше задавать раньше, до того как вы глубоко войдете в процесс.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Intention-Setting for Deity]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Постановка намерения для божества</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Intention-Setting for Deity]</p>
+</div>
 <p>Постановка намерения для божества</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 The colours are the big thing right now: glowing and subtly changing.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Сейчас главное - цвета: светящиеся и тонко меняющиеся.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+The colours are the big thing right now: glowing and subtly changing.</p>
+</div>
 <p>Сейчас главное - цвета: светящиеся и тонко меняющиеся.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The meditation is blissful, quiet, and calm.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Медитация блаженная, тихая и спокойная.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The meditation is blissful, quiet, and calm.</p>
+</div>
 <p>Медитация блаженная, тихая и спокойная.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Aim for control of colours and shapes: this requires a delicate teasing of them.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Стремитесь к управлению цветами и формами: это требует деликатного подталкивания их.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Aim for control of colours and shapes: this requires a delicate teasing of them.</p>
+</div>
 <p>Стремитесь к управлению цветами и формами: это требует деликатного подталкивания их.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Also, before the sit you can try intending: “Should I find myself reaching for a bottle during a partial travel may I turn it into something spectacular, like a Medicine Buddha.”</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Также перед сидением можно попробовать намерение: «Если во время частичного путешествия я обнаружу, что тянусь к бутылке, пусть я превращу ее во что-то впечатляющее, например в Будду Медицины».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Also, before the sit you can try intending: “Should I find myself reaching for a bottle during a partial travel may I turn it into something spectacular, like a Medicine Buddha.”</p>
+</div>
 <p>Также перед сидением можно попробовать намерение: «Если во время частичного путешествия я обнаружу, что тянусь к бутылке, пусть я превращу ее во что-то впечатляющее, например в Будду Медицины».</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Is it good to be spending all this time with the colours?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Хорошо ли проводить все это время с цветами?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Is it good to be spending all this time with the colours?</p>
+</div>
 <p>Хорошо ли проводить все это время с цветами?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 That is the whole point!</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В этом весь смысл!</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+That is the whole point!</p>
+</div>
 <p>В этом весь смысл!</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>What else is there?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Что еще есть?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>What else is there?</p>
+</div>
 <p>Что еще есть?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>(SHANNON - I remember we both had a good laugh at this.)</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>(ШЭННОН - я помню, как мы оба хорошенько посмеялись над этим.)</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>(SHANNON - I remember we both had a good laugh at this.)</p>
+</div>
 <p>(ШЭННОН - я помню, как мы оба хорошенько посмеялись над этим.)</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Going through the range of colours and starting to receive images wires something good into the brain.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Прохождение через диапазон цветов и начало получения образов прокладывает в мозге что-то хорошее.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Going through the range of colours and starting to receive images wires something good into the brain.</p>
+</div>
 <p>Прохождение через диапазон цветов и начало получения образов прокладывает в мозге что-то хорошее.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>You might practise dropping frustration when intentions are not fulfilled, and instead then just stay with the colours.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Вы можете практиковаться отпускать разочарование, когда намерения не исполняются, и вместо этого просто оставаться с цветами.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>You might practise dropping frustration when intentions are not fulfilled, and instead then just stay with the colours.</p>
+</div>
 <p>Вы можете практиковаться отпускать разочарование, когда намерения не исполняются, и вместо этого просто оставаться с цветами.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>You could read Medicine Buddha texts for inspiration, as that sort of preprogramming can make desired images and entities manifest.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Для вдохновения можно читать тексты Будды Медицины, поскольку такого рода предварительное программирование может способствовать проявлению желаемых образов и сущностей.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>You could read Medicine Buddha texts for inspiration, as that sort of preprogramming can make desired images and entities manifest.</p>
+</div>
 <p>Для вдохновения можно читать тексты Будды Медицины, поскольку такого рода предварительное программирование может способствовать проявлению желаемых образов и сущностей.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 To enhance the chances of meeting with the Medicine Buddha, I incorporated the Medicine Buddha mantra into parts of the day and went through a simple puja (a Tibetan meditation ritual) each morning.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Чтобы повысить шансы на встречу с Буддой Медицины, я включила мантру Будды Медицины в некоторые части дня и каждое утро проходила простую пуджу (тибетский медитативный ритуал).</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+To enhance the chances of meeting with the Medicine Buddha, I incorporated the Medicine Buddha mantra into parts of the day and went through a simple puja (a Tibetan meditation ritual) each morning.</p>
+</div>
 <p>Чтобы повысить шансы на встречу с Буддой Медицины, я включила мантру Будды Медицины в некоторые части дня и каждое утро проходила простую пуджу (тибетский медитативный ритуал).</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>One evening, while out kayaking, the moon’s reflection on the choppy lake surface appeared like tiny sparkling jewels, which I offered up to the Medicine Buddha to entice him into providing me with teachings.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Однажды вечером, когда я была на каяке, отражение луны на волнистой поверхности озера выглядело как крошечные сверкающие драгоценности, которые я поднесла Будде Медицины, чтобы побудить его дать мне учения.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>One evening, while out kayaking, the moon’s reflection on the choppy lake surface appeared like tiny sparkling jewels, which I offered up to the Medicine Buddha to entice him into providing me with teachings.</p>
+</div>
 <p>Однажды вечером, когда я была на каяке, отражение луны на волнистой поверхности озера выглядело как крошечные сверкающие драгоценности, которые я поднесла Будде Медицины, чтобы побудить его дать мне учения.</p>
 </blockquote>
 
@@ -255,12 +620,20 @@ To enhance the chances of meeting with the Medicine Buddha, I incorporated the M
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
             x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
         ></button>
-        <button
-            class="mode-toggle"
-            type="button"
-            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
-            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
-        ></button>
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="original" x-model="contentMode">
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
     </div>
 </nav>
 

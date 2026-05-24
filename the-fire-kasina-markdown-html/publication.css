@@ -84,8 +84,7 @@ main {
   gap: 0.6rem;
 }
 
-.theme-toggle,
-.mode-toggle {
+.theme-toggle {
   width: 100%;
   border: 1px solid var(--border);
   border-radius: 999px;
@@ -100,6 +99,37 @@ main {
   &:hover {
     border-color: var(--accent);
   }
+}
+
+.mode-toggle {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.mode-toggle label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.45rem;
+  border-radius: 6px;
+  color: var(--muted);
+  font:
+    600 0.86rem/1.2 system-ui,
+    sans-serif;
+  cursor: pointer;
+}
+
+.mode-toggle label:has(input:checked) {
+  background: var(--quote-bg);
+  color: var(--text);
+}
+
+.mode-toggle input {
+  accent-color: var(--accent);
 }
 
 .site-nav {

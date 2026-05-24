@@ -8,6 +8,38 @@
   <link rel="stylesheet" href="article.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    document.addEventListener("click", (event) => {
+      const mode = document.body.dataset.contentMode;
+      const quote = event.target.closest("main > blockquote[data-original-toggle]");
+      const original = event.target.closest("main > .original-block[data-translation-toggle]");
+
+      if (
+        (mode !== "translation" || !quote) &&
+        (mode !== "original" || !original)
+      ) {
+        return;
+      }
+
+      if (event.target.closest("a, button, input, textarea, select, summary")) {
+        return;
+      }
+
+      if (mode === "translation") {
+        const expanded = quote.classList.toggle("original-visible");
+        quote
+          .querySelector(".translation-original")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+
+      if (mode === "original") {
+        const expanded = original.classList.toggle("translation-visible");
+        original
+          .querySelector(".original-translation")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+    });
+  </script>
 </head>
 <body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
   <div class="layout">
@@ -19,185 +51,538 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
+<div class="original-block" data-translation-toggle>
 <h1>Day Twenty-Five</h1>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>День двадцать пятый</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<h1>Day Twenty-Five</h1>
+</div>
 <p>День двадцать пятый</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Form Control ~ Equanimity as Object ~ After Review Comes Progress]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Контроль формы ~ Равностность как объект ~ После обзора приходит прогресс]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Form Control ~ Equanimity as Object ~ After Review Comes Progress]</p>
+</div>
 <p>[Контроль формы ~ Равностность как объект ~ После обзора приходит прогресс]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Form Control]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Контроль формы]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Form Control]</p>
+</div>
 <p>[Контроль формы]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Finally, I am seeing faces forming in colours, with successful intentions to have the eyes on the faces open and close.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Наконец-то я вижу, как в цветах формируются лица, и успешно намереваюсь, чтобы глаза на этих лицах открывались и закрывались.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Finally, I am seeing faces forming in colours, with successful intentions to have the eyes on the faces open and close.</p>
+</div>
 <p>Наконец-то я вижу, как в цветах формируются лица, и успешно намереваюсь, чтобы глаза на этих лицах открывались и закрывались.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>This is so mesmerising that it produces fruitions, and I have to start over again.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это настолько завораживает, что производит плодоношения, и мне приходится начинать снова.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>This is so mesmerising that it produces fruitions, and I have to start over again.</p>
+</div>
 <p>Это настолько завораживает, что производит плодоношения, и мне приходится начинать снова.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>I want to take form control further, but it is not coming as easily as travelling.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Я хочу развить контроль формы дальше, но он дается не так легко, как путешествия.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>I want to take form control further, but it is not coming as easily as travelling.</p>
+</div>
 <p>Я хочу развить контроль формы дальше, но он дается не так легко, как путешествия.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Most every skill in the world comes with repetition, deepening through concentration.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Почти любой навык в мире приходит через повторение и углубление посредством концентрации.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Most every skill in the world comes with repetition, deepening through concentration.</p>
+</div>
 <p>Почти любой навык в мире приходит через повторение и углубление посредством концентрации.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>That is the nature of the beast.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Такова природа этой вещи.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>That is the nature of the beast.</p>
+</div>
 <p>Такова природа этой вещи.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 When forming dragons on your 2015 fire kasina retreat, did they evolve out of the third jhana?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Когда на своем ретрите по огненной касине в 2015 году ты формировал драконов, они развивались из третьей джханы?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+When forming dragons on your 2015 fire kasina retreat, did they evolve out of the third jhana?</p>
+</div>
 <p>Когда на своем ретрите по огненной касине в 2015 году ты формировал драконов, они развивались из третьей джханы?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Were you somehow able to take them up with you to fourth jhana?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Тебе каким-то образом удавалось забрать их с собой в четвертую джхану?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Were you somehow able to take them up with you to fourth jhana?</p>
+</div>
 <p>Тебе каким-то образом удавалось забрать их с собой в четвертую джхану?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Definitely this was happening at the level of fourth jhana.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Определенно это происходило на уровне четвертой джханы.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Definitely this was happening at the level of fourth jhana.</p>
+</div>
 <p>Определенно это происходило на уровне четвертой джханы.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>They became alive, would breathe fire, and were extraordinarily detailed beyond what I could have created or drawn myself, and I would obtain fruitions from them.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Они становились живыми, дышали огнем и были чрезвычайно детализированными сверх того, что я мог бы сам создать или нарисовать, и я получал от них плодоношения.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>They became alive, would breathe fire, and were extraordinarily detailed beyond what I could have created or drawn myself, and I would obtain fruitions from them.</p>
+</div>
 <p>Они становились живыми, дышали огнем и были чрезвычайно детализированными сверх того, что я мог бы сам создать или нарисовать, и я получал от них плодоношения.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Colour control was suddenly followed by image control.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>За контролем цвета внезапно последовал контроль образов.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Colour control was suddenly followed by image control.</p>
+</div>
 <p>За контролем цвета внезапно последовал контроль образов.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Once the meditator has become proficient with basic technique there are two options for practice � either refining the powers that come naturally, or rolling up sleeves to bear down on that which is more difficult to attain.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Как только медитатор овладел базовой техникой, есть два варианта практики: либо оттачивать способности, которые возникают естественно, либо засучить рукава и взяться за то, чего труднее достичь.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Once the meditator has become proficient with basic technique there are two options for practice � either refining the powers that come naturally, or rolling up sleeves to bear down on that which is more difficult to attain.</p>
+</div>
 <p>Как только медитатор овладел базовой техникой, есть два варианта практики: либо оттачивать способности, которые возникают естественно, либо засучить рукава и взяться за то, чего труднее достичь.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Travelling came so naturally in my sits it would be challenging to figure out ways to teach someone else how to do it.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Путешествия возникали в моих сидениях настолько естественно, что было бы трудно понять, как научить этому кого-то другого.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Travelling came so naturally in my sits it would be challenging to figure out ways to teach someone else how to do it.</p>
+</div>
 <p>Путешествия возникали в моих сидениях настолько естественно, что было бы трудно понять, как научить этому кого-то другого.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The refinement for me, with regards to travel, was specifically learning how to establish ideal conditions to consistently enter into travel mode and experiment with setting intentions regarding the travels.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Уточнение для меня в отношении путешествий заключалось именно в том, чтобы научиться создавать идеальные условия для стабильного входа в режим путешествия и экспериментировать с задаванием намерений относительно путешествий.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The refinement for me, with regards to travel, was specifically learning how to establish ideal conditions to consistently enter into travel mode and experiment with setting intentions regarding the travels.</p>
+</div>
 <p>Уточнение для меня в отношении путешествий заключалось именно в том, чтобы научиться создавать идеальные условия для стабильного входа в режим путешествия и экспериментировать с задаванием намерений относительно путешествий.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The control of 3D forms was much more challenging and greatly benefited from a patient, creative and light approach.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Контроль трехмерных форм был гораздо сложнее и сильно выигрывал от терпеливого, творческого и легкого подхода.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The control of 3D forms was much more challenging and greatly benefited from a patient, creative and light approach.</p>
+</div>
 <p>Контроль трехмерных форм был гораздо сложнее и сильно выигрывал от терпеливого, творческого и легкого подхода.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Again, being in nature had its benefits.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>И снова пребывание на природе имело свои преимущества.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Again, being in nature had its benefits.</p>
+</div>
 <p>И снова пребывание на природе имело свои преимущества.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>I sometimes used my time in the kayak, paddling past shorelines under over-hanging trees, to imagine being in a 3D dreamscape.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Иногда я использовала время в каяке, проплывая вдоль берегов под нависающими деревьями, чтобы воображать себя в трехмерном сновидческом ландшафте.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>I sometimes used my time in the kayak, paddling past shorelines under over-hanging trees, to imagine being in a 3D dreamscape.</p>
+</div>
 <p>Иногда я использовала время в каяке, проплывая вдоль берегов под нависающими деревьями, чтобы воображать себя в трехмерном сновидческом ландшафте.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>These experiential suggestions transferred into forms, such as mushrooms, and then evergreens arising from the misty colours in my sits.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Эти переживательные подсказки переносились в формы, такие как грибы, а затем вечнозеленые деревья, возникавшие из туманных цветов в моих сидениях.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>These experiential suggestions transferred into forms, such as mushrooms, and then evergreens arising from the misty colours in my sits.</p>
+</div>
 <p>Эти переживательные подсказки переносились в формы, такие как грибы, а затем вечнозеленые деревья, возникавшие из туманных цветов в моих сидениях.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>With effort, I was eventually able to intend to see faces in the trunks of the trees and to form arms and legs from the cylindrical shapes of the trees.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>С усилием я в итоге смогла намереваться увидеть лица в стволах деревьев и формировать руки и ноги из цилиндрических форм деревьев.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>With effort, I was eventually able to intend to see faces in the trunks of the trees and to form arms and legs from the cylindrical shapes of the trees.</p>
+</div>
 <p>С усилием я в итоге смогла намереваться увидеть лица в стволах деревьев и формировать руки и ноги из цилиндрических форм деревьев.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Given more time, those body parts perhaps could have been nudged into those of a Medicine Buddha.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>При большем количестве времени эти части тела, возможно, можно было бы подтолкнуть к тому, чтобы они стали частями тела Будды Медицины.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Given more time, those body parts perhaps could have been nudged into those of a Medicine Buddha.</p>
+</div>
 <p>При большем количестве времени эти части тела, возможно, можно было бы подтолкнуть к тому, чтобы они стали частями тела Будды Медицины.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>On any retreat it is likely to be a win-win situation if the decision is taken to develop both the naturally arising as well as the more hard-won abilities.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>На любом ретрите, вероятно, будет выигрышной ситуацией решение развивать как естественно возникающие, так и более трудно добытые способности.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>On any retreat it is likely to be a win-win situation if the decision is taken to develop both the naturally arising as well as the more hard-won abilities.</p>
+</div>
 <p>На любом ретрите, вероятно, будет выигрышной ситуацией решение развивать как естественно возникающие, так и более трудно добытые способности.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Equanimity as Object]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Равностность как объект]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Equanimity as Object]</p>
+</div>
 <p>[Равностность как объект]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 After many fruitions lately, I am in a deep, quiet state of equanimity, the most quiet, calm, neutral state I have ever experienced.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>После множества недавних плодоношений я нахожусь в глубоком, тихом состоянии равностности, самом тихом, спокойном и нейтральном состоянии, которое я когда-либо переживала.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+After many fruitions lately, I am in a deep, quiet state of equanimity, the most quiet, calm, neutral state I have ever experienced.</p>
+</div>
 <p>После множества недавних плодоношений я нахожусь в глубоком, тихом состоянии равностности, самом тихом, спокойном и нейтральном состоянии, которое я когда-либо переживала.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>During this time, both fruitions and the desire to set intentions drop away, and yet this state is immensely restorative.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В это время и плодоношения, и желание задавать намерения отпадают, и все же это состояние чрезвычайно восстанавливающее.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>During this time, both fruitions and the desire to set intentions drop away, and yet this state is immensely restorative.</p>
+</div>
 <p>В это время и плодоношения, и желание задавать намерения отпадают, и все же это состояние чрезвычайно восстанавливающее.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Is this common?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это распространено?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Is this common?</p>
+</div>
 <p>Это распространено?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 You are likely taking equanimity itself as object, which is prone to perpetuating itself due to those same peaceful, neutral qualities.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Вероятно, ты берешь саму равностность как объект, а она склонна поддерживать сама себя благодаря тем же мирным, нейтральным качествам.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+You are likely taking equanimity itself as object, which is prone to perpetuating itself due to those same peaceful, neutral qualities.</p>
+</div>
 <p>Вероятно, ты берешь саму равностность как объект, а она склонна поддерживать сама себя благодаря тем же мирным, нейтральным качествам.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In equanimity, sometimes the insight and the powers can become lost in subtle dullness.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В равностности прозрение и способности иногда могут теряться в тонкой притупленности.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In equanimity, sometimes the insight and the powers can become lost in subtle dullness.</p>
+</div>
 <p>В равностности прозрение и способности иногда могут теряться в тонкой притупленности.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>That is the paradox of equanimity: it is a state in which you can do almost anything, yet a state in which you do not want to do much except relax.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В этом парадокс равностности: это состояние, в котором ты можешь делать почти что угодно, и при этом состояние, в котором не хочется делать многого, кроме как расслабляться.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>That is the paradox of equanimity: it is a state in which you can do almost anything, yet a state in which you do not want to do much except relax.</p>
+</div>
 <p>В этом парадокс равностности: это состояние, в котором ты можешь делать почти что угодно, и при этом состояние, в котором не хочется делать многого, кроме как расслабляться.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[After Review Comes Progress]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[После обзора приходит прогресс]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[After Review Comes Progress]</p>
+</div>
 <p>[После обзора приходит прогресс]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Fruitions are coming so easily on retreat; I am wondering what I can expect with fruitions in daily living?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>На ретрите плодоношения приходят так легко; мне интересно, чего я могу ожидать от плодоношений в повседневной жизни?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Fruitions are coming so easily on retreat; I am wondering what I can expect with fruitions in daily living?</p>
+</div>
 <p>На ретрите плодоношения приходят так легко; мне интересно, чего я могу ожидать от плодоношений в повседневной жизни?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Unpredictable.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Непредсказуемо.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Unpredictable.</p>
+</div>
 <p>Непредсказуемо.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Overall, a new level of mastery with fruitions is likely to remain but will fall away in the short term.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В целом новый уровень мастерства с плодоношениями, вероятно, останется, но в краткосрочной перспективе ослабнет.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Overall, a new level of mastery with fruitions is likely to remain but will fall away in the short term.</p>
+</div>
 <p>В целом новый уровень мастерства с плодоношениями, вероятно, останется, но в краткосрочной перспективе ослабнет.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Your concentration is very likely to drop.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Твоя концентрация, скорее всего, снизится.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Your concentration is very likely to drop.</p>
+</div>
 <p>Твоя концентрация, скорее всего, снизится.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>From a big cycle perspective, after a strong review phase new progress territory generally shows up, which is less conducive to fruitions.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>С точки зрения большого цикла, после сильной фазы обзора обычно появляется новая территория прогресса, которая менее способствует плодоношениям.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>From a big cycle perspective, after a strong review phase new progress territory generally shows up, which is less conducive to fruitions.</p>
+</div>
 <p>С точки зрения большого цикла, после сильной фазы обзора обычно появляется новая территория прогресса, которая менее способствует плодоношениям.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>You may suddenly feel your mind is a mess.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Ты можешь внезапно почувствовать, что твой ум в беспорядке.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>You may suddenly feel your mind is a mess.</p>
+</div>
 <p>Ты можешь внезапно почувствовать, что твой ум в беспорядке.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>New insight stages are likely to arise, with thoughts splitting off and bodily tension.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Скорее всего, возникнут новые стадии прозрения, с отделением мыслей и телесным напряжением.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>New insight stages are likely to arise, with thoughts splitting off and bodily tension.</p>
+</div>
 <p>Скорее всего, возникнут новые стадии прозрения, с отделением мыслей и телесным напряжением.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Typically this seems to a practitioner like regression, but is actually progress.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Обычно практикующему это кажется регрессом, но на самом деле это прогресс.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Typically this seems to a practitioner like regression, but is actually progress.</p>
+</div>
 <p>Обычно практикующему это кажется регрессом, но на самом деле это прогресс.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>At this point, we feel as if we do not know what we are doing.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В этот момент нам кажется, будто мы не знаем, что делаем.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>At this point, we feel as if we do not know what we are doing.</p>
+</div>
 <p>В этот момент нам кажется, будто мы не знаем, что делаем.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>We feel less awake.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Мы чувствуем себя менее пробужденными.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>We feel less awake.</p>
+</div>
 <p>Мы чувствуем себя менее пробужденными.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>But that is all normal in a new progress cycle.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Но все это нормально в новом цикле прогресса.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>But that is all normal in a new progress cycle.</p>
+</div>
 <p>Но все это нормально в новом цикле прогресса.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>If satisfied with your mastery of your current plateau, and if your daily life can reasonably handle it, you can resolve for the next insight cycle or next layer of mind to arise, so you can re-apply the same skills and techniques to a deeper stratum of consciousness.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Если ты удовлетворена своим мастерством на текущем плато, и если твоя повседневная жизнь может разумно это выдержать, ты можешь принять решение, чтобы возник следующий цикл прозрения или следующий слой ума, чтобы ты могла снова применить те же навыки и техники к более глубокому пласту сознания.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>If satisfied with your mastery of your current plateau, and if your daily life can reasonably handle it, you can resolve for the next insight cycle or next layer of mind to arise, so you can re-apply the same skills and techniques to a deeper stratum of consciousness.</p>
+</div>
 <p>Если ты удовлетворена своим мастерством на текущем плато, и если твоя повседневная жизнь может разумно это выдержать, ты можешь принять решение, чтобы возник следующий цикл прозрения или следующий слой ума, чтобы ты могла снова применить те же навыки и техники к более глубокому пласту сознания.</p>
 </blockquote>
 
@@ -263,12 +648,20 @@ Unpredictable.</p>
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
             x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
         ></button>
-        <button
-            class="mode-toggle"
-            type="button"
-            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
-            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
-        ></button>
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="original" x-model="contentMode">
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
     </div>
 </nav>
 

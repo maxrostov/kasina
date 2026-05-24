@@ -8,6 +8,38 @@
   <link rel="stylesheet" href="article.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    document.addEventListener("click", (event) => {
+      const mode = document.body.dataset.contentMode;
+      const quote = event.target.closest("main > blockquote[data-original-toggle]");
+      const original = event.target.closest("main > .original-block[data-translation-toggle]");
+
+      if (
+        (mode !== "translation" || !quote) &&
+        (mode !== "original" || !original)
+      ) {
+        return;
+      }
+
+      if (event.target.closest("a, button, input, textarea, select, summary")) {
+        return;
+      }
+
+      if (mode === "translation") {
+        const expanded = quote.classList.toggle("original-visible");
+        quote
+          .querySelector(".translation-original")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+
+      if (mode === "original") {
+        const expanded = original.classList.toggle("translation-visible");
+        original
+          .querySelector(".original-translation")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+    });
+  </script>
 </head>
 <body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
   <div class="layout">
@@ -19,72 +51,204 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
+<div class="original-block" data-translation-toggle>
 <h1>Day Sixteen</h1>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>День шестнадцатый</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<h1>Day Sixteen</h1>
+</div>
 <p>День шестнадцатый</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Arc of Development ~ Exit Out of Fruition]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Дуга развития ~ Выход из плодоношения]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Arc of Development ~ Exit Out of Fruition]</p>
+</div>
 <p>[Дуга развития ~ Выход из плодоношения]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Arc of Development]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Дуга развития]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Arc of Development]</p>
+</div>
 <p>[Дуга развития]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 It is helpful to consider the overall arc of development of the retreat.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Полезно рассматривать общую дугу развития ретрита.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+It is helpful to consider the overall arc of development of the retreat.</p>
+</div>
 <p>Полезно рассматривать общую дугу развития ретрита.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Each sit might not reflect it, but generally you are now in the territory of the fourth jhana, the territory of equanimity.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Отдельное сидение может этого не отражать, но в целом ты сейчас на территории четвертой джханы, территории равностности.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Each sit might not reflect it, but generally you are now in the territory of the fourth jhana, the territory of equanimity.</p>
+</div>
 <p>Отдельное сидение может этого не отражать, но в целом ты сейчас на территории четвертой джханы, территории равностности.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 During this phase of the retreat the effortlessness of many of the current sits allowed me to experience a mind that was supremely concentrated without the effort of trying to concentrate.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Во время этой фазы ретрита непринужденность многих текущих сидений позволила мне пережить ум, который был предельно сосредоточен без усилия попытки сосредоточиться.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+During this phase of the retreat the effortlessness of many of the current sits allowed me to experience a mind that was supremely concentrated without the effort of trying to concentrate.</p>
+</div>
 <p>Во время этой фазы ретрита непринужденность многих текущих сидений позволила мне пережить ум, который был предельно сосредоточен без усилия попытки сосредоточиться.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It was fascinating that it took so many hours of practice to end up feeling what could only be described as ordinary and natural.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Было удивительно, что потребовалось столько часов практики, чтобы в итоге почувствовать то, что можно описать только как обычное и естественное.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It was fascinating that it took so many hours of practice to end up feeling what could only be described as ordinary and natural.</p>
+</div>
 <p>Было удивительно, что потребовалось столько часов практики, чтобы в итоге почувствовать то, что можно описать только как обычное и естественное.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Exit Out of Fruition]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Выход из плодоношения]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Exit Out of Fruition]</p>
+</div>
 <p>[Выход из плодоношения]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 When I come out of a fruition, I am briefly disoriented.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Когда я выхожу из плодоношения, я кратко дезориентирована.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+When I come out of a fruition, I am briefly disoriented.</p>
+</div>
 <p>Когда я выхожу из плодоношения, я кратко дезориентирована.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The visual sense door is what I initially become aware of.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Дверь зрительного чувства - это то, что я сначала начинаю осознавать.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The visual sense door is what I initially become aware of.</p>
+</div>
 <p>Дверь зрительного чувства - это то, что я сначала начинаю осознавать.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 The coming back on-line is actually �orientation�.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Возвращение «в сеть» на самом деле является «ориентацией».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+The coming back on-line is actually �orientation�.</p>
+</div>
 <p>Возвращение «в сеть» на самом деле является «ориентацией».</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Quickly, all the parts we think are us reassemble.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Быстро все части, которые мы считаем собой, собираются заново.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Quickly, all the parts we think are us reassemble.</p>
+</div>
 <p>Быстро все части, которые мы считаем собой, собираются заново.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Rather than a specific sense door that comes back first, is a perceptual configuring of a �this-over-here� and a �that-over-there�.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это не конкретная дверь чувства, которая возвращается первой, а перцептивная настройка «этого-здесь» и «того-там».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Rather than a specific sense door that comes back first, is a perceptual configuring of a �this-over-here� and a �that-over-there�.</p>
+</div>
 <p>Это не конкретная дверь чувства, которая возвращается первой, а перцептивная настройка «этого-здесь» и «того-там».</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Eventually, in your practice, you should try to notice exactly how that happens and how the illusion of this side and that side split off and what goes on each side.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В конце концов в своей практике тебе стоит попытаться заметить, как именно это происходит, как иллюзия этой стороны и той стороны разделяется и что оказывается на каждой стороне.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Eventually, in your practice, you should try to notice exactly how that happens and how the illusion of this side and that side split off and what goes on each side.</p>
+</div>
 <p>В конце концов в своей практике тебе стоит попытаться заметить, как именно это происходит, как иллюзия этой стороны и той стороны разделяется и что оказывается на каждой стороне.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>This is subtle but very helpful to see, as in the moment we come out of fruition, we get an opportunity to directly observe exactly how the illusion of the split of duality seems to reconstitute itself.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это тонко, но очень полезно увидеть, поскольку в момент выхода из плодоношения мы получаем возможность прямо наблюдать, как именно иллюзия раскола двойственности, по-видимому, восстанавливает себя.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>This is subtle but very helpful to see, as in the moment we come out of fruition, we get an opportunity to directly observe exactly how the illusion of the split of duality seems to reconstitute itself.</p>
+</div>
 <p>Это тонко, но очень полезно увидеть, поскольку в момент выхода из плодоношения мы получаем возможность прямо наблюдать, как именно иллюзия раскола двойственности, по-видимому, восстанавливает себя.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>At this point in the retreat, it is likely better to focus on noticing the doors more clearly.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>На этом этапе ретрита, вероятно, лучше сосредоточиться на более ясном замечании дверей.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>At this point in the retreat, it is likely better to focus on noticing the doors more clearly.</p>
+</div>
 <p>На этом этапе ретрита, вероятно, лучше сосредоточиться на более ясном замечании дверей.</p>
 </blockquote>
 
@@ -150,12 +314,20 @@ The coming back on-line is actually �orientation�.</p>
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
             x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
         ></button>
-        <button
-            class="mode-toggle"
-            type="button"
-            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
-            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
-        ></button>
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="original" x-model="contentMode">
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
     </div>
 </nav>
 

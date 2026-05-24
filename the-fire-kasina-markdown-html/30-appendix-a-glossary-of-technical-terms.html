@@ -8,6 +8,38 @@
   <link rel="stylesheet" href="article.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    document.addEventListener("click", (event) => {
+      const mode = document.body.dataset.contentMode;
+      const quote = event.target.closest("main > blockquote[data-original-toggle]");
+      const original = event.target.closest("main > .original-block[data-translation-toggle]");
+
+      if (
+        (mode !== "translation" || !quote) &&
+        (mode !== "original" || !original)
+      ) {
+        return;
+      }
+
+      if (event.target.closest("a, button, input, textarea, select, summary")) {
+        return;
+      }
+
+      if (mode === "translation") {
+        const expanded = quote.classList.toggle("original-visible");
+        quote
+          .querySelector(".translation-original")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+
+      if (mode === "original") {
+        const expanded = original.classList.toggle("translation-visible");
+        original
+          .querySelector(".original-translation")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+    });
+  </script>
 </head>
 <body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
   <div class="layout">
@@ -19,352 +51,1048 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
+<div class="original-block" data-translation-toggle>
 <h1>Appendix A: Glossary of Technical Terms</h1>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Приложение A: Глоссарий технических терминов</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<h1>Appendix A: Glossary of Technical Terms</h1>
+</div>
 <p>Приложение A: Глоссарий технических терминов</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Glossary of Technical Terms]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Глоссарий технических терминов]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Glossary of Technical Terms]</p>
+</div>
 <p>[Глоссарий технических терминов]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Abhidhamma]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Абхидхамма]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Abhidhamma]</p>
+</div>
 <p>[Абхидхамма]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>A part of the Pali Canon that involves analysis of the elements of existence, states of mind, and a lot of other analytical meditation theory.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Часть Палийского канона, включающая анализ элементов существования, состояний ума и множества другой аналитической медитативной теории.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>A part of the Pali Canon that involves analysis of the elements of existence, states of mind, and a lot of other analytical meditation theory.</p>
+</div>
 <p>Часть Палийского канона, включающая анализ элементов существования, состояний ума и множества другой аналитической медитативной теории.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Anagami]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Анагами]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Anagami]</p>
+</div>
 <p>[Анагами]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>According to Theravada Buddhism, there are four stages of awakening leading to full enlightenment.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Согласно буддизму Тхеравады, существуют четыре стадии пробуждения, ведущие к полному просветлению.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>According to Theravada Buddhism, there are four stages of awakening leading to full enlightenment.</p>
+</div>
 <p>Согласно буддизму Тхеравады, существуют четыре стадии пробуждения, ведущие к полному просветлению.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Someone who has completed the third of these stages is known as an anagami.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Тот, кто завершил третью из этих стадий, известен как анагами.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Someone who has completed the third of these stages is known as an anagami.</p>
+</div>
 <p>Тот, кто завершил третью из этих стадий, известен как анагами.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Arahat]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Арахат]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Arahat]</p>
+</div>
 <p>[Арахат]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>One who has progressed through all four stages of awakening and thereby is understood to have taken penetrating insight into the nature of existence to the highest level of experiential understanding possible for a living being.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Тот, кто прошел через все четыре стадии пробуждения и тем самым, как считается, довел проникающее прозрение в природу существования до наивысшего уровня переживательного понимания, возможного для живого существа.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>One who has progressed through all four stages of awakening and thereby is understood to have taken penetrating insight into the nature of existence to the highest level of experiential understanding possible for a living being.</p>
+</div>
 <p>Тот, кто прошел через все четыре стадии пробуждения и тем самым, как считается, довел проникающее прозрение в природу существования до наивысшего уровня переживательного понимания, возможного для живого существа.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Another commonly used term for this attainment is �full awakening�.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Другой распространенный термин для этого достижения - «полное пробуждение».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Another commonly used term for this attainment is �full awakening�.</p>
+</div>
 <p>Другой распространенный термин для этого достижения - «полное пробуждение».</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Dark night]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Темная ночь]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Dark night]</p>
+</div>
 <p>[Темная ночь]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In vipassana parlance this term refers to the often physically and mentally uncomfortable but necessary insight knowledges one experiences as part of clearly seeing through the illusion of self.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В языке випассаны этот термин относится к часто физически и ментально неприятным, но необходимым знаниям прозрения, которые человек переживает как часть ясного прозрения сквозь иллюзию самости.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In vipassana parlance this term refers to the often physically and mentally uncomfortable but necessary insight knowledges one experiences as part of clearly seeing through the illusion of self.</p>
+</div>
 <p>В языке випассаны этот термин относится к часто физически и ментально неприятным, но необходимым знаниям прозрения, которые человек переживает как часть ясного прозрения сквозь иллюзию самости.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Mild to strong emotions of anxiety, depression, hopelessness and a sense of meaninglessness can arise during the dark night given that long-held beliefs in a permanent, separate self must be adequately pierced with each path of awakening.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Во время темной ночи могут возникать эмоции тревоги, депрессии, безнадежности и чувство бессмысленности от легких до сильных, поскольку давно удерживаемые убеждения в постоянной, отдельной самости должны быть должным образом пронзены на каждом пути пробуждения.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Mild to strong emotions of anxiety, depression, hopelessness and a sense of meaninglessness can arise during the dark night given that long-held beliefs in a permanent, separate self must be adequately pierced with each path of awakening.</p>
+</div>
 <p>Во время темной ночи могут возникать эмоции тревоги, депрессии, безнадежности и чувство бессмысленности от легких до сильных, поскольку давно удерживаемые убеждения в постоянной, отдельной самости должны быть должным образом пронзены на каждом пути пробуждения.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Although not always experienced as separarely delineated states, the classical dark night insight knowledges or �anas are as follows: dissolution, fear, misery, disgust, desire for deliverance and re-observation.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Хотя они не всегда переживаются как отдельно очерченные состояния, классические знания прозрения темной ночи, или ньяны, таковы: растворение, страх, страдание, отвращение, желание освобождения и повторное наблюдение.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Although not always experienced as separarely delineated states, the classical dark night insight knowledges or �anas are as follows: dissolution, fear, misery, disgust, desire for deliverance and re-observation.</p>
+</div>
 <p>Хотя они не всегда переживаются как отдельно очерченные состояния, классические знания прозрения темной ночи, или ньяны, таковы: растворение, страх, страдание, отвращение, желание освобождения и повторное наблюдение.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Steady vipassana practice gives best odds for the eventual breakthrough beyond the dark night into the next insight knowledge, known as �equanimity� (see below).</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Устойчивая практика випассаны дает наилучшие шансы на окончательный прорыв за пределы темной ночи к следующему знанию прозрения, известному как «равностность» (см. ниже).</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Steady vipassana practice gives best odds for the eventual breakthrough beyond the dark night into the next insight knowledge, known as �equanimity� (see below).</p>
+</div>
 <p>Устойчивая практика випассаны дает наилучшие шансы на окончательный прорыв за пределы темной ночи к следующему знанию прозрения, известному как «равностность» (см. ниже).</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Dharmakaya]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Дхармакая]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Dharmakaya]</p>
+</div>
 <p>[Дхармакая]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>One of the three kayas, which in Sanskrit refers to �that which is accumulated� (see under sambhogakaya, below, for a complete description of all three kayas).</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Одна из трех кай, что на санскрите означает «то, что накоплено» (полное описание всех трех кай см. ниже в разделе самбхогакая).</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>One of the three kayas, which in Sanskrit refers to �that which is accumulated� (see under sambhogakaya, below, for a complete description of all three kayas).</p>
+</div>
 <p>Одна из трех кай, что на санскрите означает «то, что накоплено» (полное описание всех трех кай см. ниже в разделе самбхогакая).</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Dissolution]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Растворение]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Dissolution]</p>
+</div>
 <p>[Растворение]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>A standard stage of practice during which meditation can be vague, spacious, with low energy, poor concentration, difficulty translating intentions into actions, and a sense that things are fading or falling away.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Стандартная стадия практики, во время которой медитация может быть неясной, просторной, с низкой энергией, слабой концентрацией, трудностью перевода намерений в действия и ощущением, что вещи блекнут или отпадают.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>A standard stage of practice during which meditation can be vague, spacious, with low energy, poor concentration, difficulty translating intentions into actions, and a sense that things are fading or falling away.</p>
+</div>
 <p>Стандартная стадия практики, во время которой медитация может быть неясной, просторной, с низкой энергией, слабой концентрацией, трудностью перевода намерений в действия и ощущением, что вещи блекнут или отпадают.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Dukkha �anas]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Дуккха-ньяны]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Dukkha �anas]</p>
+</div>
 <p>[Дуккха-ньяны]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>These are synonymous with the dark night insight knowledges.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это синоним знаний прозрения темной ночи.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>These are synonymous with the dark night insight knowledges.</p>
+</div>
 <p>Это синоним знаний прозрения темной ночи.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>See �dark night�, above.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>См. «темная ночь» выше.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>See �dark night�, above.</p>
+</div>
 <p>См. «темная ночь» выше.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Dzogchen]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Дзогчен]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Dzogchen]</p>
+</div>
 <p>[Дзогчен]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Literally �Great Perfection�, a Tibetan practice tradition that involves recognising and resting in the natural awakened state of mind.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Буквально «Великое Совершенство», тибетская традиция практики, включающая распознавание естественного пробужденного состояния ума и пребывание в нем.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Literally �Great Perfection�, a Tibetan practice tradition that involves recognising and resting in the natural awakened state of mind.</p>
+</div>
 <p>Буквально «Великое Совершенство», тибетская традиция практики, включающая распознавание естественного пробужденного состояния ума и пребывание в нем.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Entranceways]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Входы]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Entranceways]</p>
+</div>
 <p>[Входы]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>An alternative term for �three doors� (see below).</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Альтернативный термин для «трех дверей» (см. ниже).</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>An alternative term for �three doors� (see below).</p>
+</div>
 <p>Альтернативный термин для «трех дверей» (см. ниже).</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Equanimity �ana]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Ньяна равностности]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Equanimity �ana]</p>
+</div>
 <p>[Ньяна равностности]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The eleventh standard stage in the development of insight.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Одиннадцатая стандартная стадия в развитии прозрения.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The eleventh standard stage in the development of insight.</p>
+</div>
 <p>Одиннадцатая стандартная стадия в развитии прозрения.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It generally involves spaciousness, ease, a sense of well-being and equanimity.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Обычно она включает просторность, легкость, чувство благополучия и равностность.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It generally involves spaciousness, ease, a sense of well-being and equanimity.</p>
+</div>
 <p>Обычно она включает просторность, легкость, чувство благополучия и равностность.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It follows the dark night stages.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Она следует за стадиями темной ночи.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It follows the dark night stages.</p>
+</div>
 <p>Она следует за стадиями темной ночи.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Fear �ana]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Ньяна страха]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Fear �ana]</p>
+</div>
 <p>[Ньяна страха]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>A standard insight meditation stage that follows dissolution, typically involving emotional fear and often numerous creepy sensations, including scary images.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Стандартная стадия медитации прозрения, следующая за растворением, обычно включающая эмоциональный страх и часто многочисленные жуткие ощущения, включая пугающие образы.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>A standard insight meditation stage that follows dissolution, typically involving emotional fear and often numerous creepy sensations, including scary images.</p>
+</div>
 <p>Стандартная стадия медитации прозрения, следующая за растворением, обычно включающая эмоциональный страх и часто многочисленные жуткие ощущения, включая пугающие образы.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Five hindrances]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Пять помех]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Five hindrances]</p>
+</div>
 <p>[Пять помех]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The five hindrances are �sensual desire�, �ill-will�, �restlessness / worry�, �sloth / torpor�, and �doubt�.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Пять помех - это «чувственное желание», «недоброжелательность», «беспокойство / тревога», «лень / оцепенение» и «сомнение».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The five hindrances are �sensual desire�, �ill-will�, �restlessness / worry�, �sloth / torpor�, and �doubt�.</p>
+</div>
 <p>Пять помех - это «чувственное желание», «недоброжелательность», «беспокойство / тревога», «лень / оцепенение» и «сомнение».</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>These are mind-states that may hinder meditation.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это состояния ума, которые могут препятствовать медитации.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>These are mind-states that may hinder meditation.</p>
+</div>
 <p>Это состояния ума, которые могут препятствовать медитации.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Formless realms]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Бесформенные сферы]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Formless realms]</p>
+</div>
 <p>[Бесформенные сферы]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Traditional Buddhist concentration or jhanic attainments, specifically �boundless space�, �boundless consciousness�, �nothingness� and �neither-perception-nor-yet-non-perception�.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Традиционные буддийские концентрационные или джханические достижения, а именно «безграничное пространство», «безграничное сознание», «ничто» и «ни-восприятие-ни-невосприятие».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Traditional Buddhist concentration or jhanic attainments, specifically �boundless space�, �boundless consciousness�, �nothingness� and �neither-perception-nor-yet-non-perception�.</p>
+</div>
 <p>Традиционные буддийские концентрационные или джханические достижения, а именно «безграничное пространство», «безграничное сознание», «ничто» и «ни-восприятие-ни-невосприятие».</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Fruition]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Плодоношение]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Fruition]</p>
+</div>
 <p>[Плодоношение]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Fruition is a traditional term found in the Abhidhamma and the commentaries.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Плодоношение - традиционный термин, встречающийся в Абхидхамме и комментариях.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Fruition is a traditional term found in the Abhidhamma and the commentaries.</p>
+</div>
 <p>Плодоношение - традиционный термин, встречающийся в Абхидхамме и комментариях.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It refers to the total vanishing of all sensate reality, including space, time, reference points, and everything.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Он относится к полному исчезновению всей чувственно воспринимаемой реальности, включая пространство, время, точки отсчета и все остальное.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It refers to the total vanishing of all sensate reality, including space, time, reference points, and everything.</p>
+</div>
 <p>Он относится к полному исчезновению всей чувственно воспринимаемой реальности, включая пространство, время, точки отсчета и все остальное.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It is like someone edited out frames of the metaphorical 3D movie that is this life.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это похоже на то, как если бы кто-то вырезал кадры из метафорического трехмерного фильма, которым является эта жизнь.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It is like someone edited out frames of the metaphorical 3D movie that is this life.</p>
+</div>
 <p>Это похоже на то, как если бы кто-то вырезал кадры из метафорического трехмерного фильма, которым является эта жизнь.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>There is nothing in the gap, just a discontinuity.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В промежутке нет ничего, только разрыв.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>There is nothing in the gap, just a discontinuity.</p>
+</div>
 <p>В промежутке нет ничего, только разрыв.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Impermanence door]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Дверь непостоянства]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Impermanence door]</p>
+</div>
 <p>[Дверь непостоянства]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>An entrance into nibbana / nirvana / fruition, which has the most neutral feeling-tone of the �three doors�, consisting of brief, distinct shudders as reality quickly strobes in and out of existence, with a �dat-dat-dat-gone� quality to it.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Вход в ниббану / нирвану / плодоношение, имеющий самый нейтральный тон ощущения из «трех дверей» и состоящий из кратких, отчетливых дрожаний, когда реальность быстро стробирует в существование и из него, с качеством «дат-дат-дат-исчезло».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>An entrance into nibbana / nirvana / fruition, which has the most neutral feeling-tone of the �three doors�, consisting of brief, distinct shudders as reality quickly strobes in and out of existence, with a �dat-dat-dat-gone� quality to it.</p>
+</div>
 <p>Вход в ниббану / нирвану / плодоношение, имеющий самый нейтральный тон ощущения из «трех дверей» и состоящий из кратких, отчетливых дрожаний, когда реальность быстро стробирует в существование и из него, с качеством «дат-дат-дат-исчезло».</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Magickal powers]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Магические способности]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Magickal powers]</p>
+</div>
 <p>[Магические способности]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Typically called siddhis (Sanskrit) or iddhis (Pali), which refer to various �psychic powers� that are traditionally developed in Buddhist practice.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Обычно называются сиддхи (санскрит) или иддхи (пали), что относится к различным «психическим способностям», традиционно развиваемым в буддийской практике.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Typically called siddhis (Sanskrit) or iddhis (Pali), which refer to various �psychic powers� that are traditionally developed in Buddhist practice.</p>
+</div>
 <p>Обычно называются сиддхи (санскрит) или иддхи (пали), что относится к различным «психическим способностям», традиционно развиваемым в буддийской практике.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>One of these is known as the �divine eye�, which allows unusual visual perception.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Одна из них известна как «божественный глаз», позволяющий необычное зрительное восприятие.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>One of these is known as the �divine eye�, which allows unusual visual perception.</p>
+</div>
 <p>Одна из них известна как «божественный глаз», позволяющий необычное зрительное восприятие.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Misery �ana]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Ньяна страдания]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Misery �ana]</p>
+</div>
 <p>[Ньяна страдания]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The seventh standard stage in the development of insight.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Седьмая стандартная стадия в развитии прозрения.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The seventh standard stage in the development of insight.</p>
+</div>
 <p>Седьмая стандартная стадия в развитии прозрения.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It generally involves feelings of sadness, loss and misery.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Обычно она включает чувства печали, утраты и страдания.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It generally involves feelings of sadness, loss and misery.</p>
+</div>
 <p>Обычно она включает чувства печали, утраты и страдания.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[�anas]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Ньяны]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[�anas]</p>
+</div>
 <p>[Ньяны]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>A series of stages or insight knowledges that vipassana meditators experience as they progress towards nibbana.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Серия стадий или знаний прозрения, которые медитаторы випассаны переживают по мере продвижения к ниббане.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>A series of stages or insight knowledges that vipassana meditators experience as they progress towards nibbana.</p>
+</div>
 <p>Серия стадий или знаний прозрения, которые медитаторы випассаны переживают по мере продвижения к ниббане.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Nimitta]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Нимитта]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Nimitta]</p>
+</div>
 <p>[Нимитта]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The nimitta is typically a bright white (or other-coloured) mind-created disk, sphere, or other shape that arises due to strong concentration and becomes the object of attention in some concentration practices.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Нимитта обычно представляет собой ярко-белый (или другого цвета) созданный умом диск, сферу или другую форму, возникающую благодаря сильной концентрации и становящуюся объектом внимания в некоторых практиках концентрации.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The nimitta is typically a bright white (or other-coloured) mind-created disk, sphere, or other shape that arises due to strong concentration and becomes the object of attention in some concentration practices.</p>
+</div>
 <p>Нимитта обычно представляет собой ярко-белый (или другого цвета) созданный умом диск, сферу или другую форму, возникающую благодаря сильной концентрации и становящуюся объектом внимания в некоторых практиках концентрации.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It can also have other sensate qualities, depending on the specific focus of practice.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Она также может иметь другие чувственные качества, в зависимости от конкретного фокуса практики.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It can also have other sensate qualities, depending on the specific focus of practice.</p>
+</div>
 <p>Она также может иметь другие чувственные качества, в зависимости от конкретного фокуса практики.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[No-self door]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Дверь не-я]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[No-self door]</p>
+</div>
 <p>[Дверь не-я]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>An entrance into nibbana / nirvana / fruition in which reality appears to fall towards the observer and vanish, sometimes with a sense of an image, face or intelligence on �that side� falling into and merging with the awareness or consciousness of �this side�, meaning the sense of the observer.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Вход в ниббану / нирвану / плодоношение, в котором реальность, кажется, падает к наблюдателю и исчезает, иногда с ощущением образа, лица или разумности на «той стороне», падающей в осознавание или сознание «этой стороны» и сливающейся с ним, то есть с ощущением наблюдателя.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>An entrance into nibbana / nirvana / fruition in which reality appears to fall towards the observer and vanish, sometimes with a sense of an image, face or intelligence on �that side� falling into and merging with the awareness or consciousness of �this side�, meaning the sense of the observer.</p>
+</div>
 <p>Вход в ниббану / нирвану / плодоношение, в котором реальность, кажется, падает к наблюдателю и исчезает, иногда с ощущением образа, лица или разумности на «той стороне», падающей в осознавание или сознание «этой стороны» и сливающейся с ним, то есть с ощущением наблюдателя.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Out-of-Body Experience (OBE)]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Внетелесный опыт (ВТО)]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Out-of-Body Experience (OBE)]</p>
+</div>
 <p>[Внетелесный опыт (ВТО)]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Also known as �travel�, �astral travelling�, and other names.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Также известен как «путешествие», «астральное путешествие» и под другими названиями.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Also known as �travel�, �astral travelling�, and other names.</p>
+</div>
 <p>Также известен как «путешествие», «астральное путешествие» и под другими названиями.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>A hyper-lucid experience in which it appears we have left our physical body and are now travelling in a different sort of body.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Гипер-ясное переживание, в котором кажется, что мы покинули физическое тело и теперь путешествуем в теле другого рода.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>A hyper-lucid experience in which it appears we have left our physical body and are now travelling in a different sort of body.</p>
+</div>
 <p>Гипер-ясное переживание, в котором кажется, что мы покинули физическое тело и теперь путешествуем в теле другого рода.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Re-observation]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Повторное наблюдение]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Re-observation]</p>
+</div>
 <p>[Повторное наблюдение]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>A standard insight meditation stage, the most challenging and unpleasant of the stages of meditation, both perceptually and emotionally.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Стандартная стадия медитации прозрения, самая сложная и неприятная из стадий медитации как перцептивно, так и эмоционально.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>A standard insight meditation stage, the most challenging and unpleasant of the stages of meditation, both perceptually and emotionally.</p>
+</div>
 <p>Стандартная стадия медитации прозрения, самая сложная и неприятная из стадий медитации как перцептивно, так и эмоционально.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It is the peak of the dark side of the third vipassana jhana, and often a difficult stumbling block for meditators.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это пик темной стороны третьей випассана-джханы и часто трудный камень преткновения для медитаторов.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It is the peak of the dark side of the third vipassana jhana, and often a difficult stumbling block for meditators.</p>
+</div>
 <p>Это пик темной стороны третьей випассана-джханы и часто трудный камень преткновения для медитаторов.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Review phase of a retreat]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Фаза обзора ретрита]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Review phase of a retreat]</p>
+</div>
 <p>[Фаза обзора ретрита]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The phase of a retreat where one has gained a level of awakening and then reviews the benefits and stages of that level of awakening.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Фаза ретрита, в которой человек достиг уровня пробуждения, а затем обозревает преимущества и стадии этого уровня пробуждения.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The phase of a retreat where one has gained a level of awakening and then reviews the benefits and stages of that level of awakening.</p>
+</div>
 <p>Фаза ретрита, в которой человек достиг уровня пробуждения, а затем обозревает преимущества и стадии этого уровня пробуждения.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Rigpa]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Ригпа]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Rigpa]</p>
+</div>
 <p>[Ригпа]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>A subtle Tibetan dzogchen Buddhist term that refers to the most subtle level of untainted, pristine awareness.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Тонкий тибетский буддийский термин дзогчена, относящийся к самому тонкому уровню незапятнанного, первозданного осознавания.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>A subtle Tibetan dzogchen Buddhist term that refers to the most subtle level of untainted, pristine awareness.</p>
+</div>
 <p>Тонкий тибетский буддийский термин дзогчена, относящийся к самому тонкому уровню незапятнанного, первозданного осознавания.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Samatha]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Саматха]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Samatha]</p>
+</div>
 <p>[Саматха]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Samatha meditation is meditation based on concentration (as opposed to �insight meditation� or vipassana), meaning meditation that is designed to produce stable, pleasant states of mind called jhanas.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Медитация саматхи - это медитация, основанная на концентрации (в противоположность «медитации прозрения», или випассане), то есть медитация, предназначенная для создания стабильных, приятных состояний ума, называемых джханами.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Samatha meditation is meditation based on concentration (as opposed to �insight meditation� or vipassana), meaning meditation that is designed to produce stable, pleasant states of mind called jhanas.</p>
+</div>
 <p>Медитация саматхи - это медитация, основанная на концентрации (в противоположность «медитации прозрения», или випассане), то есть медитация, предназначенная для создания стабильных, приятных состояний ума, называемых джханами.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Sambhogakaya]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Самбхогакая]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Sambhogakaya]</p>
+</div>
 <p>[Самбхогакая]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Literally �enjoyment body�, a complex concept related to various aspects of a Buddha, various aspects or planar dimensions of awakened reality, and, in this case, refers loosely to the unusual magickal dimensions, experiences, and perceptions discussed here.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Буквально «тело наслаждения», сложное понятие, связанное с различными аспектами Будды, различными аспектами или планарными измерениями пробужденной реальности, а в данном случае свободно относящееся к необычным магическим измерениям, переживаниям и восприятиям, обсуждаемым здесь.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Literally �enjoyment body�, a complex concept related to various aspects of a Buddha, various aspects or planar dimensions of awakened reality, and, in this case, refers loosely to the unusual magickal dimensions, experiences, and perceptions discussed here.</p>
+</div>
 <p>Буквально «тело наслаждения», сложное понятие, связанное с различными аспектами Будды, различными аспектами или планарными измерениями пробужденной реальности, а в данном случае свободно относящееся к необычным магическим измерениям, переживаниям и восприятиям, обсуждаемым здесь.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>(O, Tibetan scholars, please forgive me!)</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>(О, тибетские ученые, пожалуйста, простите меня!)</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>(O, Tibetan scholars, please forgive me!)</p>
+</div>
 <p>(О, тибетские ученые, пожалуйста, простите меня!)</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>This term is often employed in comparison with two related concepts: nirmanakaya, the ordinary, material manifestation of a fully-awakened being, sometimes used to refer to the whole of the ordinary world viewed through the awakened perspective; and dharmakaya, the all-pervading empty wisdom-mind of a fully-awakened being, sometimes also used to refer to the essential nature of the awakened aspect of manifestation from the awakened perspective.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Этот термин часто используется в сравнении с двумя связанными понятиями: нирманакая, обычное, материальное проявление полностью пробужденного существа, иногда используемое для обозначения всего обычного мира, увиденного через пробужденную перспективу; и дхармакая, всепроникающий пустой ум-мудрость полностью пробужденного существа, иногда также используемый для обозначения сущностной природы пробужденного аспекта проявления с пробужденной перспективы.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>This term is often employed in comparison with two related concepts: nirmanakaya, the ordinary, material manifestation of a fully-awakened being, sometimes used to refer to the whole of the ordinary world viewed through the awakened perspective; and dharmakaya, the all-pervading empty wisdom-mind of a fully-awakened being, sometimes also used to refer to the essential nature of the awakened aspect of manifestation from the awakened perspective.</p>
+</div>
 <p>Этот термин часто используется в сравнении с двумя связанными понятиями: нирманакая, обычное, материальное проявление полностью пробужденного существа, иногда используемое для обозначения всего обычного мира, увиденного через пробужденную перспективу; и дхармакая, всепроникающий пустой ум-мудрость полностью пробужденного существа, иногда также используемый для обозначения сущностной природы пробужденного аспекта проявления с пробужденной перспективы.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Seven factors of awakening]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Семь факторов пробуждения]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Seven factors of awakening]</p>
+</div>
 <p>[Семь факторов пробуждения]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The seven factors of awakening are �mindfulness�, �investigation�, �energy�, �rapture�, �tranquillity�, �concentration� and �equanimity�, and, when properly cultivated and balanced, produce the stages of insight and awakening.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Семь факторов пробуждения - это «осознанность», «исследование», «энергия», «восторг», «спокойствие», «концентрация» и «равностность», и при правильном развитии и балансировке они производят стадии прозрения и пробуждения.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The seven factors of awakening are �mindfulness�, �investigation�, �energy�, �rapture�, �tranquillity�, �concentration� and �equanimity�, and, when properly cultivated and balanced, produce the stages of insight and awakening.</p>
+</div>
 <p>Семь факторов пробуждения - это «осознанность», «исследование», «энергия», «восторг», «спокойствие», «концентрация» и «равностность», и при правильном развитии и балансировке они производят стадии прозрения и пробуждения.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Suffering door]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Дверь страдания]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Suffering door]</p>
+</div>
 <p>[Дверь страдания]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>An entrance into nibbana / nirvana / fruition that has a creepy or violating aspect in which reality can feel as if it is being ripped away just prior to the fruition.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Вход в ниббану / нирвану / плодоношение, имеющий жуткий или нарушающий аспект, при котором реальность может ощущаться так, будто ее отрывают прямо перед плодоношением.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>An entrance into nibbana / nirvana / fruition that has a creepy or violating aspect in which reality can feel as if it is being ripped away just prior to the fruition.</p>
+</div>
 <p>Вход в ниббану / нирвану / плодоношение, имеющий жуткий или нарушающий аспект, при котором реальность может ощущаться так, будто ее отрывают прямо перед плодоношением.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Three characteristics]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Три характеристики]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Three characteristics]</p>
+</div>
 <p>[Три характеристики]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The three marks of experiential reality, contemplation and direct sensate comprehension of which leads to insight into the true nature of experience, namely �impermanence�, �suffering�, and �not-self�.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Три признака переживаемой реальности, созерцание и прямое чувственное постижение которых ведет к прозрению в истинную природу опыта, а именно «непостоянство», «страдание» и «не-я».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The three marks of experiential reality, contemplation and direct sensate comprehension of which leads to insight into the true nature of experience, namely �impermanence�, �suffering�, and �not-self�.</p>
+</div>
 <p>Три признака переживаемой реальности, созерцание и прямое чувственное постижение которых ведет к прозрению в истинную природу опыта, а именно «непостоянство», «страдание» и «не-я».</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Three doors]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Три двери]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Three doors]</p>
+</div>
 <p>[Три двери]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Corresponding to the �three characteristics� (see above), a meditator will pass through one of these prior to a fruition, either the �impermanence door�, the �suffering door� or the �no-self door�.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В соответствии с «тремя характеристиками» (см. выше) медитатор проходит через одну из них перед плодоношением: либо «дверь непостоянства», либо «дверь страдания», либо «дверь не-я».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Corresponding to the �three characteristics� (see above), a meditator will pass through one of these prior to a fruition, either the �impermanence door�, the �suffering door� or the �no-self door�.</p>
+</div>
 <p>В соответствии с «тремя характеристиками» (см. выше) медитатор проходит через одну из них перед плодоношением: либо «дверь непостоянства», либо «дверь страдания», либо «дверь не-я».</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>See the separate entries for each of these.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>См. отдельные статьи для каждой из них.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>See the separate entries for each of these.</p>
+</div>
 <p>См. отдельные статьи для каждой из них.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Vipassana cycles]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Циклы випассаны]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Vipassana cycles]</p>
+</div>
 <p>[Циклы випассаны]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Standard insight stages that proceed degrees of awakening and occur in a predictable, cyclic pattern, typically called �anas or �knowledges�.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Стандартные стадии прозрения, которые предшествуют степеням пробуждения и происходят по предсказуемому циклическому паттерну, обычно называемые ньянами или «знаниями».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Standard insight stages that proceed degrees of awakening and occur in a predictable, cyclic pattern, typically called �anas or �knowledges�.</p>
+</div>
 <p>Стандартные стадии прозрения, которые предшествуют степеням пробуждения и происходят по предсказуемому циклическому паттерну, обычно называемые ньянами или «знаниями».</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Width of attention]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Ширина внимания]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Width of attention]</p>
+</div>
 <p>[Ширина внимания]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>This term refers to the variability in scope of the meditator�s focus.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Этот термин относится к изменчивости широты фокуса медитатора.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>This term refers to the variability in scope of the meditator�s focus.</p>
+</div>
 <p>Этот термин относится к изменчивости широты фокуса медитатора.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>To become adept at the fire kasina, as well as other concentration practices, one must learn to take the narrow and centralised focus that works so well in the first two jhanas and broaden the attention out wide to engage primarily with the periphery of the visual field in order to tip into and progress deeply through the third and fourth jhanas.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Чтобы стать искусным в огненной касине, как и в других практиках концентрации, нужно научиться брать узкий и централизованный фокус, который так хорошо работает в первых двух джханах, и широко расширять внимание, чтобы главным образом взаимодействовать с периферией визуального поля, чтобы перейти в третью и четвертую джханы и глубоко продвигаться через них.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>To become adept at the fire kasina, as well as other concentration practices, one must learn to take the narrow and centralised focus that works so well in the first two jhanas and broaden the attention out wide to engage primarily with the periphery of the visual field in order to tip into and progress deeply through the third and fourth jhanas.</p>
+</div>
 <p>Чтобы стать искусным в огненной касине, как и в других практиках концентрации, нужно научиться брать узкий и централизованный фокус, который так хорошо работает в первых двух джханах, и широко расширять внимание, чтобы главным образом взаимодействовать с периферией визуального поля, чтобы перейти в третью и четвертую джханы и глубоко продвигаться через них.</p>
 </blockquote>
 
@@ -430,12 +1158,20 @@
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
             x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
         ></button>
-        <button
-            class="mode-toggle"
-            type="button"
-            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
-            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
-        ></button>
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="original" x-model="contentMode">
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
     </div>
 </nav>
 

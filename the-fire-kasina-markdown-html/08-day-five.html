@@ -8,6 +8,38 @@
   <link rel="stylesheet" href="article.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    document.addEventListener("click", (event) => {
+      const mode = document.body.dataset.contentMode;
+      const quote = event.target.closest("main > blockquote[data-original-toggle]");
+      const original = event.target.closest("main > .original-block[data-translation-toggle]");
+
+      if (
+        (mode !== "translation" || !quote) &&
+        (mode !== "original" || !original)
+      ) {
+        return;
+      }
+
+      if (event.target.closest("a, button, input, textarea, select, summary")) {
+        return;
+      }
+
+      if (mode === "translation") {
+        const expanded = quote.classList.toggle("original-visible");
+        quote
+          .querySelector(".translation-original")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+
+      if (mode === "original") {
+        const expanded = original.classList.toggle("translation-visible");
+        original
+          .querySelector(".original-translation")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+    });
+  </script>
 </head>
 <body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
   <div class="layout">
@@ -19,149 +51,430 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
+<div class="original-block" data-translation-toggle>
 <h1>Day Five</h1>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>День пятый</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<h1>Day Five</h1>
+</div>
 <p>День пятый</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Beautiful Colour ~ Fear Nana ~ Third Jhana ~ Concentration]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Прекрасный цвет ~ Ньяна страха ~ Третья джхана ~ Сосредоточение</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Beautiful Colour ~ Fear Nana ~ Third Jhana ~ Concentration]</p>
+</div>
 <p>Прекрасный цвет ~ Ньяна страха ~ Третья джхана ~ Сосредоточение</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Beautiful Colour]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Прекрасный цвет</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Beautiful Colour]</p>
+</div>
 <p>Прекрасный цвет</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 I am now seeing the most stunning colours I have seen in my life: blue and greens, with no pixilation, just incredibly smooth pools of colour.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Сейчас я вижу самые потрясающие цвета, какие когда-либо видела в жизни: синие и зеленые, без пикселизации, просто невероятно гладкие озера цвета.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+I am now seeing the most stunning colours I have seen in my life: blue and greens, with no pixilation, just incredibly smooth pools of colour.</p>
+</div>
 <p>Сейчас я вижу самые потрясающие цвета, какие когда-либо видела в жизни: синие и зеленые, без пикселизации, просто невероятно гладкие озера цвета.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Nice.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Отлично.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Nice.</p>
+</div>
 <p>Отлично.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>You might notice an increase in the brilliance of external colours too.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Вы также можете заметить усиление яркости внешних цветов.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>You might notice an increase in the brilliance of external colours too.</p>
+</div>
 <p>Вы также можете заметить усиление яркости внешних цветов.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Fear Nana]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Ньяна страха</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Fear Nana]</p>
+</div>
 <p>Ньяна страха</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 During the previous night’s sits, the visual field became filled with crab-like creatures that were captivating yet alarming to watch by myself in a remote cabin.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Во время сидений прошлой ночью визуальное поле наполнилось крабоподобными существами, за которыми было завораживающе, но тревожно наблюдать одной в удаленной хижине.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+During the previous night’s sits, the visual field became filled with crab-like creatures that were captivating yet alarming to watch by myself in a remote cabin.</p>
+</div>
 <p>Во время сидений прошлой ночью визуальное поле наполнилось крабоподобными существами, за которыми было завораживающе, но тревожно наблюдать одной в удаленной хижине.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>I woke up in the middle of the night, still seeing the creatures moving around, even with my eyes open.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Я проснулась среди ночи и все еще видела, как эти существа движутся вокруг, даже с открытыми глазами.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>I woke up in the middle of the night, still seeing the creatures moving around, even with my eyes open.</p>
+</div>
 <p>Я проснулась среди ночи и все еще видела, как эти существа движутся вокруг, даже с открытыми глазами.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Not knowing I was in the fear nana, I chose to err on the side of jeopardising my concentration by backing off from the meditation until my next consultation.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Не зная, что нахожусь в ньяне страха, я предпочла ошибиться в сторону риска для концентрации и отступила от медитации до следующей консультации.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Not knowing I was in the fear nana, I chose to err on the side of jeopardising my concentration by backing off from the meditation until my next consultation.</p>
+</div>
 <p>Не зная, что нахожусь в ньяне страха, я предпочла ошибиться в сторону риска для концентрации и отступила от медитации до следующей консультации.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>As with most meditators in full-on retreat mode, my need for orderliness in my environment was peaking at this point, so, in addition to relaxing with a latte, I used my nervous energy to tidy the cabin as mindfully as possible.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Как и у большинства медитирующих в полноценном режиме ретрита, моя потребность в упорядоченности окружающей среды к этому моменту достигла пика, поэтому, помимо расслабления с латте, я использовала нервную энергию, чтобы как можно внимательнее прибраться в хижине.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>As with most meditators in full-on retreat mode, my need for orderliness in my environment was peaking at this point, so, in addition to relaxing with a latte, I used my nervous energy to tidy the cabin as mindfully as possible.</p>
+</div>
 <p>Как и у большинства медитирующих в полноценном режиме ретрита, моя потребность в упорядоченности окружающей среды к этому моменту достигла пика, поэтому, помимо расслабления с латте, я использовала нервную энергию, чтобы как можно внимательнее прибраться в хижине.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Daniel, in some of my sits there were green, crab-like creatures that had countless legs and were crawling over each other.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Дэниел, в некоторых моих сидениях были зеленые крабоподобные существа с бесчисленными ногами, ползавшие друг по другу.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Daniel, in some of my sits there were green, crab-like creatures that had countless legs and were crawling over each other.</p>
+</div>
 <p>Дэниел, в некоторых моих сидениях были зеленые крабоподобные существа с бесчисленными ногами, ползавшие друг по другу.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>I became scared they would turn to face me, and, as I sort of believed they were almost real, I had a tough night.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Я испугалась, что они повернутся ко мне лицом, и, поскольку я вроде бы верила, что они почти реальны, ночь выдалась тяжелой.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>I became scared they would turn to face me, and, as I sort of believed they were almost real, I had a tough night.</p>
+</div>
 <p>Я испугалась, что они повернутся ко мне лицом, и, поскольку я вроде бы верила, что они почти реальны, ночь выдалась тяжелой.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Ah! Recognise the fear nana: the creatures are not harmful, as the images are benign, but the belief that they can hurt you is what can hurt you.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Ах! Распознайте ньяну страха: существа не вредоносны, поскольку образы безобидны, но вера в то, что они могут причинить вам вред, и есть то, что может вам навредить.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Ah! Recognise the fear nana: the creatures are not harmful, as the images are benign, but the belief that they can hurt you is what can hurt you.</p>
+</div>
 <p>Ах! Распознайте ньяну страха: существа не вредоносны, поскольку образы безобидны, но вера в то, что они могут причинить вам вред, и есть то, что может вам навредить.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>When concentration is strong, there is a fine line between magick and paranoid psychosis.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Когда концентрация сильна, между магией и параноидным психозом проходит тонкая грань.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>When concentration is strong, there is a fine line between magick and paranoid psychosis.</p>
+</div>
 <p>Когда концентрация сильна, между магией и параноидным психозом проходит тонкая грань.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Third Jhana]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Третья джхана</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Third Jhana]</p>
+</div>
 <p>Третья джхана</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 While in the purple colour, during the past several days, I have had brief images form; for example, suddenly there were six ballerinas wearing purple tutus with heads made of the red dots and there have been visions of beings made out of multi-coloured lights.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В течение последних нескольких дней, находясь в фиолетовом цвете, я видела, как кратко формируются образы; например, внезапно появлялись шесть балерин в фиолетовых пачках с головами из красных точек, а также были видения существ, состоящих из разноцветных огней.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+While in the purple colour, during the past several days, I have had brief images form; for example, suddenly there were six ballerinas wearing purple tutus with heads made of the red dots and there have been visions of beings made out of multi-coloured lights.</p>
+</div>
 <p>В течение последних нескольких дней, находясь в фиолетовом цвете, я видела, как кратко формируются образы; например, внезапно появлялись шесть балерин в фиолетовых пачках с головами из красных точек, а также были видения существ, состоящих из разноцветных огней.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>There were spontaneous flashes of images, such as bricks surrounded by flames, where I felt the heat on my skin and heard the crackling of the fire - lucid dreams with tactile and auditory sensations are new to me.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Были спонтанные вспышки образов, например кирпичи, окруженные пламенем, где я чувствовала жар на коже и слышала треск огня, - осознанные сны с тактильными и слуховыми ощущениями для меня новы.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>There were spontaneous flashes of images, such as bricks surrounded by flames, where I felt the heat on my skin and heard the crackling of the fire - lucid dreams with tactile and auditory sensations are new to me.</p>
+</div>
 <p>Были спонтанные вспышки образов, например кирпичи, окруженные пламенем, где я чувствовала жар на коже и слышала треск огня, - осознанные сны с тактильными и слуховыми ощущениями для меня новы.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>With the kasina sequence, how do I get more solidly past the purple colour phase, or is that already happening?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В последовательности касины как мне более устойчиво пройти дальше фазы фиолетового цвета, или это уже происходит?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>With the kasina sequence, how do I get more solidly past the purple colour phase, or is that already happening?</p>
+</div>
 <p>В последовательности касины как мне более устойчиво пройти дальше фазы фиолетового цвета, или это уже происходит?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Develop it by attending to it.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Развивайте это, уделяя этому внимание.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Develop it by attending to it.</p>
+</div>
 <p>Развивайте это, уделяя этому внимание.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Developing concentration is that mind-bogglingly simple!</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Развитие концентрации настолько ошеломляюще просто!</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Developing concentration is that mind-bogglingly simple!</p>
+</div>
 <p>Развитие концентрации настолько ошеломляюще просто!</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Any interesting imagery or visions that happen this early are gravy: it can take over a hundred hours of practice in a short period of time for the manifestations of strong powers to arise.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Любые интересные образы или видения, возникающие так рано, - это приятное дополнение: для проявления сильных способностей может потребоваться более сотни часов практики за короткий период времени.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Any interesting imagery or visions that happen this early are gravy: it can take over a hundred hours of practice in a short period of time for the manifestations of strong powers to arise.</p>
+</div>
 <p>Любые интересные образы или видения, возникающие так рано, - это приятное дополнение: для проявления сильных способностей может потребоваться более сотни часов практики за короткий период времени.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 It was around this time I was getting brief, random glimpses of some of the extraordinary experiences that awaited any practitioner willing to put in solid cushion time and effort.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Примерно в это время я получала краткие, случайные проблески некоторых необыкновенных переживаний, ожидающих любого практикующего, готового вложить серьезное время на подушке и усилие.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+It was around this time I was getting brief, random glimpses of some of the extraordinary experiences that awaited any practitioner willing to put in solid cushion time and effort.</p>
+</div>
 <p>Примерно в это время я получала краткие, случайные проблески некоторых необыкновенных переживаний, ожидающих любого практикующего, готового вложить серьезное время на подушке и усилие.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It was important to be advised it would still take many hours of continued practice before anything near mastery could be achieved.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Было важно получить предупреждение, что до достижения чего-либо близкого к мастерству все еще потребуется много часов продолжающейся практики.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It was important to be advised it would still take many hours of continued practice before anything near mastery could be achieved.</p>
+</div>
 <p>Было важно получить предупреждение, что до достижения чего-либо близкого к мастерству все еще потребуется много часов продолжающейся практики.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>As my first teacher Lama Gyurme Dorje is fond of saying, “There is no such thing as advanced technique, only the creative application of the fundamentals.”</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Как любит говорить мой первый учитель Лама Гюрме Дордже: «Не существует продвинутой техники, есть только творческое применение основ».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>As my first teacher Lama Gyurme Dorje is fond of saying, “There is no such thing as advanced technique, only the creative application of the fundamentals.”</p>
+</div>
 <p>Как любит говорить мой первый учитель Лама Гюрме Дордже: «Не существует продвинутой техники, есть только творческое применение основ».</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>With exciting visuals and sounds popping up in the meditation, this was a critical point in the retreat where I needed to diligently stay with the simple fundamentals.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Когда в медитации появлялись захватывающие визуальные образы и звуки, это был критический момент ретрита, когда мне нужно было усердно оставаться с простыми основами.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>With exciting visuals and sounds popping up in the meditation, this was a critical point in the retreat where I needed to diligently stay with the simple fundamentals.</p>
+</div>
 <p>Когда в медитации появлялись захватывающие визуальные образы и звуки, это был критический момент ретрита, когда мне нужно было усердно оставаться с простыми основами.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Nothing could replace the slow building fluency with the basic technique.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Ничто не могло заменить медленно нарастающую беглость в базовой технике.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Nothing could replace the slow building fluency with the basic technique.</p>
+</div>
 <p>Ничто не могло заменить медленно нарастающую беглость в базовой технике.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>From this foundation of getting to know the sequence of the fire kasina through patient repetition, the range and depth of experience by the end of the retreat became relatively reliable and productive in ways I could not have imagined.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Из этого основания знакомства с последовательностью огненной касины через терпеливое повторение диапазон и глубина опыта к концу ретрита стали относительно надежными и продуктивными такими способами, которые я не могла себе представить.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>From this foundation of getting to know the sequence of the fire kasina through patient repetition, the range and depth of experience by the end of the retreat became relatively reliable and productive in ways I could not have imagined.</p>
+</div>
 <p>Из этого основания знакомства с последовательностью огненной касины через терпеливое повторение диапазон и глубина опыта к концу ретрита стали относительно надежными и продуктивными такими способами, которые я не могла себе представить.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Concentration]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Сосредоточение</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Concentration]</p>
+</div>
 <p>Сосредоточение</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Should I still be really protecting concentration between sits?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Нужно ли мне по-прежнему действительно оберегать концентрацию между сидениями?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Should I still be really protecting concentration between sits?</p>
+</div>
 <p>Нужно ли мне по-прежнему действительно оберегать концентрацию между сидениями?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Yes!</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Да!</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Yes!</p>
+</div>
 <p>Да!</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It shatters like a pane of glass.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Она разбивается, как оконное стекло.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It shatters like a pane of glass.</p>
+</div>
 <p>Она разбивается, как оконное стекло.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>If you are anything like me and my meditative colleagues, you will likely see this once you stop the retreat.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Если вы хоть немного похожи на меня и моих коллег-медитирующих, вы, вероятно, увидите это, когда закончите ретрит.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>If you are anything like me and my meditative colleagues, you will likely see this once you stop the retreat.</p>
+</div>
 <p>Если вы хоть немного похожи на меня и моих коллег-медитирующих, вы, вероятно, увидите это, когда закончите ретрит.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Do not expect prolonged effects after the retreat, so cherish the ones you are able to create now in this protected space and time.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Не ожидайте продолжительных эффектов после ретрита, поэтому цените те, которые вы способны создать сейчас, в этом защищенном пространстве и времени.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Do not expect prolonged effects after the retreat, so cherish the ones you are able to create now in this protected space and time.</p>
+</div>
 <p>Не ожидайте продолжительных эффектов после ретрита, поэтому цените те, которые вы способны создать сейчас, в этом защищенном пространстве и времени.</p>
 </blockquote>
 
@@ -227,12 +540,20 @@ Yes!</p>
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
             x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
         ></button>
-        <button
-            class="mode-toggle"
-            type="button"
-            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
-            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
-        ></button>
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="original" x-model="contentMode">
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
     </div>
 </nav>
 

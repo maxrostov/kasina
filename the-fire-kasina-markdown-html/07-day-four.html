@@ -8,6 +8,38 @@
   <link rel="stylesheet" href="article.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    document.addEventListener("click", (event) => {
+      const mode = document.body.dataset.contentMode;
+      const quote = event.target.closest("main > blockquote[data-original-toggle]");
+      const original = event.target.closest("main > .original-block[data-translation-toggle]");
+
+      if (
+        (mode !== "translation" || !quote) &&
+        (mode !== "original" || !original)
+      ) {
+        return;
+      }
+
+      if (event.target.closest("a, button, input, textarea, select, summary")) {
+        return;
+      }
+
+      if (mode === "translation") {
+        const expanded = quote.classList.toggle("original-visible");
+        quote
+          .querySelector(".translation-original")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+
+      if (mode === "original") {
+        const expanded = original.classList.toggle("translation-visible");
+        original
+          .querySelector(".original-translation")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+    });
+  </script>
 </head>
 <body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
   <div class="layout">
@@ -19,155 +51,450 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
+<div class="original-block" data-translation-toggle>
 <h1>Day Four</h1>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>День четвертый</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<h1>Day Four</h1>
+</div>
 <p>День четвертый</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Mantra]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Мантра</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Mantra]</p>
+</div>
 <p>Мантра</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 It is incredible…</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это невероятно…</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+It is incredible…</p>
+</div>
 <p>Это невероятно…</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>the mantra has become like hearing energy, like an electric synthesiser in the air.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>мантра стала похожа на слышимую энергию, словно электрический синтезатор в воздухе.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>the mantra has become like hearing energy, like an electric synthesiser in the air.</p>
+</div>
 <p>мантра стала похожа на слышимую энергию, словно электрический синтезатор в воздухе.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Nice!</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Отлично!</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Nice!</p>
+</div>
 <p>Отлично!</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>You can use the mantra to create sounds as loud or louder than ordinary reality.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Вы можете использовать мантру, чтобы создавать звуки такой же громкости, как обычная реальность, или даже громче.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>You can use the mantra to create sounds as loud or louder than ordinary reality.</p>
+</div>
 <p>Вы можете использовать мантру, чтобы создавать звуки такой же громкости, как обычная реальность, или даже громче.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Concentration is extremely fragile, but when it is strong, amazing things can happen, as you are learning directly for yourself.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Сосредоточение чрезвычайно хрупко, но когда оно сильно, могут происходить удивительные вещи, как вы сами непосредственно узнаете.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Concentration is extremely fragile, but when it is strong, amazing things can happen, as you are learning directly for yourself.</p>
+</div>
 <p>Сосредоточение чрезвычайно хрупко, но когда оно сильно, могут происходить удивительные вещи, как вы сами непосредственно узнаете.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Jhana Sequence]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Последовательность джхан</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Jhana Sequence]</p>
+</div>
 <p>Последовательность джхан</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 How does the fire kasina sequence fit with first, second, third and fourth jhana?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Как последовательность огненной касины соотносится с первой, второй, третьей и четвертой джханой?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+How does the fire kasina sequence fit with first, second, third and fourth jhana?</p>
+</div>
 <p>Как последовательность огненной касины соотносится с первой, второй, третьей и четвертой джханой?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 First jhana is marked by a red dot that is small and initially somewhat unstable: you have to make an effort to stare at it and maintain it.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Первая джхана отмечена красной точкой, маленькой и поначалу несколько нестабильной: нужно прилагать усилие, чтобы смотреть на нее и удерживать ее.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+First jhana is marked by a red dot that is small and initially somewhat unstable: you have to make an effort to stare at it and maintain it.</p>
+</div>
 <p>Первая джхана отмечена красной точкой, маленькой и поначалу несколько нестабильной: нужно прилагать усилие, чтобы смотреть на нее и удерживать ее.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Initially, it is hard to sync with it, but it gives great immediate feedback, as it brightens, centres and stabilises rapidly when your attention grows stronger and it fades when attention fades, representing applied and sustained attention: the classic first jhana factors.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Поначалу с ней трудно синхронизироваться, но она дает отличную мгновенную обратную связь: быстро становится ярче, центрируется и стабилизируется, когда внимание усиливается, и тускнеет, когда внимание ослабевает, представляя направленное и удерживаемое внимание - классические факторы первой джханы.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Initially, it is hard to sync with it, but it gives great immediate feedback, as it brightens, centres and stabilises rapidly when your attention grows stronger and it fades when attention fades, representing applied and sustained attention: the classic first jhana factors.</p>
+</div>
 <p>Поначалу с ней трудно синхронизироваться, но она дает отличную мгновенную обратную связь: быстро становится ярче, центрируется и стабилизируется, когда внимание усиливается, и тускнеет, когда внимание ослабевает, представляя направленное и удерживаемое внимание - классические факторы первой джханы.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Second jhana is when the red dot shows itself naturally in the centre of attention with shimmering detail, outlined with thin colours, and, as this develops, one will know the “happiness born of concentration”.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Вторая джхана - это когда красная точка естественно проявляется в центре внимания с мерцающими деталями, очерченная тонкими цветами, и по мере развития этого состояния человек познает «счастье, рожденное сосредоточением».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Second jhana is when the red dot shows itself naturally in the centre of attention with shimmering detail, outlined with thin colours, and, as this develops, one will know the “happiness born of concentration”.</p>
+</div>
 <p>Вторая джхана - это когда красная точка естественно проявляется в центре внимания с мерцающими деталями, очерченная тонкими цветами, и по мере развития этого состояния человек познает «счастье, рожденное сосредоточением».</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The dot is still 2D in the second jhana.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Во второй джхане точка все еще двухмерна.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The dot is still 2D in the second jhana.</p>
+</div>
 <p>Во второй джхане точка все еще двухмерна.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Third jhana is where attention goes wide, starting at the beginning of the murk, the initial swaths of rich colour, and actually contains many sub-phases within it as attention develops and practice progresses.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Третья джхана - это место, где внимание расширяется, начиная с начала мути, с первых полос насыщенного цвета, и на самом деле содержит множество подфаз по мере развития внимания и продвижения практики.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Third jhana is where attention goes wide, starting at the beginning of the murk, the initial swaths of rich colour, and actually contains many sub-phases within it as attention develops and practice progresses.</p>
+</div>
 <p>Третья джхана - это место, где внимание расширяется, начиная с начала мути, с первых полос насыщенного цвета, и на самом деле содержит множество подфаз по мере развития внимания и продвижения практики.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In the third jhana we find the beginning of subtle 3D shapes, and it can develop to rich, complex images, often with some repetitive theme and some sense of more space and depth.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В третьей джхане мы обнаруживаем начало тонких трехмерных форм, и она может развиться в богатые, сложные образы, часто с повторяющейся темой и некоторым ощущением большего пространства и глубины.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In the third jhana we find the beginning of subtle 3D shapes, and it can develop to rich, complex images, often with some repetitive theme and some sense of more space and depth.</p>
+</div>
 <p>В третьей джхане мы обнаруживаем начало тонких трехмерных форм, и она может развиться в богатые, сложные образы, часто с повторяющейся темой и некоторым ощущением большего пространства и глубины.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>There can still be a lot ofcooler bliss in the third jhana.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В третьей джхане все еще может быть много более прохладного блаженства.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>There can still be a lot ofcooler bliss in the third jhana.</p>
+</div>
 <p>В третьей джхане все еще может быть много более прохладного блаженства.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Fourth jhana is where we find clear luminous alive images, like living daydreams but much more clear, and the bliss is gone.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Четвертая джхана - это место, где мы находим ясные, светящиеся, живые образы, похожие на живые грезы, но гораздо более четкие, и блаженство исчезает.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Fourth jhana is where we find clear luminous alive images, like living daydreams but much more clear, and the bliss is gone.</p>
+</div>
 <p>Четвертая джхана - это место, где мы находим ясные, светящиеся, живые образы, похожие на живые грезы, но гораздо более четкие, и блаженство исчезает.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>A somehow pleasant neutrality prevails, and the mantra may go silent.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Преобладает каким-то образом приятная нейтральность, и мантра может замолчать.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>A somehow pleasant neutrality prevails, and the mantra may go silent.</p>
+</div>
 <p>Преобладает каким-то образом приятная нейтральность, и мантра может замолчать.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>The 3D objects may get detailed to a degree it is hard to believe your mind generated, and represent a radical increase in visualisation ability.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Трехмерные объекты могут стать детализированными до такой степени, что трудно поверить, будто их породил ваш ум, и они представляют радикальное увеличение способности к визуализации.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>The 3D objects may get detailed to a degree it is hard to believe your mind generated, and represent a radical increase in visualisation ability.</p>
+</div>
 <p>Трехмерные объекты могут стать детализированными до такой степени, что трудно поверить, будто их породил ваш ум, и они представляют радикальное увеличение способности к визуализации.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Fourth jhana images often incorporate a substantial sense of spaciousness.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Образы четвертой джханы часто включают значительное ощущение просторности.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Fourth jhana images often incorporate a substantial sense of spaciousness.</p>
+</div>
 <p>Образы четвертой джханы часто включают значительное ощущение просторности.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Body sensations may vanish, vibrations may drop off, and one may find one’s attention totally buying into dream-like realms.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Телесные ощущения могут исчезнуть, вибрации могут спасть, и можно обнаружить, что внимание полностью поверило в сноподобные миры.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Body sensations may vanish, vibrations may drop off, and one may find one’s attention totally buying into dream-like realms.</p>
+</div>
 <p>Телесные ощущения могут исчезнуть, вибрации могут спасть, и можно обнаружить, что внимание полностью поверило в сноподобные миры.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Intention-setting for a Deity Encounter]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Постановка намерения для встречи с божеством</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Intention-setting for a Deity Encounter]</p>
+</div>
 <p>Постановка намерения для встречи с божеством</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 Despite my attraction to the magickal potential in learning candle-flame practice, it took several days of the retreat to warm up to trying it.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Несмотря на мое влечение к магическому потенциалу изучения практики пламени свечи, мне потребовалось несколько дней ретрита, чтобы созреть для попытки.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+Despite my attraction to the magickal potential in learning candle-flame practice, it took several days of the retreat to warm up to trying it.</p>
+</div>
 <p>Несмотря на мое влечение к магическому потенциалу изучения практики пламени свечи, мне потребовалось несколько дней ретрита, чтобы созреть для попытки.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>I had never consciously experimented with it nor considered what I would want to explore.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Я никогда сознательно не экспериментировала с этим и не обдумывала, что именно хотела бы исследовать.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>I had never consciously experimented with it nor considered what I would want to explore.</p>
+</div>
 <p>Я никогда сознательно не экспериментировала с этим и не обдумывала, что именно хотела бы исследовать.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Upon reflection, my indecision wasted good cushion time and diminished the power of my intention-setting during parts of the retreat.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Оглядываясь назад, я вижу, что моя нерешительность потратила ценное время на подушке и ослабила силу постановки намерений в некоторые периоды ретрита.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Upon reflection, my indecision wasted good cushion time and diminished the power of my intention-setting during parts of the retreat.</p>
+</div>
 <p>Оглядываясь назад, я вижу, что моя нерешительность потратила ценное время на подушке и ослабила силу постановки намерений в некоторые периоды ретрита.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>However, this may be unavoidable for anyone low on the learning curve of developing magickal abilities.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Однако это может быть неизбежно для любого, кто находится в самом начале кривой обучения развитию магических способностей.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>However, this may be unavoidable for anyone low on the learning curve of developing magickal abilities.</p>
+</div>
 <p>Однако это может быть неизбежно для любого, кто находится в самом начале кривой обучения развитию магических способностей.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>After some brainstorming with Daniel, by Day Four I had settled on attempting to have a face-to-face encounter with the Medicine Buddha.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>После некоторого мозгового штурма с Дэниелом к четвертому дню я остановилась на попытке встретиться лицом к лицу с Буддой Медицины.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>After some brainstorming with Daniel, by Day Four I had settled on attempting to have a face-to-face encounter with the Medicine Buddha.</p>
+</div>
 <p>После некоторого мозгового штурма с Дэниелом к четвертому дню я остановилась на попытке встретиться лицом к лицу с Буддой Медицины.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In case there are others out there similarly uncertain about what powers to pursue, it could save time ahead of a retreat to think about what truly calls to you in the realm of magick.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Если есть другие люди, столь же неуверенные в том, какие силы развивать, им может сэкономить время перед ретритом размышление о том, что по-настоящему зовет их в области магии.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In case there are others out there similarly uncertain about what powers to pursue, it could save time ahead of a retreat to think about what truly calls to you in the realm of magick.</p>
+</div>
 <p>Если есть другие люди, столь же неуверенные в том, какие силы развивать, им может сэкономить время перед ретритом размышление о том, что по-настоящему зовет их в области магии.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>I eventually chose an encounter with a deity because of the high insight value that comes with being able to get a fruition from looking into the eyes of the deity, described in detail by Daniel below on Day Fourteen.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В итоге я выбрала встречу с божеством из-за высокой ценности прозрения, связанной с возможностью получить плод, глядя в глаза божества; Дэниел подробно описывает это ниже, в четырнадцатый день.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>I eventually chose an encounter with a deity because of the high insight value that comes with being able to get a fruition from looking into the eyes of the deity, described in detail by Daniel below on Day Fourteen.</p>
+</div>
 <p>В итоге я выбрала встречу с божеством из-за высокой ценности прозрения, связанной с возможностью получить плод, глядя в глаза божества; Дэниел подробно описывает это ниже, в четырнадцатый день.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>I specifically chose the Medicine Buddha, because I had behind me a long period of Medicine Buddha practice after receiving the empowerment (a ceremony introducing students to Tibetan meditations) several years ago.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Я специально выбрала Будду Медицины, потому что за несколько лет до этого, после получения посвящения (церемонии, вводящей учеников в тибетские медитации), у меня был длительный период практики Будды Медицины.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>I specifically chose the Medicine Buddha, because I had behind me a long period of Medicine Buddha practice after receiving the empowerment (a ceremony introducing students to Tibetan meditations) several years ago.</p>
+</div>
 <p>Я специально выбрала Будду Медицины, потому что за несколько лет до этого, после получения посвящения (церемонии, вводящей учеников в тибетские медитации), у меня был длительный период практики Будды Медицины.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Given that I am a psychotherapist and also assist others with meditation, it made sense to meet a deity who embodies healing and assisting other beings.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Учитывая, что я психотерапевт и также помогаю другим в медитации, было логично встретиться с божеством, воплощающим исцеление и помощь другим существам.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Given that I am a psychotherapist and also assist others with meditation, it made sense to meet a deity who embodies healing and assisting other beings.</p>
+</div>
 <p>Учитывая, что я психотерапевт и также помогаю другим в медитации, было логично встретиться с божеством, воплощающим исцеление и помощь другим существам.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>And finally, with the neon-like blue swirling shapes that often arose in the mind’s eye during my sits prior to this retreat, it seemed likely this colour could naturally transform into the blue Medicine Buddha.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>И наконец, учитывая неоноподобные синие завихряющиеся формы, которые часто возникали перед внутренним взором во время моих сидений до этого ретрита, казалось вероятным, что этот цвет может естественно превратиться в синего Будду Медицины.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>And finally, with the neon-like blue swirling shapes that often arose in the mind’s eye during my sits prior to this retreat, it seemed likely this colour could naturally transform into the blue Medicine Buddha.</p>
+</div>
 <p>И наконец, учитывая неоноподобные синие завихряющиеся формы, которые часто возникали перед внутренним взором во время моих сидений до этого ретрита, казалось вероятным, что этот цвет может естественно превратиться в синего Будду Медицины.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Fill the whole universe with the intention for the presence and teachings of Medicine Buddha to arise.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Наполните всю вселенную намерением, чтобы возникли присутствие и учения Будды Медицины.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Fill the whole universe with the intention for the presence and teachings of Medicine Buddha to arise.</p>
+</div>
 <p>Наполните всю вселенную намерением, чтобы возникли присутствие и учения Будды Медицины.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Magick 101: the better the mind-state when the intention is made, the better the power of that intention and the better the odds of it manifesting as you wish.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Магия 101: чем лучше состояние ума в момент создания намерения, тем сильнее это намерение и тем выше шансы, что оно проявится так, как вы хотите.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Magick 101: the better the mind-state when the intention is made, the better the power of that intention and the better the odds of it manifesting as you wish.</p>
+</div>
 <p>Магия 101: чем лучше состояние ума в момент создания намерения, тем сильнее это намерение и тем выше шансы, что оно проявится так, как вы хотите.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Patience will be required as this might take a while.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Потребуется терпение, поскольку это может занять некоторое время.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Patience will be required as this might take a while.</p>
+</div>
 <p>Потребуется терпение, поскольку это может занять некоторое время.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 The recommendation to start serious intention-setting was given to me on this day because of the powerful effects that were starting to emerge: an extraordinary auditory mantra was developing, and on the visual field glorious colours were sparking out of the purple swaths in the sits, and sometimes it felt as if someone were standing behind me, pouring buckets of fresh paint into the mental landscape - all of which indicated that my mind was settling, albeit briefly, into elevated concentration.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Рекомендация начать серьезную постановку намерений была дана мне в этот день из-за мощных эффектов, которые начинали проявляться: развивалась необыкновенная звуковая мантра, а в визуальном поле во время сидений из фиолетовых полос вспыхивали великолепные цвета, и иногда казалось, будто кто-то стоит позади меня, выливая ведра свежей краски в ментальный ландшафт, - все это указывало, что мой ум, пусть и кратко, оседает в повышенной концентрации.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+The recommendation to start serious intention-setting was given to me on this day because of the powerful effects that were starting to emerge: an extraordinary auditory mantra was developing, and on the visual field glorious colours were sparking out of the purple swaths in the sits, and sometimes it felt as if someone were standing behind me, pouring buckets of fresh paint into the mental landscape - all of which indicated that my mind was settling, albeit briefly, into elevated concentration.</p>
+</div>
 <p>Рекомендация начать серьезную постановку намерений была дана мне в этот день из-за мощных эффектов, которые начинали проявляться: развивалась необыкновенная звуковая мантра, а в визуальном поле во время сидений из фиолетовых полос вспыхивали великолепные цвета, и иногда казалось, будто кто-то стоит позади меня, выливая ведра свежей краски в ментальный ландшафт, - все это указывало, что мой ум, пусть и кратко, оседает в повышенной концентрации.</p>
 </blockquote>
 
@@ -233,12 +560,20 @@ The recommendation to start serious intention-setting was given to me on this da
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
             x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
         ></button>
-        <button
-            class="mode-toggle"
-            type="button"
-            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
-            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
-        ></button>
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="original" x-model="contentMode">
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
     </div>
 </nav>
 

@@ -8,6 +8,38 @@
   <link rel="stylesheet" href="article.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    document.addEventListener("click", (event) => {
+      const mode = document.body.dataset.contentMode;
+      const quote = event.target.closest("main > blockquote[data-original-toggle]");
+      const original = event.target.closest("main > .original-block[data-translation-toggle]");
+
+      if (
+        (mode !== "translation" || !quote) &&
+        (mode !== "original" || !original)
+      ) {
+        return;
+      }
+
+      if (event.target.closest("a, button, input, textarea, select, summary")) {
+        return;
+      }
+
+      if (mode === "translation") {
+        const expanded = quote.classList.toggle("original-visible");
+        quote
+          .querySelector(".translation-original")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+
+      if (mode === "original") {
+        const expanded = original.classList.toggle("translation-visible");
+        original
+          .querySelector(".original-translation")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+    });
+  </script>
 </head>
 <body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
   <div class="layout">
@@ -19,162 +51,472 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
+<div class="original-block" data-translation-toggle>
 <h1>Day Seventeen</h1>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>День семнадцатый</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<h1>Day Seventeen</h1>
+</div>
 <p>День семнадцатый</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Natural Strengths ~ Getting From Third to Fourth Jhana ~ Eight Jhanas Using Attention as Object]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Естественные сильные стороны ~ Переход от третьей к четвертой джхане ~ Восемь джхан с вниманием как объектом]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Natural Strengths ~ Getting From Third to Fourth Jhana ~ Eight Jhanas Using Attention as Object]</p>
+</div>
 <p>[Естественные сильные стороны ~ Переход от третьей к четвертой джхане ~ Восемь джхан с вниманием как объектом]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Natural Strengths]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Естественные сильные стороны]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Natural Strengths]</p>
+</div>
 <p>[Естественные сильные стороны]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 If you said, �Shannon, envision an apple or a face�, I am unable to do that.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Если бы ты сказал: «Шэннон, представь яблоко или лицо», я не смогла бы этого сделать.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+If you said, �Shannon, envision an apple or a face�, I am unable to do that.</p>
+</div>
 <p>Если бы ты сказал: «Шэннон, представь яблоко или лицо», я не смогла бы этого сделать.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Could that block me from image control and success in meeting the Medicine Buddha?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Может ли это помешать мне контролировать образы и успешно встретить Будду Медицины?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Could that block me from image control and success in meeting the Medicine Buddha?</p>
+</div>
 <p>Может ли это помешать мне контролировать образы и успешно встретить Будду Медицины?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Everyone has their proclivities, strengths and wiring.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>У каждого есть свои склонности, сильные стороны и устройство.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Everyone has their proclivities, strengths and wiring.</p>
+</div>
 <p>У каждого есть свои склонности, сильные стороны и устройство.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Meditators clearly have different capabilities.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>У медитаторов явно разные способности.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Meditators clearly have different capabilities.</p>
+</div>
 <p>У медитаторов явно разные способности.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>One person�s level of mastery is due partly to natural blessing, so try to avoid comparing your practice exactly to that of someone else, as it is likely that something they are very strong in, you may just be average in, but similarly, something you are very strong in, they may just be average in.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Уровень мастерства одного человека отчасти обусловлен природным даром, поэтому старайся не сравнивать свою практику в точности с практикой кого-то другого: вполне вероятно, что в чем-то, в чем они очень сильны, ты можешь быть просто средней, и точно так же в чем-то, в чем ты очень сильна, они могут быть просто средними.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>One person�s level of mastery is due partly to natural blessing, so try to avoid comparing your practice exactly to that of someone else, as it is likely that something they are very strong in, you may just be average in, but similarly, something you are very strong in, they may just be average in.</p>
+</div>
 <p>Уровень мастерства одного человека отчасти обусловлен природным даром, поэтому старайся не сравнивать свою практику в точности с практикой кого-то другого: вполне вероятно, что в чем-то, в чем они очень сильны, ты можешь быть просто средней, и точно так же в чем-то, в чем ты очень сильна, они могут быть просто средними.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Also, living entities are often not easy to get to.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Кроме того, до живых сущностей часто нелегко добраться.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Also, living entities are often not easy to get to.</p>
+</div>
 <p>Кроме того, до живых сущностей часто нелегко добраться.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>On my last retreat I rarely and briefly got there.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>На своем последнем ретрите я попадал туда редко и ненадолго.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>On my last retreat I rarely and briefly got there.</p>
+</div>
 <p>На своем последнем ретрите я попадал туда редко и ненадолго.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Getting From Third to Fourth Jhana]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Переход от третьей к четвертой джхане]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Getting From Third to Fourth Jhana]</p>
+</div>
 <p>[Переход от третьей к четвертой джхане]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 When in upper third jhana you described how you space out or gear down somehow.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Когда ты находишься в верхней третьей джхане, ты описывал, как каким-то образом рассеиваешься или переключаешься на более низкую передачу.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+When in upper third jhana you described how you space out or gear down somehow.</p>
+</div>
 <p>Когда ты находишься в верхней третьей джхане, ты описывал, как каким-то образом рассеиваешься или переключаешься на более низкую передачу.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Do you have any other suggestions on getting to a fourth jhana with living beings?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Есть ли у тебя еще какие-нибудь предложения о том, как попасть в четвертую джхану с живыми существами?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Do you have any other suggestions on getting to a fourth jhana with living beings?</p>
+</div>
 <p>Есть ли у тебя еще какие-нибудь предложения о том, как попасть в четвертую джхану с живыми существами?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>What helped you make the leap?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Что помогло тебе совершить этот скачок?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>What helped you make the leap?</p>
+</div>
 <p>Что помогло тебе совершить этот скачок?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 I dream out for a few seconds to something more broad and clean.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Я на несколько секунд как бы выныриваю в сон к чему-то более широкому и чистому.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+I dream out for a few seconds to something more broad and clean.</p>
+</div>
 <p>Я на несколько секунд как бы выныриваю в сон к чему-то более широкому и чистому.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>(SHANNON � I realised later this happens before I travel.)</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>(ШЭННОН - позже я поняла, что это происходит перед путешествием.)</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>(SHANNON � I realised later this happens before I travel.)</p>
+</div>
 <p>(ШЭННОН - позже я поняла, что это происходит перед путешествием.)</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>To get to a manifest image of a deity, try gazing at a picture of the Medicine Buddha before you sit.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Чтобы прийти к проявленному образу божества, попробуй перед сидением смотреть на изображение Будды Медицины.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>To get to a manifest image of a deity, try gazing at a picture of the Medicine Buddha before you sit.</p>
+</div>
 <p>Чтобы прийти к проявленному образу божества, попробуй перед сидением смотреть на изображение Будды Медицины.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Since you have decent colour control, go for better image control.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Поскольку у тебя неплохой контроль цвета, работай над лучшим контролем образа.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Since you have decent colour control, go for better image control.</p>
+</div>
 <p>Поскольку у тебя неплохой контроль цвета, работай над лучшим контролем образа.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Try for two-dimensional shapes for starters.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Для начала пробуй двухмерные формы.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Try for two-dimensional shapes for starters.</p>
+</div>
 <p>Для начала пробуй двухмерные формы.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Nudge whatever images you see in the direction you want it to go in.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Подталкивай любые образы, которые видишь, в том направлении, куда хочешь, чтобы они двигались.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Nudge whatever images you see in the direction you want it to go in.</p>
+</div>
 <p>Подталкивай любые образы, которые видишь, в том направлении, куда хочешь, чтобы они двигались.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>For example, try seeing faces in the images of the trees you are getting in meditation.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Например, попробуй видеть лица в образах деревьев, которые появляются у тебя в медитации.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>For example, try seeing faces in the images of the trees you are getting in meditation.</p>
+</div>
 <p>Например, попробуй видеть лица в образах деревьев, которые появляются у тебя в медитации.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Transitioning to the fourth jhana is sort of mysterious, and is outside a normal, linear way of working.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Переход к четвертой джхане в каком-то смысле загадочен и находится вне обычного линейного способа работы.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Transitioning to the fourth jhana is sort of mysterious, and is outside a normal, linear way of working.</p>
+</div>
 <p>Переход к четвертой джхане в каком-то смысле загадочен и находится вне обычного линейного способа работы.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Eight Jhanas Using Attention as Object]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>[Восемь джхан с вниманием как объектом]</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Eight Jhanas Using Attention as Object]</p>
+</div>
 <p>[Восемь джхан с вниманием как объектом]</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 I seem to have veered off the fire kasina practice and am meandering up and down through the samatha jhanas.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Кажется, я отклонилась от практики огненной касины и блуждаю вверх и вниз по джханам саматхи.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+I seem to have veered off the fire kasina practice and am meandering up and down through the samatha jhanas.</p>
+</div>
 <p>Кажется, я отклонилась от практики огненной касины и блуждаю вверх и вниз по джханам саматхи.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Can you describe your experience, going from first to eighth jhana?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Можешь описать свой опыт перехода от первой к восьмой джхане?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Can you describe your experience, going from first to eighth jhana?</p>
+</div>
 <p>Можешь описать свой опыт перехода от первой к восьмой джхане?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 This was a practice I did for many years after lying down in bed at night.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это была практика, которую я много лет выполнял ночью, ложась в кровать.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+This was a practice I did for many years after lying down in bed at night.</p>
+</div>
 <p>Это была практика, которую я много лет выполнял ночью, ложась в кровать.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>For my object, I used the width of attention itself, which is more abstract compared to typical objects but also more fundamental.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В качестве объекта я использовал саму ширину внимания, что более абстрактно по сравнению с типичными объектами, но также более фундаментально.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>For my object, I used the width of attention itself, which is more abstract compared to typical objects but also more fundamental.</p>
+</div>
 <p>В качестве объекта я использовал саму ширину внимания, что более абстрактно по сравнению с типичными объектами, но также более фундаментально.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Being an aversive type, I am generally less interested in taking pleasure as object, not that it cannot be fun.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Будучи человеком склонным к отвращению, я в целом меньше заинтересован брать удовольствие в качестве объекта, хотя это и может быть приятным.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Being an aversive type, I am generally less interested in taking pleasure as object, not that it cannot be fun.</p>
+</div>
 <p>Будучи человеком склонным к отвращению, я в целом меньше заинтересован брать удовольствие в качестве объекта, хотя это и может быть приятным.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Still, for this practice, I used attention-width as follows.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Тем не менее для этой практики я использовал ширину внимания следующим образом.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Still, for this practice, I used attention-width as follows.</p>
+</div>
 <p>Тем не менее для этой практики я использовал ширину внимания следующим образом.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In the first jhana, attention is narrow, pointed and effortful.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В первой джхане внимание узкое, направленное и требующее усилия.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In the first jhana, attention is narrow, pointed and effortful.</p>
+</div>
 <p>В первой джхане внимание узкое, направленное и требующее усилия.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In the second, attention is more natural, a little wider-centred, like looking straight ahead.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Во второй внимание более естественное, немного шире центрированное, как при взгляде прямо перед собой.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In the second, attention is more natural, a little wider-centred, like looking straight ahead.</p>
+</div>
 <p>Во второй внимание более естественное, немного шире центрированное, как при взгляде прямо перед собой.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In the third it is the opposite: the centre is vague, diffuse and spacey, like being under water.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В третьей все наоборот: центр неясный, рассеянный и пространственный, как будто находишься под водой.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In the third it is the opposite: the centre is vague, diffuse and spacey, like being under water.</p>
+</div>
 <p>В третьей все наоборот: центр неясный, рассеянный и пространственный, как будто находишься под водой.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In the fourth jhana, attention is much wider, pervasive, panoramic and neutral.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В четвертой джхане внимание гораздо шире, пронизывающее, панорамное и нейтральное.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In the fourth jhana, attention is much wider, pervasive, panoramic and neutral.</p>
+</div>
 <p>В четвертой джхане внимание гораздо шире, пронизывающее, панорамное и нейтральное.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In the fifth jhana of boundless space, forms and body vanish, vast boundlessness prevails.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В пятой джхане безграничного пространства формы и тело исчезают, преобладает обширная безграничность.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In the fifth jhana of boundless space, forms and body vanish, vast boundlessness prevails.</p>
+</div>
 <p>В пятой джхане безграничного пространства формы и тело исчезают, преобладает обширная безграничность.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In the sixth jhana of boundless consciousness, the boundlessness of the fifth becomes (or is recognised to be) luminous, like a clear light that fills space.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В шестой джхане безграничного сознания безграничность пятой становится (или распознается как) светящейся, подобно ясному свету, заполняющему пространство.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In the sixth jhana of boundless consciousness, the boundlessness of the fifth becomes (or is recognised to be) luminous, like a clear light that fills space.</p>
+</div>
 <p>В шестой джхане безграничного сознания безграничность пятой становится (или распознается как) светящейся, подобно ясному свету, заполняющему пространство.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In the seventh jhana, that of nothingness, it is as if boundless luminosity inverts, to take instead nothingness as object.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В седьмой джхане, джхане ничто, это похоже на то, как безграничная светимость переворачивается, чтобы вместо этого взять ничто в качестве объекта.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In the seventh jhana, that of nothingness, it is as if boundless luminosity inverts, to take instead nothingness as object.</p>
+</div>
 <p>В седьмой джхане, джхане ничто, это похоже на то, как безграничная светимость переворачивается, чтобы вместо этого взять ничто в качестве объекта.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>In neither-perception-nor-yet-non-perception, the eighth jhana, nothingness de-tunes out to neither-perception-nor-yet-non-perception, which is extremely hard to describe in any other way save for the fact that nothingness clearly is tuned to nothingness, and the eighth jhana is what happens when you detune from even that level of certainty about what attention is tuned to.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>В ни-восприятии-ни-невосприятии, восьмой джхане, ничто расстраивается в ни-восприятие-ни-невосприятие, что крайне трудно описать иначе, кроме того факта, что ничто явно настроено на ничто, а восьмая джхана - это то, что происходит, когда ты расстраиваешься даже от этого уровня уверенности в том, на что настроено внимание.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>In neither-perception-nor-yet-non-perception, the eighth jhana, nothingness de-tunes out to neither-perception-nor-yet-non-perception, which is extremely hard to describe in any other way save for the fact that nothingness clearly is tuned to nothingness, and the eighth jhana is what happens when you detune from even that level of certainty about what attention is tuned to.</p>
+</div>
 <p>В ни-восприятии-ни-невосприятии, восьмой джхане, ничто расстраивается в ни-восприятие-ни-невосприятие, что крайне трудно описать иначе, кроме того факта, что ничто явно настроено на ничто, а восьмая джхана - это то, что происходит, когда ты расстраиваешься даже от этого уровня уверенности в том, на что настроено внимание.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Then I would come out and gain a fruition from the post-eighth jhana junction point.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Затем я выходил и получал плодоношение из узловой точки после восьмой джханы.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Then I would come out and gain a fruition from the post-eighth jhana junction point.</p>
+</div>
 <p>Затем я выходил и получал плодоношение из узловой точки после восьмой джханы.</p>
 </blockquote>
 
@@ -240,12 +582,20 @@ This was a practice I did for many years after lying down in bed at night.</p>
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
             x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
         ></button>
-        <button
-            class="mode-toggle"
-            type="button"
-            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
-            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
-        ></button>
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="original" x-model="contentMode">
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
     </div>
 </nav>
 

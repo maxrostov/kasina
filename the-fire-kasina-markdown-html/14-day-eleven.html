@@ -8,6 +8,38 @@
   <link rel="stylesheet" href="article.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    document.addEventListener("click", (event) => {
+      const mode = document.body.dataset.contentMode;
+      const quote = event.target.closest("main > blockquote[data-original-toggle]");
+      const original = event.target.closest("main > .original-block[data-translation-toggle]");
+
+      if (
+        (mode !== "translation" || !quote) &&
+        (mode !== "original" || !original)
+      ) {
+        return;
+      }
+
+      if (event.target.closest("a, button, input, textarea, select, summary")) {
+        return;
+      }
+
+      if (mode === "translation") {
+        const expanded = quote.classList.toggle("original-visible");
+        quote
+          .querySelector(".translation-original")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+
+      if (mode === "original") {
+        const expanded = original.classList.toggle("translation-visible");
+        original
+          .querySelector(".original-translation")
+          ?.setAttribute("aria-hidden", String(!expanded));
+      }
+    });
+  </script>
 </head>
 <body x-data="{ theme: $persist('light').as('kasina-theme'), contentMode: $persist('bilingual').as('kasina-content-mode'), menuOpen: false }" x-bind:data-theme="theme" x-bind:data-content-mode="contentMode" x-bind:data-menu-open="menuOpen" x-on:keydown.escape.window="menuOpen = false">
   <div class="layout">
@@ -19,100 +51,288 @@
     <div class="nav-backdrop" x-on:click="menuOpen = false"></div>
     <div class="shell">
       <main>
+<div class="original-block" data-translation-toggle>
 <h1>Day Eleven</h1>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>День одиннадцатый</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<h1>Day Eleven</h1>
+</div>
 <p>День одиннадцатый</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Highlights of Fourth Jhana ~ Luminosity ~ Fruitions]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Особенности четвертой джханы ~ Светоносность ~ Плоды</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Highlights of Fourth Jhana ~ Luminosity ~ Fruitions]</p>
+</div>
 <p>Особенности четвертой джханы ~ Светоносность ~ Плоды</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Fourth Jhana]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Четвертая джхана</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Fourth Jhana]</p>
+</div>
 <p>Четвертая джхана</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[SHANNON]
 I am getting into quiet, calm spaces with sublime moving objects: for example, a hand holding an exquisite flashlight with the thumb pressing on a button causing gorgeous glowing colours to emanate from its interior.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Я попадаю в тихие, спокойные пространства с возвышенными движущимися объектами: например, рука держит изящный фонарик, большой палец нажимает кнопку, и изнутри начинают исходить великолепные светящиеся цвета.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[SHANNON]
+I am getting into quiet, calm spaces with sublime moving objects: for example, a hand holding an exquisite flashlight with the thumb pressing on a button causing gorgeous glowing colours to emanate from its interior.</p>
+</div>
 <p>Я попадаю в тихие, спокойные пространства с возвышенными движущимися объектами: например, рука держит изящный фонарик, большой палец нажимает кнопку, и изнутри начинают исходить великолепные светящиеся цвета.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Does fourth jhana necessarily include living beings?</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Обязательно ли четвертая джхана включает живых существ?</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Does fourth jhana necessarily include living beings?</p>
+</div>
 <p>Обязательно ли четвертая джхана включает живых существ?</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 The images in the fourth jhana could be anything.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Образы в четвертой джхане могут быть чем угодно.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+The images in the fourth jhana could be anything.</p>
+</div>
 <p>Образы в четвертой джхане могут быть чем угодно.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>I often see geometrical designs in vast landscapes and sometimes living beings.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Я часто вижу геометрические узоры в огромных ландшафтах, а иногда живых существ.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>I often see geometrical designs in vast landscapes and sometimes living beings.</p>
+</div>
 <p>Я часто вижу геометрические узоры в огромных ландшафтах, а иногда живых существ.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>It is a realm where there is generally silence and things happening on their own.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Это сфера, где обычно есть тишина, и вещи происходят сами по себе.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>It is a realm where there is generally silence and things happening on their own.</p>
+</div>
 <p>Это сфера, где обычно есть тишина, и вещи происходят сами по себе.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Fourth jhana provides a rare opportunity to leverage concentration power to see extraordinarily key aspects essential for insight.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Четвертая джхана дает редкую возможность использовать силу сосредоточения, чтобы увидеть исключительно важные аспекты, необходимые для прозрения.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Fourth jhana provides a rare opportunity to leverage concentration power to see extraordinarily key aspects essential for insight.</p>
+</div>
 <p>Четвертая джхана дает редкую возможность использовать силу сосредоточения, чтобы увидеть исключительно важные аспекты, необходимые для прозрения.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Maybe just brief glimpses.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Возможно, это будут лишь краткие проблески.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Maybe just brief glimpses.</p>
+</div>
 <p>Возможно, это будут лишь краткие проблески.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Integrating insights afterwards is a long, important project.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Последующая интеграция прозрений - долгий и важный проект.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Integrating insights afterwards is a long, important project.</p>
+</div>
 <p>Последующая интеграция прозрений - долгий и важный проект.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Luminosity]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Светоносность</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Luminosity]</p>
+</div>
 <p>Светоносность</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 A profound aspect of fourth jhana is luminosity, a things-are-where-they-are aspect.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Глубокий аспект четвертой джханы - светоносность, аспект «вещи находятся там, где они находятся».</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+A profound aspect of fourth jhana is luminosity, a things-are-where-they-are aspect.</p>
+</div>
 <p>Глубокий аспект четвертой джханы - светоносность, аспект «вещи находятся там, где они находятся».</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Space is broad and can be taken as an object.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Пространство широко и может быть взято как объект.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Space is broad and can be taken as an object.</p>
+</div>
 <p>Пространство широко и может быть взято как объект.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Set the intention beforehand to see the luminous aspect.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Заранее задайте намерение увидеть светоносный аспект.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Set the intention beforehand to see the luminous aspect.</p>
+</div>
 <p>Заранее задайте намерение увидеть светоносный аспект.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>(SHANNON - This advice was invaluable in helping me see the same aspects in travels later in the retreat.)</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>(ШЭННОН - этот совет оказался бесценным и позже в ретрите помог мне увидеть те же аспекты в путешествиях.)</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>(SHANNON - This advice was invaluable in helping me see the same aspects in travels later in the retreat.)</p>
+</div>
 <p>(ШЭННОН - этот совет оказался бесценным и позже в ретрите помог мне увидеть те же аспекты в путешествиях.)</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Typically, objects are seen and space ignored.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Обычно объекты видятся, а пространство игнорируется.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Typically, objects are seen and space ignored.</p>
+</div>
 <p>Обычно объекты видятся, а пространство игнорируется.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>However, in the fourth jhana, we can reverse normal ignorance.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Однако в четвертой джхане мы можем обратить обычное неведение вспять.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>However, in the fourth jhana, we can reverse normal ignorance.</p>
+</div>
 <p>Однако в четвертой джхане мы можем обратить обычное неведение вспять.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Notice the awareness of the colour is in the brightness of colour itself.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Заметьте, что осознавание цвета находится в самой яркости цвета.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Notice the awareness of the colour is in the brightness of colour itself.</p>
+</div>
 <p>Заметьте, что осознавание цвета находится в самой яркости цвета.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[Fruitions]</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Плоды</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[Fruitions]</p>
+</div>
 <p>Плоды</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>[DANIEL]
 Insight opportunities in the fourth jhana are remarkable.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Возможности для прозрения в четвертой джхане замечательны.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>[DANIEL]
+Insight opportunities in the fourth jhana are remarkable.</p>
+</div>
 <p>Возможности для прозрения в четвертой джхане замечательны.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Fruitions may occur off images into all three doors.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Плоды могут происходить от образов через все три двери.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Fruitions may occur off images into all three doors.</p>
+</div>
 <p>Плоды могут происходить от образов через все три двери.</p>
 </blockquote>
+<div class="original-block" data-translation-toggle>
 <p>Once the mind can access fruitions in that territory, it tends to want to go there again.</p>
-<blockquote>
+<div class="original-translation" aria-hidden="true">
+<p>Когда ум получает доступ к плодам на этой территории, он склонен хотеть вернуться туда снова.</p>
+</div>
+</div>
+<blockquote data-original-toggle>
+<div class="translation-original" aria-hidden="true">
+<p>Once the mind can access fruitions in that territory, it tends to want to go there again.</p>
+</div>
 <p>Когда ум получает доступ к плодам на этой территории, он склонен хотеть вернуться туда снова.</p>
 </blockquote>
 
@@ -178,12 +398,20 @@ Insight opportunities in the fourth jhana are remarkable.</p>
             x-on:click="theme = theme === 'dark' ? 'light' : 'dark'"
             x-text="theme === 'dark' ? 'Light theme' : 'Dark theme'"
         ></button>
-        <button
-            class="mode-toggle"
-            type="button"
-            x-on:click="contentMode = contentMode === 'translation' ? 'bilingual' : 'translation'"
-            x-text="contentMode === 'translation' ? 'Bilingual mode' : 'Only translation'"
-        ></button>
+        <fieldset class="mode-toggle" aria-label="Text display mode">
+            <label>
+                <input type="radio" name="content-mode" value="bilingual" x-model="contentMode">
+                <span>Билингва</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="translation" x-model="contentMode">
+                <span>Только перевод</span>
+            </label>
+            <label>
+                <input type="radio" name="content-mode" value="original" x-model="contentMode">
+                <span>Только оригинал</span>
+            </label>
+        </fieldset>
     </div>
 </nav>
 

@@ -182,6 +182,23 @@ function createMarkdownRenderer() {
   return md;
 }
 
+// В одноязычных режимах соседний блок скрыт CSS. Чтобы можно было раскрыть
+// вторую сторону конкретной фразы, копии парных блоков вкладываются друг в друга.
+function addContentModeToggles(html) {
+  const originalBlock =
+    String.raw`(<h[1-6][^>]*>[\s\S]*?<\/h[1-6]>|<p[^>]*>[\s\S]*?<\/p>|<ul[^>]*>[\s\S]*?<\/ul>|<ol[^>]*>[\s\S]*?<\/ol>)`;
+  const translationPairPattern = new RegExp(
+    `${originalBlock}\\n<blockquote>\\n([\\s\\S]*?)\\n<\\/blockquote>`,
+    "g",
+  );
+
+  return html.replace(
+    translationPairPattern,
+    (match, original, translation) =>
+      `<div class="original-block" data-translation-toggle>\n${original}\n<div class="original-translation" aria-hidden="true">\n${translation}\n</div>\n</div>\n<blockquote data-original-toggle>\n<div class="translation-original" aria-hidden="true">\n${original}\n</div>\n${translation}\n</blockquote>`,
+  );
+}
+
 // Разметка навигации лежит в nav.html; здесь собирается только список ссылок.
 function renderNav({ template, pages, currentPage }) {
   const items = pages
@@ -292,7 +309,9 @@ async function main() {
 
   // Рендерит каждый Markdown-документ в самостоятельную HTML-страницу.
   for (const page of pages) {
-    const body = rewriteHtmlMarkdownUrls(md.render(page.markdown));
+    const body = addContentModeToggles(
+      rewriteHtmlMarkdownUrls(md.render(page.markdown)),
+    );
     const stylesheetLinks = stylesheets
       .map((stylesheet) => {
         const href = relativeHref(page.htmlPath, stylesheet.outputPath);

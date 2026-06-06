@@ -12,6 +12,10 @@
     --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
 }
 
+@view-transition {
+    navigation: auto;
+}
+
 * {
     touch-action: manipulation;
 }
@@ -63,6 +67,7 @@ a {
 }
 
 main {
+    view-transition-name: main;
     flex: 1 1 48rem;
     min-width: 0;
     padding: clamp(1.25rem, 4vw, 3rem);

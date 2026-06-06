@@ -1,4 +1,4 @@
-const BUILD_VERSION = "91e895b6fce81bbb";
+const BUILD_VERSION = "6a940e23e6f9a3e7";
 const CACHE_PREFIX = "kasina-publication-";
 const MANIFEST_URL = new URL("offline-manifest.json", self.location.href);
 

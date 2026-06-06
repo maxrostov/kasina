@@ -1,120 +1,163 @@
 /* Article spacing */
 main {
-    & > :first-child {
-        margin-top: 0;
-    }
+  & > :first-child {
+    margin-top: 0;
+  }
 
-    & > :last-child {
-        margin-bottom: 0;
-    }
+  & > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 /* Headings */
 h1,
 h2,
 h3 {
-    line-height: 1.2;
-    letter-spacing: 0;
+  line-height: 1.2;
+  letter-spacing: 0;
 }
 
 h1 {
-    font-size: clamp(2rem, 6vw, 3.2rem);
-    margin: 0 0 1.5rem;
+  font-size: clamp(2rem, 6vw, 2.2rem);
+  margin: 0 0 1.5rem;
+  font-weight: 500;
 }
 
 h2 {
-    margin-top: 2.2rem;
-    font-size: 1.55rem;
+  margin-top: 2.2rem;
+  font-size: 1.55rem;
 }
 
 h3 {
-    margin-top: 1.8rem;
-    font-size: 1.2rem;
+  margin-top: 1.8rem;
+  font-size: 1.2rem;
 }
 
 /* Text blocks */
 
 ul,
 ol {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }
 
 p {
-    margin: 1rem 0 0 0;
+  margin: 1rem 0 0 0;
 }
 
 blockquote {
-    margin: 0 0 0 0;
-    font-family: sans-serif;
-    font-size: 90%;
-    /*margin-left: 0;*/
-    /*padding: 0.75rem 1rem;*/
-    background: var(--quote-bg);
-    /*border-left: 4px solid var(--accent);*/
-    color: var(--text);
+  margin: 0 0 0 0;
+  font-family: sans-serif;
+  font-size: 90%;
+  /*margin-left: 0;*/
+  /*padding: 0.75rem 1rem;*/
+  background: var(--quote-bg);
+  /*border-left: 4px solid var(--accent);*/
+  color: var(--text);
 }
 
 /* Translation-only mode */
 body[data-content-mode="translation"] {
-    & main > [lang="en"]:not(.paired-visible) {
-        display: none;
+  & main > [lang="en"] {
+    transition: all 0.3s ease;
+  }
+
+  & main > [lang="en"]:not(.paired-visible) {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    overflow: hidden;
+  }
+
+  & main > [lang="en"].paired-visible {
+    max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  & main > blockquote {
+    /*margin: 1rem 0;*/
+    padding: 0;
+    background: transparent;
+    border-left: 0;
+    /*color: var(--text);*/
+    cursor: pointer;
+
+    & > :first-child {
+      margin-top: 0;
     }
 
-    & main > blockquote {
-        /*margin: 1rem 0;*/
-        padding: 0;
-        background: transparent;
-        border-left: 0;
-        /*color: var(--text);*/
-        cursor: pointer;
-
-        & > :first-child {
-            margin-top: 0;
-        }
-
-        & > :last-child {
-            margin-bottom: 0;
-        }
+    & > :last-child {
+      margin-bottom: 0;
     }
+  }
 
-    & main > [lang="en"].paired-visible {
-        color: var(--muted);
-        background: var(--quote-bg);
-    }
+  & main > [lang="en"].paired-visible {
+    color: var(--muted);
+    background: var(--quote-bg);
+  }
+
+  & main > h1 + blockquote[lang="ru"] {
+    font-size: clamp(2rem, 6vw, 2.2rem);
+    margin: 0 0 1.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  & h1 + p {
+    font-size: clamp(2rem, 6vw, 2.2rem);
+    margin: 0 0 1.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
 }
 
 /* Original-only mode */
 body[data-content-mode="original"] {
-    & main > blockquote:not(.paired-visible) {
-        display: none;
-    }
+  & main > blockquote {
+    transition: all 0.3s ease;
+  }
 
-    & main > [lang="en"] {
-        cursor: pointer;
-    }
+  & main > blockquote:not(.paired-visible) {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-20px);
+    overflow: hidden;
+  }
 
-    & main > blockquote.paired-visible {
-        color: var(--muted);
-    }
+  & main > blockquote.paired-visible {
+    max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  & main > [lang="en"] {
+    cursor: pointer;
+  }
+
+  & main > blockquote.paired-visible {
+    color: var(--muted);
+  }
 }
 
 /* Code blocks */
 code {
-    padding: 0.12rem 0.28rem;
-    border-radius: 4px;
-    background: var(--quote-bg);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 0.92em;
+  padding: 0.12rem 0.28rem;
+  border-radius: 4px;
+  background: var(--quote-bg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.92em;
 }
 
 pre {
-    overflow: auto;
-    padding: 1rem;
-    border-radius: 8px;
-    background: var(--quote-bg);
+  overflow: auto;
+  padding: 1rem;
+  border-radius: 8px;
+  background: var(--quote-bg);
 
-    & code {
-        padding: 0;
-        background: transparent;
-    }
+  & code {
+    padding: 0;
+    background: transparent;
+  }
 }

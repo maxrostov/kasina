@@ -311,7 +311,8 @@
         const pairedOriginal = translation.previousElementSibling;
 
         if (pairedOriginal?.matches('[lang="en"]')) {
-          pairedOriginal.classList.toggle("paired-visible");
+          const isVisible = pairedOriginal.classList.toggle("paired-visible");
+          translation.classList.toggle("paired-trigger-visible", isVisible);
         }
       }
 
@@ -319,7 +320,9 @@
         const pairedTranslation = original.nextElementSibling;
 
         if (pairedTranslation?.matches('blockquote[lang="ru"]')) {
-          pairedTranslation.classList.toggle("paired-visible");
+          const isVisible =
+            pairedTranslation.classList.toggle("paired-visible");
+          original.classList.toggle("paired-trigger-visible", isVisible);
         }
       }
     }

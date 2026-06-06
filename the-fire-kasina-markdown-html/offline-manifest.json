@@ -1,5 +1,5 @@
 {
-  "version": "6a940e23e6f9a3e7",
+  "version": "1d8aa42f90ef83ef",
   "files": [
     {
       "url": "01-the-authors.html",
@@ -131,7 +131,7 @@
     },
     {
       "url": "article.css",
-      "revision": "70e3b2276c655ec66adde0edd86c3a3b142c6245345a4f3d13e8e753a90b994b"
+      "revision": "9ea4341799f71f143e29f3ad5299bdc514c974ec234b1dff42a9d58b64408af1"
     },
     {
       "url": "index.html",
@@ -147,7 +147,7 @@
     },
     {
       "url": "publication.js",
-      "revision": "afcbfb2f339837f66cb396d99a9666926fab48d93701d2eaef723121102efad0"
+      "revision": "d8441236aaaf9176184037e8b6c1aa95b09dc33b8f5eac84cd727158ca9ee632"
     }
   ]
 }

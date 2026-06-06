@@ -91,6 +91,23 @@ body[data-content-mode="translation"] {
     }
   }
 
+  & main > blockquote[lang="ru"]:not(:first-of-type).paired-trigger-visible {
+    position: relative;
+  }
+
+  &
+    main
+    > blockquote[lang="ru"]:not(:first-of-type).paired-trigger-visible::after {
+    content: "▴";
+    position: absolute;
+    top: 0;
+    left: -0.8em;
+    font-size: 1.5em;
+    line-height: 1;
+    color: #956a32a3;
+    pointer-events: none;
+  }
+
   & main > [lang="en"].paired-visible {
     color: var(--muted);
     background: var(--quote-bg);
@@ -134,6 +151,21 @@ body[data-content-mode="original"] {
 
   & main > [lang="en"] {
     cursor: pointer;
+  }
+
+  & main > [lang="en"]:not(h1).paired-trigger-visible {
+    position: relative;
+  }
+
+  & main > [lang="en"]:not(h1).paired-trigger-visible::after {
+    content: "▾";
+    position: absolute;
+    top: 0;
+    left: -0.8em;
+    font-size: 1.5em;
+    line-height: 1;
+    color: #956a32a3;
+    pointer-events: none;
   }
 
   & main > blockquote.paired-visible {

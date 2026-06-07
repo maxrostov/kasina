@@ -7,8 +7,8 @@
  * отображения контента и раскрытие парных абзацев в двуязычном тексте.
  */
 (function () {
-  const themeKey = "kasina-theme";
-  const contentModeKey = "kasina-content-mode";
+  const themeKey = "theme";
+  const contentModeKey = "content-mode";
   const themes = new Set(["light", "dark"]);
   const contentModes = new Set(["bilingual", "translation", "original"]);
 

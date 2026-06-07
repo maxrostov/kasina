@@ -1,5 +1,5 @@
 {
-  "version": "1d8aa42f90ef83ef",
+  "version": "178be4899e3c703a",
   "files": [
     {
       "url": "01-the-authors.html",
@@ -147,7 +147,7 @@
     },
     {
       "url": "publication.js",
-      "revision": "d8441236aaaf9176184037e8b6c1aa95b09dc33b8f5eac84cd727158ca9ee632"
+      "revision": "19a17d3f0a630da96433182f34d091104dae920c8b4c476234b1c5f279ef7970"
     }
   ]
 }

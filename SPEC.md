@@ -2,47 +2,59 @@
 
 ## Назначение
 
-`build-html.js` преобразует папку с Markdown-публикацией в папку со статической HTML-публикацией. Сгенерированные страницы можно открывать напрямую из файловой системы, без dev-сервера.
+`builder/build-html.js` преобразует книгу из `books/<label>/md` в статический сайт в `books/<label>/html`, используя общий шаблон из папки `template/`. Сгенерированные страницы можно открывать напрямую из файловой системы, без dev-сервера.
 
 ## Командный интерфейс
 
 ```bash
-node build-html.js <source-dir> [output-dir]
-npm run build -- <source-dir> [output-dir]
-npm run serve
+# Сборка одной книги
+node builder/build-html.js <label>
+
+# Сборка всех книг
+node builder/build-html.js --all
+
+# Dev-сервер
+node builder/serve.js <label>
+
+# Запуск через npm из корня
+npm --prefix builder run build -- <label>
+npm --prefix builder run build -- --all
+npm --prefix builder run serve -- <label>
 ```
 
-- `<source-dir>` обязателен и должен указывать на папку.
-- `[output-dir]` опционален.
-- Если `[output-dir]` не указан, скрипт пишет в `<source-dir>-html`.
+- `<label>` — метка книги (имя подпапки в `books/`).
+- Если `<label>` не указан, скрипт предложит интерактивный выбор из доступных книг.
+- Флаг `--all` собирает все книги, у которых есть папка `books/*/md`.
 - Папка результата удаляется и создается заново при каждой сборке.
-- `npm run serve` запускает локальный HTTP-сервер на порту 3000 для просмотра папки `the-fire-kasina-markdown-html`.
+- Dev-сервер (`builder/serve.js`) запускает локальный HTTP-сервер на порту 3000 для просмотра `books/<label>/html`. Если `<label>` не указан — будет предложен интерактивный выбор.
 
 ## Файлы программы и структура модулей
 
-- `build-html.js`: тонкий CLI-энтрипоинт; разбирает аргументы, собирает пути и вызывает `buildPublication`.
-- `lib/build.js`: оркестратор сборки. Ходит по дереву файлов, копирует ассеты, рендерит Markdown→HTML, собирает манифест и сервис-воркер, возвращает сводку (`pagesCount`, `outputDir`, `entryPath`).
-- `lib/utils.js`: общие утилиты (POSIX-пути, экранирование HTML, переписывание Markdown-ссылок, вычисление заголовков, относительные href, расстановка lang-атрибутов оригинала/перевода).
-- `lib/markdown.js`: фабрика `createMarkdownRenderer()` с правилами переписывания Markdown-ссылок/изображений на `.html`.
-- `lib/templates.js`: рендер навигации и страницы по шаблонам `nav.html` и `template.html` (вставка стилей/скриптов/SW регистрации, content-mode).
-- `lib/service-worker.js`: генерация offline-манифеста (хэши файлов) и текст сервис-воркера, плюс HTML-сниппет регистрации; runtime placeholders в SW экранированы.
-- `serve.js`: Node.js-скрипт для запуска локального HTTP-сервера для просмотра сгенерированного HTML.
-- `template.html`: общий HTML-шаблон страницы.
-- `nav.html`: шаблон правой боковой навигации.
-- `main.css`: исходный CSS темы и основной оболочки, копируется как `main.css`.
-- `nav.css`: исходный CSS боковой навигации, копируется как `nav.css`.
-- `article.css`: исходный CSS оформления текста статьи, копируется как `article.css`.
-- `publication.js`: исходный JavaScript оболочки, навигации, темы и режимов чтения, копируется как `publication.js`.
-- `package.json`: npm-скрипты и зависимость `markdown-it`.
+- `builder/build-html.js`: CLI-энтрипоинт; принимает `<label>`/`--all` или запускает интерактивный выбор; собирает пути и вызывает `buildPublication`.
+- `builder/lib/build.js`: оркестратор сборки. Ходит по дереву файлов, копирует ассеты, рендерит Markdown→HTML, собирает манифест и сервис-воркер, возвращает сводку (`pagesCount`, `outputDir`, `entryPath`).
+- `builder/lib/utils.js`: общие утилиты (POSIX-пути, экранирование HTML, переписывание Markdown-ссылок, вычисление заголовков, относительные href, расстановка lang-атрибутов оригинала/перевода).
+- `builder/lib/markdown.js`: фабрика `createMarkdownRenderer()` с правилами переписывания Markdown-ссылок/изображений на `.html`.
+- `builder/lib/templates.js`: рендер навигации и страницы по шаблонам `template/nav.html` и `template/template.html` (вставка стилей/скриптов/SW регистрации, content-mode).
+- `builder/lib/service-worker.js`: генерация offline-манифеста (хэши файлов) и текст сервис-воркера, плюс HTML-сниппет регистрации; runtime placeholders в SW экранированы.
+- `builder/serve.js`: Node.js-скрипт для запуска локального HTTP-сервера `books/<label>/html` с интерактивным выбором при отсутствии аргумента.
+- `template/template.html`: общий HTML-шаблон страницы.
+- `template/nav.html`: шаблон правой боковой навигации.
+- `template/main.css`: CSS темы и основной оболочки, копируется в книгу как `main.css`.
+- `template/nav.css`: CSS боковой навигации, копируется как `nav.css`.
+- `template/article.css`: CSS оформления текста, копируется как `article.css`.
+- `template/publication.js`: JavaScript оболочки, навигации, темы и режимов чтения, копируется как `publication.js`.
+- `builder/package.json`: npm-скрипты и зависимость `markdown-it`.
 
 ## Последние изменения
 
-- Логика сборки разбита на CommonJS-модули (`lib/utils`, `lib/markdown`, `lib/templates`, `lib/service-worker`, `lib/build`), а `build-html.js` оставлен только как CLI-обёртка.
-- Исправлена генерация сервис-воркера: плейсхолдеры `${CACHE_PREFIX}`/`${BUILD_VERSION}` в теле SW теперь экранированы, чтобы не вычисляться на этапе сборки.
+- Поддержан мультикнижный режим: сборка по `<label>` или `--all`, интерактивный выбор при отсутствии аргумента.
+- Источники шаблонов/ассетов берутся из общей папки `template/`.
+- Dev-сервер раздает `books/<label>/html` и поддерживает интерактивный выбор `label`.
+- Ключи `localStorage` для темы и режима контента переименованы в неперефиксованные: `theme` и `content-mode`.
 
 ## Правила входных данных
 
-- Все `.md` файлы внутри `<source-dir>` конвертируются рекурсивно.
+- Все `.md` файлы внутри `books/<label>/md` конвертируются рекурсивно.
 - Все не-Markdown файлы копируются рекурсивно без изменений.
 - `index.md`, если он есть, сортируется первым и становится `index.html`.
 - Заголовок страницы и подпись в навигации берутся из первого Markdown H1.
@@ -69,11 +81,11 @@ Markdown-ссылки обрабатываются через renderer rules б�
 
 ## Поведение сгенерированного HTML
 
-- Каждая страница использует `template.html`.
+- Каждая страница использует `template/template.html`.
 - Каждая страница подключает `main.css`, `nav.css` и `article.css`.
 - Каждая страница подключает локальный `publication.js` без внешних CDN-зависимостей.
-- Тема сохраняется в `localStorage` под ключом `kasina-theme`.
-- Режим отображения текста сохраняется в `localStorage` под ключом `kasina-content-mode`.
+- Тема сохраняется в `localStorage` под ключом `theme`.
+- Режим отображения текста сохраняется в `localStorage` под ключом `content-mode`.
 - На `index.html` переключатель режима чтения остается в навигации, но не меняет отображение титульной страницы.
 - На mobile навигация скрыта под кнопкой-«бутербродом» и выезжает справа.
 
@@ -100,10 +112,10 @@ Markdown-ссылки обрабатываются через renderer rules б�
 
 ## Рабочий процесс
 
-- После каждого изменения проекта нужно сразу запускать пересборку командой:
+- После каждого изменения исходников книги нужно запускать пересборку командой:
 
 ```bash
-npm run build the-fire-kasina-markdown
+npm --prefix builder run build -- <label>
 ```
 
 - Команда запускается без дополнительного запроса подтверждения.

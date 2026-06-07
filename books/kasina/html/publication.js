@@ -255,7 +255,16 @@
      * @returns {void}
      */
     function handleThemeToggleClick() {
-      setTheme(body.dataset.theme === "dark" ? "light" : "dark", true);
+      const next = body.dataset.theme === "dark" ? "light" : "dark";
+      const apply = () => setTheme(next, true);
+
+      const vt = document.startViewTransition;
+      if (typeof vt === "function") {
+        vt.call(document, apply);
+        return;
+      }
+
+      apply();
     }
 
     /**

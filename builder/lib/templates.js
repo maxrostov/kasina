@@ -1,5 +1,12 @@
 const { escapeHtml, relativeHref } = require("./utils");
 
+function renderAnalytics() {
+  return `  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>`;
+}
+
 function renderNav({ template, pages, currentPage }) {
   const items = pages
     .map((page) => {
@@ -32,6 +39,7 @@ function renderPage({
     .replaceAll("{{title}}", escapeHtml(title))
     .replaceAll("{{stylesheets}}", stylesheetLinks)
     .replaceAll("{{scripts}}", scriptTags)
+    .replaceAll("{{analytics}}", renderAnalytics())
     .replaceAll("{{serviceWorker}}", serviceWorkerRegistration)
     .replaceAll("{{contentModeAttributes}}", contentModeAttributes)
     .replaceAll("{{nav}}", nav)
@@ -41,4 +49,5 @@ function renderPage({
 module.exports = {
   renderNav,
   renderPage,
+  renderAnalytics,
 };

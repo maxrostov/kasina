@@ -34,7 +34,7 @@ npm --prefix builder run serve -- <label>
 - `builder/lib/build.js`: оркестратор сборки. Ходит по дереву файлов, копирует ассеты, рендерит Markdown→HTML, собирает манифест и сервис-воркер, возвращает сводку (`pagesCount`, `outputDir`, `entryPath`).
 - `builder/lib/utils.js`: общие утилиты (POSIX-пути, экранирование HTML, переписывание Markdown-ссылок, вычисление заголовков, относительные href, расстановка lang-атрибутов оригинала/перевода).
 - `builder/lib/markdown.js`: фабрика `createMarkdownRenderer()` с правилами переписывания Markdown-ссылок/изображений на `.html`.
-- `builder/lib/templates.js`: рендер навигации и страницы по шаблонам `template/nav.html` и `template/template.html` (вставка стилей/скриптов/SW регистрации, content-mode).
+- `builder/lib/templates.js`: рендер навигации и страницы по шаблонам `template/nav.html` и `template/template.html` (вставка стилей/скриптов/аналитики/SW регистрации, content-mode).
 - `builder/lib/service-worker.js`: генерация offline-манифеста (хэши файлов) и текст сервис-воркера, плюс HTML-сниппет регистрации; runtime placeholders в SW экранированы.
 - `builder/serve.js`: Node.js-скрипт для запуска локального HTTP-сервера `books/<label>/html` с интерактивным выбором при отсутствии аргумента.
 - `template/template.html`: общий HTML-шаблон страницы.
@@ -43,7 +43,7 @@ npm --prefix builder run serve -- <label>
 - `template/nav.css`: CSS боковой навигации, копируется как `nav.css`.
 - `template/article.css`: CSS оформления текста, копируется как `article.css`.
 - `template/publication.js`: JavaScript оболочки, навигации, темы и режимов чтения, копируется как `publication.js`.
-- `builder/package.json`: npm-скрипты и зависимость `markdown-it`.
+- `builder/package.json`: npm-скрипты и зависимости `markdown-it` и `@vercel/analytics`.
 
 ## Последние изменения
 
@@ -51,6 +51,7 @@ npm --prefix builder run serve -- <label>
 - Источники шаблонов/ассетов берутся из общей папки `template/`.
 - Dev-сервер раздает `books/<label>/html` и поддерживает интерактивный выбор `label`.
 - Ключи `localStorage` для темы и режима контента переименованы в неперефиксованные: `theme` и `content-mode`.
+- Интегрирована Vercel Web Analytics: в `builder/lib/templates.js` добавлена функция `renderAnalytics()`, которая генерирует inline-скрипт инициализации analytics и загружает скрипт из `/_vercel/insights/script.js`. Шаблон `template/template.html` дополнен плейсхолдером `{{analytics}}`.
 
 ## Правила входных данных
 
@@ -86,7 +87,7 @@ Markdown-ссылки обрабатываются через renderer rules б�
 - Каждая страница подключает локальный `publication.js` без внешних CDN-зависимостей.
 - Тема сохраняется в `localStorage` под ключом `theme`.
 - Режим отображения текста сохраняется в `localStorage` под ключом `content-mode`.
-- На `index.html` переключатель режима чтения остается в навигации, но не меняет отображение титульной страницы.
+- На `index.html` переключатель режима чтения ос��ается в навигации, но не меняет отображение титульной страницы.
 - На mobile навигация скрыта под кнопкой-«бутербродом» и выезжает справа.
 
 ## Режимы отображения текста

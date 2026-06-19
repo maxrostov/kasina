@@ -1,214 +1,216 @@
 /* Article spacing */
 main {
-  & > :first-child {
-    margin-top: 0;
-  }
+    & > :first-child {
+        margin-top: 0;
+    }
 
-  & > :last-child {
-    margin-bottom: 0;
-  }
+    & > :last-child {
+        margin-bottom: 0;
+    }
 }
 
 /* Headings */
 h1,
 h2,
 h3 {
-  line-height: 1.2;
-  letter-spacing: 0;
+    line-height: 1.2;
+    letter-spacing: 0;
 }
 
 h1 {
-  font-size: clamp(2rem, 6vw, 2.2rem);
-  margin: 0 0 1.5rem;
-  font-weight: 500;
+    font-size: clamp(2rem, 6vw, 2.2rem);
+    margin: 0 0 1.5rem;
+    font-weight: 500;
 }
 
 h2 {
-  margin-top: 2.2rem;
-  font-size: 1.55rem;
+    margin-top: 2.2rem;
+    font-size: 1.55rem;
 }
 
 h3 {
-  margin-top: 1.8rem;
-  font-size: 1.2rem;
+    margin-top: 1.8rem;
+    font-size: 1.2rem;
 }
 
 /* Text blocks */
 
 ul,
 ol {
-  margin: 1rem 0;
+    margin: 1rem 0;
 }
 
 p {
-  margin: 1rem 0 0 0;
+    margin: 1rem 0 0 0;
 }
 
 blockquote {
-  margin: 0 0 0 0;
-  font-family: sans-serif;
-  font-size: 90%;
-  /*margin-left: 0;*/
-  /*padding: 0.75rem 1rem;*/
-  background: var(--quote-bg);
-  /*border-left: 4px solid var(--accent);*/
-  color: var(--text);
+    margin: 0 0 0 0;
+    font-family: sans-serif;
+    font-size: 90%;
+    /*margin-left: 0;*/
+    /*padding: 0.75rem 1rem;*/
+    background: var(--quote-bg);
+    /*border-left: 4px solid var(--accent);*/
+    color: var(--text);
 }
 
 main > [id^="en"],
 main > [id^="ru"] {
-  position: relative;
-  scroll-margin-top: 1rem;
+    position: relative;
+    scroll-margin-top: 1rem;
 }
 
 main > [id^="en"]::before,
 main > [id^="ru"]::before {
-  content: "#";
-  position: absolute;
-  top: 0;
-  left: -1.35em;
-  width: 1em;
-  opacity: 0;
-  color: var(--muted);
-  cursor: pointer;
-  font-family: system-ui, sans-serif;
-  font-size: 0.9em;
-  font-weight: 700;
-  line-height: inherit;
-  text-align: center;
-  transition:
-    color 160ms ease,
-    opacity 160ms ease;
+    content: "#";
+    position: absolute;
+    top: 0;
+    left: -1.35em;
+    width: 1em;
+    opacity: 0;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: system-ui, sans-serif;
+    font-size: 0.9em;
+    font-weight: 700;
+    line-height: inherit;
+    text-align: center;
+    transition:
+        color 600ms ease,
+        opacity 600ms ease;
 }
 
 main > [id^="en"]:hover::before,
 main > [id^="ru"]:hover::before,
 main > [id^="en"].section-anchor-visible::before,
 main > [id^="ru"].section-anchor-visible::before {
-  opacity: 1;
+    opacity: 0.6;
 }
 
 @media (max-width: 600px) {
-  main > [id^="en"]::before,
-  main > [id^="ru"]::before {
-    left: -1.1em;
-  }
+    main > [id^="en"]::before,
+    main > [id^="ru"]::before {
+        left: -1.1em;
+    }
 }
 
 /* Translation-only mode */
 body[data-content-mode="translation"] {
-  & main > [lang="en"] {
-    transition: all 0.3s ease;
-  }
-
-  & main > [lang="en"]:not(.paired-visible) {
-    max-height: 0;
-    opacity: 0;
-    transform: translateY(20px);
-    overflow: hidden;
-  }
-
-  & main > [lang="en"].paired-visible {
-    max-height: 500px;
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  & main > blockquote {
-    /*margin: 1rem 0;*/
-    padding: 0;
-    background: transparent;
-    border-left: 0;
-    /*color: var(--text);*/
-    cursor: pointer;
-
-    & > :first-child {
-      margin-top: 0;
+    & main > [lang="en"] {
+        transition: all 0.3s ease;
     }
 
-    & > :last-child {
-      margin-bottom: 0;
+    & main > [lang="en"]:not(.paired-visible) {
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(20px);
+        overflow: hidden;
     }
-  }
 
-  & main > blockquote[lang="ru"]:not(:first-of-type).paired-trigger-visible {
-    position: relative;
-  }
+    & main > [lang="en"].paired-visible {
+        max-height: 500px;
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-  &
-    main
-    > blockquote[lang="ru"]:not(:first-of-type).paired-trigger-visible::after {
-    content: "▴";
-    position: absolute;
-    top: 0;
-    left: -2em;
-    font-size: 1.5em;
-    line-height: 1;
-    color: #956a32a3;
-    pointer-events: none;
-  }
+    & main > blockquote {
+        /*margin: 1rem 0;*/
+        padding: 0;
+        background: transparent;
+        border-left: 0;
+        /*color: var(--text);*/
+        cursor: pointer;
 
-  & main > [lang="en"].paired-visible {
-    color: var(--muted);
-    background: var(--quote-bg);
-  }
+        & > :first-child {
+            margin-top: 0;
+        }
 
-  & main > h1 + blockquote[lang="ru"] {
-    font-size: clamp(2rem, 6vw, 2.2rem);
-    margin: 0 0 1.5rem;
-    font-weight: 500;
-    line-height: 1.2;
-    letter-spacing: 0;
-  }
+        & > :last-child {
+            margin-bottom: 0;
+        }
+    }
 
-  & h1 + p {
-    font-size: clamp(2rem, 6vw, 2.2rem);
-    margin: 0 0 1.5rem;
-    font-weight: 500;
-    line-height: 1.2;
-    letter-spacing: 0;
-  }
+    & main > blockquote[lang="ru"]:not(:first-of-type).paired-trigger-visible {
+        position: relative;
+    }
+
+    &
+        main
+        > blockquote[lang="ru"]:not(
+            :first-of-type
+        ).paired-trigger-visible::after {
+        content: "▴";
+        position: absolute;
+        top: 0;
+        left: -2em;
+        font-size: 1.5em;
+        line-height: 1;
+        color: #956a32a3;
+        pointer-events: none;
+    }
+
+    & main > [lang="en"].paired-visible {
+        color: var(--muted);
+        background: var(--quote-bg);
+    }
+
+    & main > h1 + blockquote[lang="ru"] {
+        font-size: clamp(2rem, 6vw, 2.2rem);
+        margin: 0 0 1.5rem;
+        font-weight: 500;
+        line-height: 1.2;
+        letter-spacing: 0;
+    }
+
+    & h1 + p {
+        font-size: clamp(2rem, 6vw, 2.2rem);
+        margin: 0 0 1.5rem;
+        font-weight: 500;
+        line-height: 1.2;
+        letter-spacing: 0;
+    }
 }
 
 /* Original-only mode */
 body[data-content-mode="original"] {
-  & main > blockquote {
-    transition: all 0.3s ease;
-  }
+    & main > blockquote {
+        transition: all 0.3s ease;
+    }
 
-  & main > blockquote:not(.paired-visible) {
-    max-height: 0;
-    opacity: 0;
-    transform: translateY(-20px);
-    overflow: hidden;
-  }
+    & main > blockquote:not(.paired-visible) {
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-20px);
+        overflow: hidden;
+    }
 
-  & main > blockquote.paired-visible {
-    max-height: 500px;
-    opacity: 1;
-    transform: translateY(0);
-  }
+    & main > blockquote.paired-visible {
+        max-height: 500px;
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-  & main > [lang="en"] {
-    cursor: pointer;
-  }
+    & main > [lang="en"] {
+        cursor: pointer;
+    }
 
-  & main > [lang="en"]:not(h1).paired-trigger-visible {
-    position: relative;
-  }
+    & main > [lang="en"]:not(h1).paired-trigger-visible {
+        position: relative;
+    }
 
-  & main > [lang="en"]:not(h1).paired-trigger-visible::after {
-    content: "▾";
-    position: absolute;
-    top: 0;
-    left: -2em;
-    font-size: 1.5em;
-    line-height: 1;
-    color: #956a32a3;
-    pointer-events: none;
-  }
+    & main > [lang="en"]:not(h1).paired-trigger-visible::after {
+        content: "▾";
+        position: absolute;
+        top: 0;
+        left: -2em;
+        font-size: 1.5em;
+        line-height: 1;
+        color: #956a32a3;
+        pointer-events: none;
+    }
 
-  & main > blockquote.paired-visible {
-    color: var(--muted);
-  }
+    & main > blockquote.paired-visible {
+        color: var(--muted);
+    }
 }

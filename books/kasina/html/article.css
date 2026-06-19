@@ -55,6 +55,46 @@ blockquote {
   color: var(--text);
 }
 
+main > [id^="en"],
+main > [id^="ru"] {
+  position: relative;
+  scroll-margin-top: 1rem;
+}
+
+main > [id^="en"]::before,
+main > [id^="ru"]::before {
+  content: "#";
+  position: absolute;
+  top: 0;
+  left: -1.35em;
+  width: 1em;
+  opacity: 0;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: system-ui, sans-serif;
+  font-size: 0.9em;
+  font-weight: 700;
+  line-height: inherit;
+  text-align: center;
+  transition:
+    color 160ms ease,
+    opacity 160ms ease;
+}
+
+main > [id^="en"]:hover::before,
+main > [id^="ru"]:hover::before,
+main > [id^="en"].section-anchor-visible::before,
+main > [id^="ru"].section-anchor-visible::before {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  main > [id^="en"]::before,
+  main > [id^="ru"]::before {
+    left: -1.1em;
+  }
+}
+
 /* Translation-only mode */
 body[data-content-mode="translation"] {
   & main > [lang="en"] {
@@ -101,7 +141,7 @@ body[data-content-mode="translation"] {
     content: "▴";
     position: absolute;
     top: 0;
-    left: -0.8em;
+    left: -2em;
     font-size: 1.5em;
     line-height: 1;
     color: #956a32a3;
@@ -161,7 +201,7 @@ body[data-content-mode="original"] {
     content: "▾";
     position: absolute;
     top: 0;
-    left: -0.8em;
+    left: -2em;
     font-size: 1.5em;
     line-height: 1;
     color: #956a32a3;

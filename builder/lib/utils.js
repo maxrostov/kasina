@@ -73,10 +73,11 @@ function relativeHref(fromHtmlPath, toHtmlPath) {
   return href || path.posix.basename(toHtmlPath);
 }
 
-function markOriginalLanguage(html) {
+function markOriginalLanguage(html, id = "") {
   return html.replace(
     /^<([a-z][a-z0-9-]*)(\s[^>]*)?>/i,
-    (match, tagName, attributes = "") => `<${tagName} lang="en"${attributes}>`,
+    (match, tagName, attributes = "") =>
+      `<${tagName}${id ? ` id="${id}"` : ""} lang="en"${attributes}>`,
   );
 }
 
@@ -99,6 +100,12 @@ function markTranslationLanguage(html) {
     );
 }
 
+function markTranslationLanguageWithId(html, id) {
+  return `<blockquote id="${id}" lang="ru">\n${unwrapTranslationParagraph(
+    html,
+  )}\n</blockquote>`;
+}
+
 function addContentLanguage(html) {
   const originalBlock =
     String.raw`(<h[1-6][^>]*>[\s\S]*?<\/h[1-6]>|<p[^>]*>[\s\S]*?<\/p>|<ul[^>]*>[\s\S]*?<\/ul>|<ol[^>]*>[\s\S]*?<\/ol>)`;
@@ -106,11 +113,21 @@ function addContentLanguage(html) {
     `${originalBlock}\\n<blockquote>\\n([\\s\\S]*?)\\n<\\/blockquote>`,
     "g",
   );
+  let contentBlockNumber = 0;
 
   const pairedHtml = html.replace(
     translationPairPattern,
-    (match, original, translation) =>
-      `${markOriginalLanguage(original)}\n<blockquote>\n${translation}\n</blockquote>`,
+    (match, original, translation) => {
+      contentBlockNumber += 1;
+
+      return `${markOriginalLanguage(
+        original,
+        `en${contentBlockNumber}`,
+      )}\n${markTranslationLanguageWithId(
+        translation,
+        `ru${contentBlockNumber}`,
+      )}`;
+    },
   );
 
   return markTranslationLanguage(pairedHtml);
@@ -130,5 +147,6 @@ module.exports = {
   markOriginalLanguage,
   unwrapTranslationParagraph,
   markTranslationLanguage,
+  markTranslationLanguageWithId,
   addContentLanguage,
 };

@@ -281,6 +281,139 @@
       }
     }
 
+    let visiblePseudoAnchor = null;
+
+    /**
+     * Проверяет, находится ли точка в зоне псевдо-якоря блока.
+     *
+     * @param {Element} block Блок с id.
+     * @param {MouseEvent} event Событие мыши.
+     * @returns {boolean} true, если точка попадает в область "#".
+     */
+    function isInPseudoAnchorArea(block, event) {
+      const rect = block.getBoundingClientRect();
+      const style = window.getComputedStyle(block);
+      const fontSize = Number.parseFloat(style.fontSize) || 16;
+      const lineHeight = Number.parseFloat(style.lineHeight) || fontSize * 1.2;
+      const left = rect.left - fontSize * 1.6;
+      const right = rect.left;
+      const top = rect.top;
+      const bottom = Math.min(rect.bottom, rect.top + lineHeight);
+
+      return (
+        event.clientX >= left &&
+        event.clientX <= right &&
+        event.clientY >= top &&
+        event.clientY <= bottom
+      );
+    }
+
+    /**
+     * Находит блок, псевдо-якорь которого находится под курсором.
+     *
+     * @param {MouseEvent} event Событие мыши.
+     * @returns {Element | null} Блок с id или null.
+     */
+    function pseudoAnchorBlockAtPoint(event) {
+      const target =
+        event.target instanceof Element
+          ? event.target
+          : event.target?.parentElement;
+      const directBlock = target?.closest(
+        'main > [id^="en"], main > [id^="ru"]',
+      );
+
+      if (directBlock && isInPseudoAnchorArea(directBlock, event)) {
+        return directBlock;
+      }
+
+      for (const block of document.querySelectorAll(
+        'main > [id^="en"], main > [id^="ru"]',
+      )) {
+        if (isInPseudoAnchorArea(block, event)) {
+          return block;
+        }
+      }
+
+      return null;
+    }
+
+    /**
+     * Находит текущий текстовый блок под курсором или его псевдо-якорем.
+     *
+     * @param {MouseEvent} event Событие мыши.
+     * @returns {Element | null} Блок с id или null.
+     */
+    function sectionBlockAtPoint(event) {
+      const target =
+        event.target instanceof Element
+          ? event.target
+          : event.target?.parentElement;
+      const directBlock = target?.closest(
+        'main > [id^="en"], main > [id^="ru"]',
+      );
+
+      return directBlock || pseudoAnchorBlockAtPoint(event);
+    }
+
+    /**
+     * Синхронизирует класс видимости для псевдо-якоря под курсором.
+     *
+     * @param {Element | null} block Текущий блок или null.
+     * @returns {void}
+     */
+    function setVisiblePseudoAnchor(block) {
+      if (visiblePseudoAnchor === block) {
+        return;
+      }
+
+      visiblePseudoAnchor?.classList.remove("section-anchor-visible");
+      visiblePseudoAnchor = block;
+      visiblePseudoAnchor?.classList.add("section-anchor-visible");
+    }
+
+    /**
+     * Обновляет видимость псевдо-якоря при движении мыши.
+     *
+     * @param {MouseEvent} event Событие движения мыши.
+     * @returns {void}
+     */
+    function handlePseudoAnchorMousemove(event) {
+      setVisiblePseudoAnchor(sectionBlockAtPoint(event));
+    }
+
+    /**
+     * Находит текстовый блок, если клик пришел в область его псевдо-якоря.
+     *
+     * Символ "#" рисуется через CSS ::before, поэтому DOM-элемента ссылки нет.
+     * Для сохранения кликабельности проверяем координаты клика относительно
+     * левой области блока, где расположен псевдоэлемент.
+     *
+     * @param {MouseEvent} event Событие клика по документу.
+     * @returns {Element | null} Блок с id, если клик попал по псевдо-якорю.
+     */
+    function pseudoAnchorTarget(event) {
+      return pseudoAnchorBlockAtPoint(event);
+    }
+
+    /**
+     * Переходит к hash текущего блока при клике по псевдо-якорю.
+     *
+     * @param {MouseEvent} event Событие клика по документу.
+     * @returns {void}
+     */
+    function handlePseudoAnchorClick(event) {
+      const block = pseudoAnchorTarget(event);
+
+      if (!block) {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      window.location.hash = block.id;
+    }
+
     /**
      * Показывает или скрывает парный абзац в режимах только перевода или
      * только оригинала.
@@ -354,6 +487,9 @@
       input.addEventListener("change", handleContentModeInputChange);
     }
 
+    document.addEventListener("mousemove", handlePseudoAnchorMousemove);
+    document.addEventListener("mouseleave", () => setVisiblePseudoAnchor(null));
+    document.addEventListener("click", handlePseudoAnchorClick);
     document.addEventListener("click", handlePairedContentClick);
   }
 

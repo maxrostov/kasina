@@ -42,8 +42,19 @@ npm --prefix builder run serve -- <label>
 - `template/main.css`: CSS темы и основной оболочки, копируется в книгу как `main.css`.
 - `template/nav.css`: CSS боковой навигации, копируется как `nav.css`.
 - `template/article.css`: CSS оформления текста, копируется как `article.css`.
-- `template/publication.js`: JavaScript оболочки, навигации, темы и режимов чтения, копируется как `publication.js`.
+- `template/publication.js`: JavaScript оболочки, навигации, темы, режимов чтения и сохранения позиции чтения (continue reading), копируется как `publication.js`.
 - `builder/package.json`: npm-скрипты и зависимости `markdown-it` и `@vercel/analytics`.
+
+## Continue reading (runtime)
+
+- При чтении любой страницы с контентом (`data-content-mode` не выключен) скрипт `publication.js` отслеживает позицию читателя через `IntersectionObserver`.
+- Наиболее видимый блок с `id^="en"` сохраняется в `localStorage` под ключом `reading-position` в формате `"04-day-one.html#en42"`.
+- Позиция также сохраняется при:
+  - загрузке страницы с хэшем (`page.html#en10`);
+  - любом изменении хэша (`hashchange`).
+- На титульной странице (`index.html`) при наличии сохранённой позиции под заголовком отображается кнопка «Продолжить чтение →», которая ведёт на сохранённую страницу с якорем.
+- Фича полностью работает офлайн: `localStorage` доступен без сети, все страницы закешированы Service Worker.
+- Для сброса позиции достаточно очистить `localStorage`.
 
 ## Последние изменения
 
@@ -52,6 +63,7 @@ npm --prefix builder run serve -- <label>
 - Dev-сервер раздает `books/<label>/html` и поддерживает интерактивный выбор `label`.
 - Ключи `localStorage` для темы и режима контента переименованы в неперефиксованные: `theme` и `content-mode`.
 - Интегрирована Vercel Web Analytics: в `builder/lib/templates.js` добавлена функция `renderAnalytics()`, которая генерирует inline-скрипт инициализации analytics и загружает скрипт из `/_vercel/insights/script.js`. Шаблон `template/template.html` дополнен плейсхолдером `{{analytics}}`.
+- Добавлена фича «Продолжить чтение»: `IntersectionObserver` отслеживает видимый блок при скролле, сохраняет `page.html#id` в `localStorage`, на index.html рендерится кнопка-ссылка на сохранённую позицию. Работает офлайн.
 
 ## Правила входных данных
 

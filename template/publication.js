@@ -11,6 +11,7 @@
   const contentModeKey = "content-mode";
   const themes = new Set(["light", "dark"]);
   const contentModes = new Set(["bilingual", "translation", "original"]);
+  const readingPositionKey = "reading-position";
 
   /**
    * Читает строковое значение из localStorage.
@@ -474,6 +475,105 @@
     setMenuOpen(false);
     updateOfflineStatus();
 
+    // --- Continue reading ---
+
+    /**
+     * Возвращает имя файла текущей страницы (например, "04-day-one.html").
+     * @returns {string}
+     */
+    function currentPagePath() {
+      return window.location.pathname.split("/").pop() || "index.html";
+    }
+
+    /**
+     * Сохраняет позицию чтения в localStorage.
+     *
+     * @param {string} hash Значение хэша без символа #.
+     * @returns {void}
+     */
+    function saveReadingPosition(hash) {
+      if (!hash) return;
+      storageSet(readingPositionKey, currentPagePath() + "#" + hash);
+    }
+
+    // Сохраняем позицию при загрузке страницы с якорем
+    if (window.location.hash) {
+      saveReadingPosition(window.location.hash.slice(1));
+    }
+
+    // Отслеживаем скролл для автосохранения позиции на страницах контента
+    if (isContentModeEnabled) {
+      var enBlocks = Array.from(document.querySelectorAll('main > [id^="en"]'));
+
+      if (enBlocks.length > 0) {
+        var mostVisibleId = null;
+        var saveTimeout = null;
+
+        var readingObserver = new IntersectionObserver(
+          function (entries) {
+            var topmostId = null;
+            var topmostY = Infinity;
+
+            for (var i = 0; i < entries.length; i++) {
+              if (
+                entries[i].intersectionRatio > 0 &&
+                entries[i].boundingClientRect.top < topmostY
+              ) {
+                topmostY = entries[i].boundingClientRect.top;
+                topmostId = entries[i].target.id;
+              }
+            }
+
+            if (topmostId && topmostId !== mostVisibleId) {
+              mostVisibleId = topmostId;
+
+              if (saveTimeout) {
+                clearTimeout(saveTimeout);
+              }
+
+              saveTimeout = setTimeout(function () {
+                saveReadingPosition(mostVisibleId);
+              }, 1500);
+            }
+          },
+          { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5] },
+        );
+
+        for (var i = 0; i < enBlocks.length; i++) {
+          readingObserver.observe(enBlocks[i]);
+        }
+      }
+    }
+
+    // Показываем кнопку «Продолжить чтение» на титульной странице
+    if (!isContentModeEnabled) {
+      var savedPosition = storageGet(readingPositionKey);
+
+      if (savedPosition && savedPosition.indexOf("#") !== -1) {
+        var main = document.querySelector("main");
+
+        if (main) {
+          var bar = document.createElement("div");
+          bar.className = "continue-reading-bar";
+
+          var link = document.createElement("a");
+          link.className = "continue-reading-link";
+          link.href = savedPosition;
+          link.textContent = "Продолжить чтение →";
+
+          bar.appendChild(link);
+
+          var h1 = main.querySelector("h1");
+
+          if (h1 && h1.nextSibling) {
+            main.insertBefore(bar, h1.nextSibling);
+          } else {
+            main.insertBefore(bar, main.firstChild);
+          }
+        }
+      }
+    }
+
     menuToggle?.addEventListener("click", handleMenuToggleClick);
     navBackdrop?.addEventListener("click", closeMenu);
     navClose?.addEventListener("click", closeMenu);
@@ -491,6 +591,11 @@
     document.addEventListener("mouseleave", () => setVisiblePseudoAnchor(null));
     document.addEventListener("click", handlePseudoAnchorClick);
     document.addEventListener("click", handlePairedContentClick);
+    window.addEventListener("hashchange", function () {
+      if (window.location.hash) {
+        saveReadingPosition(window.location.hash.slice(1));
+      }
+    });
   }
 
   onReady(initializePublicationControls);

@@ -77,6 +77,7 @@ async function buildPublication({
   navTemplatePath,
   stylesheets,
   scripts,
+  staticAssets = [],
   serviceWorkerOutputPath,
   cacheManifestOutputPath,
 }) {
@@ -141,6 +142,27 @@ async function buildPublication({
   for (const script of scripts) {
     await fs.copyFile(script.sourcePath, path.join(outputDir, script.outputPath));
     cachePaths.push(script.outputPath);
+  }
+
+  for (const asset of staticAssets) {
+    const sourceStats = await fs.stat(asset.sourcePath);
+    const targetPath = path.join(outputDir, asset.outputPath);
+
+    if (sourceStats.isDirectory()) {
+      const assetFiles = await walkFiles(asset.sourcePath);
+
+      for (const file of assetFiles) {
+        const outputPath = toPosix(path.join(asset.outputPath, file.relativePath));
+        const outputFilePath = path.join(outputDir, outputPath);
+        await fs.mkdir(path.dirname(outputFilePath), { recursive: true });
+        await fs.copyFile(file.absolutePath, outputFilePath);
+        cachePaths.push(outputPath);
+      }
+    } else if (sourceStats.isFile()) {
+      await fs.mkdir(path.dirname(targetPath), { recursive: true });
+      await fs.copyFile(asset.sourcePath, targetPath);
+      cachePaths.push(asset.outputPath);
+    }
   }
 
   for (const page of pages) {

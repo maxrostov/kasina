@@ -10,6 +10,10 @@
     --accent-contrast: #ffffff;
     --quote-bg: #efe7da;
     --shadow: 0 18px 45px rgba(54, 42, 30, 0.08);
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    --safe-area-right: env(safe-area-inset-right, 0px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-left: env(safe-area-inset-left, 0px);
 }
 
 @view-transition {
@@ -40,6 +44,9 @@
 
 body {
     margin: 0;
+    min-height: 100vh;
+    padding: var(--safe-area-top) var(--safe-area-right)
+        var(--safe-area-bottom) var(--safe-area-left);
     background: var(--bg);
     color: var(--text);
     font-family: Georgia, "Times New Roman", serif;

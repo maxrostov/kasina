@@ -72,6 +72,7 @@ const mimeTypes = {
   '.html': 'text/html',
   '.css': 'text/css',
   '.js': 'text/javascript',
+  '.webmanifest': 'application/manifest+json',
   '.json': 'application/json',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',

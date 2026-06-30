@@ -99,6 +99,9 @@
    * @returns {void}
    */
   function initializePublicationControls() {
+    const isStandalone =
+      window.navigator.standalone === true ||
+      window.matchMedia("(display-mode: standalone)").matches;
     const body = document.body;
     const menuToggle = document.querySelector(".menu-toggle");
     const navBackdrop = document.querySelector(".nav-backdrop");
@@ -110,6 +113,8 @@
       document.querySelectorAll('input[name="content-mode"]'),
     );
     const isContentModeEnabled = body.dataset.contentModeDisabled !== "true";
+
+    document.documentElement.classList.toggle("is-standalone", isStandalone);
 
     /**
      * Открывает или закрывает мобильное навигационное меню.

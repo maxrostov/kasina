@@ -43,6 +43,8 @@ npm --prefix builder run serve -- <label>
 - `template/nav.css`: CSS боковой навигации, копируется как `nav.css`.
 - `template/article.css`: CSS оформления текста, копируется как `article.css`.
 - `template/publication.js`: JavaScript оболочки, навигации, темы, режимов чтения и сохранения позиции чтения (continue reading), копируется как `publication.js`.
+- `template/site.webmanifest`: Web App Manifest для установки публикации как PWA, копируется как `site.webmanifest`.
+- `template/icons/`: локальные PWA-иконки, favicon и Apple touch icons, копируются в `icons/`.
 - `builder/package.json`: npm-скрипты и зависимости `markdown-it` и `@vercel/analytics`.
 
 ## Continue reading (runtime)
@@ -60,6 +62,7 @@ npm --prefix builder run serve -- <label>
 
 - Поддержан мультикнижный режим: сборка по `<label>` или `--all`, интерактивный выбор при отсутствии аргумента.
 - Источники шаблонов/ассетов берутся из общей папки `template/`.
+- Добавлены PWA-ассеты: `site.webmanifest`, локальные иконки, iOS Home Screen meta-теги, `theme-color`, safe-area CSS для `black-translucent` status bar и standalone CSS hook. Manifest и иконки включаются в offline-манифест service worker.
 - Dev-сервер раздает `books/<label>/html` и поддерживает интерактивный выбор `label`.
 - Ключи `localStorage` для темы и режима контента переименованы в неперефиксованные: `theme` и `content-mode`.
 - Интегрирована Vercel Web Analytics: в `builder/lib/templates.js` добавлена функция `renderAnalytics()`, которая генерирует inline-скрипт инициализации analytics и загружает скрипт из `/_vercel/insights/script.js`. Шаблон `template/template.html` дополнен плейсхолдером `{{analytics}}`.
@@ -97,6 +100,7 @@ Markdown-ссылки обрабатываются через renderer rules б�
 - Каждая страница использует `template/template.html`.
 - Каждая страница подключает `main.css`, `nav.css` и `article.css`.
 - Каждая страница подключает локальный `publication.js` без внешних CDN-зависимостей.
+- Каждая страница подключает `site.webmanifest`, локальные favicon/apple-touch icons, iOS web app meta-теги и `theme-color`.
 - Тема сохраняется в `localStorage` под ключом `theme`.
 - Режим отображения текста сохраняется в `localStorage` под ключом `content-mode`.
 - На `index.html` переключатель режима чтения ос��ается в навигации, но не меняет отображение титульной страницы.

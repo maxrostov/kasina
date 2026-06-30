@@ -61,6 +61,7 @@ async function buildOne({
   navTemplatePath,
   stylesheets,
   scripts,
+  staticAssets,
   serviceWorkerOutputPath,
   cacheManifestOutputPath,
   rootDir,
@@ -75,6 +76,7 @@ async function buildOne({
     navTemplatePath,
     stylesheets,
     scripts,
+    staticAssets,
     serviceWorkerOutputPath,
     cacheManifestOutputPath,
   });
@@ -99,6 +101,10 @@ async function main() {
   ];
   const scripts = [
     { sourcePath: path.join(templateDir, "publication.js"), outputPath: "publication.js" },
+  ];
+  const staticAssets = [
+    { sourcePath: path.join(templateDir, "site.webmanifest"), outputPath: "site.webmanifest" },
+    { sourcePath: path.join(templateDir, "icons"), outputPath: "icons" },
   ];
   const serviceWorkerOutputPath = "sw.js";
   const cacheManifestOutputPath = "offline-manifest.json";
@@ -125,6 +131,7 @@ async function main() {
         navTemplatePath,
         stylesheets,
         scripts,
+        staticAssets,
         serviceWorkerOutputPath,
         cacheManifestOutputPath,
         rootDir,
@@ -145,6 +152,7 @@ async function main() {
     navTemplatePath,
     stylesheets,
     scripts,
+    staticAssets,
     serviceWorkerOutputPath,
     cacheManifestOutputPath,
     rootDir,

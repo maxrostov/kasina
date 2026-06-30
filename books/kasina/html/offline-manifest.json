@@ -1,5 +1,5 @@
 {
-  "version": "2256b3f492ded248",
+  "version": "dc4ccfca517305f3",
   "files": [
     {
       "url": "01-the-authors.html",
@@ -134,6 +134,30 @@
       "revision": "95d00d1e536c5c4a25630e270634716ff7a64dc5a9ce7e507d144b60edc6bb7e"
     },
     {
+      "url": "icons/apple-touch-icon-152.png",
+      "revision": "8938154531a9108004b1e1bf49723e5f7d86bc4bc24d83a99d48534703fc3b93"
+    },
+    {
+      "url": "icons/apple-touch-icon-167.png",
+      "revision": "2d992c5c56b0a71355d7660992a31a434d5ac59d4ac0ce8899c59d18df1564e6"
+    },
+    {
+      "url": "icons/apple-touch-icon-180.png",
+      "revision": "a7b6f45a4f2878b74093599bdf766079b744079d50239d3cd8b305c9e838c782"
+    },
+    {
+      "url": "icons/favicon-32.png",
+      "revision": "03f9b526db0e99b951b22537bc2d61085c061b5da2120862309c2e5aa650686c"
+    },
+    {
+      "url": "icons/icon-192.png",
+      "revision": "f5bbfed2723eb8941ca5c18d17edbbc6987ee38c16776a6962f098f9246e9ff6"
+    },
+    {
+      "url": "icons/icon-512.png",
+      "revision": "74f110aceb040aa1f57622d4217d77f64948fb93e322d6e80f786a5391ce57de"
+    },
+    {
       "url": "index.html",
       "revision": "f1363ac82f8f0d95887bfe04b98bc97377d214d5ca372d947bdf782b1ecb760f"
     },
@@ -148,6 +172,10 @@
     {
       "url": "publication.js",
       "revision": "5305bbd76c6cbf197ede22a2acbafd23838a226380f3557a9e54a4add996aac2"
+    },
+    {
+      "url": "site.webmanifest",
+      "revision": "4015044a20be470c94dc28ccffac370c748d172188355ccb63b3c142192a6b1d"
     }
   ]
 }

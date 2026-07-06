@@ -61,6 +61,24 @@ main > [id^="ru"] {
     scroll-margin-top: 1rem;
 }
 
+main > [id^="en"]:target,
+main > [id^="ru"]:target {
+    animation: anchor-yellow-flash 1.4s ease-out 1;
+    border-radius: 4px;
+}
+
+@keyframes anchor-yellow-flash {
+    0% {
+        background-color: rgba(255, 226, 87, 0.88);
+        box-shadow: 0 0 0 0.28rem rgba(255, 226, 87, 0.36);
+    }
+
+    100% {
+        background-color: transparent;
+        box-shadow: 0 0 0 0 rgba(255, 226, 87, 0);
+    }
+}
+
 main > [id^="en"]::before,
 main > [id^="ru"]::before {
     content: "#";
